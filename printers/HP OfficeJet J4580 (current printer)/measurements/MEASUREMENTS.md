@@ -36,12 +36,12 @@ Photos live in `printers/HP OfficeJet J4580 (current printer)/photos/`. Checked 
 | 23_user_overhang_ruler | detail | ruler from the shelf edge to the front-bottom corner of the base | user `347d274e` |
 | 24_user_back_gap_ruler | detail | ruler from the wall to the back of the base; black DC plug and white USB cable | user `5bdec08b` |
 | 25_user_from_below | detail | from below: underside of the base and of the pulled-out tray past the shelf edge | user `92364d39` |
-| 26_user_niche, 27_user_niche_portrait | room | the whole niche | user `b0e6bccc`, `6e932a0f` |
+| 26_user_niche, 27_user_niche_portrait | shelf_wide | wide shots of the shelf | user `b0e6bccc`, `6e932a0f` |
 | 28_alo_front_tray_out | front (high) | a used J4580, tray out | alo.bg listing 10668101 |
 | 29_alo_ports_closeup | detail | real unit's port panel (rotated): USB-B in a small raised collar, purple DC socket, RJ11 pair | alo.bg listing 10668101 |
 
 Count by view: front 5, back 2, left 1, right 1, 3/4 front 4, 3/4 back 2, top 1, lid open 1, details
-(panel, door, box, ports x5, rulers x2, below) 10, room 2. 29 in total, 8 of them the user's own.
+(panel, door, box, ports x5, rulers x2, below) 10, wide shots 2. 29 in total, 8 of them the user's own.
 
 ## What HP's size includes
 
@@ -181,12 +181,11 @@ builder uses a USB-B plug of 2.6 + 1.2 cm (compact moulded plug) so the squashed
   Printing (tray + extender out, stop up) 47.5 cm deep; refill (tray out) 35.3; lid open 38.8 cm high, 32.8 deep.
 - Cables: USB-B and the HP DC plug go into a flat back (0.3 cm panel): reach 4.5 cm behind the back plane,
   matching the user's measured wall gap; `cable_space.behind_body_cm` = 4.5.
-- Photos: none added (back, front, top, sides and the user's ruler shots already covered). No Haiku search.
+- Photos: none added (back, front, top, sides and the user's ruler shots already covered). No web search.
 - Rounds: 3 (`work/compare/hp-officejet-j4580/round1.png` all views, `round2.png` side + printing + back
   cables, `round3.png` side + 3/4 after the fixes). Fixed: base/lid/feeder/panel depths from photo 05;
   the panel's left end is dark above the cream lip.
-- Still differs: the user's unit is more yellowed and dirty than the model; the front-door wrap and the
-  side recesses are approximate; the sticker on the scanner lid of the stock photos is left out (the user's
-  unit is covered with cloth).
+- Still differs: the owner's unit is more yellowed than the model; the front-door wrap and the side
+  recesses are approximate; the sticker on the scanner lid of the stock photos is left out.
 - Modelled without a photo: the underside (plain, four feet; front feet from the user's photo from below)
   and the inside of the rear notch beyond what photos 07 and 09 show.

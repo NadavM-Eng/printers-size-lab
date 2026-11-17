@@ -241,7 +241,7 @@ def rows_for(s):
 
 
 # --------------------------------------------------------------------------------------------
-# running cost and software reputation: printers/<name>/ownership.json (see helper-instructions/RESEARCH_BRIEF.md)
+# running cost and software reputation: printers/<name>/ownership.json (researched cartridge prices, page yields and software reputation)
 # --------------------------------------------------------------------------------------------
 OWNERSHIP_FROM = {"brother-hl-l2445dw": "brother-hl-l2400dw"}   # same machine, same cartridges and software
 RATING_WORD = {"good": "Good", "mixed": "Mixed", "poor": "Poor", "unknown": "Not enough evidence"}

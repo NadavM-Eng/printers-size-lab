@@ -139,7 +139,7 @@ of the front panel; B110: grey badge in the centre). The bodies match; 3020 phot
 ## Model status (2026-11-17)
 
 * Photos added: 16 (Phaser 3020 Xerox hero, tray open), 17 (Phaser 3020 back, vents + label),
-  18 (Phaser 3020, output support out). The Haiku search found no real back photo of the B110 or of any
+  18 (Phaser 3020, output support out). The web search found no real back photo of the B110 or of any
   sister; the back stays based on the B110 video frames 10-11 and drawing 02.
 * Rounds: 3 (work/compare/xerox-b110/round0-2.png). Fixed: tray door is the lower panel only plus a
   fold-out extension; output support angle 30 deg; the upper front panel rendered black and a dark line at

@@ -74,7 +74,7 @@
      "score": 4.4,
      "reviews": 354
     },
-    "checked": "Coordinator re-read Best Buy on 2026-11-17: the M110w tile shows 4.3 out of 5 with 175 reviews. The first figure (4.4 from 354) belonged to the Brother HL-L2460DW shown on the same page."
+    "checked": "The maintainer re-read Best Buy on 2026-11-17: the M110w tile shows 4.3 out of 5 with 175 reviews. The first figure (4.4 from 354) belonged to the Brother HL-L2460DW shown on the same page."
    },
    {
     "where": "zap.co.il (owner reviews, M110w)",
@@ -113,7 +113,7 @@
   ],
   "rating_was": "unknown",
   "why_was": "Only two owner-opinion pages with star ratings could be read (zap.co.il's 14 reviews and the Best Buy product rating, whose review text did not load), which is below the three-source minimum, so the star figures are reported but not rated.",
-  "rated_by": "Coordinator, after re-reading the Best Buy figure; the researcher had left it unrated for having two sources."
+  "rated_by": "The maintainer, after re-reading the Best Buy figure; the researcher had left it unrated for having two sources."
  },
  "blocked_sites": [
   "Best Buy reviews pages (/site/reviews and /product/.../reviews): 0 of 0 reviews loaded in the page text; the rating was read from the product page instead",

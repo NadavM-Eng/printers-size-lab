@@ -133,9 +133,8 @@ exact GLB and part data the page uses.
    bpy 4.x). If pip finds no bpy, check `python --version` and make the environment with a matching
    Python (for example `uv venv --python 3.13`).
 3. **Learn from a finished printer before you start.** Read `helper-instructions/AGENT_BRIEF.md`,
-   the brief our own model builders followed (its Step 2 is the build-render-compare loop; ignore its
-   parts about other sessions, the helper agent, git and the 30-minute budget, which were for our
-   team). Then read one finished printer end to end: `printers/HP LaserJet M110w/measurements/MEASUREMENTS.md`
+   the brief our own model builders follow (its Step 2 is the measure, build, render and compare
+   loop). Then read one finished printer end to end: `printers/HP LaserJet M110w/measurements/MEASUREMENTS.md`
    (photo index, official size, every part measured from scaled photos, model status) next to
    `build/builders/hp_laserjet_m110w.py`, which builds exactly those numbers. `brother_dcp_l2620dw.py`
    (an all-in-one with a scanner lid) and `xerox_b230.py` are two more. Your printer gets the same: a

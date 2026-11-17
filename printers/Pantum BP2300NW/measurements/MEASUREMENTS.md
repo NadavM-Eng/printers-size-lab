@@ -122,7 +122,7 @@ relief 2.4 cm - 0.5 cm recess = ~5.3 cm, then the cable bends down; RJ45 2.4 + 1
   Refill 33.7 x 36.9 x 17.9 cm (door down only). 39k triangles, 1.1 MB GLB.
 - Photos added this round: 22_sister_back_ports_real (real BP2300W back pillar: one framed pocket with the network
   port above USB-B, black band and black hinge tab under the lid, vent grille in 3 columns, rating label).
-  A Haiku search found no back photo of the exact BP2300NW and no photo of the power inlet on any BP2300 model.
+  A web search found no back photo of the exact BP2300NW and no photo of the power inlet on any BP2300 model.
 - Rounds: 0-2 by earlier helpers, round 3 (back) in `work/compare/pantum-bp2300nw/round3_a.png`. Round 3 changes:
   vents now 3 columns x 12 slots, hinge tabs black.
 - Ports as built (these supersede the back-section numbers above, which were the first estimate): RJ45 centre
