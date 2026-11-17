@@ -62,10 +62,18 @@ Visitors can put any printer on the shelf. The panel behind **Add your printer**
 [`docs/ai-instructions.md`](docs/ai-instructions.md) (Copy / Download). The visitor pastes it into
 ChatGPT, Gemini, Claude or similar, names the printer and their country, and gets back one JSON file,
 `<id>.printer.json`, which they drop anywhere on the page (or pick, or paste). Nothing is uploaded: the
-file is kept in that browser's `localStorage` (key `psl-mine-v1`) and listed under "Your printers"
-in both pickers, each with Remove.
+file is kept in that browser's IndexedDB (database `psl`, store `mine`; files kept by the first version
+in `localStorage` key `psl-mine-v1` are moved over) and listed under "Your printers" in both pickers,
+each with Remove. When the browser won't store anything, added printers last for that visit only.
 
-The file (`"format": "printers-size-lab/printer@1"`) holds:
+The instructions make the assistant try its tools first and take the strongest route they allow:
+**A** a real mesh (Blender's `bpy`, best with this repository's toolkit), **B** a shape recipe generated
+by code and checked against renders, **C** a hand-written recipe. They ask for photos of the exact
+model, measurement before modelling, and at least three photo-versus-render rounds when the assistant
+can render and see images; the file's `made_with` block says honestly how the model was made, and the
+page shows it as "How this model was made".
+
+The file (`"format": "printers-size-lab/printer@2"`; `@1` files are still accepted) holds:
 
 - specs: `name`, `brand`, `type`, `functions`, `dims_mm.closed` (official size in mm, required),
   `dims_mm.max`, `weight_kg`, `specs` (rows with the same labels as the built-in printers), one `price`
@@ -78,9 +86,32 @@ The file (`"format": "printers-size-lab/printer@1"`) holds:
   (`body` plus moving parts with a `pivot`), each made of `box` (x/y/z from–to ranges, optional
   rounded edges), `profile` (a side outline of [z, y] points pushed across a width), `cylinder` and
   `inset` (a flat dark rectangle on a face), with colour, roughness and glow; and `states`
-  (`printing`, `refill`, `lid_open`) as lists of `rotate` / `move` / `show` / `hide`.
+  (`printing`, `refill`, `lid_open`) as lists of `rotate` / `move` / `show` / `hide`;
+- or, instead of the recipe, a real mesh: `model.glb_base64` (a self-contained GLB, base64) and
+  `model.geom` (parts with their node names, kinds incl. `cable`, hidden parts, and state poses, the
+  same as `docs/data/<id>.geom.json`). The page loads it with the same GLTFLoader as the built-in
+  printers and measures the size, the state envelopes and the cable space itself. Limits: 8 MB of GLB,
+  300,000 triangles, no `uri` anywhere (nothing outside the file), no Draco/meshopt/KTX2, PNG or JPEG
+  textures of at most 4096 px; the whole file at most 12 MB.
+- `made_with`: route (A, B or C), tools, photos used, comparison rounds, what was checked against
+  photos and what is estimated.
 
-The page checks the file (format, required fields, number ranges, at most 400 shapes and 500 KB,
+Pack a model built with this toolkit (or any GLB plus a geom.json) into one printer file, with plain
+Python (no Blender needed):
+
+```bash
+python3 build/export_printer_file.py <id>                       # docs/models/<id>.glb + docs/data/<id>.geom.json + printers/<name>/specs.json
+python3 build/export_printer_file.py <id> --research my.json --glb my.glb --geom my.geom.json --out <id>.printer.json
+```
+
+The research may be this repository's own `specs.json` (+ `ownership.json`), converted, or the
+printer-file fields as an outside assistant writes them (everything but `format` and `model`). To build
+a new printer outside this project's own eight, put its research in `printers/<id>/specs.json`, its
+builder in `build/builders/<id_with_underscores>.py`, then `build/build_printer.py <id>` and the packer;
+`docs/ai-instructions.md` (section 5A) gives the exact steps. `docs/examples/acme-mesh-200.printer.json`
+is a small Route A example built from `build/builders/example.py`.
+
+The page checks the file (format, required fields, number ranges, a recipe of at most 400 shapes and 500 KB,
 only http(s) links, text shown as text), builds the three.js model and a geom object like
 `docs/data/*.geom.json` (state envelopes, cable space, body size), and warns when the closed shape
 differs from the official size by more than 0.5 cm. A file without `model` shows a plain box at the
@@ -121,4 +152,8 @@ pages and may have changed.
 
 ## License
 
-Code: [MIT](LICENSE).
+[MIT](LICENSE). The code, the 3D models and the research data in this repository are free for anyone to
+use, change and share, as they are and with no warranty.
+
+Two things are not covered by that licence: the DejaVu fonts in `build/fonts/` (their own licence is in
+that folder), and the brand names and logos shown on the models, which belong to their owners.

@@ -1,5 +1,5 @@
 {
-  "format": "printers-size-lab/printer@1",
+  "format": "printers-size-lab/printer@2",
   "id": "acme-inkbox-3100",
   "name": "Acme InkBox 3100",
   "brand": "Acme",
@@ -34,6 +34,7 @@
     "why": "The power plug goes straight into the flat back; the USB socket is in a shallow pocket."
   },
   "notes": "The cassette slides 20 cm out of the front to load paper. The lid needs about 25 cm of free height. No Windows reviews were found.",
+  "made_with": {"route": "C", "tools": ["web search"], "photos_used": 0, "comparison_rounds": 0, "verified_from_photos": [], "estimated": ["whole shape, from the manual's parts page"]},
   "model": {
     "units": "cm",
     "parts": [

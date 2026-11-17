@@ -87,6 +87,14 @@ a:hover{text-decoration-color:currentColor}
 .popt .chk{width:16px;height:16px;flex:none;color:var(--accent);visibility:hidden}
 .popt[aria-selected="true"] .chk{visibility:visible}
 .popt:hover,.popt.active{background:var(--well)}
+/* the red × on printers the visitor added: removes it from this browser (with Undo) */
+.popt .pdel{flex:none;width:30px;height:30px;margin:-4px -6px -4px 0;display:grid;place-items:center;padding:0;border:0;border-radius:8px;background:transparent;color:#e0352b;cursor:pointer}
+.popt .pdel svg{width:16px;height:16px}
+.popt .pdel:hover{background:rgba(224,53,43,.14)}
+.popt .pdel:focus-visible{outline:none;background:rgba(224,53,43,.14);box-shadow:inset 0 0 0 2px #e0352b}
+.msg.undo{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.msg.undo button{border:0;background:none;padding:2px 4px;margin:-2px 0;font:inherit;font-weight:600;color:var(--ink);text-decoration:underline;cursor:pointer;border-radius:6px}
+.msg.undo button:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
 .swap{width:44px;height:44px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;transition:border-color .15s}
 .swap:hover{border-color:var(--line-strong)}
 .swap svg{width:18px;height:18px}
@@ -477,7 +485,7 @@ details.paste textarea{display:block;width:100%;min-height:120px;margin:8px 0;pa
     <p class="dr-lead">Put any printer on the shelf next to these. Your AI assistant does the research and writes one file; you drop that file here. <strong>Nothing is uploaded:</strong> the printer is kept only in this browser, and other visitors don't see it.</p>
     <section class="step" aria-labelledby="stepAi">
       <h3 id="stepAi"><span class="num">1</span>Instructions for your AI</h3>
-      <p>Paste these instructions into ChatGPT, Gemini, Claude or another assistant that can search the web, then tell it the printer model and your country. It answers with one file, <code>&lt;printer&gt;.printer.json</code>.</p>
+      <p>Paste these instructions into ChatGPT, Gemini, Claude or another assistant that can search the web, then tell it the printer model and your country. It answers with one file, <code>&lt;printer&gt;.printer.json</code>. The more it can do (look at photos, run code, use Blender), the closer the model gets to the real printer.</p>
       <div class="btn-row">
         <button type="button" class="pill pri" id="aiCopy">Copy instructions</button>
         <a class="pill" id="aiDl" href="ai-instructions.md" download="printers-size-lab-ai-instructions.md">Download</a>
@@ -502,7 +510,7 @@ details.paste textarea{display:block;width:100%;min-height:120px;margin:8px 0;pa
     <section class="step" aria-labelledby="stepMine">
       <h3 id="stepMine"><span class="num">3</span>Your printers</h3>
       <ul class="mine-list" id="mineList"></ul>
-      <p class="small muted">Saved in this browser only. Clearing the site's data removes them; keep the files to add them again.</p>
+      <p class="small muted" id="mineKeep">Saved in this browser only. Clearing the site's data removes them; keep the files to add them again.</p>
     </section>
   </div>
 </dialog>
@@ -1932,7 +1940,7 @@ function pSub(p) {
   if (c && c.w) bits.push(`${fmt(c.w / 10, 1)} × ${fmt(c.d / 10, 1)} × ${fmt(c.h / 10, 1)} cm`);
   if (p.weight_kg) bits.push(`${fmt(p.weight_kg, 1)} kg`);
   if (!p.has_model) bits.push('box only for now');
-  if (p.user && p.boxOnly) bits.push('plain box');
+  if (p.user) bits.push(p.boxOnly ? 'plain box' : p.mesh ? 'real 3D model' : 'simple-shape model');
   return bits.join(' · ');
 }
 function renderChrome() {
@@ -2232,6 +2240,14 @@ function fillLists() {
         const chk = el('span', 'chk'); chk.innerHTML = CHECK_SVG;
         li.append(chk, t);
         if (p && other && other.id === p.id) { const sl = el('span', 'slot ' + (k === 'a' ? 'b' : 'a'), k === 'a' ? 'B' : 'A'); li.appendChild(sl); }
+        if (p && p.user) {   // a printer the visitor added: a red × removes it (Undo for a few seconds)
+          const del = el('button', 'pdel'); del.type = 'button'; del.tabIndex = -1;
+          del.setAttribute('aria-label', `Remove ${p.name}`); del.title = 'Remove from this browser (Delete key)';
+          del.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>';
+          del.addEventListener('click', (ev) => { ev.stopPropagation(); ev.preventDefault(); removeFromPicker(k, p.id); });
+          li.setAttribute('aria-keyshortcuts', 'Delete');
+          li.appendChild(del);
+        }
         li.setAttribute('aria-selected', String((slots[k].p ? slots[k].p.id : '') === li.dataset.id));
         li.addEventListener('click', (ev) => { ev.stopPropagation(); pick(k, li.dataset.id); });
         L.appendChild(li);
@@ -2276,9 +2292,17 @@ for (const k of ['a', 'b']) {
   P.btn.addEventListener('keydown', (e) => { if (['ArrowDown', 'Enter', ' '].includes(e.key)) { e.preventDefault(); openPicker(k); } });
   P.list.addEventListener('keydown', (e) => {
     const o = opts(k);
+    if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && e.target !== P.list) P.list.focus();   // from an × back to the list
     if (e.key === 'ArrowDown') { e.preventDefault(); setActive(k, (P.active ?? 0) + 1); }
     else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(k, (P.active ?? 0) - 1); }
+    else if (e.target.closest && e.target.closest('.pdel')) {   // on an added printer's ×: Enter/Space press it; arrows go back to the list
+      if (e.key === 'ArrowLeft' || e.key === 'Escape') { e.preventDefault(); P.list.focus(); }
+      else if (e.key === 'Tab') closePicker(k);
+      return;
+    }
     else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); const x = o[P.active ?? 0]; if (x) pick(k, x.dataset.id); }
+    else if (e.key === 'ArrowRight') { const d = o[P.active ?? 0] && o[P.active ?? 0].querySelector('.pdel'); if (d) { e.preventDefault(); d.focus(); } }
+    else if (e.key === 'Delete' || e.key === 'Backspace') { const x = o[P.active ?? 0]; if (x && x.querySelector('.pdel')) { e.preventDefault(); removeFromPicker(k, x.dataset.id); } }
     else if (e.key === 'Escape' || e.key === 'Tab') { closePicker(k, e.key === 'Escape'); }
   });
 }
@@ -2397,18 +2421,24 @@ window.__psl = {
    a recipe of boxes, profiles, cylinders and insets in centimetres. The visitor drops it here; the page
    checks it, builds a three.js model in the same frame as the built-in GLBs (metres, Y up, front +Z,
    origin at the bottom centre) and a geom object like docs/data/*.geom.json, so every view, state,
-   measurement, tile and spec row works unchanged. The file is untrusted: it is parsed defensively,
-   every string goes into textContent, links must be http(s), and nothing it names is ever fetched.
-   Added printers live only in this browser (localStorage).
+   measurement, tile and spec row works unchanged. Format @2 may carry a real mesh instead of the recipe:
+   model.glb_base64 (a self-contained GLB) plus model.geom (parts, kinds, hidden parts and state poses, as
+   in docs/data/*.geom.json); sizes, envelopes and cable space are measured here, never taken from the file.
+   The file is untrusted: it is parsed defensively, every string goes into textContent, links must be
+   http(s), a GLB may not name any outside file or URI, and nothing the file names is ever fetched.
+   Added printers live only in this browser (IndexedDB; older ones are moved over from localStorage).
    ========================================================================================== */
 const MINE = {
-  FORMAT: 'printers-size-lab/printer@1',
-  KEY: 'psl-mine-v1',
+  FORMAT: 'printers-size-lab/printer@2', FORMATS: ['printers-size-lab/printer@1', 'printers-size-lab/printer@2'],
+  KEY: 'psl-mine-v1',   // the localStorage key of the first version, read once and moved to IndexedDB
   GROUP: 'Your printers (this browser only)',
-  MAX_BYTES: 512 * 1024, MAX_SHAPES: 400, MAX_PARTS: 24, MAX_POINTS: 64, MAX_OPS: 40,
+  MAX_BYTES: 512 * 1024, MAX_FILE: 12 * 1024 * 1024, MAX_GLB: 8 * 1024 * 1024, MAX_TRIS: 300000, MAX_TEX_PX: 4096,
+  MAX_SHAPES: 400, MAX_PARTS: 24, MAX_MESH_PARTS: 40, MAX_POINTS: 64, MAX_OPS: 40,
   MAX_SPECS: 40, MAX_CARTS: 20, MAX_SOCKETS: 8, MAX_SAVED: 20, LIM_CM: 150,
-  list: [],   // [{ id, text, added, p, errors }] in the order they were added
+  list: [],   // [{ id, text, added, n, p, errors }] in the order they were added
+  noStore: false,   // true when this browser won't let the page keep anything (IndexedDB blocked)
 };
+const MB = (n) => fmtNum(n / 1048576, 1);
 const STATE_ALIASES = { printing: 'printing', print: 'printing', refill: 'refill', adding_paper: 'refill', add_paper: 'refill', loading_paper: 'refill', load_paper: 'refill', paper: 'refill', lid_open: 'lid_open', lid: 'lid_open', open_lid: 'lid_open', lid_up: 'lid_open', scan: 'lid_open' };
 // typical connector sizes in cm, as in build/printer_kit.py PLUGS:
 // [plug face width, face height, housing length beyond the socket face, strain relief length, cable diameter]
@@ -2417,7 +2447,7 @@ const MINE_PLUGS = {
   'USB-B': [1.6, 1.1, 3.0, 1.5, 0.45], RJ45: [1.4, 1.25, 2.4, 1.6, 0.55], RJ11: [1.0, 0.9, 2.0, 1.0, 0.4],
 };
 // spec labels the built-in printers use, in their order, so an added printer's table lines up
-const MINE_ORDER = ['Notes', 'Cost per page in Israel', 'Cost per page international', 'Cartridge prices', 'Compatible cartridges',
+const MINE_ORDER = ['Notes', 'How this model was made', 'Cost per page in Israel', 'Cost per page international', 'Cartridge prices', 'Compatible cartridges',
   'Software on Windows', 'What owners say', 'Type', 'Functions', 'Size closed (W × D × H)', 'Size in use (W × D × H)', 'Cable space behind',
   'Weight', 'Print speed', 'Two-sided printing', 'Connections', 'Paper in', 'Paper out', 'Manual feed', 'Scanner', 'Display', 'Toner', 'Drum',
   'Ink', 'In the box', '*', 'Price in Israel', 'Price international'];
@@ -2473,13 +2503,13 @@ function validCurrency(c) {
 }
 
 /* --- reading a file: returns { p, errors, warnings }; p is a printer in the same shape as printers.json --- */
-function readPrinterFile(text, opts = {}) {
+async function readPrinterFile(text, opts = {}) {
   const errors = [], warnings = [];
   const err = (m) => { if (errors.length < 40) errors.push(m); return null; };
   const warn = (m) => { if (warnings.length < 30 && !warnings.includes(m)) warnings.push(m); };
   const out = { p: null, errors, warnings };
   if (typeof text !== 'string' || !text.trim()) { err('The file is empty.'); return out; }
-  if (text.length > MINE.MAX_BYTES) { err(`The file is ${Math.round(text.length / 1024)} KB; the limit is 500 KB. Use fewer shapes.`); return out; }
+  if (text.length > MINE.MAX_FILE) { err(`The file is ${MB(text.length)} MB; the limit is 12 MB (a mesh of at most 8 MB, base64-encoded). Simplify the mesh.`); return out; }
   let f, raw = text.replace(/^﻿/, '').trim();
   try { f = JSON.parse(raw); } catch (e1) {
     // an AI's whole reply pasted in: keep what lies between the first { and the last }
@@ -2487,8 +2517,11 @@ function readPrinterFile(text, opts = {}) {
     try { if (i < 0 || j <= i) throw e1; f = JSON.parse(raw.slice(i, j + 1)); warn('Text around the JSON was ignored.'); }
     catch (e2) { err(`This is not valid JSON (${txt(e2.message, 160) || 'parse error'}). Ask your AI for the whole file again as plain JSON: double quotes, no comments, no trailing commas.`); return out; }
   }
-  if (!isObj(f)) { err('The file must be one JSON object: { "format": "printers-size-lab/printer@1", ... }.'); return out; }
-  if (f.format !== MINE.FORMAT) { err(`"format" must be "${MINE.FORMAT}" (found ${jshow(f.format)}).`); return out; }
+  if (!isObj(f)) { err(`The file must be one JSON object: { "format": "${MINE.FORMAT}", ... }.`); return out; }
+  if (!MINE.FORMATS.includes(f.format)) { err(`"format" must be "${MINE.FORMAT}" (found ${jshow(f.format)}).`); return out; }
+  const hasMesh = isObj(f.model) && f.model.glb_base64 != null;
+  if (hasMesh && f.format !== MINE.FORMAT) { err(`A file with model.glb_base64 needs "format": "${MINE.FORMAT}".`); return out; }
+  if (!hasMesh && text.length > MINE.MAX_BYTES) { err(`The file is ${Math.round(text.length / 1024)} KB; the limit for a shape recipe is 500 KB. Use fewer shapes.`); return out; }
 
   // identity
   const name = txt(f.name, 90);
@@ -2508,7 +2541,11 @@ function readPrinterFile(text, opts = {}) {
     else dims[k] = v;
   }
   // with the basics wrong, still check the 3D recipe, so one round of messages covers everything
-  if (errors.length) { if (f.model != null) readRecipe(f.model, { w: dims.w || 0, d: dims.d || 0, h: dims.h || 0 }, err, warn); return out; }
+  if (errors.length) {
+    if (hasMesh) readMesh(f.model, err, warn);
+    else if (f.model != null) readRecipe(f.model, { w: dims.w || 0, d: dims.d || 0, h: dims.h || 0 }, err, warn);
+    return out;
+  }
 
   const p = {
     id, name, user: true, group: MINE.GROUP, current: false, has_model: true,
@@ -2634,28 +2671,38 @@ function readPrinterFile(text, opts = {}) {
   const cs = isObj(f.cable_space) ? f.cable_space : {};
   for (const v of [f.sources, f.links]) if (Array.isArray(v)) v.slice(0, 40).forEach(src);
 
-  // the 3D recipe
+  // the 3D shape: a mesh, a recipe, or nothing (a plain box)
   const sockets = readSockets(cs.sockets, warn);
-  let rec = null;
-  if (f.model == null) {
+  let rec = null, mesh = null;
+  if (hasMesh) mesh = readMesh(f.model, err, warn);
+  else if (f.model == null) {
     p.boxOnly = true;
     warn('The file has no 3D shape ("model"), so the printer is shown as a plain box at its official size.');
     p.statusNotes.push('no 3D shape in the file, shown as a plain box at the official size.');
     const h = dims.h / 10, hw = dims.w / 20, hd = dims.d / 20;
     rec = { parts: [{ name: 'body', pivot: null, hidden: false, shapes: [{ type: 'box', x: [-hw, hw], y: [0, h], z: [-hd, hd], radius: Math.min(1.2, h * 0.1), mat: { color: '#3a3b3d', rough: 0.6 } }] }], states: {} };
   } else rec = readRecipe(f.model, dims, err, warn);
-  if (errors.length || !rec) return out;
+  if (errors.length || !(rec || mesh)) return out;
 
   let built;
-  try { built = buildMine(id, rec, sockets, dims, warn, p.statusNotes); }
-  catch (e) { console.warn(e); err(`The 3D shape could not be built (${txt(e.message, 120) || 'unknown error'}).`); return out; }
+  try { built = mesh ? await buildMeshMine(id, mesh, sockets, dims, warn, p.statusNotes) : buildMine(id, rec, sockets, dims, warn, p.statusNotes); }
+  catch (e) {
+    console.warn(e);
+    err(e && e.userMsg ? e.userMsg : `The 3D shape could not be built (${txt(e && e.message, 160) || 'unknown error'}).${mesh ? ' Export the GLB again from Blender (File > Export > glTF 2.0, format "glTF Binary", no compression).' : ''}`);
+    return out;
+  }
   p._tpl = built.root;
   p.geom = built.geom;
+  p.mesh = !!mesh;
+  p.tris = built.tris || null;
   if (built.geom.cable_back_gap_cm != null) {
     const why = txt(cs.why, 600);
     add('Cable space behind', `${fmtNum(built.geom.cable_back_gap_cm)} cm`, null, null,
-      [...paras(why), { p: 'Worked out on this page from the sockets in the file: their plugs and cables squashed against the wall.' }]);
+      [...paras(why), { p: built.geom.cablesFrom === 'mesh'
+        ? 'Measured on this page from the plugs and cables in the 3D mesh: how far they reach behind the back.'
+        : 'Worked out on this page from the sockets in the file: their plugs and cables squashed against the wall.' }]);
   }
+  madeWithRow(f.made_with, mesh ? 'mesh' : p.boxOnly ? 'none' : 'recipe', rows);
 
   // order the rows like the built-in printers, then tidy long notes into "More"
   const rank = (l) => { const i = MINE_ORDER.indexOf(l); return i < 0 ? MINE_ORDER.indexOf('*') : i; };
@@ -2839,6 +2886,166 @@ function readShape(s, where, cmNum, color, err, warn) {
   return err(`${where}: unknown "type" ${jshow(s.type)}; use "box", "profile", "cylinder" or "inset".`);
 }
 
+/* --- "How this model was made": the file's own account (made_with), and what the file really holds --- */
+const ROUTE_WORDS = { A: 'Real 3D mesh (Blender or similar)', B: 'Shape recipe generated by code', C: 'Shape recipe written by hand' };
+function madeWithRow(mw, holds, rows) {
+  const label = 'How this model was made';
+  const holdsWord = { mesh: 'a real 3D mesh', recipe: 'a shape recipe', none: 'no 3D shape (shown as a plain box)' }[holds];
+  if (!isObj(mw)) { rows.push({ label, value: 'Not stated', note: `The file doesn't say. It holds ${holdsWord}${holds === 'recipe' ? ', built from simple shapes' : ''}.` }); return; }
+  const route = (txt(mw.route, 20) || '').toUpperCase().replace(/^ROUTE\s*/, '')[0];
+  const list = (v, n = 12, max = 120) => (Array.isArray(v) ? v.map((x) => txt(x, max)).filter(Boolean).slice(0, n) : []);
+  const count = (v, max) => { const n = numOf(v); return n != null && n >= 0 && n <= max ? Math.round(n) : null; };
+  const rounds = count(mw.comparison_rounds, 100), photos = count(mw.photos_used, 1000);
+  const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
+  let value = ROUTE_WORDS[route] ? `Route ${route}: ${ROUTE_WORDS[route]}` : 'Route not stated';
+  value += rounds ? ` · ${plural(rounds, 'comparison round')} with photos` : ' · not compared with photos';
+  const more = [];
+  const mismatch = (route === 'A' && holds !== 'mesh') || ((route === 'B' || route === 'C') && holds !== 'recipe');
+  if (mismatch || !ROUTE_WORDS[route]) more.push({ p: `The file holds ${holdsWord}.` });
+  const tools = list(mw.tools, 12, 60);
+  if (tools.length) more.push({ label: 'Tools', items: tools });
+  if (photos != null) more.push({ label: 'Photos used:', p: String(photos) });
+  if (rounds != null) more.push({ label: 'Comparison rounds:', p: String(rounds) });
+  const ok = list(mw.verified_from_photos), est = list(mw.estimated);
+  if (ok.length) more.push({ label: 'Checked against photos', items: ok });
+  if (est.length) more.push({ label: 'Estimated', items: est });
+  const notes = txt(mw.notes, 1200);
+  if (notes) more.push(...sentencesOf(notes).map((x) => ({ p: x })));
+  const note = mismatch ? `The file holds ${holdsWord}.`
+    : holds === 'recipe' ? 'Built from simple shapes: the size and layout, not the detail of a model made from photos in Blender.' : null;
+  rows.push({ label, value, ...(note ? { note } : {}), ...(more.length ? { more } : {}) });
+}
+
+/* --- a real mesh (format @2): checked here before three.js ever sees it --- */
+const MESH_EXT_OK = /^(KHR_materials_\w+|KHR_texture_transform|KHR_mesh_quantization)$/;
+function meshErr(m) { const e = new Error(m); e.userMsg = m; return e; }
+function glbChunks(bytes) {
+  // a GLB: 12-byte header ("glTF", version 2, total length), then a JSON chunk and an optional BIN chunk
+  const dv = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  if (bytes.length < 20 || dv.getUint32(0, true) !== 0x46546C67) throw meshErr('model.glb_base64 is not a binary glTF (GLB): it must start with "glTF". Export "glTF Binary (.glb)", then base64-encode the whole file.');
+  if (dv.getUint32(4, true) !== 2) throw meshErr('The GLB is not glTF version 2.');
+  if (dv.getUint32(8, true) > bytes.length) throw meshErr('The GLB is cut short: its header says it is longer than the decoded data. Encode the whole file.');
+  const jlen = dv.getUint32(12, true);
+  if (dv.getUint32(16, true) !== 0x4E4F534A || 20 + jlen > bytes.length) throw meshErr('The GLB has no JSON chunk.');
+  let json;
+  try { json = JSON.parse(new TextDecoder().decode(bytes.subarray(20, 20 + jlen))); } catch (e) { throw meshErr('The GLB\'s JSON chunk is not valid JSON.'); }
+  let bin = null;
+  const o = 20 + jlen + ((4 - (jlen % 4)) % 4);
+  if (o + 8 <= bytes.length && dv.getUint32(o + 4, true) === 0x004E4942) bin = bytes.subarray(o + 8, Math.min(bytes.length, o + 8 + dv.getUint32(o, true)));
+  return { json, bin };
+}
+function imageSize(b) {
+  // width and height from a PNG or JPEG header, without decoding it
+  if (b.length > 24 && b[0] === 0x89 && b[1] === 0x50 && b[2] === 0x4E && b[3] === 0x47) {
+    const dv = new DataView(b.buffer, b.byteOffset, b.byteLength); return [dv.getUint32(16), dv.getUint32(20)];
+  }
+  if (b.length > 4 && b[0] === 0xFF && b[1] === 0xD8) {
+    for (let i = 2; i + 9 < b.length;) {
+      if (b[i] !== 0xFF) { i++; continue; }
+      const mk = b[i + 1], len = (b[i + 2] << 8) | b[i + 3];
+      if (mk >= 0xC0 && mk <= 0xCF && mk !== 0xC4 && mk !== 0xC8 && mk !== 0xCC) return [(b[i + 7] << 8) | b[i + 8], (b[i + 5] << 8) | b[i + 6]];
+      i += 2 + len;
+    }
+  }
+  return null;
+}
+function readMesh(m, err, warn) {
+  let s = m.glb_base64;
+  if (typeof s !== 'string' || !s.trim()) return err('model.glb_base64 must be the GLB file as one base64 string.');
+  s = s.replace(/^data:[^,]{0,100},/, '').replace(/\s+/g, '');
+  if (s.length * 0.75 > MINE.MAX_GLB + 3) return err(`The mesh is ${MB(s.length * 0.75)} MB; the limit is 8 MB. Use fewer bevel segments or a decimate modifier, and leave out hidden insides.`);
+  if (!/^[A-Za-z0-9+/]*={0,2}$/.test(s)) return err('model.glb_base64 is not valid base64 (only A–Z, a–z, 0–9, +, / and = padding).');
+  let bytes;
+  try { const bin = atob(s); bytes = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i); }
+  catch (e) { return err('model.glb_base64 could not be decoded as base64.'); }
+  let gl;
+  try { gl = glbChunks(bytes); } catch (e) { return err(e.userMsg || 'The GLB could not be read.'); }
+  const j = gl.json;
+  // self-contained: no "uri" anywhere (outside files, web addresses, even data: URIs); everything lives in the GLB
+  let uri = null;
+  const walk = (v, path, depth) => {
+    if (uri || depth > 40 || v == null || typeof v !== 'object') return;
+    if (Array.isArray(v)) { v.forEach((x, i) => walk(x, `${path}[${i}]`, depth + 1)); return; }
+    for (const [k, x] of Object.entries(v)) { if (k === 'uri') { uri = { path, value: x }; return; } walk(x, path ? `${path}.${k}` : k, depth + 1); }
+  };
+  walk(j, '', 0);
+  if (uri) return err(`The GLB refers to an outside file or address (${txt(uri.path, 40)}: ${jshow(uri.value)}). It must be self-contained: in Blender export "glTF Binary (.glb)", which packs the mesh and its images into the one file.`);
+  const req = (Array.isArray(j.extensionsRequired) ? j.extensionsRequired : []).filter((x) => !MESH_EXT_OK.test(String(x)));
+  if (req.length) return err(`The GLB needs ${req.map((x) => txt(x, 40)).join(', ')}, which the page doesn't load. Export it without compression (no Draco, no meshopt, no KTX2 textures).`);
+  const nodes = Array.isArray(j.nodes) ? j.nodes : [], meshes = Array.isArray(j.meshes) ? j.meshes : [], acc = Array.isArray(j.accessors) ? j.accessors : [];
+  if (!meshes.length) return err('The GLB has no meshes.');
+  if (nodes.length > 5000) return err(`The GLB has ${nodes.length} nodes; join the objects of each part (at most 5000 nodes).`);
+  let tris = 0;
+  for (const n of nodes) {
+    if (!isObj(n) || !Number.isInteger(n.mesh) || !isObj(meshes[n.mesh])) continue;
+    for (const pr of Array.isArray(meshes[n.mesh].primitives) ? meshes[n.mesh].primitives : []) {
+      if (!isObj(pr) || (pr.mode ?? 4) !== 4) continue;
+      const a = Number.isInteger(pr.indices) ? acc[pr.indices] : isObj(pr.attributes) ? acc[pr.attributes.POSITION] : null;
+      tris += isObj(a) && Number.isFinite(a.count) ? Math.floor(a.count / 3) : 0;
+    }
+  }
+  if (tris > MINE.MAX_TRIS) return err(`The mesh has ${thousands(tris)} triangles; the limit is ${thousands(MINE.MAX_TRIS)}. Use fewer bevel and cylinder segments, or a Decimate modifier on large rounded parts.`);
+  // embedded images: PNG or JPEG, at most 4096 px a side (checked from their headers before they are decoded)
+  const imgs = Array.isArray(j.images) ? j.images : [], views = Array.isArray(j.bufferViews) ? j.bufferViews : [];
+  if (imgs.length > 32) return err(`The GLB has ${imgs.length} images; at most 32.`);
+  for (const [i, im] of imgs.entries()) {
+    const bv = isObj(im) && Number.isInteger(im.bufferView) ? views[im.bufferView] : null;
+    if (!isObj(bv) || !gl.bin) return err(`Image ${i + 1} in the GLB is not stored inside it.`);
+    if (!/^image\/(png|jpeg)$/.test(im.mimeType)) return err(`Image ${i + 1} in the GLB is ${jshow(im.mimeType)}; use PNG or JPEG.`);
+    const off = bv.byteOffset || 0, sz = imageSize(gl.bin.subarray(off, off + Math.min(bv.byteLength || 0, 65536)));
+    if (!sz) return err(`Image ${i + 1} in the GLB could not be read.`);
+    if (sz[0] > MINE.MAX_TEX_PX || sz[1] > MINE.MAX_TEX_PX) return err(`Image ${i + 1} in the GLB is ${sz[0]} × ${sz[1]} px; at most ${MINE.MAX_TEX_PX} px a side.`);
+  }
+  // model.geom: which nodes are which parts, and how they move (as in docs/data/<id>.geom.json)
+  const g = m.geom;
+  const parts = {}, states = {};
+  if (g == null) warn('The mesh has no model.geom, so it is shown as one fixed body: no moving parts, no states, no cables.');
+  else if (!isObj(g) || !isObj(g.parts)) err('model.geom must look like {"parts": {"body": {"node": "<node name>", "kind": "body"}, ...}, "states": {...}} (as build_printer.py writes docs/data/<id>.geom.json).');
+  else {
+    const entries = Object.entries(g.parts);
+    if (entries.length > MINE.MAX_MESH_PARTS) return err(`model.geom.parts has ${entries.length} parts; at most ${MINE.MAX_MESH_PARTS}.`);
+    for (const [raw, info] of entries) {
+      const name = String(raw).toLowerCase().trim().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 32);
+      const node = isObj(info) ? txt(info.node, 120) : null;
+      if (!name || !node) { err(`model.geom.parts.${txt(raw, 32) || '?'} needs a "node": the name of its node in the GLB.`); continue; }
+      let kind = String(info.kind || (name.startsWith('cable') ? 'cable' : name === 'body' ? 'body' : 'moving')).toLowerCase();
+      if (!['body', 'moving', 'detail', 'cable'].includes(kind)) { warn(`Part '${name}': kind ${jshow(info.kind)} is not body, moving, detail or cable; "moving" was used.`); kind = 'moving'; }
+      parts[name] = { node, kind, hidden: info.hidden === true };
+    }
+    if (g.states != null && !isObj(g.states)) err('model.geom.states must be an object like {"printing": [...], "refill": [...]}.');
+    for (const [rawKey, ops] of Object.entries(isObj(g.states) ? g.states : {})) {
+      if (String(rawKey).toLowerCase() === 'closed') continue;
+      const key = STATE_ALIASES[String(rawKey).toLowerCase().replace(/[\s-]+/g, '_')];
+      if (!key) { warn(`State '${txt(rawKey, 30)}' is not one the page shows (printing, refill, lid_open); it was ignored.`); continue; }
+      if (!Array.isArray(ops) || ops.length > MINE.MAX_OPS) { err(`State '${key}' must be a list of at most ${MINE.MAX_OPS} operations.`); continue; }
+      const list = states[key] || (states[key] = []);
+      for (const [oi, op] of ops.entries()) {
+        const where = `State '${key}', operation ${oi + 1}`;
+        const part = isObj(op) ? String(op.part ?? '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') : '';
+        if (!parts[part]) { err(`${where} names part '${txt(isObj(op) ? op.part : '', 32) || ''}', which is not in model.geom.parts.`); continue; }
+        if (parts[part].kind === 'body') { err(`${where} moves '${part}', a body part; only moving parts can move.`); continue; }
+        let did = false;
+        if (op.rot != null || op.deg != null) {
+          const ax = typeof op.rot === 'string' && AXES[op.rot.toLowerCase()] ? AXES[op.rot.toLowerCase()].toArray() : Array.isArray(op.rot) && op.rot.length === 3 ? op.rot.map(numOf) : null;
+          const deg = numOf(op.deg);
+          if (!ax || ax.some((v) => v == null) || Math.hypot(...ax) < 1e-6 || deg == null || Math.abs(deg) > 360) err(`${where}: a rotation needs "rot": [x, y, z] (an axis in the glTF frame) and "deg".`);
+          else { list.push({ part, rot: ax, deg }); did = true; }
+        }
+        if (op.move != null) {
+          const v = Array.isArray(op.move) && op.move.length === 3 ? op.move.map(numOf) : null;
+          if (!v || v.some((x) => x == null || Math.abs(x) > 1.5)) err(`${where}: "move" must be [x, y, z] in metres (glTF frame), each within ±1.5.`);
+          else { list.push({ part, move: v }); did = true; }
+        }
+        if (op.show === true) { list.push({ part, show: true }); did = true; }
+        if (op.hide === true) { list.push({ part, hide: true }); did = true; }
+        if (!did && op.rot == null && op.move == null) err(`${where} does nothing: use "rot" + "deg", "move", "show": true or "hide": true.`);
+      }
+      if (!list.length) delete states[key];
+    }
+  }
+  return { bytes, gl: j, tris, parts, states, hasGeom: isObj(g) };
+}
+
 /* --- building the model from a checked recipe (cm in, metres out) --- */
 function mineMesh(s, matOf) {
   const c = 0.01;
@@ -2930,20 +3137,36 @@ function buildMine(id, rec, sockets, dims, warn, statusNotes) {
     }
   }
   geom.states = rec.states;
-  // the closed body, without cables: stand it on y = 0 and compare it with the official size
-  let body = boxOfMeshes(root, () => true);
-  if (body.isEmpty()) throw new Error('the model has no visible shapes');
+  Object.assign(geom, measureMine(id, root, inner, nodes, rec.states, sockets, dims, warn, statusNotes));
+  for (const so of geom.sockets) geom.parts[so.part] = { node: so.node, kind: 'cable', hidden: false, pivot_m: null };
+  return { root, geom };
+}
+
+/* the checks and measurements every added printer gets, recipe or mesh: stand it on the shelf, compare it with
+   the official size, the envelope of every state, and the space its cables need behind it */
+function measureMine(id, root, inner, nodes, states, sockets, dims, warn, statusNotes) {
+  const out = {};
+  const solid = (o) => !isCable(o);
+  let body = boxOfMeshes(root, solid);
+  if (body.isEmpty()) throw meshErr('The 3D shape has nothing visible to show.');
   if (Math.abs(body.min.y) > 0.002) {
     warn(`The shape's bottom is at y = ${fmtNum(body.min.y * 100)} cm; it was moved to stand on y = 0 (the shelf).`);
-    inner.position.y = -body.min.y;
-    body = boxOfMeshes(root, () => true);
+    inner.position.y -= body.min.y;
+    body = boxOfMeshes(root, solid);
   }
   const size = body.getSize(new THREE.Vector3()).multiplyScalar(100);
   const off = { x: dims.w / 10, y: dims.h / 10, z: dims.d / 10 };
   const word = { x: ['wide', 'width', 'wider', 'narrower'], y: ['tall', 'height', 'taller', 'lower'], z: ['deep', 'depth', 'deeper', 'shallower'] };
-  const turned = Math.abs(size.x - off.z) < 1 && Math.abs(size.z - off.x) < 1 && Math.abs(off.x - off.z) > 2;
+  const near = (a, b) => Math.abs(a - b) < Math.max(1, b * 0.04);
+  const turned = near(size.x, off.z) && near(size.z, off.x) && Math.abs(off.x - off.z) > 2;
+  const zUp = near(size.y, off.z) && near(size.z, off.y) && Math.abs(off.y - off.z) > 2;
+  const scale = size.x / off.x;
+  if (scale > 50 || scale < 1 / 50) throw meshErr(`The 3D shape is ${fmtNum(size.x)} cm wide against an official ${fmtNum(off.x)} cm: its units look wrong. A GLB is in metres (a 36 cm printer is 0.36 wide); a recipe is in centimetres.`);
   if (turned) {
     const m = 'The 3D shape looks turned 90°: its width matches the official depth. Width runs along x, depth along z (front = +z).';
+    warn(m); statusNotes.push(m);
+  } else if (zUp) {
+    const m = 'The 3D shape looks tipped over: its height matches the official depth. In a GLB +Y is up and the front faces +Z (Blender\'s glTF export does this with "+Y Up" ticked).';
     warn(m); statusNotes.push(m);
   } else for (const k of ['x', 'y', 'z']) {
     const dlt = size[k] - off[k];
@@ -2956,7 +3179,7 @@ function buildMine(id, rec, sockets, dims, warn, statusNotes) {
   if (Math.abs(cx) > 1 || Math.abs(cz) > 1) warn(`The shape is not centred: its middle is at x = ${fmtNum(cx)}, z = ${fmtNum(cz)} cm; it should be at 0, 0 (it still works).`);
   // envelopes of every state (the same poses applyState() makes)
   const pose = (ops) => {
-    const saved = Object.entries(nodes).map(([n, o]) => [o, o.position.clone(), o.quaternion.clone(), o.visible]);
+    const saved = Object.values(nodes).map((o) => [o, o.position.clone(), o.quaternion.clone(), o.visible]);
     for (const op of ops) {
       const o = nodes[op.part]; if (!o) continue;
       if (op.rot) o.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(V3(...op.rot).normalize(), THREE.MathUtils.degToRad(op.deg)));
@@ -2964,29 +3187,37 @@ function buildMine(id, rec, sockets, dims, warn, statusNotes) {
       if (op.show) o.visible = true;
       if (op.hide) o.visible = false;
     }
-    const b = boxOfMeshes(root, () => true);
+    const b = boxOfMeshes(root, solid);
     for (const [o, p, q, v] of saved) { o.position.copy(p); o.quaternion.copy(q); o.visible = v; }
     return b;
   };
   const r4 = (v) => Math.round(v * 10000) / 10000;
   const envOf = (b) => ({ min: b.min.toArray().map(r4), max: b.max.toArray().map(r4) });
-  geom.envelopes_m = { closed: envOf(body) };
-  for (const [st, ops] of Object.entries(rec.states)) geom.envelopes_m[st] = envOf(pose(ops));
+  out.envelopes_m = { closed: envOf(body) };
+  for (const [st, ops] of Object.entries(states)) out.envelopes_m[st] = envOf(pose(ops));
   // the published size in use against the largest open state (a looser check: what "max" covers varies)
   // (printing and paper loading only: a published "in use" size rarely has the scanner lid up, so a
   // shorter published height is no mismatch)
-  if (dims.max && (rec.states.printing || rec.states.refill)) {
+  if (dims.max && (states.printing || states.refill)) {
     const big = { x: 0, y: 0, z: 0 };
-    for (const [st, e] of Object.entries(geom.envelopes_m)) if (st !== 'lid_open') for (const [i, k] of ['x', 'y', 'z'].entries()) big[k] = Math.max(big[k], (e.max[i] - e.min[i]) * 100);
+    for (const [st, e] of Object.entries(out.envelopes_m)) if (st !== 'lid_open') for (const [i, k] of ['x', 'y', 'z'].entries()) big[k] = Math.max(big[k], (e.max[i] - e.min[i]) * 100);
     for (const [k, mk] of [['z', 'd'], ['y', 'h']]) {
       const dlt = big[k] - dims.max[mk] / 10;
       if (k === 'z' ? Math.abs(dlt) > 3 : dlt > 3) warn(`Opened up, the 3D shape is at most ${fmtNum(big[k])} cm ${word[k][0]}, but the published size in use (dims_mm.max.${mk}) is ${fmtNum(dims.max[mk] / 10)} cm (${fmtNum(Math.abs(dlt))} cm ${dlt > 0 ? 'more' : 'less'}). The trays or flaps may open too far or not far enough.`);
     }
   }
-  geom.body_size_cm = [size.x, size.z, size.y].map((v) => Math.round(v * 100) / 100);
-  // cables from the sockets: the space behind is how far the furthest one reaches past the back
-  geom.cable_back_gap_cm = null;
-  geom.sockets = [];
+  out.body_size_cm = [size.x, size.z, size.y].map((v) => Math.round(v * 100) / 100);
+  out.cable_back_gap_cm = null;
+  out.sockets = [];
+  // cables already in a mesh: the space behind is how far they reach past the back
+  const meshCables = boxOfMeshes(root, (o) => isCable(o));
+  if (!meshCables.isEmpty()) {
+    out.cablesFrom = 'mesh';
+    out.cable_back_gap_cm = Math.round(Math.max(0, (body.min.z - meshCables.min.z) * 100) * 100) / 100;
+    if (sockets.length) warn('The mesh has its own cables, so cable_space.sockets was not used.');
+    return out;
+  }
+  // otherwise cables from the sockets in the file
   sockets.forEach((so, i) => {
     let bz = so.backZ != null ? so.backZ : body.min.z * 100;
     if (bz < body.min.z * 100 - 0.5 || bz > body.max.z * 100) { warn(`Socket ${i + 1} (${so.kind}): back_z_cm ${fmtNum(bz)} is outside the printer; the back (${fmtNum(body.min.z * 100)}) was used.`); bz = body.min.z * 100; }
@@ -2994,26 +3225,108 @@ function buildMine(id, rec, sockets, dims, warn, statusNotes) {
     const g = mineCable(so, bz, size.y - 0.5);
     g.name = `${id}_cable_${i + 1}`; g.userData.kind = 'cable';
     root.add(g);
-    geom.parts['cable_' + (i + 1)] = { node: g.name, kind: 'cable', hidden: false, pivot_m: null };
     const cb = boxOfMeshes(g, () => true);
     const gap = Math.max(1, (body.min.z - cb.min.z) * 100);
-    geom.sockets.push({ kind: so.kind, x: so.x, height: so.h, recess: so.recess, gap_cm: Math.round(gap * 100) / 100 });
-    geom.cable_back_gap_cm = Math.max(geom.cable_back_gap_cm || 0, Math.round(gap * 100) / 100);
+    out.sockets.push({ kind: so.kind, x: so.x, height: so.h, recess: so.recess, gap_cm: Math.round(gap * 100) / 100, part: 'cable_' + (i + 1), node: g.name });
+    out.cable_back_gap_cm = Math.max(out.cable_back_gap_cm || 0, Math.round(gap * 100) / 100);
+    out.cablesFrom = 'sockets';
   });
-  if (!sockets.length) warn('No sockets in cable_space, so the space behind the printer is a guess (8 cm).');
-  return { root, geom };
+  if (!sockets.length) warn('No cables in the 3D shape and no sockets in cable_space, so the space behind the printer is a guess (8 cm).');
+  return out;
 }
+
+/* a mesh from the file: parsed by the same GLTFLoader as the built-in printers, from the decoded bytes only */
+async function buildMeshMine(id, mesh, sockets, dims, warn, statusNotes) {
+  let gltf;
+  try { gltf = await loader.parseAsync(mesh.bytes.slice().buffer, ''); }
+  catch (e) { throw meshErr(`The GLB could not be loaded (${txt(e && e.message, 140) || 'unknown error'}). Export it again as "glTF Binary (.glb)" without compression.`); }
+  const scene = gltf.scene;
+  // nothing but meshes and groups: drop lights and cameras the file may carry; check decoded textures once more
+  const drop = [];
+  let tris = 0, big = null;
+  scene.traverse((o) => {
+    if (o.isLight || o.isCamera) drop.push(o);
+    if (o.isMesh && o.geometry) {
+      const g = o.geometry; tris += g.index ? g.index.count / 3 : (g.attributes.position ? g.attributes.position.count / 3 : 0);
+      for (const mt of [].concat(o.material || [])) for (const k of Object.keys(mt)) {
+        const im = mt[k] && mt[k].isTexture && mt[k].image;
+        if (im && (im.width > MINE.MAX_TEX_PX || im.height > MINE.MAX_TEX_PX)) big = im;
+      }
+    }
+  });
+  if (big) throw meshErr(`A texture in the GLB is ${big.width} × ${big.height} px; at most ${MINE.MAX_TEX_PX} px a side.`);
+  for (const o of drop) o.removeFromParent();
+  if (tris > MINE.MAX_TRIS) throw meshErr(`The mesh has ${thousands(tris)} triangles; the limit is ${thousands(MINE.MAX_TRIS)}.`);
+  const root = new THREE.Group(); root.name = id + '_model';
+  const inner = new THREE.Group(); root.add(inner); inner.add(scene);
+  // find each part's node (GLTFLoader drops "." and some other characters from names: "x_body.001" becomes "x_body001")
+  const byName = new Map();
+  scene.traverse((o) => { if (o.name && !byName.has(o.name)) byName.set(o.name, o); });
+  const find = (n) => {
+    if (byName.has(n)) return byName.get(n);
+    const s = THREE.PropertyBinding.sanitizeNodeName(n);
+    if (byName.has(s)) return byName.get(s);
+    for (const [k, o] of byName) if (k.startsWith(s) && /^\d{3}$/.test(k.slice(s.length))) return o;
+    return null;
+  };
+  const geom = { id, frame: 'the visitor\'s mesh: metres, Y up, front +Z, origin at the bottom centre of the closed body', parts: {}, states: {} };
+  const nodes = {};
+  for (const [part, info] of Object.entries(mesh.parts)) {
+    const o = find(info.node);
+    if (!o || o === scene) { if (info.kind !== 'body') warn(`Part '${part}': node ${jshow(info.node)} is not in the GLB, so it stays where it is.`); continue; }
+    o.userData.kind = info.kind;
+    o.visible = !info.hidden;
+    geom.parts[part] = { node: o.name, kind: info.kind, hidden: info.hidden, pivot_m: null };
+    if (info.kind !== 'body') nodes[part] = o;
+  }
+  for (const [st, ops] of Object.entries(mesh.states)) {
+    const list = ops.filter((op) => nodes[op.part]);
+    if (list.length) geom.states[st] = list;
+  }
+  if (mesh.hasGeom && !Object.values(nodes).some((o) => o.userData.kind !== 'cable')) warn('No moving parts were found in the mesh, so Printing and Adding paper look the same as Closed.');
+  Object.assign(geom, measureMine(id, root, inner, nodes, geom.states, sockets, dims, warn, statusNotes));
+  for (const so of geom.sockets) geom.parts[so.part] = { node: so.node, kind: 'cable', hidden: false, pivot_m: null };
+  return { root, geom, tris: Math.round(tris) };
+}
+
 function mineModel(p) {
   if (!p._tpl) throw new Error('no model');
   return p._tpl.clone(true);
 }
 
-/* --- keeping them: this browser only --- */
-function saveMine() {
-  try {
-    localStorage.setItem(MINE.KEY, JSON.stringify(MINE.list.map(({ id, text, added }) => ({ id, text, added }))));
-    return true;
-  } catch (e) { console.warn('could not save your printers', e); return false; }
+/* --- keeping them: this browser only, in IndexedDB (a mesh file is too big for localStorage) --- */
+const IDB = { name: 'psl', store: 'mine', p: null };
+function idb() {
+  if (!IDB.p) {
+    IDB.p = new Promise((resolve, reject) => {
+      let rq;
+      try { rq = indexedDB.open(IDB.name, 1); } catch (e) { reject(e); return; }
+      rq.onupgradeneeded = () => { if (!rq.result.objectStoreNames.contains(IDB.store)) rq.result.createObjectStore(IDB.store, { keyPath: 'id' }); };
+      rq.onsuccess = () => resolve(rq.result);
+      rq.onerror = () => reject(rq.error || new Error('IndexedDB failed'));
+      rq.onblocked = () => reject(new Error('IndexedDB is blocked'));
+      setTimeout(() => reject(new Error('IndexedDB did not answer')), 3000);
+    });
+    IDB.p.catch(() => {});
+  }
+  return IDB.p;
+}
+async function idbDo(mode, fn) {
+  const db = await idb();
+  return new Promise((resolve, reject) => {
+    let tx, out;
+    try { tx = db.transaction(IDB.store, mode); out = fn(tx.objectStore(IDB.store)); } catch (e) { reject(e); return; }
+    tx.oncomplete = () => resolve(out && 'result' in out ? out.result : undefined);
+    tx.onerror = () => reject(tx.error || new Error('IndexedDB write failed'));
+    tx.onabort = () => reject(tx.error || new Error('IndexedDB write was aborted'));
+  });
+}
+async function storeMine(entry) {
+  try { await idbDo('readwrite', (s) => s.put({ id: entry.id, text: entry.text, added: entry.added, n: entry.n })); return true; }
+  catch (e) { console.warn('could not save your printer', e); return false; }
+}
+async function unstoreMine(id) {
+  try { await idbDo('readwrite', (s) => s.delete(id)); } catch (e) { console.warn('could not remove your printer from storage', e); }
 }
 function builtInIds() { return new Set(state.printers.filter((p) => !p.user).map((p) => p.id)); }
 function registerMine(entry) {
@@ -3022,16 +3335,30 @@ function registerMine(entry) {
   if (i >= 0) state.printers[i] = p; else state.printers.push(p);
   state.byId[p.id] = p;
 }
-function loadMine() {
+async function loadMine() {
   let saved = [];
-  try { saved = JSON.parse(localStorage.getItem(MINE.KEY) || '[]'); } catch (e) { saved = []; }
-  if (!Array.isArray(saved)) saved = [];
+  try { saved = await idbDo('readonly', (s) => s.getAll()); if (!Array.isArray(saved)) saved = []; }
+  catch (e) { console.warn('IndexedDB is not available', e); MINE.noStore = true; }
+  // printers kept by the first version, in localStorage: move them over, then forget the old copy
+  let old = null;
+  try { old = JSON.parse(localStorage.getItem(MINE.KEY) || 'null'); } catch (e) { old = null; }
+  if (Array.isArray(old) && old.length) {
+    let moved = true, n = Date.now() - old.length;
+    for (const s of old) {
+      if (!isObj(s) || typeof s.text !== 'string' || saved.some((x) => x.id === s.id)) continue;
+      const rec = { id: String(s.id || 'printer-' + n).slice(0, 64), text: s.text, added: s.added, n: n++ };
+      saved.push(rec);
+      if (MINE.noStore || !(await storeMine(rec))) moved = false;
+    }
+    if (moved) try { localStorage.removeItem(MINE.KEY); } catch (e) {}
+  }
+  saved.sort((a, b) => (a.n || 0) - (b.n || 0));
   const reserved = builtInIds();
   for (const s of saved.slice(0, MINE.MAX_SAVED)) {
     if (!isObj(s) || typeof s.text !== 'string') continue;
     let r;
-    try { r = readPrinterFile(s.text, { reserved }); } catch (e) { r = { p: null, errors: ['This saved printer could not be read again.'] }; }
-    const entry = { id: r.p ? r.p.id : String(s.id || 'printer').slice(0, 64), text: s.text, added: s.added, p: r.p, errors: r.p ? [] : r.errors };
+    try { r = await readPrinterFile(s.text, { reserved }); } catch (e) { console.warn(e); r = { p: null, errors: ['This saved printer could not be read again.'] }; }
+    const entry = { id: r.p ? r.p.id : String(s.id || 'printer').slice(0, 64), text: s.text, added: s.added, n: s.n, p: r.p, errors: r.p ? [] : r.errors, storeId: s.id };
     if (MINE.list.some((x) => x.id === entry.id)) continue;
     MINE.list.push(entry);
     if (r.p) registerMine(entry);
@@ -3042,7 +3369,7 @@ function loadMine() {
 /* --- adding one --- */
 async function addPrinterFromText(text, label = 'The file', { select = true } = {}) {
   let r;
-  try { r = readPrinterFile(text, { reserved: builtInIds() }); }
+  try { r = await readPrinterFile(text, { reserved: builtInIds() }); }
   catch (e) { console.error(e); r = { p: null, errors: ['The file could not be read (unexpected error).'], warnings: [] }; }
   if (!r.p) { showAddResult(label, r); return { ok: false, errors: r.errors, warnings: r.warnings }; }
   const p = r.p;
@@ -3052,17 +3379,21 @@ async function addPrinterFromText(text, label = 'The file', { select = true } = 
     showAddResult(label, { errors: errs }); return { ok: false, errors: errs, warnings: r.warnings };
   }
   if (old >= 0) r.warnings.push('It replaced the earlier copy with the same id.');
-  const entry = { id: p.id, text, added: new Date().toISOString().slice(0, 10), p, errors: [] };
+  const entry = { id: p.id, text, added: new Date().toISOString().slice(0, 10), n: Date.now(), p, errors: [] };
   if (old >= 0) MINE.list[old] = entry; else MINE.list.push(entry);
   registerMine(entry);
-  if (!saveMine()) r.warnings.push("It couldn't be saved in this browser (storage is full or blocked), so it will be gone after a reload.");
+  const saved = !MINE.noStore && await storeMine(entry);
+  if (!saved) r.warnings.push(MINE.noStore
+    ? "This browser doesn't let the page keep anything, so this printer is here for this visit only. Keep the file to add it again."
+    : "It couldn't be saved in this browser (storage is full or blocked), so it is here for this visit only. Keep the file to add it again.");
+  p.unsaved = !saved;
   renderMineList();
   showAddResult(label, r, p);
   if (select) {
     closeAdd();
     await showMine(p.id);
   }
-  return { ok: true, id: p.id, warnings: r.warnings };
+  return { ok: true, id: p.id, warnings: r.warnings, saved };
 }
 async function showMine(id) {
   const p = state.byId[id]; if (!p) return;
@@ -3073,18 +3404,67 @@ async function showMine(id) {
   await Promise.all(jobs);
   applyMaterials(); relayout(false);
 }
-async function removeMine(id) {
+/* removing one: from the list, the pickers and this browser's storage. For 8 seconds a "Removed … Undo"
+   message (over the viewer, and in the panel when it is open) puts it back where it was. */
+async function removeMine(id, { undo = true } = {}) {
   const i = MINE.list.findIndex((x) => x.id === id); if (i < 0) return;
-  MINE.list.splice(i, 1);
-  saveMine();
+  const [e] = MINE.list.splice(i, 1);
+  const wasA = !!(slots.a.p && slots.a.p.user && slots.a.p.id === id), wasB = !!(slots.b.p && slots.b.p.user && slots.b.p.id === id);
   const k = state.printers.findIndex((x) => x.user && x.id === id);
   if (k >= 0) state.printers.splice(k, 1);
   if (state.byId[id] && state.byId[id].user) delete state.byId[id];
   renderMineList();
+  clearTimeout(MINE.undoTimer);
+  MINE.undo = undo && e.p ? { e, i, k, wasA, wasB } : null;
+  if (MINE.undo) MINE.undoTimer = setTimeout(() => { MINE.undo = null; renderStatus(); renderUndoInPanel(); }, 8000);
+  renderUndoInPanel();
   const jobs = [];
-  if (slots.a.p && slots.a.p.user && slots.a.p.id === id) jobs.push(setSlot(slots.a, state.printers.find((p) => !p.current && !p.user) || state.printers[0]));
-  if (slots.b.p && slots.b.p.user && slots.b.p.id === id) jobs.push(setSlot(slots.b, null));
+  if (wasA) jobs.push(setSlot(slots.a, state.printers.find((p) => !p.current && !p.user) || state.printers[0]));
+  if (wasB) jobs.push(setSlot(slots.b, null));
   if (jobs.length) { await Promise.all(jobs); applyMaterials(); relayout(false); }
+  renderStatus();
+  await unstoreMine(e.storeId || id);
+  if (e.storeId && e.storeId !== id) await unstoreMine(id);
+}
+async function undoRemove() {
+  const u = MINE.undo; if (!u) return;
+  MINE.undo = null; clearTimeout(MINE.undoTimer);
+  if (!MINE.list.some((x) => x.id === u.e.id)) {
+    MINE.list.splice(Math.min(u.i, MINE.list.length), 0, u.e);
+    if (!state.printers.some((x) => x.user && x.id === u.e.p.id)) state.printers.splice(u.k >= 0 ? Math.min(u.k, state.printers.length) : state.printers.length, 0, u.e.p);
+    state.byId[u.e.p.id] = u.e.p;
+    u.e.p.unsaved = MINE.noStore || !(await storeMine(u.e));
+    delete u.e.storeId;
+  }
+  renderMineList(); renderUndoInPanel();
+  const jobs = [];
+  if (u.wasA) jobs.push(setSlot(slots.a, u.e.p));
+  if (u.wasB) jobs.push(setSlot(slots.b, u.e.p));
+  if (jobs.length) { await Promise.all(jobs); applyMaterials(); relayout(false); }
+  renderStatus();
+}
+function undoMsg() {
+  const m = el('div', 'msg undo');
+  m.appendChild(el('span', null, `Removed ${MINE.undo.e.p.name} from this browser.`));
+  const b = el('button', null, 'Undo'); b.type = 'button';
+  b.setAttribute('aria-label', `Undo: put ${MINE.undo.e.p.name} back`);
+  b.addEventListener('click', (ev) => { ev.stopPropagation(); undoRemove(); });
+  m.appendChild(b);
+  return m;
+}
+function renderUndoInPanel() {
+  const box = $('#addMsgs'); if (!box) return;
+  const old = box.querySelector('.msg.undo'); if (old) old.remove();
+  if (MINE.undo && addDlg.open) box.prepend(undoMsg());
+}
+// the red × in a picker: remove it, keep the list open where it was
+async function removeFromPicker(k, id) {
+  const P = pickers[k], at = P.active ?? 0;
+  const job = removeMine(id);
+  fillLists();
+  if (!P.list.hidden) { setActive(k, Math.min(at, opts(k).length - 1)); P.list.focus(); }
+  await job;
+  if (!P.list.hidden) { fillLists(); setActive(k, Math.min(at, opts(k).length - 1)); }
 }
 async function takeFiles(files) {
   const list = [...(files || [])].slice(0, 5);
@@ -3092,8 +3472,8 @@ async function takeFiles(files) {
   if (!addDlg.open) openAdd(true);
   for (const [i, f] of list.entries()) {
     const label = `“${txt(f.name, 60) || 'file'}”`;
-    if (/\.(glb|gltf|stl|obj|3mf)$/i.test(f.name)) { showAddResult(label, { errors: ['3D model files can’t be added yet. Drop the .printer.json file your AI wrote; the page builds the shape from it.'] }); continue; }
-    if (f.size > MINE.MAX_BYTES) { showAddResult(label, { errors: [`The file is ${Math.round(f.size / 1024)} KB; the limit is 500 KB.`] }); continue; }
+    if (/\.(glb|gltf|stl|obj|3mf|fbx|blend)$/i.test(f.name)) { showAddResult(label, { errors: ['A 3D model file on its own can’t be added: the page also needs the printer’s size, parts and states. Ask your AI to pack it into the .printer.json file (model.glb_base64 and model.geom, as the instructions say), then drop that file.'] }); continue; }
+    if (f.size > MINE.MAX_FILE) { showAddResult(label, { errors: [`The file is ${MB(f.size)} MB; the limit is 12 MB (a mesh of at most 8 MB). Simplify the mesh.`] }); continue; }
     let text;
     try { text = await f.text(); } catch (e) { showAddResult(label, { errors: ['The file could not be read.'] }); continue; }
     await addPrinterFromText(text, label, { select: i === list.length - 1 });
@@ -3164,11 +3544,15 @@ function showAddResult(label, r, p) {
 function renderMineList() {
   const ul = $('#mineList'); if (!ul) return;
   ul.replaceChildren();
+  const keep = $('#mineKeep');
+  if (keep) keep.textContent = MINE.noStore
+    ? "This browser doesn't let the page keep anything, so added printers last for this visit only. Keep the files to add them again."
+    : "Saved in this browser only. Clearing the site's data removes them; keep the files to add them again.";
   if (!MINE.list.length) { ul.appendChild(el('li', 'mine-empty', 'None yet.')); ul.lastChild.style.border = '0'; ul.lastChild.style.padding = '0'; return; }
   for (const e of MINE.list) {
     const li = el('li'), t = el('span', 't');
     if (e.p) {
-      t.append(el('span', 'nm', e.p.name), el('span', 'sub', [pSub(e.p), e.added ? `added ${e.added}` : ''].filter(Boolean).join(' · ')));
+      t.append(el('span', 'nm', e.p.name), el('span', 'sub', [pSub(e.p), e.added ? `added ${e.added}` : '', e.p.unsaved ? 'this visit only' : ''].filter(Boolean).join(' · ')));
       const showBtn = el('button', 'pill', 'Show it'); showBtn.type = 'button';
       showBtn.setAttribute('aria-label', `Show ${e.p.name} as printer A`);
       showBtn.addEventListener('click', () => { closeAdd(); showMine(e.id); });
@@ -3186,6 +3570,7 @@ function renderMineList() {
 }
 /* status lines over the viewer for an added printer whose shape doesn't match its official size */
 function mineStatus(st) {
+  if (MINE.undo) st.appendChild(undoMsg());
   for (const k of ['a', 'b']) {
     const p = slots[k].p;
     if (!p || !p.user || !p.statusNotes || !p.statusNotes.length) continue;
@@ -3217,8 +3602,9 @@ addEventListener('drop', (e) => {
 /* test hooks for the added printers */
 Object.assign(window.__psl, {
   addPrinterFromText: (text, opts) => addPrinterFromText(text, 'The text', opts),
-  readPrinterFile: (text) => { const r = readPrinterFile(text, { reserved: builtInIds() }); return { ok: !!r.p, errors: r.errors, warnings: r.warnings, geom: r.p && r.p.geom, rows: r.p && r.p.rows }; },
-  mine: () => MINE.list.map((e) => ({ id: e.id, ok: !!e.p, errors: e.errors })),
+  readPrinterFile: async (text) => { const r = await readPrinterFile(text, { reserved: builtInIds() }); return { ok: !!r.p, errors: r.errors, warnings: r.warnings, geom: r.p && r.p.geom, rows: r.p && r.p.rows, mesh: !!(r.p && r.p.mesh), tris: r.p && r.p.tris }; },
+  mine: () => MINE.list.map((e) => ({ id: e.id, ok: !!e.p, errors: e.errors, mesh: !!(e.p && e.p.mesh), unsaved: !!(e.p && e.p.unsaved) })),
+  stored: async () => { try { return (await idbDo('readonly', (s) => s.getAll())).map((x) => ({ id: x.id, bytes: x.text.length })); } catch (e) { return null; } },
   removeMine, openAdd, closeAdd, takeFiles,
 });
 
@@ -3263,7 +3649,7 @@ requestAnimationFrame(frame);
   }
   state.printers = (data.printers || []).filter((p) => p && p.id);
   for (const p of state.printers) state.byId[p.id] = p;
-  loadMine();   // printers this visitor added earlier (kept in this browser)
+  await loadMine();   // printers this visitor added earlier (kept in this browser)
   renderPrices();
   loadRates();   // not awaited: the page works without it, and prices update when the rates arrive
   readScene(data.scene || data.room);
