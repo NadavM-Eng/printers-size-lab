@@ -168,7 +168,21 @@ exact GLB and part data the page uses.
 
        python -c "import sys; sys.path.insert(0,'build'); import printer_kit as K; K.compare_sheet([('photo_front.jpg','work/renders/<id>/closed_front.png','front'), ('photo_back.jpg','work/renders/<id>/closed_back.png','back')], 'work/compare/<id>/round1.png')"
 
-8. Pack the finished model and your research into the one file:
+8. Run the two checks that looking at renders cannot do for you:
+
+       python build/check_model.py docs/models/<id>.glb
+       python build/check_model.py --colour photo_front.jpg 0.30,0.50,0.60,0.80
+
+   The first lists **same-plane overlaps**: two surfaces of different materials lying in the same
+   plane (a panel drawn flush on the body, glass lying exactly on a scanner bed). On the page they
+   flicker when the visitor turns the camera, and no still render shows it. The build prints the same
+   list. For each one that can be seen from outside, move one surface 0.05 cm in or out, or cut the
+   surface under it, and build again until the visible ones are gone. The second prints the median
+   colour of a region of an image as `#rrggbb` (the region is x0,y0,x1,y1 as fractions of the image,
+   top left first). **Take each part's colour from the maker's studio photos this way, not by eye**,
+   then run it on the same spot of your render and bring the two close. In a builder the same thing is
+   `photo_color(path, (x0, y0, x1, y1))`.
+9. Pack the finished model and your research into the one file:
 
        python build/export_printer_file.py <id> --out <id>.printer.json
 
@@ -179,7 +193,9 @@ exact GLB and part data the page uses.
 
 Build the same things (section 2, Route A) any way you like, then follow the mesh rules in section 11
 and pack the file as shown there. You may still use `build/export_printer_file.py` from the toolkit
-with `--glb`, `--geom` and `--research` pointing to your own files.
+with `--glb`, `--geom` and `--research` pointing to your own files. `build/check_model.py` works on
+any `.glb` or `.printer.json`: run it and fix the same-plane overlaps it lists (see step 8 above), and
+use its `--colour` option to take colours from photos.
 
 ### 5C. Route B: generate the recipe with code
 
@@ -232,7 +248,9 @@ same way, or the page) side by side: if a reader could tell which one an outside
 - **Cables:** the power cable and the USB or Ethernet cable with real plugs, bent down behind the
   printer (`plug_cable`), so the page measures the space they need.
 - **Materials:** a colour and roughness per part as in the photos (our models use about 20
-  materials: body, darker trays, black slots, rubber feet, glossy display, metal, LEDs).
+  materials: body, darker trays, black slots, rubber feet, glossy display, metal, LEDs). Colours are
+  sampled from photos with `check_model.py --colour`, not guessed.
+- **No flicker:** `build/check_model.py` lists no same-plane overlap that can be seen from outside.
 - **Detail budget:** about 7,000 to 40,000 triangles (ours: 7.5k to 39k), a GLB under 1.5 MB.
 - **Comparison:** at least three photo-versus-render rounds, the last one with nothing bigger than
   about 1 cm wrong and no missing part; the colours read the same as the photos.

@@ -675,6 +675,24 @@ class Printer:
             allv.append(V / CM)
         return np.concatenate(allv) if allv else np.zeros((0, 3))
 
+    def _prims(self):
+        """Closed-pose triangles per part and material, in metres: [(part, material name, tris[n, 3, 3]), ...]."""
+        out = []
+        for part, ob in self.parts.items():
+            if self.meta[part]["kind"] == "cable" or self.meta[part]["hidden"]:
+                continue
+            me = ob.data
+            me.calc_loop_triangles()
+            if not len(me.loop_triangles):
+                continue
+            V = np.array([v.co for v in me.vertices], float) + np.array(ob.location)
+            idx = np.array([lt.vertices[:] for lt in me.loop_triangles])
+            mi = np.array([lt.material_index for lt in me.loop_triangles])
+            for k, m in enumerate(me.materials):
+                if (mi == k).any():
+                    out.append((part, m.name if m else "none", V[idx[mi == k]]))
+        return out
+
     def report(self, state_ops):
         V = self._verts_in_state([])
         mn, mx = V.min(0), V.max(0)
@@ -700,6 +718,12 @@ class Printer:
             print("  cables reach %.1f cm behind the back" % back_gap)
         tris = sum(sum(len(p.vertices) - 2 for p in ob.data.polygons) for ob in self.parts.values())
         print("  triangles: %d" % tris)
+        # surfaces that would flicker on the page: a still render can't show them, so list them here
+        try:
+            import check_model
+            check_model.print_overlaps(check_model.overlaps(self._prims()), "blender")
+        except Exception as e:   # the check must never stop a build
+            print("  (same-plane check skipped: %s)" % e)
         return {"size_cm": [round(float(c), 2) for c in size], "min_cm": [round(float(c), 2) for c in mn],
                 "max_cm": [round(float(c), 2) for c in mx], "envelopes_cm": env,
                 "cable_back_gap_cm": None if back_gap is None else round(back_gap, 2), "triangles": tris}
@@ -864,6 +888,14 @@ def render_view(out_png, view="front", parts=None, size=900, samples=48, az=None
     bpy.context.scene.render.filepath = out_png
     bpy.ops.render.render(write_still=True)
     return out_png
+
+
+def photo_color(image_path, box=None):
+    """The median colour of part of a photo or render as '#rrggbb', to take a part's colour from the
+    maker's photos instead of guessing it. box = (x0, y0, x1, y1) as fractions of the image, top left
+    first; the default is the middle fifth. Run it on the same spot of your render to compare."""
+    import check_model
+    return check_model.image_colour(image_path, box)
 
 
 def compare_sheet(pairs, out_png, height=640, title=None):

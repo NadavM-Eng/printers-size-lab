@@ -49,6 +49,7 @@ build/
   build_printer.py     builds one printer: GLB + geometry JSON, optional photo-matched renders
   builders/<id>.py     one builder per printer
   assemble.py          merges research and geometry into docs/printers.json
+  check_model.py       lists surfaces that would flicker (same-plane overlaps); samples colours from photos
   photos.py            reference-photo index used while modelling
   paths.py             where each printer's research folder is
   fonts/               DejaVu fonts used for the logos on the models

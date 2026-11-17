@@ -1020,6 +1020,36 @@ function partOf(obj, slot) {
   for (let o = obj; o; o = o.parent) if (o.userData.part) return o.userData.part;
   return null;
 }
+/* Two surfaces of different materials lying in the same plane (a panel flush with the body, the glass on a
+   scanner bed) flicker as the camera moves, because neither is in front of the other. Give every material
+   its own small, fixed depth nudge, smaller surfaces further forward, so the same one always wins. The
+   nudge is far below a tenth of a millimetre at viewing distance; it changes no measurement. */
+function steadyDepth(model) {
+  const area = new Map();
+  const a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3(), ab = new THREE.Vector3(), ac = new THREE.Vector3();
+  model.traverse((o) => {
+    if (!o.isMesh || !o.geometry || isCable(o)) return;
+    const pos = o.geometry.attributes.position, idx = o.geometry.index;
+    const m = Array.isArray(o.material) ? o.material[0] : o.material;
+    if (!pos || !m || (m.polygonOffset && !m.userData.steady)) return;   // already placed on purpose (recipe insets)
+    let s = 0;
+    const n = idx ? idx.count : pos.count;
+    for (let i = 0; i + 2 < n; i += 3) {
+      a.fromBufferAttribute(pos, idx ? idx.getX(i) : i);
+      b.fromBufferAttribute(pos, idx ? idx.getX(i + 1) : i + 1);
+      c.fromBufferAttribute(pos, idx ? idx.getX(i + 2) : i + 2);
+      s += ab.subVectors(b, a).cross(ac.subVectors(c, a)).length() / 2;
+    }
+    area.set(m, (area.get(m) || 0) + s);
+  });
+  [...area.entries()].sort((x, y) => y[1] - x[1]).forEach(([m], k) => {
+    m.userData.steady = true;
+    m.polygonOffset = k > 0;
+    m.polygonOffsetFactor = -Math.min(4, 0.35 * k);
+    m.polygonOffsetUnits = -1.5 * k;
+    m.needsUpdate = true;
+  });
+}
 async function setSlot(slot, p) {
   const seq = ++slot.seq;
   slot.p = p;
@@ -1051,6 +1081,7 @@ async function setSlot(slot, p) {
     o.visible = !info.hidden;
     slot.parts[part] = o;
   }
+  steadyDepth(model);
   model.traverse((o) => {
     if (!o.isMesh) return;
     o.castShadow = true; o.receiveShadow = true;

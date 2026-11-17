@@ -81,6 +81,17 @@ builder such as `build/builders/hp_laserjet_m110w.py`.
 Look at the sheet, list the differences, fix the biggest first (silhouette, top slope, panel, seams,
 port positions, colour), and repeat. Three to five rounds. Stop when nothing big is wrong.
 
+**Two checks a render can't do for you.**
+
+- *Same-plane overlaps.* Two surfaces of different materials lying in the same plane flicker on the site
+  when the camera turns, and a still render looks fine. Every build lists them ("same-plane overlaps");
+  `python build/check_model.py docs/models/<id>.glb` does the same for a finished file. For each one
+  that can be seen from outside, move one surface 0.05 cm in or out, or cut the surface under it.
+- *Colours.* Take each part's colour from the maker's studio photos, not by eye:
+  `python build/check_model.py --colour <photo> x0,y0,x1,y1` prints the median colour of that region
+  (fractions of the image, top left first), and `photo_color(path, box)` does it inside a builder. Run
+  it on the same spot of your render and bring the two close.
+
 Rules the site depends on:
 
 - Frame: cm, Z up, FRONT is -Y, BACK is +Y, x = 0 at the centre of the width, y = 0 at the centre of the
