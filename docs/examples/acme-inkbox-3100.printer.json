@@ -1,0 +1,66 @@
+{
+  "format": "printers-size-lab/printer@1",
+  "id": "acme-inkbox-3100",
+  "name": "Acme InkBox 3100",
+  "brand": "Acme",
+  "type": "Colour inkjet all-in-one",
+  "functions": ["print", "scan", "copy"],
+  "buyer_country": "Israel",
+  "dims_mm": {
+    "closed": {"w": 390, "d": 300, "h": 165, "includes": "paper cassette front; output tray pushed in", "source": "https://www.example.com/inkbox-3100/specs"},
+    "max": {"w": 390, "d": 520, "h": 400, "what": "cassette pulled out; lid raised", "source": "https://www.example.com/inkbox-3100/manual"}
+  },
+  "weight_kg": {"value": 5.1, "what": "without ink", "source": "https://www.example.com/inkbox-3100/specs"},
+  "specs": [
+    {"label": "Print speed", "value": "10 pages/min black, 5 colour (ISO)", "source": "https://www.example.com/inkbox-3100/specs"},
+    {"label": "Two-sided printing", "value": "Manual"},
+    {"label": "Connections", "value": "USB, Wi-Fi", "source": "https://www.example.com/inkbox-3100/specs"},
+    {"label": "Paper in", "value": "100 sheets, front cassette"},
+    {"label": "In the box", "value": ["Printer", "Black and colour ink cartridges", "Power cord"], "source": "https://www.example.com/inkbox-3100/box"}
+  ],
+  "price": {"value": 449, "currency": "ILS", "where": "Example Shop", "url": "https://shop.example.co.il/inkbox-3100", "date": "2026-11-17"},
+  "running_cost": {
+    "cartridges": [
+      {"code": "AC-31 black", "kind": "ink", "pages": 300, "price": 79, "currency": "ILS", "original": true, "where": "Example Shop", "url": "https://shop.example.co.il/ac31"},
+      {"code": "AC-31 colour", "kind": "ink", "pages": 250, "price": 95, "currency": "ILS", "original": true, "where": "Example Shop", "url": "https://shop.example.co.il/ac31c"}
+    ],
+    "compatible": {"allowed": "unknown", "note": "No report found either way."}
+  },
+  "cable_space": {
+    "sockets": [
+      {"kind": "C7", "x_cm": 15, "height_cm": 4, "recess_cm": 0},
+      {"kind": "USB-B", "x_cm": -13, "height_cm": 6, "recess_cm": 1.5}
+    ],
+    "why": "The power plug goes straight into the flat back; the USB socket is in a shallow pocket."
+  },
+  "notes": "The cassette slides 20 cm out of the front to load paper. The lid needs about 25 cm of free height. No Windows reviews were found.",
+  "model": {
+    "units": "cm",
+    "parts": [
+      {"name": "body", "shapes": [
+        {"type": "box", "x": [-19.5, 19.5], "y": [0.5, 13], "z": [-15, 13.5], "radius": 1, "color": "#2a2b2d", "roughness": 0.6},
+        {"type": "profile", "x": [-19.5, -6], "zy": [[13.5, 9], [15, 10.5], [15, 12.5], [13.5, 13]], "color": "#1c1c1e"},
+        {"type": "inset", "face": "front", "x": [-17, -9], "y": [10.8, 12.2], "z": 15, "color": "#0e1a22", "glow": "#3d7fa8"},
+        {"type": "inset", "face": "front", "x": [-14, 14], "y": [5.5, 7], "z": 13.5, "color": "#0b0b0c"},
+        {"type": "box", "x": [-18, -15], "y": [0, 0.5], "z": [-13, -10], "color": "#111111"},
+        {"type": "box", "x": [15, 18], "y": [0, 0.5], "z": [-13, -10], "color": "#111111"},
+        {"type": "box", "x": [-18, -15], "y": [0, 0.5], "z": [9, 12], "color": "#111111"},
+        {"type": "box", "x": [15, 18], "y": [0, 0.5], "z": [9, 12], "color": "#111111"}
+      ]},
+      {"name": "lid", "pivot": {"x": 0, "y": 13, "z": -15}, "shapes": [
+        {"type": "box", "x": [-19.5, 19.5], "y": [13, 16.5], "z": [-15, 13.5], "radius": 0.8, "color": "#2f3032", "roughness": 0.5}
+      ]},
+      {"name": "cassette", "pivot": {"x": 0, "y": 0.5, "z": 15}, "shapes": [
+        {"type": "box", "x": [-15, 15], "y": [0.5, 5], "z": [-11, 15], "radius": 0.4, "color": "#3a3b3e"}
+      ]},
+      {"name": "output_tray", "pivot": {"x": 0, "y": 5.2, "z": 13.5}, "shapes": [
+        {"type": "box", "x": [-10, 10], "y": [5.2, 5.6], "z": [2, 13.4], "color": "#45464a"}
+      ]}
+    ],
+    "states": {
+      "printing": [{"part": "output_tray", "move": {"z": 14}}],
+      "refill": [{"part": "cassette", "move": {"z": 20}}],
+      "lid_open": [{"part": "lid", "rotate": {"axis": "x", "deg": -75}}]
+    }
+  }
+}

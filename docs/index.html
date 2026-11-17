@@ -268,6 +268,57 @@ details.more[open] > summary::after{transform:translateY(2px) rotate(-135deg)}
   .srow .lab{grid-column:1/-1}
   .spec-head > :first-child{display:none}
 }
+/* ---------- your printers: the add button, the panel, the drop highlight ---------- */
+.add-btn{background:var(--accent-fill);border-color:var(--accent-fill);color:var(--on-accent)}
+.add-btn:hover:not(:disabled){border-color:var(--accent-fill);filter:brightness(1.07)}
+.add-btn svg{width:16px;height:16px;flex:none}
+.drawer{position:fixed;inset:0 0 0 auto;margin:0;width:min(460px,100%);max-width:100%;height:100%;max-height:100%;padding:0;border:0;border-left:1px solid var(--line);background:var(--surface);color:var(--ink);box-shadow:-18px 0 44px -22px rgba(0,0,0,.4);overflow:auto;overscroll-behavior:contain}
+.drawer::backdrop{background:rgba(20,20,18,.34)}
+.dr-in{padding:20px 24px calc(32px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:20px}
+.dr-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.dr-head h2{margin:0;font:500 20px/1.2 var(--font);letter-spacing:-.01em}
+.dr-lead{margin:0;font-size:14px;color:var(--ink-2)}
+.dr-lead strong{font-weight:500;color:var(--ink)}
+.step{display:flex;flex-direction:column;gap:12px;padding-top:18px;border-top:1px solid var(--line);min-width:0}
+.step h3{margin:0;display:flex;align-items:center;gap:10px;font:500 16px/1.3 var(--font)}
+.step .num{width:24px;height:24px;border-radius:999px;background:var(--ink);color:var(--on-ink);display:grid;place-items:center;font:700 12px/1 var(--font);flex:none}
+.step p{margin:0;font-size:14px;color:var(--ink-2)}
+.drawer code{font:12.5px ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--well);padding:1px 5px;border-radius:5px;overflow-wrap:anywhere}
+.btn-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.pill.pri{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+a.pill{text-decoration:none}
+.copied{font-size:13px;color:var(--accent)}
+.peek{margin:0;padding:12px 14px;max-height:9.5em;overflow:hidden;background:var(--well);border-radius:10px;font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.drop{display:flex;flex-direction:column;align-items:center;gap:12px;padding:22px 16px;border:1.5px dashed var(--line-strong);border-radius:14px;text-align:center;font-size:14px;color:var(--ink-2);transition:border-color .15s,background .15s}
+.drop.over{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent)}
+details.paste > summary{cursor:pointer;font-size:13px;color:var(--muted);width:max-content;max-width:100%}
+details.paste > summary:hover{color:var(--ink)}
+details.paste textarea{display:block;width:100%;min-height:120px;margin:8px 0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--page);color:var(--ink);font:12px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;resize:vertical}
+.add-msgs{display:flex;flex-direction:column;gap:8px}
+.add-msgs:empty{display:none}
+.amsg{padding:10px 12px;border-radius:10px;font-size:13.5px;background:var(--well);overflow-wrap:anywhere}
+.amsg.err{box-shadow:inset 0 0 0 1.5px var(--sig-a)}
+.amsg.ok{box-shadow:inset 0 0 0 1.5px var(--accent)}
+.amsg b{font-weight:500}
+.amsg ul{margin:6px 0 8px;padding-left:18px}
+.amsg .pill{height:34px;font-size:13px;margin-top:4px}
+.mine-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.mine-list li{display:flex;align-items:center;gap:8px;padding:10px 10px 10px 14px;border:1px solid var(--line);border-radius:12px;min-width:0}
+.mine-list .t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.mine-list .nm{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mine-list .sub{font-size:12.5px;color:var(--muted);overflow-wrap:anywhere}
+.mine-list .sub.bad{color:var(--sig-a)}
+.mine-list .pill{height:34px;padding:0 12px;font-size:13px;flex:none}
+.mine-empty{font-size:14px;color:var(--muted)}
+.small{font-size:12.5px}
+.drop-veil{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:color-mix(in srgb,var(--page) 72%,transparent);pointer-events:none}
+.drop-veil div{padding:28px 36px;border:2px dashed var(--accent);border-radius:18px;background:var(--surface);font:500 18px/1.3 var(--font);text-align:center}
+@media (max-width:640px){
+  .add-btn{width:40px;padding:0;justify-content:center}
+  .add-btn span{display:none}
+  .dr-in{padding:16px 16px calc(28px + env(safe-area-inset-bottom,0px))}
+}
+
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -281,6 +332,9 @@ details.more[open] > summary::after{transform:translateY(2px) rotate(-135deg)}
         <span>Prices in</span>
         <select id="curSel" aria-label="Currency for prices"></select>
       </label>
+      <button class="pill add-btn" id="addBtn" type="button" aria-label="Add your printer" aria-haspopup="dialog" aria-controls="addDlg" title="Add any printer: your AI writes one file, you drop it here">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg><span>Add your printer</span>
+      </button>
       <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Light / dark">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg>
       </button>
@@ -379,6 +433,49 @@ details.more[open] > summary::after{transform:translateY(2px) rotate(-135deg)}
     </details>
   </section>
 </div>
+
+<!-- your printers: the "Add your printer" panel and the drop highlight -->
+<dialog class="drawer" id="addDlg" aria-labelledby="addTitle">
+  <div class="dr-in">
+    <div class="dr-head">
+      <h2 id="addTitle">Add your printer</h2>
+      <button type="button" class="icon-btn" id="addClose" aria-label="Close">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <p class="dr-lead">Put any printer on the shelf next to these. Your AI assistant does the research and writes one file; you drop that file here. <strong>Nothing is uploaded:</strong> the printer is kept only in this browser, and other visitors don't see it.</p>
+    <section class="step" aria-labelledby="stepAi">
+      <h3 id="stepAi"><span class="num">1</span>Instructions for your AI</h3>
+      <p>Paste these instructions into ChatGPT, Gemini, Claude or another assistant that can search the web, then tell it the printer model and your country. It answers with one file, <code>&lt;printer&gt;.printer.json</code>.</p>
+      <div class="btn-row">
+        <button type="button" class="pill pri" id="aiCopy">Copy instructions</button>
+        <a class="pill" id="aiDl" href="ai-instructions.md" download="printers-size-lab-ai-instructions.md">Download</a>
+        <span class="copied" id="aiCopied" role="status"></span>
+      </div>
+      <pre class="peek" id="aiPeek" aria-label="The first lines of the instructions"></pre>
+    </section>
+    <section class="step" aria-labelledby="stepDrop">
+      <h3 id="stepDrop"><span class="num">2</span>Drop the file your AI made</h3>
+      <div class="drop" id="dropZone">
+        <span>Drop the <code>.printer.json</code> file here</span>
+        <button type="button" class="pill" id="pickFile">Choose file</button>
+        <input type="file" id="fileIn" accept=".json,application/json" multiple hidden>
+      </div>
+      <details class="paste">
+        <summary>Or paste the text your AI wrote</summary>
+        <textarea id="pasteBox" spellcheck="false" aria-label="Printer file text"></textarea>
+        <button type="button" class="pill" id="pasteAdd">Add it</button>
+      </details>
+      <div class="add-msgs" id="addMsgs" aria-live="polite"></div>
+    </section>
+    <section class="step" aria-labelledby="stepMine">
+      <h3 id="stepMine"><span class="num">3</span>Your printers</h3>
+      <ul class="mine-list" id="mineList"></ul>
+      <p class="small muted">Saved in this browser only. Clearing the site's data removes them; keep the files to add them again.</p>
+    </section>
+  </div>
+</dialog>
+<div class="drop-veil" id="dropVeil" hidden><div>Drop the printer file to add it</div></div>
 
 <script>
   setTimeout(function(){
@@ -777,7 +874,9 @@ async function setSlot(slot, p) {
   renderStatus(); renderChrome();
   progressListeners.set(p.id, (x) => { if (slot.seq === seq && slot.status && slot.status.kind === 'loading') { slot.status.p = x; renderStatus(); } });
   let model, failed = false;
-  if (p.has_model) {
+  if (p.user) {   // a visitor's printer: built from the recipe in their file (see "your printers" below)
+    try { model = mineModel(p); } catch (e) { console.warn(`model ${p.id} failed`, e); failed = true; }
+  } else if (p.has_model) {
     try { model = (await loadGLB(p.id)).clone(true); }
     catch (e) { console.warn(`model ${p.id} failed`, e); failed = true; }
   } else failed = true;
@@ -1380,6 +1479,7 @@ function pSub(p) {
   if (c && c.w) bits.push(`${fmt(c.w / 10, 1)} × ${fmt(c.d / 10, 1)} × ${fmt(c.h / 10, 1)} cm`);
   if (p.weight_kg) bits.push(`${fmt(p.weight_kg, 1)} kg`);
   if (!p.has_model) bits.push('box only for now');
+  if (p.user && p.boxOnly) bits.push('plain box');
   return bits.join(' · ');
 }
 function renderChrome() {
@@ -1388,7 +1488,7 @@ function renderChrome() {
     card.style.setProperty('--c', slotColor(k));
     card.classList.toggle('none', !s.p);
     $('#sel' + k.toUpperCase()).textContent = s.p ? s.p.name : 'None';
-    $('#meta' + k.toUpperCase()).textContent = s.p ? (s.p.current ? 'Your printer · ' : '') + pSub(s.p) : 'Show only printer A';
+    $('#meta' + k.toUpperCase()).textContent = s.p ? (s.p.current ? 'Your printer · ' : s.p.user ? 'Added by you · ' : '') + pSub(s.p) : 'Show only printer A';
   }
   const lg = $('#legend'); lg.replaceChildren();
   for (const k of ['a', 'b']) {
@@ -1417,6 +1517,7 @@ function renderStatus() {
       st.appendChild(el('div', 'msg warn', `${s.p.name}: the 3D model isn't ready yet, so it's shown as a box at the official size.`));
     }
   }
+  mineStatus(st);
   if (state.scene !== 'room') return;   // the rest is about the shelf
   for (const k of ['a', 'b']) {
     const s = slots[k], m = s.p && s.p.measured;
@@ -1499,11 +1600,12 @@ function tileVals() {
   rows.push({ lab: 'Top above the floor', unit: 'cm', get: (s) => { const e = stateEnvelope(s, 'closed'); return e ? e.maxY * 100 : (state.shelfH + s.bodyBox.max.y) * 100; }, more: 'is', less: 'is' });
   rows.push({ lab: 'Weight', unit: 'kg', get: (s) => s.p.weight_kg, digits: 1, lowerBetter: true });
   rows.push({ lab: 'Price in Israel', money: () => 'ILS', get: (s) => s.p.price_ils, digits: 0, lowerBetter: true });
-  rows.push({ lab: 'Price international', money: () => 'USD', get: (s) => s.p.price_usd, digits: 0, lowerBetter: true });
+  // an added printer's price outside Israel carries its own currency (price_intl / page_intl: { v, cur })
+  rows.push({ lab: 'Price international', money: (s) => (s.p.price_intl ? s.p.price_intl.cur : 'USD'), get: (s) => (s.p.price_intl ? s.p.price_intl.v : s.p.price_usd), digits: 0, lowerBetter: true });
   // running cost: original cartridges at Israeli prices where they were found, otherwise at international prices
-  if (S.some((s) => s.p.page_ils != null || s.p.page_usd != null)) {
-    rows.push({ lab: 'Cost per page', money: (s) => (s.p.page_ils != null ? 'ILS' : 'USD'), page: true,
-      get: (s) => (s.p.page_ils != null ? s.p.page_ils : s.p.page_usd), lowerBetter: true });
+  if (S.some((s) => s.p.page_ils != null || s.p.page_usd != null || s.p.page_intl)) {
+    rows.push({ lab: 'Cost per page', money: (s) => (s.p.page_ils != null ? 'ILS' : s.p.page_usd != null ? 'USD' : s.p.page_intl ? s.p.page_intl.cur : 'USD'), page: true,
+      get: (s) => (s.p.page_ils != null ? s.p.page_ils : s.p.page_usd != null ? s.p.page_usd : s.p.page_intl ? s.p.page_intl.v : null), lowerBetter: true });
   }
   return rows.map((r) => ({ ...r, vals: S.map((s) => {
     const v = val(s, r.get);
@@ -1556,10 +1658,11 @@ function renderTiles() {
     box.appendChild(t);
   }
 }
-// spec rows that hold money: [field with the number, the currency it was researched in, true = a cost per page]
+// spec rows that hold money: [field with the number, the currency it was researched in, true = a cost per page,
+// and for an added printer the field holding { v, cur } in its own currency]
 const PRICE_ROWS = {
-  'Price in Israel': ['price_ils', 'ILS'], 'Price international': ['price_usd', 'USD'],
-  'Cost per page in Israel': ['page_ils', 'ILS', true], 'Cost per page international': ['page_usd', 'USD', true],
+  'Price in Israel': ['price_ils', 'ILS'], 'Price international': ['price_usd', 'USD', false, 'price_intl'],
+  'Cost per page in Israel': ['page_ils', 'ILS', true], 'Cost per page international': ['page_usd', 'USD', true, 'page_intl'],
 };
 // "row label|slot" of each "More" drop-down the reader opened, so a re-render keeps it open
 const openMore = new Set();
@@ -1605,7 +1708,8 @@ function renderSpecs() {
       else {
         // prices: the visitor's currency first, the shop's own price in the note
         const pk = PRICE_ROWS[lab];
-        const lp = pk ? localPrice(s.p[pk[0]], pk[1]) : null;
+        const own = pk && pk[3] && s.p[pk[3]];   // an added printer's { v, cur } in any currency
+        const lp = pk ? (own ? localPrice(own.v, own.cur) : localPrice(s.p[pk[0]], pk[1])) : null;
         const shown = lp && lp.converted ? (pk[2] ? `≈ ${perPage(lp.v, lp.cur)} per page` : `≈ ${money(lp.v, lp.cur)}`) : r.value;
         const note = lp && lp.converted ? `${r.value} ${pk[2] ? 'before conversion' : 'at the shop'}${r.note ? ' · ' + r.note : ''}` : r.note;
         if (Array.isArray(r.value)) { const ul = el('ul'); for (const it of r.value) ul.appendChild(el('li', null, it)); v.appendChild(ul); }
@@ -1779,6 +1883,837 @@ window.__psl = {
   setBoxes(on) { state.boxes = on; drawOverlays(); },
 };
 
+/* ==========================================================================================
+   YOUR PRINTERS
+   A visitor's AI assistant writes one file, <id>.printer.json (format in ai-instructions.md): specs plus
+   a recipe of boxes, profiles, cylinders and insets in centimetres. The visitor drops it here; the page
+   checks it, builds a three.js model in the same frame as the built-in GLBs (metres, Y up, front +Z,
+   origin at the bottom centre) and a geom object like docs/data/*.geom.json, so every view, state,
+   measurement, tile and spec row works unchanged. The file is untrusted: it is parsed defensively,
+   every string goes into textContent, links must be http(s), and nothing it names is ever fetched.
+   Added printers live only in this browser (localStorage).
+   ========================================================================================== */
+const MINE = {
+  FORMAT: 'printers-size-lab/printer@1',
+  KEY: 'psl-mine-v1',
+  GROUP: 'Your printers (this browser only)',
+  MAX_BYTES: 512 * 1024, MAX_SHAPES: 400, MAX_PARTS: 24, MAX_POINTS: 64, MAX_OPS: 40,
+  MAX_SPECS: 40, MAX_CARTS: 20, MAX_SOCKETS: 8, MAX_SAVED: 20, LIM_CM: 150,
+  list: [],   // [{ id, text, added, p, errors }] in the order they were added
+};
+const STATE_ALIASES = { printing: 'printing', print: 'printing', refill: 'refill', adding_paper: 'refill', add_paper: 'refill', loading_paper: 'refill', load_paper: 'refill', paper: 'refill', lid_open: 'lid_open', lid: 'lid_open', open_lid: 'lid_open', lid_up: 'lid_open', scan: 'lid_open' };
+// typical connector sizes in cm, as in build/printer_kit.py PLUGS:
+// [plug face width, face height, housing length beyond the socket face, strain relief length, cable diameter]
+const MINE_PLUGS = {
+  C13: [2.2, 1.6, 3.4, 2.4, 0.75], C7: [1.8, 0.95, 2.8, 1.8, 0.6], C5: [2.0, 1.5, 3.0, 2.0, 0.7], DC: [1.1, 1.1, 2.6, 1.6, 0.4],
+  'USB-B': [1.6, 1.1, 3.0, 1.5, 0.45], RJ45: [1.4, 1.25, 2.4, 1.6, 0.55], RJ11: [1.0, 0.9, 2.0, 1.0, 0.4],
+};
+// spec labels the built-in printers use, in their order, so an added printer's table lines up
+const MINE_ORDER = ['Notes', 'Cost per page in Israel', 'Cost per page international', 'Cartridge prices', 'Compatible cartridges',
+  'Software on Windows', 'What owners say', 'Type', 'Functions', 'Size closed (W × D × H)', 'Size in use (W × D × H)', 'Cable space behind',
+  'Weight', 'Print speed', 'Two-sided printing', 'Connections', 'Paper in', 'Paper out', 'Manual feed', 'Scanner', 'Display', 'Toner', 'Drum',
+  'Ink', 'In the box', '*', 'Price in Israel', 'Price international'];
+const MINE_LABELS = {
+  'print speed': 'Print speed', speed: 'Print speed', 'two-sided printing': 'Two-sided printing', 'two sided printing': 'Two-sided printing',
+  duplex: 'Two-sided printing', 'double-sided printing': 'Two-sided printing', connections: 'Connections', connectivity: 'Connections',
+  interfaces: 'Connections', 'paper in': 'Paper in', 'paper input': 'Paper in', 'input capacity': 'Paper in', 'paper out': 'Paper out',
+  'paper output': 'Paper out', 'output capacity': 'Paper out', 'manual feed': 'Manual feed', scanner: 'Scanner', display: 'Display',
+  toner: 'Toner', ink: 'Ink', drum: 'Drum', 'in the box': 'In the box', 'box contents': 'In the box', "what's in the box": 'In the box',
+  functions: 'Functions', type: 'Type',
+};
+const RATING_WORDS = { good: 'Good', mixed: 'Mixed', poor: 'Poor', unknown: 'Not enough evidence' };
+
+/* --- small, strict readers for untrusted values --- */
+const isObj = (v) => v != null && typeof v === 'object' && !Array.isArray(v);
+function txt(v, max = 300) {
+  if (typeof v === 'number' && Number.isFinite(v)) v = String(v);
+  if (typeof v !== 'string') return null;
+  const s = v.replace(/[\u0000-\u001f\u007f-\u009f‪-‮⁦-⁩]+/g, ' ').replace(/\s+/g, ' ').trim();
+  if (!s) return null;
+  return s.length > max ? s.slice(0, max - 1).trimEnd() + '…' : s;
+}
+function numOf(v) {
+  if (typeof v === 'string' && /^\s*-?\d+(\.\d+)?\s*$/.test(v)) v = Number(v);
+  return typeof v === 'number' && Number.isFinite(v) ? v : null;
+}
+function safeUrl(v) {
+  if (typeof v !== 'string' || v.length > 800) return null;
+  try {
+    const u = new URL(v.trim());
+    return (u.protocol === 'https:' || u.protocol === 'http:') && !u.username && !u.password ? u.href : null;
+  } catch (e) { return null; }
+}
+const fmtNum = (v, d = 1) => { const s = (Math.round(v * 10 ** d) / 10 ** d).toFixed(d); return d ? s.replace(/\.?0+$/, '') : s; };
+const thousands = (v) => Math.round(v).toLocaleString('en');
+const jshow = (v) => { try { const s = JSON.stringify(v); return s == null ? String(v) : s.length > 60 ? s.slice(0, 57) + '…' : s; } catch (e) { return '?'; } };
+function sentencesOf(text) {
+  // split after ". " followed by a capital or a digit, never inside brackets (as build/assemble.py does)
+  const out = []; let start = 0, depth = 0;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === '(') depth++;
+    else if (ch === ')') depth = Math.max(0, depth - 1);
+    else if (ch === '.' && !depth && text[i + 1] === ' ' && /[A-Z0-9]/.test(text[i + 2] || '')) { out.push(text.slice(start, i + 1).trim()); start = i + 2; }
+  }
+  out.push(text.slice(start).trim());
+  return out.filter(Boolean);
+}
+function validCurrency(c) {
+  if (typeof c !== 'string' || !/^[A-Za-z]{3}$/.test(c.trim())) return null;
+  const code = c.trim().toUpperCase();
+  try { new Intl.NumberFormat('en', { style: 'currency', currency: code }); return code; } catch (e) { return null; }
+}
+
+/* --- reading a file: returns { p, errors, warnings }; p is a printer in the same shape as printers.json --- */
+function readPrinterFile(text, opts = {}) {
+  const errors = [], warnings = [];
+  const err = (m) => { if (errors.length < 40) errors.push(m); return null; };
+  const warn = (m) => { if (warnings.length < 30 && !warnings.includes(m)) warnings.push(m); };
+  const out = { p: null, errors, warnings };
+  if (typeof text !== 'string' || !text.trim()) { err('The file is empty.'); return out; }
+  if (text.length > MINE.MAX_BYTES) { err(`The file is ${Math.round(text.length / 1024)} KB; the limit is 500 KB. Use fewer shapes.`); return out; }
+  let f, raw = text.replace(/^﻿/, '').trim();
+  try { f = JSON.parse(raw); } catch (e1) {
+    // an AI's whole reply pasted in: keep what lies between the first { and the last }
+    const i = raw.indexOf('{'), j = raw.lastIndexOf('}');
+    try { if (i < 0 || j <= i) throw e1; f = JSON.parse(raw.slice(i, j + 1)); warn('Text around the JSON was ignored.'); }
+    catch (e2) { err(`This is not valid JSON (${txt(e2.message, 160) || 'parse error'}). Ask your AI for the whole file again as plain JSON: double quotes, no comments, no trailing commas.`); return out; }
+  }
+  if (!isObj(f)) { err('The file must be one JSON object: { "format": "printers-size-lab/printer@1", ... }.'); return out; }
+  if (f.format !== MINE.FORMAT) { err(`"format" must be "${MINE.FORMAT}" (found ${jshow(f.format)}).`); return out; }
+
+  // identity
+  const name = txt(f.name, 90);
+  if (!name) err('"name" is missing (the full model name).');
+  let id = String(typeof f.id === 'string' ? f.id : name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+  if (!id) err('"id" is missing (lowercase letters, digits and dashes, e.g. "canon-lbp6030w").');
+  if (id && opts.reserved && opts.reserved.has(id)) { id = (id + '-mine').slice(0, 64); warn(`This printer is already on the page, so yours is added as a separate copy.`); }
+
+  // official closed size (mm)
+  const cl = isObj(f.dims_mm) && isObj(f.dims_mm.closed) ? f.dims_mm.closed : null;
+  if (!cl) err('"dims_mm.closed" is missing: the official closed size in mm, e.g. {"w": 364, "d": 249, "h": 199, "source": "https://..."}.');
+  const dims = {};
+  if (cl) for (const [k, word] of [['w', 'width'], ['d', 'depth'], ['h', 'height']]) {
+    const v = numOf(cl[k]);
+    if (v == null) err(`dims_mm.closed.${k} is missing (the official ${word} in mm).`);
+    else if (v < 50 || v > 2000) err(`dims_mm.closed.${k} = ${v} is outside 50–2000 mm${v < 50 ? '; sizes are in millimetres, not centimetres' : ''}.`);
+    else dims[k] = v;
+  }
+  // with the basics wrong, still check the 3D recipe, so one round of messages covers everything
+  if (errors.length) { if (f.model != null) readRecipe(f.model, { w: dims.w || 0, d: dims.d || 0, h: dims.h || 0 }, err, warn); return out; }
+
+  const p = {
+    id, name, user: true, group: MINE.GROUP, current: false, has_model: true,
+    brand: txt(f.brand, 60), type: txt(f.type, 120), scanner: false, warnings, statusNotes: [],
+    dims_mm: { closed: { w: dims.w, d: dims.d, h: dims.h } },
+  };
+  const sources = new Set();
+  const src = (v) => { const u = safeUrl(v); if (u && sources.size < 40) sources.add(u); return u; };
+  const rows = [];
+  const add = (label, value, href, note, more) => {
+    if (value == null || value === '' || (Array.isArray(value) && !value.length)) return;
+    const r = { label, value };
+    if (href) r.href = href;
+    if (note) r.note = note;
+    if (more && more.length) r.more = more;
+    rows.push(r);
+  };
+  const paras = (t) => (t ? sentencesOf(t).map((x) => ({ p: x })) : []);
+  const dimsText = (o) => `${fmtNum(o.w / 10)} × ${fmtNum(o.d / 10)} × ${fmtNum(o.h / 10)} cm`;
+
+  // notes: first sentence shown, the rest under "More" in pairs
+  const notes = txt(f.notes, 2400);
+  p.notes = notes;
+  if (notes) { const [first, ...rest] = sentencesOf(notes); const more = []; for (let i = 0; i < rest.length; i += 2) more.push({ p: rest.slice(i, i + 2).join(' ') }); add('Notes', first, null, null, more); }
+  add('Type', p.type);
+  if (Array.isArray(f.functions)) {
+    const fn = f.functions.map((x) => txt(x, 20)).filter(Boolean).slice(0, 6).map((x) => x.toLowerCase());
+    p.scanner = fn.includes('scan');
+    if (fn.length) add('Functions', fn.map((x, i) => (i ? x : x[0].toUpperCase() + x.slice(1))).join(', '));
+  }
+  add('Size closed (W × D × H)', dimsText(dims), src(cl.source), txt(cl.includes, 400));
+  const mx = isObj(f.dims_mm.max) ? f.dims_mm.max : null;
+  if (mx) {
+    const m = {}; for (const k of ['w', 'd', 'h']) { const v = numOf(mx[k]); if (v != null && v >= 50 && v <= 3000) m[k] = v; }
+    if (m.w && m.d && m.h) { p.dims_mm.max = m; dims.max = m; add('Size in use (W × D × H)', dimsText(m), src(mx.source), txt(mx.what, 400)); }
+    else warn('dims_mm.max was left out: it needs "w", "d" and "h" in mm.');
+  }
+  const wk = isObj(f.weight_kg) ? f.weight_kg : { value: f.weight_kg };
+  const w = numOf(wk.value);
+  if (w != null && w > 0 && w < 200) { p.weight_kg = w; add('Weight', `${fmtNum(w)} kg`, src(wk.source), txt(wk.what, 200)); }
+  else if (wk.value != null) warn(`weight_kg ${jshow(wk.value)} was left out: it must be a number of kg.`);
+
+  // spec rows with the built-in labels
+  const used = new Set(rows.map((r) => r.label));
+  if (Array.isArray(f.specs)) {
+    if (f.specs.length > MINE.MAX_SPECS) warn(`Only the first ${MINE.MAX_SPECS} specs are shown.`);
+    for (const s of f.specs.slice(0, MINE.MAX_SPECS)) {
+      if (!isObj(s)) continue;
+      const raw = txt(s.label, 50); if (!raw) continue;
+      const label = MINE_LABELS[raw.toLowerCase()] || raw;
+      if (used.has(label) || MINE_ORDER.includes(label) && !Object.values(MINE_LABELS).includes(label)) continue;
+      const value = Array.isArray(s.value) ? s.value.map((x) => txt(x, 200)).filter(Boolean).slice(0, 20) : txt(s.value, 300);
+      if (!value || (Array.isArray(value) && !value.length)) continue;
+      used.add(label);
+      if (label === 'Scanner' && typeof value === 'string' && !/^(no|none)\b/i.test(value)) p.scanner = true;
+      add(label, value, src(s.source), txt(s.note, 400));
+    }
+  } else if (f.specs != null) warn('"specs" must be a list of {"label", "value", "source"}; it was left out.');
+  if (Array.isArray(f.functions) && !p.scanner && !used.has('Scanner')) add('Scanner', 'None');
+
+  // price: one price in the buyer's country, in its own currency
+  const country = txt(f.buyer_country, 60);
+  const pr = isObj(f.price) ? (isObj(f.price.local) ? f.price.local : f.price) : null;
+  if (pr) {
+    const v = numOf(pr.value), cur = validCurrency(pr.currency);
+    if (v == null || v <= 0) warn('The price was left out: "price.value" must be a number.');
+    else if (!cur) warn(`The price was left out: "price.currency" ${jshow(pr.currency)} is not a 3-letter currency code like "EUR".`);
+    else {
+      const note = [txt(pr.where, 120), country && cur !== 'ILS' ? country : null, txt(pr.date, 20), txt(pr.note, 300)].filter(Boolean).join(' · ');
+      if (cur === 'ILS') p.price_ils = v; else p.price_intl = { v, cur };
+      add(cur === 'ILS' ? 'Price in Israel' : 'Price international', money(v, cur), src(pr.url), note);
+    }
+  }
+
+  // running cost from the cartridges: cheapest black page with original cartridges (+ drum), else compatible
+  const rc = isObj(f.running_cost) ? f.running_cost : {};
+  if (Array.isArray(rc.cartridges)) {
+    const carts = [];
+    for (const c of rc.cartridges.slice(0, MINE.MAX_CARTS)) {
+      if (!isObj(c)) continue;
+      const kind = ['toner', 'ink', 'drum'].includes(String(c.kind).toLowerCase()) ? String(c.kind).toLowerCase() : 'toner';
+      const pages = numOf(c.pages), price = numOf(c.price), cur = validCurrency(c.currency);
+      const code = txt(c.code, 60) || kind;
+      carts.push({ code, kind, pages: pages > 0 && pages < 1e6 ? pages : null, price: price > 0 && price < 1e7 ? price : null, cur,
+        original: c.original !== false, where: txt(c.where, 80), url: src(c.url),
+        colour: /colou?r|cyan|magenta|yellow|tri|cmy/i.test(code + ' ' + (txt(c.role, 30) || '')) });
+    }
+    const priced = carts.filter((c) => c.pages && c.price && c.cur);
+    const curs = [...new Set(priced.map((c) => c.cur))];
+    const main = (p.price_ils != null && curs.includes('ILS')) ? 'ILS' : p.price_intl && curs.includes(p.price_intl.cur) ? p.price_intl.cur : curs[0];
+    const ctext = (c) => `${c.code} (${thousands(c.pages)} pages, ${money(c.price, c.cur)}${c.where ? ' at ' + c.where : ''})`;
+    if (main) {
+      const inC = priced.filter((c) => c.cur === main);
+      const best = (list) => list.reduce((b, c) => (!b || c.price / c.pages < b.price / b.pages ? c : b), null);
+      const drum = best(inC.filter((c) => c.kind === 'drum' && c.original));
+      const black = inC.filter((c) => c.kind !== 'drum' && !c.colour);
+      const orig = best(black.filter((c) => c.original)), comp = best(black.filter((c) => !c.original));
+      const pick = orig || comp;
+      if (pick) {
+        const v = Math.round((pick.price / pick.pages + (drum ? drum.price / drum.pages : 0)) * 10000) / 10000;
+        if (main === 'ILS') p.page_ils = v; else p.page_intl = { v, cur: main };
+        let note = (orig ? 'Original ' : 'No original cartridge price was found. Compatible ') + ctext(pick) + (drum ? ' plus drum ' + ctext(drum) : '') + '.';
+        if (orig && comp) note += ` With a compatible cartridge: ${perPage(comp.price / comp.pages + (drum ? drum.price / drum.pages : 0), main)} per page, ${ctext(comp)}.`;
+        rows.push({ label: main === 'ILS' ? 'Cost per page in Israel' : 'Cost per page international', value: perPage(v, main) + ' per page' + (orig ? '' : ', compatible cartridge only'), more: paras(note), ...(pick.url ? { href: pick.url } : {}) });
+      }
+    }
+    const items = carts.filter((c) => c.price && c.cur).map((c) => `${c.code}${c.original ? '' : ' (compatible)'}, ${c.pages ? thousands(c.pages) + ' pages' : 'yield not listed'}: ${money(c.price, c.cur)}${c.where ? ' at ' + c.where : ''}`);
+    add('Cartridge prices', items);
+  }
+  if (isObj(rc.compatible)) {
+    const word = { yes: 'Allowed', nags: 'Allowed, with warnings', blocked: 'Blocked', unknown: 'Not clear' }[String(rc.compatible.allowed).toLowerCase()];
+    const note = txt(rc.compatible.note, 600);
+    if (word || note) add('Compatible cartridges', word || note, src(rc.compatible.source), null, word ? paras(note) : []);
+  }
+  const sw = isObj(f.software) ? f.software : {};
+  for (const [key, label] of [['windows', 'Software on Windows'], ['owners', 'What owners say']]) {
+    const b = sw[key]; if (!isObj(b)) continue;
+    const word = RATING_WORDS[String(b.rating).toLowerCase()]; if (!word) continue;
+    const why = txt(b.why, 800);
+    add(label, word, src(b.source), why && why.length <= 140 ? why : null, why && why.length > 140 ? paras(why) : []);
+  }
+  // the cable space row is added once the model is built (it is measured on the model)
+  const cs = isObj(f.cable_space) ? f.cable_space : {};
+  for (const v of [f.sources, f.links]) if (Array.isArray(v)) v.slice(0, 40).forEach(src);
+
+  // the 3D recipe
+  const sockets = readSockets(cs.sockets, warn);
+  let rec = null;
+  if (f.model == null) {
+    p.boxOnly = true;
+    warn('The file has no 3D shape ("model"), so the printer is shown as a plain box at its official size.');
+    p.statusNotes.push('no 3D shape in the file, shown as a plain box at the official size.');
+    const h = dims.h / 10, hw = dims.w / 20, hd = dims.d / 20;
+    rec = { parts: [{ name: 'body', pivot: null, hidden: false, shapes: [{ type: 'box', x: [-hw, hw], y: [0, h], z: [-hd, hd], radius: Math.min(1.2, h * 0.1), mat: { color: '#3a3b3d', rough: 0.6 } }] }], states: {} };
+  } else rec = readRecipe(f.model, dims, err, warn);
+  if (errors.length || !rec) return out;
+
+  let built;
+  try { built = buildMine(id, rec, sockets, dims, warn, p.statusNotes); }
+  catch (e) { console.warn(e); err(`The 3D shape could not be built (${txt(e.message, 120) || 'unknown error'}).`); return out; }
+  p._tpl = built.root;
+  p.geom = built.geom;
+  if (built.geom.cable_back_gap_cm != null) {
+    const why = txt(cs.why, 600);
+    add('Cable space behind', `${fmtNum(built.geom.cable_back_gap_cm)} cm`, null, null,
+      [...paras(why), { p: 'Worked out on this page from the sockets in the file: their plugs and cables squashed against the wall.' }]);
+  }
+
+  // order the rows like the built-in printers, then tidy long notes into "More"
+  const rank = (l) => { const i = MINE_ORDER.indexOf(l); return i < 0 ? MINE_ORDER.indexOf('*') : i; };
+  rows.sort((a, b) => rank(a.label) - rank(b.label));
+  for (const r of rows) {
+    if (!r.more && typeof r.note === 'string' && r.note.length > 110) { r.more = (r.note.includes(' · ') ? r.note.split(' · ') : sentencesOf(r.note)).map((x) => ({ p: x })); delete r.note; }
+  }
+  p.rows = rows;
+  p.sources = [...sources].sort();
+  out.p = p;
+  return out;
+}
+
+function readSockets(list, warn) {
+  const out = [];
+  if (list == null) return out;
+  if (!Array.isArray(list)) { warn('"cable_space.sockets" must be a list; it was left out.'); return out; }
+  for (const [i, s] of list.slice(0, MINE.MAX_SOCKETS).entries()) {
+    if (!isObj(s)) continue;
+    const k = String(s.kind || '').toUpperCase().replace(/^POWER[-_ ]?/, '').replace(/^IEC[-_ ]?/, '').replace(/\s+/g, '');
+    const kind = k === 'USB' || k === 'USBB' ? 'USB-B' : k === 'ETHERNET' || k === 'LAN' ? 'RJ45' : k === 'C14' ? 'C13' : k === 'C8' ? 'C7' : k === 'C6' ? 'C5' : k;
+    const x = numOf(s.x_cm), h = numOf(s.height_cm ?? s.z_cm ?? s.y_cm);
+    if (!MINE_PLUGS[kind]) { warn(`Socket ${i + 1}: kind ${jshow(s.kind)} is not one of C13, C7, C5, DC, USB-B, RJ45, RJ11; it was left out.`); continue; }
+    if (x == null || h == null) { warn(`Socket ${i + 1} (${kind}) needs "x_cm" and "height_cm"; it was left out.`); continue; }
+    const recess = numOf(s.recess_cm), bz = numOf(s.back_z_cm);
+    out.push({ kind, x: clamp(x, -MINE.LIM_CM, MINE.LIM_CM), h: clamp(h, 0.3, MINE.LIM_CM), recess: clamp(recess || 0, 0, 20), backZ: bz == null ? null : clamp(bz, -MINE.LIM_CM, MINE.LIM_CM) });
+  }
+  return out;
+}
+
+function readRecipe(m, dims, err, warn) {
+  if (!isObj(m)) return err('"model" must be an object with "units", "parts" and "states".');
+  if (m.units != null && String(m.units).toLowerCase() !== 'cm') return err(`model.units must be "cm" (found ${jshow(m.units)}); write every model number in centimetres.`);
+  if (!Array.isArray(m.parts) || !m.parts.length) return err('model.parts is missing or empty: start with {"name": "body", "shapes": [...]}.');
+  if (m.parts.length > MINE.MAX_PARTS) return err(`model.parts has ${m.parts.length} parts; the limit is ${MINE.MAX_PARTS}.`);
+  const L = MINE.LIM_CM;
+  const cmNum = (v) => { const n = numOf(v); return n != null && Math.abs(n) <= L ? n : null; };
+  const color = (v, where) => {
+    if (v == null) return null;
+    if (typeof v === 'string' && /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(v.trim())) return v.trim();
+    warn(`${where}: color ${jshow(v)} is not "#rrggbb"; grey was used.`); return null;
+  };
+  const parts = [], names = new Set();
+  let shapeCount = 0;
+  for (const [pi, part] of m.parts.entries()) {
+    if (!isObj(part)) { err(`model.parts[${pi}] is not an object.`); continue; }
+    const name = String(part.name ?? '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 32);
+    if (!name) { err(`model.parts[${pi}] has no "name".`); continue; }
+    if (names.has(name)) { err(`Two parts are named '${name}'; every part needs its own name.`); continue; }
+    if (/^cable/.test(name)) { err(`Part '${name}': names starting with "cable" are reserved; the page draws cables from cable_space.sockets.`); continue; }
+    names.add(name);
+    const isBody = name === 'body';
+    let pivot = null;
+    if (!isBody) {
+      const pv = part.pivot;
+      const arr = Array.isArray(pv) ? pv : isObj(pv) ? [pv.x, pv.y, pv.z] : null;
+      if (!arr) err(`Part '${name}' has no pivot: give the point on its hinge line, e.g. "pivot": {"x": 0, "y": 20, "z": -12}.`);
+      else {
+        pivot = arr.map(cmNum);
+        if (pivot.length !== 3 || pivot.some((v) => v == null)) { err(`Part '${name}': pivot must have numbers "x", "y" and "z" in cm (between −${L} and ${L}).`); pivot = null; }
+      }
+    }
+    if (!Array.isArray(part.shapes) || !part.shapes.length) { err(`Part '${name}' has no shapes.`); continue; }
+    shapeCount += part.shapes.length;
+    if (shapeCount > MINE.MAX_SHAPES) { err(`The model has more than ${MINE.MAX_SHAPES} shapes; simplify it.`); return null; }
+    const shapes = [];
+    for (const [si, s] of part.shapes.entries()) {
+      const sh = readShape(s, `Part '${name}', shape ${si + 1}`, cmNum, color, err, warn);
+      if (sh) shapes.push(sh);
+    }
+    parts.push({ name, pivot, hidden: part.hidden === true && !isBody, shapes });
+  }
+  if (!names.has('body')) err('model.parts needs a part named "body" (everything that never moves).');
+  // states
+  const states = {};
+  if (m.states != null && !isObj(m.states)) err('model.states must be an object like {"printing": [...], "refill": [...]}.');
+  for (const [rawKey, ops] of Object.entries(isObj(m.states) ? m.states : {})) {
+    const key = STATE_ALIASES[String(rawKey).toLowerCase().replace(/[\s-]+/g, '_')];
+    if (String(rawKey).toLowerCase() === 'closed') continue;
+    if (!key) { warn(`State '${txt(rawKey, 30)}' is not one the page shows (printing, refill, lid_open); it was ignored.`); continue; }
+    if (!Array.isArray(ops)) { err(`State '${key}' must be a list of operations.`); continue; }
+    if (ops.length > MINE.MAX_OPS) { err(`State '${key}' has more than ${MINE.MAX_OPS} operations.`); continue; }
+    const list = states[key] || (states[key] = []);
+    for (const [oi, op] of ops.entries()) {
+      const where = `State '${key}', operation ${oi + 1}`;
+      if (!isObj(op)) { err(`${where} is not an object.`); continue; }
+      const part = String(op.part ?? '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+      if (!names.has(part)) { err(`${where} names part '${txt(op.part, 32) || ''}', which does not exist${names.size ? ` (parts: ${[...names].join(', ')})` : ''}.`); continue; }
+      if (part === 'body') { err(`${where} moves the body; only the other parts can move.`); continue; }
+      let did = false;
+      const r = op.rotate ?? op.rot;
+      if (r != null) {
+        const ax = isObj(r) ? r.axis : null, deg = isObj(r) ? numOf(r.deg ?? r.degrees) : null;
+        let axis = null;
+        if (typeof ax === 'string' && AXES[ax.toLowerCase()]) axis = AXES[ax.toLowerCase()].toArray();
+        else if (Array.isArray(ax) && ax.length === 3 && ax.every((v) => numOf(v) != null) && Math.hypot(...ax.map(numOf)) > 1e-6) axis = ax.map(numOf);
+        if (!axis || deg == null || Math.abs(deg) > 360) err(`${where}: "rotate" must look like {"axis": "x", "deg": -75}.`);
+        else { list.push({ part, rot: axis, deg }); did = true; }
+      }
+      const mv = op.move;
+      if (mv != null) {
+        const arr = Array.isArray(mv) ? mv : isObj(mv) ? [mv.x ?? 0, mv.y ?? 0, mv.z ?? 0] : null;
+        const v = arr && arr.length === 3 ? arr.map(cmNum) : null;
+        if (!v || v.some((x) => x == null)) err(`${where}: "move" must look like {"z": 25} (cm).`);
+        else { list.push({ part, move: v.map((x) => x / 100), cm: v }); did = true; }
+      }
+      if (op.show === true) { list.push({ part, show: true }); did = true; }
+      if (op.hide === true) { list.push({ part, hide: true }); did = true; }
+      if (!did && r == null && mv == null) err(`${where} does nothing: use "rotate", "move", "show": true or "hide": true.`);
+    }
+    if (!list.length) delete states[key];
+  }
+  if (parts.length === 1 && !Object.keys(states).length) warn('The shape has no moving parts or states, so Printing and Adding paper look the same as Closed. Ask your AI to add the paper tray and output flap as moving parts.');
+  // likely mix-ups, said in words the visitor can pass back to the AI
+  const pv =Object.fromEntries(parts.map((p) => [p.name, p.pivot]));
+  for (const [key, ops] of Object.entries(states)) for (const op of ops) {
+    if (op.cm && op.cm[2] < -0.5 && key !== 'lid_open') warn(`State '${key}' moves '${op.part}' toward the back (z ${fmtNum(op.cm[2])} cm). The front is +z: a tray that slides out toward you moves +z.`);
+    const P = pv[op.part];
+    if (op.rot && op.rot[0] > 0.9 && op.deg > 0 && P && P[2] < 0 && P[1] > dims.h / 10 * 0.6) warn(`'${op.part}' turns ${fmtNum(op.deg)}° about x around a hinge at the back top, which swings it down into the printer. A lid hinged at the back opens with a negative angle, e.g. -75.`);
+  }
+  return { parts, states };
+}
+
+function readShape(s, where, cmNum, color, err, warn) {
+  if (!isObj(s)) return err(`${where} is not an object.`);
+  const type = String(s.type || '').toLowerCase();
+  const range = (k) => {
+    const r = s[k];
+    if (!Array.isArray(r) || r.length !== 2) return err(`${where} (${type}): "${k}" must be a from–to range in cm, like "${k}": [-18, 18].`);
+    const a = cmNum(r[0]), b = cmNum(r[1]);
+    if (a == null || b == null) return err(`${where} (${type}): "${k}" ${jshow(r)} needs two numbers between −${MINE.LIM_CM} and ${MINE.LIM_CM} cm.`);
+    if (Math.abs(b - a) < 0.05) return err(`${where} (${type}): "${k}" ${jshow(r)} has no size; the two numbers must differ.`);
+    return [Math.min(a, b), Math.max(a, b)];
+  };
+  const centre = (k) => {
+    const v = s[k];
+    if (Array.isArray(v) && v.length === 2 && cmNum(v[0]) != null && cmNum(v[1]) != null) return (cmNum(v[0]) + cmNum(v[1])) / 2;
+    const n = cmNum(v);
+    if (n == null) return err(`${where} (${type}): "${k}" must be one number (cm).`);
+    return n;
+  };
+  const mat = { color: color(s.color, where) || '#8a8b8d', rough: clamp(numOf(s.roughness) ?? 0.55, 0, 1), glow: color(s.glow, where) };
+  if (type === 'box') {
+    if (s.x == null && s.y == null && s.z == null) return err(`${where} (box): give "x", "y" and "z" as from–to ranges in cm, e.g. "x": [-18, 18], "y": [0, 20], "z": [-12.5, 12.5]${s.size || s.at ? ' (not "size" and "at")' : ''}.`);
+    const x = range('x'), y = range('y'), z = range('z');
+    if (!x || !y || !z) return null;
+    const r = numOf(s.radius);
+    return { type, x, y, z, radius: r > 0 ? Math.min(r, (x[1] - x[0]) / 2, (y[1] - y[0]) / 2, (z[1] - z[0]) / 2) : 0, mat };
+  }
+  if (type === 'profile') {
+    const x = range('x'); if (!x) return null;
+    const pts = s.zy ?? s.points;
+    if (!Array.isArray(pts) || pts.length < 3 || pts.length > MINE.MAX_POINTS) return err(`${where} (profile): "zy" must list 3 to ${MINE.MAX_POINTS} [z, y] points.`);
+    const zy = [];
+    for (const q of pts) {
+      const z = cmNum(Array.isArray(q) ? q[0] : isObj(q) ? q.z : null), y = cmNum(Array.isArray(q) ? q[1] : isObj(q) ? q.y : null);
+      if (z == null || y == null) return err(`${where} (profile): point ${jshow(q)} must be [z, y] in cm.`);
+      zy.push([z, y]);
+    }
+    let area = 0; for (let i = 0; i < zy.length; i++) { const a = zy[i], b = zy[(i + 1) % zy.length]; area += a[0] * b[1] - b[0] * a[1]; }
+    if (Math.abs(area) / 2 < 0.05) return err(`${where} (profile): the points enclose no area (are they all on one line?).`);
+    return { type, x, zy, mat };
+  }
+  if (type === 'cylinder') {
+    const axis = String(s.axis || '').toLowerCase();
+    if (!['x', 'y', 'z'].includes(axis)) return err(`${where} (cylinder): "axis" must be "x", "y" or "z".`);
+    const r = numOf(s.radius);
+    if (!(r > 0.02 && r <= 100)) return err(`${where} (cylinder): "radius" must be a number of cm.`);
+    const out = { type, axis, radius: r, mat };
+    for (const k of ['x', 'y', 'z']) { out[k] = k === axis ? range(k) : centre(k); if (out[k] == null) return null; }
+    return out;
+  }
+  if (type === 'inset' || type === 'recess' || type === 'slot') {
+    const face = String(s.face || '').toLowerCase();
+    const fa = { front: 'z', back: 'z', top: 'y', bottom: 'y', left: 'x', right: 'x' }[face];
+    if (!fa) return err(`${where} (inset): "face" must be "front", "back", "top", "left" or "right".`);
+    const out = { type: 'inset', face, mat: { ...mat, color: color(s.color, where) || '#121212' } };
+    for (const k of ['x', 'y', 'z']) { out[k] = k === fa ? centre(k) : range(k); if (out[k] == null) return null; }
+    return out;
+  }
+  return err(`${where}: unknown "type" ${jshow(s.type)}; use "box", "profile", "cylinder" or "inset".`);
+}
+
+/* --- building the model from a checked recipe (cm in, metres out) --- */
+function mineMesh(s, matOf) {
+  const c = 0.01;
+  let geo;
+  if (s.type === 'box') {
+    const w = (s.x[1] - s.x[0]) * c, h = (s.y[1] - s.y[0]) * c, d = (s.z[1] - s.z[0]) * c;
+    geo = s.radius > 0.05 ? new RoundedBoxGeometry(w, h, d, 3, s.radius * c) : new THREE.BoxGeometry(w, h, d);
+    geo.translate((s.x[0] + s.x[1]) / 2 * c, (s.y[0] + s.y[1]) / 2 * c, (s.z[0] + s.z[1]) / 2 * c);
+  } else if (s.type === 'profile') {
+    // the side outline lies in the shape's XY plane as (-z, y); turning it +90° about Y makes shape X -> world z
+    // and the extrusion -> world x
+    const shape = new THREE.Shape(s.zy.map(([z, y]) => new THREE.Vector2(-z * c, y * c)));
+    geo = new THREE.ExtrudeGeometry(shape, { depth: (s.x[1] - s.x[0]) * c, bevelEnabled: false, curveSegments: 1 });
+    geo.rotateY(Math.PI / 2);
+    geo.translate(s.x[0] * c, 0, 0);
+    geo.computeVertexNormals();
+  } else if (s.type === 'cylinder') {
+    const len = (s[s.axis][1] - s[s.axis][0]) * c;
+    geo = new THREE.CylinderGeometry(s.radius * c, s.radius * c, len, 28);
+    if (s.axis === 'x') geo.rotateZ(Math.PI / 2); else if (s.axis === 'z') geo.rotateX(Math.PI / 2);
+    const mid = (k) => (Array.isArray(s[k]) ? (s[k][0] + s[k][1]) / 2 : s[k]) * c;
+    geo.translate(mid('x'), mid('y'), mid('z'));
+  } else {   // inset: a flat rectangle drawn just in front of the surface it lies on
+    const f = s.face, sz = (k) => (s[k][1] - s[k][0]) * c, mid = (k) => (s[k][0] + s[k][1]) / 2 * c;
+    if (f === 'front' || f === 'back') { geo = new THREE.PlaneGeometry(sz('x'), sz('y')); if (f === 'back') geo.rotateY(Math.PI); geo.translate(mid('x'), mid('y'), s.z * c); }
+    else if (f === 'top' || f === 'bottom') { geo = new THREE.PlaneGeometry(sz('x'), sz('z')); geo.rotateX(f === 'top' ? -Math.PI / 2 : Math.PI / 2); geo.translate(mid('x'), s.y * c, mid('z')); }
+    else { geo = new THREE.PlaneGeometry(sz('z'), sz('y')); geo.rotateY(f === 'right' ? Math.PI / 2 : -Math.PI / 2); geo.translate(s.x * c, mid('y'), mid('z')); }
+  }
+  const mesh = new THREE.Mesh(geo, matOf(s.mat, s.type === 'inset'));
+  if (s.type === 'inset') { mesh.castShadow = false; mesh.userData.inset = true; }
+  return mesh;
+}
+function mineCable(so, backZ, maxY) {
+  // a plug pushed into the socket, its strain relief, then the cable bent tightly down to the shelf (cm)
+  const [fw, fh, L, sr, dia] = MINE_PLUGS[so.kind], c = 0.01, h = Math.min(so.h, maxY);
+  const g = new THREE.Group();
+  const mat = new THREE.MeshStandardMaterial({ color: '#151515', roughness: 0.55 });
+  const face = backZ + so.recess;
+  const plug = new RoundedBoxGeometry(fw * c, fh * c, L * c, 2, 0.15 * c);
+  plug.translate(so.x * c, h * c, (face - L / 2) * c);
+  const relief = new THREE.CylinderGeometry(dia * 0.55 * c, dia * 0.8 * c, sr * c, 14);
+  relief.rotateX(Math.PI / 2); relief.translate(so.x * c, h * c, (face - L - sr / 2) * c);
+  const zs = face - L - sr + 0.2, bend = Math.max(dia * 1.2, 0.8), floor = dia / 2 + 0.1;
+  const pts = [];
+  for (let i = 0; i <= 8; i++) { const t = (i / 8) * Math.PI / 2; pts.push(V3(so.x * c, (h - bend + bend * Math.cos(t)) * c, (zs - bend * Math.sin(t)) * c)); }
+  if (h - bend - floor > 0.3) pts.push(V3(so.x * c, ((h - bend + floor) / 2) * c, (zs - bend) * c), V3(so.x * c, floor * c, (zs - bend) * c));
+  const tube = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, false, 'centripetal'), 40, dia / 2 * c, 10);
+  for (const geo of [plug, relief, tube]) { const m = new THREE.Mesh(geo, mat); m.castShadow = true; g.add(m); }
+  return g;
+}
+const boxOfMeshes = (root, keep) => {
+  root.updateMatrixWorld(true);
+  const box = new THREE.Box3(), b = new THREE.Box3();
+  root.traverse((o) => {
+    if (!o.isMesh || !keep(o)) return;
+    for (let x = o; x && x !== root; x = x.parent) if (!x.visible) return;
+    b.setFromObject(o, true); box.union(b);
+  });
+  return box;
+};
+function buildMine(id, rec, sockets, dims, warn, statusNotes) {
+  const root = new THREE.Group(); root.name = id + '_model';
+  const inner = new THREE.Group(); root.add(inner);
+  const mats = new Map();
+  const matOf = (m, inset) => {
+    const k = [m.color, m.rough, m.glow || '', inset ? 'i' : ''].join('|');
+    if (!mats.has(k)) mats.set(k, new THREE.MeshStandardMaterial({ color: m.color, roughness: m.rough, metalness: 0,
+      ...(m.glow ? { emissive: m.glow, emissiveIntensity: 0.9 } : {}),
+      ...(inset ? { polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -4 } : {}) }));
+    return mats.get(k);
+  };
+  const geom = { id, frame: 'built on this page from the visitor\'s file: metres, Y up, front +Z, origin at the bottom centre of the closed body', parts: {}, states: {} };
+  const nodes = {};
+  for (const part of rec.parts) {
+    const g = new THREE.Group(); g.name = `${id}_${part.name}`;
+    const pv = part.pivot ? V3(...part.pivot).multiplyScalar(0.01) : V3(0, 0, 0);
+    g.position.copy(pv);
+    for (const s of part.shapes) { const m = mineMesh(s, matOf); m.position.sub(pv); g.add(m); }
+    g.visible = !part.hidden;
+    inner.add(g); nodes[part.name] = g;
+    geom.parts[part.name] = { node: g.name, kind: part.name === 'body' ? 'body' : 'moving', hidden: part.hidden, pivot_m: part.pivot ? pv.toArray() : null };
+    // a pivot far from its own part is almost always a mix-up of axes or of absolute vs relative numbers
+    if (part.pivot) {
+      const pb = boxOfMeshes(g, () => true);
+      g.updateMatrixWorld(true);
+      const local = pb.clone().applyMatrix4(new THREE.Matrix4().copy(inner.matrixWorld).invert());
+      const dist = local.distanceToPoint(pv) * 100;
+      if (dist > 8) warn(`Part '${part.name}': its pivot is ${fmtNum(dist)} cm away from the part's shapes; the pivot should lie on the part's hinge, and shapes are written where they are when closed.`);
+    }
+  }
+  geom.states = rec.states;
+  // the closed body, without cables: stand it on y = 0 and compare it with the official size
+  let body = boxOfMeshes(root, () => true);
+  if (body.isEmpty()) throw new Error('the model has no visible shapes');
+  if (Math.abs(body.min.y) > 0.002) {
+    warn(`The shape's bottom is at y = ${fmtNum(body.min.y * 100)} cm; it was moved to stand on y = 0 (the shelf).`);
+    inner.position.y = -body.min.y;
+    body = boxOfMeshes(root, () => true);
+  }
+  const size = body.getSize(new THREE.Vector3()).multiplyScalar(100);
+  const off = { x: dims.w / 10, y: dims.h / 10, z: dims.d / 10 };
+  const word = { x: ['wide', 'width', 'wider', 'narrower'], y: ['tall', 'height', 'taller', 'lower'], z: ['deep', 'depth', 'deeper', 'shallower'] };
+  const turned = Math.abs(size.x - off.z) < 1 && Math.abs(size.z - off.x) < 1 && Math.abs(off.x - off.z) > 2;
+  if (turned) {
+    const m = 'The 3D shape looks turned 90°: its width matches the official depth. Width runs along x, depth along z (front = +z).';
+    warn(m); statusNotes.push(m);
+  } else for (const k of ['x', 'y', 'z']) {
+    const dlt = size[k] - off[k];
+    if (Math.abs(dlt) > 0.5) {
+      const m = `the 3D shape is ${fmtNum(size[k])} cm ${word[k][0]} but the official ${word[k][1]} is ${fmtNum(off[k])} cm (${fmtNum(Math.abs(dlt))} cm ${dlt > 0 ? word[k][2] : word[k][3]}).`;
+      warn(m[0].toUpperCase() + m.slice(1)); statusNotes.push(m);
+    }
+  }
+  const cx = (body.min.x + body.max.x) / 2 * 100, cz = (body.min.z + body.max.z) / 2 * 100;
+  if (Math.abs(cx) > 1 || Math.abs(cz) > 1) warn(`The shape is not centred: its middle is at x = ${fmtNum(cx)}, z = ${fmtNum(cz)} cm; it should be at 0, 0 (it still works).`);
+  // envelopes of every state (the same poses applyState() makes)
+  const pose = (ops) => {
+    const saved = Object.entries(nodes).map(([n, o]) => [o, o.position.clone(), o.quaternion.clone(), o.visible]);
+    for (const op of ops) {
+      const o = nodes[op.part]; if (!o) continue;
+      if (op.rot) o.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(V3(...op.rot).normalize(), THREE.MathUtils.degToRad(op.deg)));
+      if (op.move) o.position.add(V3(...op.move));
+      if (op.show) o.visible = true;
+      if (op.hide) o.visible = false;
+    }
+    const b = boxOfMeshes(root, () => true);
+    for (const [o, p, q, v] of saved) { o.position.copy(p); o.quaternion.copy(q); o.visible = v; }
+    return b;
+  };
+  const r4 = (v) => Math.round(v * 10000) / 10000;
+  const envOf = (b) => ({ min: b.min.toArray().map(r4), max: b.max.toArray().map(r4) });
+  geom.envelopes_m = { closed: envOf(body) };
+  for (const [st, ops] of Object.entries(rec.states)) geom.envelopes_m[st] = envOf(pose(ops));
+  // the published size in use against the largest open state (a looser check: what "max" covers varies)
+  // (printing and paper loading only: a published "in use" size rarely has the scanner lid up, so a
+  // shorter published height is no mismatch)
+  if (dims.max && (rec.states.printing || rec.states.refill)) {
+    const big = { x: 0, y: 0, z: 0 };
+    for (const [st, e] of Object.entries(geom.envelopes_m)) if (st !== 'lid_open') for (const [i, k] of ['x', 'y', 'z'].entries()) big[k] = Math.max(big[k], (e.max[i] - e.min[i]) * 100);
+    for (const [k, mk] of [['z', 'd'], ['y', 'h']]) {
+      const dlt = big[k] - dims.max[mk] / 10;
+      if (k === 'z' ? Math.abs(dlt) > 3 : dlt > 3) warn(`Opened up, the 3D shape is at most ${fmtNum(big[k])} cm ${word[k][0]}, but the published size in use (dims_mm.max.${mk}) is ${fmtNum(dims.max[mk] / 10)} cm (${fmtNum(Math.abs(dlt))} cm ${dlt > 0 ? 'more' : 'less'}). The trays or flaps may open too far or not far enough.`);
+    }
+  }
+  geom.body_size_cm = [size.x, size.z, size.y].map((v) => Math.round(v * 100) / 100);
+  // cables from the sockets: the space behind is how far the furthest one reaches past the back
+  geom.cable_back_gap_cm = null;
+  geom.sockets = [];
+  sockets.forEach((so, i) => {
+    let bz = so.backZ != null ? so.backZ : body.min.z * 100;
+    if (bz < body.min.z * 100 - 0.5 || bz > body.max.z * 100) { warn(`Socket ${i + 1} (${so.kind}): back_z_cm ${fmtNum(bz)} is outside the printer; the back (${fmtNum(body.min.z * 100)}) was used.`); bz = body.min.z * 100; }
+    if (so.h > size.y) warn(`Socket ${i + 1} (${so.kind}) is ${fmtNum(so.h)} cm high, above the printer's top; it was put at the top.`);
+    const g = mineCable(so, bz, size.y - 0.5);
+    g.name = `${id}_cable_${i + 1}`; g.userData.kind = 'cable';
+    root.add(g);
+    geom.parts['cable_' + (i + 1)] = { node: g.name, kind: 'cable', hidden: false, pivot_m: null };
+    const cb = boxOfMeshes(g, () => true);
+    const gap = Math.max(1, (body.min.z - cb.min.z) * 100);
+    geom.sockets.push({ kind: so.kind, x: so.x, height: so.h, recess: so.recess, gap_cm: Math.round(gap * 100) / 100 });
+    geom.cable_back_gap_cm = Math.max(geom.cable_back_gap_cm || 0, Math.round(gap * 100) / 100);
+  });
+  if (!sockets.length) warn('No sockets in cable_space, so the space behind the printer is a guess (8 cm).');
+  return { root, geom };
+}
+function mineModel(p) {
+  if (!p._tpl) throw new Error('no model');
+  return p._tpl.clone(true);
+}
+
+/* --- keeping them: this browser only --- */
+function saveMine() {
+  try {
+    localStorage.setItem(MINE.KEY, JSON.stringify(MINE.list.map(({ id, text, added }) => ({ id, text, added }))));
+    return true;
+  } catch (e) { console.warn('could not save your printers', e); return false; }
+}
+function builtInIds() { return new Set(state.printers.filter((p) => !p.user).map((p) => p.id)); }
+function registerMine(entry) {
+  const p = entry.p;
+  const i = state.printers.findIndex((x) => x.user && x.id === p.id);
+  if (i >= 0) state.printers[i] = p; else state.printers.push(p);
+  state.byId[p.id] = p;
+}
+function loadMine() {
+  let saved = [];
+  try { saved = JSON.parse(localStorage.getItem(MINE.KEY) || '[]'); } catch (e) { saved = []; }
+  if (!Array.isArray(saved)) saved = [];
+  const reserved = builtInIds();
+  for (const s of saved.slice(0, MINE.MAX_SAVED)) {
+    if (!isObj(s) || typeof s.text !== 'string') continue;
+    let r;
+    try { r = readPrinterFile(s.text, { reserved }); } catch (e) { r = { p: null, errors: ['This saved printer could not be read again.'] }; }
+    const entry = { id: r.p ? r.p.id : String(s.id || 'printer').slice(0, 64), text: s.text, added: s.added, p: r.p, errors: r.p ? [] : r.errors };
+    if (MINE.list.some((x) => x.id === entry.id)) continue;
+    MINE.list.push(entry);
+    if (r.p) registerMine(entry);
+  }
+  renderMineList();
+}
+
+/* --- adding one --- */
+async function addPrinterFromText(text, label = 'The file', { select = true } = {}) {
+  let r;
+  try { r = readPrinterFile(text, { reserved: builtInIds() }); }
+  catch (e) { console.error(e); r = { p: null, errors: ['The file could not be read (unexpected error).'], warnings: [] }; }
+  if (!r.p) { showAddResult(label, r); return { ok: false, errors: r.errors, warnings: r.warnings }; }
+  const p = r.p;
+  const old = MINE.list.findIndex((x) => x.id === p.id);
+  if (old < 0 && MINE.list.length >= MINE.MAX_SAVED) {
+    const errs = [`You already have ${MINE.MAX_SAVED} added printers; remove one first.`];
+    showAddResult(label, { errors: errs }); return { ok: false, errors: errs, warnings: r.warnings };
+  }
+  if (old >= 0) r.warnings.push('It replaced the earlier copy with the same id.');
+  const entry = { id: p.id, text, added: new Date().toISOString().slice(0, 10), p, errors: [] };
+  if (old >= 0) MINE.list[old] = entry; else MINE.list.push(entry);
+  registerMine(entry);
+  if (!saveMine()) r.warnings.push("It couldn't be saved in this browser (storage is full or blocked), so it will be gone after a reload.");
+  renderMineList();
+  showAddResult(label, r, p);
+  if (select) {
+    closeAdd();
+    await showMine(p.id);
+  }
+  return { ok: true, id: p.id, warnings: r.warnings };
+}
+async function showMine(id) {
+  const p = state.byId[id]; if (!p) return;
+  const prevA = slots.a.p;
+  // the same printer can't stand in both places: if it is B, B gets the old A
+  const jobs = [setSlot(slots.a, p)];
+  if (slots.b.p && slots.b.p.id === id) jobs.push(setSlot(slots.b, prevA && prevA.id !== id ? prevA : null));
+  await Promise.all(jobs);
+  applyMaterials(); relayout(false);
+}
+async function removeMine(id) {
+  const i = MINE.list.findIndex((x) => x.id === id); if (i < 0) return;
+  MINE.list.splice(i, 1);
+  saveMine();
+  const k = state.printers.findIndex((x) => x.user && x.id === id);
+  if (k >= 0) state.printers.splice(k, 1);
+  if (state.byId[id] && state.byId[id].user) delete state.byId[id];
+  renderMineList();
+  const jobs = [];
+  if (slots.a.p && slots.a.p.user && slots.a.p.id === id) jobs.push(setSlot(slots.a, state.printers.find((p) => !p.current && !p.user) || state.printers[0]));
+  if (slots.b.p && slots.b.p.user && slots.b.p.id === id) jobs.push(setSlot(slots.b, null));
+  if (jobs.length) { await Promise.all(jobs); applyMaterials(); relayout(false); }
+}
+async function takeFiles(files) {
+  const list = [...(files || [])].slice(0, 5);
+  if (!list.length) return;
+  if (!addDlg.open) openAdd(true);
+  for (const [i, f] of list.entries()) {
+    const label = `“${txt(f.name, 60) || 'file'}”`;
+    if (/\.(glb|gltf|stl|obj|3mf)$/i.test(f.name)) { showAddResult(label, { errors: ['3D model files can’t be added yet. Drop the .printer.json file your AI wrote; the page builds the shape from it.'] }); continue; }
+    if (f.size > MINE.MAX_BYTES) { showAddResult(label, { errors: [`The file is ${Math.round(f.size / 1024)} KB; the limit is 500 KB.`] }); continue; }
+    let text;
+    try { text = await f.text(); } catch (e) { showAddResult(label, { errors: ['The file could not be read.'] }); continue; }
+    await addPrinterFromText(text, label, { select: i === list.length - 1 });
+  }
+}
+
+/* --- the panel --- */
+const addDlg = $('#addDlg'), dropZone = $('#dropZone'), dropVeil = $('#dropVeil');
+let aiText = null;
+function loadAiText() {
+  if (!aiText) aiText = fetch('ai-instructions.md', { cache: 'no-cache' }).then((r) => { if (!r.ok) throw new Error(r.status); return r.text(); });
+  aiText.catch(() => { aiText = null; });
+  return aiText;
+}
+function openAdd(keepMsgs = false) {
+  for (const k of ['a', 'b']) closePicker(k);
+  if (!keepMsgs && !addDlg.open) $('#addMsgs').replaceChildren();
+  renderMineList();
+  if (!addDlg.open) { try { addDlg.showModal(); } catch (e) { addDlg.setAttribute('open', ''); } }
+  loadAiText().then((t) => { $('#aiPeek').textContent = t.split('\n').slice(0, 9).join('\n'); })
+    .catch(() => { $('#aiPeek').textContent = "The instructions couldn't be loaded. Use Download, or reload the page."; });
+}
+function closeAdd() { if (addDlg.open) addDlg.close(); }
+$('#addBtn').addEventListener('click', () => openAdd());
+$('#addClose').addEventListener('click', closeAdd);
+addDlg.addEventListener('click', (e) => { if (e.target === addDlg) closeAdd(); });   // a click on the dimmed page
+addDlg.addEventListener('keydown', (e) => e.stopPropagation());   // keys 1–6 move the camera only outside the panel
+async function copyText(t) {
+  try { await navigator.clipboard.writeText(t); return true; } catch (e) {
+    const ta = el('textarea'); ta.value = t; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+    addDlg.appendChild(ta); ta.select();
+    let ok = false; try { ok = document.execCommand('copy'); } catch (e2) {}
+    ta.remove(); return ok;
+  }
+}
+function flash(node, t) { node.textContent = t; clearTimeout(node._t); node._t = setTimeout(() => { node.textContent = ''; }, 3500); }
+$('#aiCopy').addEventListener('click', async () => {
+  let t; try { t = await loadAiText(); } catch (e) { flash($('#aiCopied'), "Couldn't load them; use Download."); return; }
+  flash($('#aiCopied'), (await copyText(t)) ? 'Copied. Paste it into your AI.' : "Couldn't copy; use Download.");
+});
+$('#pickFile').addEventListener('click', () => $('#fileIn').click());
+$('#fileIn').addEventListener('change', (e) => { takeFiles(e.target.files); e.target.value = ''; });
+$('#pasteAdd').addEventListener('click', async () => {
+  const box = $('#pasteBox');
+  const res = await addPrinterFromText(box.value, 'The pasted text');
+  if (res.ok) box.value = '';
+});
+function showAddResult(label, r, p) {
+  const box = $('#addMsgs'); box.replaceChildren();
+  if (p) {
+    const m = el('div', 'amsg ok'); m.append(el('b', null, `${p.name} was added.`));
+    if (r.warnings && r.warnings.length) { const ul = el('ul'); for (const w of r.warnings) ul.appendChild(el('li', null, w)); m.appendChild(ul); }
+    box.appendChild(m);
+    return;
+  }
+  const m = el('div', 'amsg err');
+  m.append(el('b', null, `${label} could not be added:`));
+  const ul = el('ul'); for (const e of r.errors || []) ul.appendChild(el('li', null, e)); m.appendChild(ul);
+  const btn = el('button', 'pill', 'Copy these messages for your AI'); btn.type = 'button';
+  const note = el('span', 'copied');
+  btn.addEventListener('click', async () => {
+    const t = 'Printers Size Lab could not use the printer file:\n' + (r.errors || []).map((x) => '- ' + x).join('\n') + '\nPlease fix these and send the whole corrected JSON file again.';
+    flash(note, (await copyText(t)) ? ' Copied.' : " Couldn't copy.");
+  });
+  m.append(btn, note);
+  box.appendChild(m);
+}
+function renderMineList() {
+  const ul = $('#mineList'); if (!ul) return;
+  ul.replaceChildren();
+  if (!MINE.list.length) { ul.appendChild(el('li', 'mine-empty', 'None yet.')); ul.lastChild.style.border = '0'; ul.lastChild.style.padding = '0'; return; }
+  for (const e of MINE.list) {
+    const li = el('li'), t = el('span', 't');
+    if (e.p) {
+      t.append(el('span', 'nm', e.p.name), el('span', 'sub', [pSub(e.p), e.added ? `added ${e.added}` : ''].filter(Boolean).join(' · ')));
+      const showBtn = el('button', 'pill', 'Show it'); showBtn.type = 'button';
+      showBtn.setAttribute('aria-label', `Show ${e.p.name} as printer A`);
+      showBtn.addEventListener('click', () => { closeAdd(); showMine(e.id); });
+      li.append(t, showBtn);
+    } else {
+      t.append(el('span', 'nm', e.id), el('span', 'sub bad', `Can't be read any more: ${(e.errors || [])[0] || 'unknown problem'}`));
+      li.append(t);
+    }
+    const rm = el('button', 'pill', 'Remove'); rm.type = 'button';
+    rm.setAttribute('aria-label', `Remove ${e.p ? e.p.name : e.id}`);
+    rm.addEventListener('click', () => removeMine(e.id));
+    li.appendChild(rm);
+    ul.appendChild(li);
+  }
+}
+/* status lines over the viewer for an added printer whose shape doesn't match its official size */
+function mineStatus(st) {
+  for (const k of ['a', 'b']) {
+    const p = slots[k].p;
+    if (!p || !p.user || !p.statusNotes || !p.statusNotes.length) continue;
+    const n = p.statusNotes.length;
+    st.appendChild(el('div', 'msg warn', `${p.name}: ${p.statusNotes[0]}${n > 1 ? ` (${n - 1} more under Add your printer)` : ''}`));
+  }
+}
+
+/* --- dropping a file anywhere on the page --- */
+let dragDepth = 0;
+const dragHasFiles = (e) => !!(e.dataTransfer && [...(e.dataTransfer.types || [])].includes('Files'));
+addEventListener('dragenter', (e) => {
+  if (!dragHasFiles(e)) return;
+  e.preventDefault(); dragDepth++;
+  dropVeil.hidden = addDlg.open;
+  dropZone.classList.toggle('over', addDlg.open);
+});
+addEventListener('dragover', (e) => { if (!dragHasFiles(e)) return; e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
+addEventListener('dragleave', (e) => {
+  if (!dragHasFiles(e)) return;
+  if (--dragDepth <= 0) { dragDepth = 0; dropVeil.hidden = true; dropZone.classList.remove('over'); }
+});
+addEventListener('drop', (e) => {
+  if (!dragHasFiles(e)) return;
+  e.preventDefault(); dragDepth = 0; dropVeil.hidden = true; dropZone.classList.remove('over');
+  takeFiles(e.dataTransfer.files);
+});
+
+/* test hooks for the added printers */
+Object.assign(window.__psl, {
+  addPrinterFromText: (text, opts) => addPrinterFromText(text, 'The text', opts),
+  readPrinterFile: (text) => { const r = readPrinterFile(text, { reserved: builtInIds() }); return { ok: !!r.p, errors: r.errors, warnings: r.warnings, geom: r.p && r.p.geom, rows: r.p && r.p.rows }; },
+  mine: () => MINE.list.map((e) => ({ id: e.id, ok: !!e.p, errors: e.errors })),
+  removeMine, openAdd, closeAdd, takeFiles,
+});
+
 /* ---------- resize + loop ---------- */
 function resize() {
   const w = viewer.clientWidth, h = viewer.clientHeight;
@@ -1816,6 +2751,7 @@ requestAnimationFrame(frame);
   }
   state.printers = (data.printers || []).filter((p) => p && p.id);
   for (const p of state.printers) state.byId[p.id] = p;
+  loadMine();   // printers this visitor added earlier (kept in this browser)
   renderPrices();
   loadRates();   // not awaited: the page works without it, and prices update when the rates arrive
   readRoom(data.room);

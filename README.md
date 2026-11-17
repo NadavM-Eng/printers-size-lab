@@ -23,6 +23,9 @@ specs, box contents and prices.
 - **Side by side view:** the two printers alone, next to each other, each with its sizes. **Ghost** puts
   one inside the other and makes one of them see-through.
 
+- **Add your own printer:** "Add your printer" (top right) gives instructions to paste into any AI
+  assistant with web search; it writes one `<id>.printer.json` file that you drop on the page. See below.
+
 ## Project layout
 
 ```
@@ -31,6 +34,8 @@ docs/                  the website (GitHub Pages serves this folder)
   printers.json        all printer data, assembled by build/assemble.py
   data/*.geom.json     per-model geometry: parts, states, envelopes, cable space
   data/room.json       shelf and wardrobe dimensions
+  ai-instructions.md   the instructions a visitor gives their AI to write a printer file
+  examples/            hand-written printer files (minimal, full, and the one in the instructions)
   models/*.glb         3D models of the printers
 build/
   printer_kit.py       Blender (bpy) toolkit shared by all printer builders
@@ -43,6 +48,36 @@ build/
 printers/<name>/       per printer: specs.json (research), SOURCES.md (photo sources),
                        measurements/MEASUREMENTS.md (measured from the photos, and the model's status)
 ```
+
+## Add your own printer (printer files)
+
+Visitors can put any printer on the shelf. The panel behind **Add your printer** has the text of
+[`docs/ai-instructions.md`](docs/ai-instructions.md) (Copy / Download). The visitor pastes it into
+ChatGPT, Gemini, Claude or similar, names the printer and their country, and gets back one JSON file,
+`<id>.printer.json`, which they drop anywhere on the page (or pick, or paste). Nothing is uploaded: the
+file is kept in that browser's `localStorage` (key `psl-mine-v1`) and listed under "Your printers"
+in both pickers, each with Remove.
+
+The file (`"format": "printers-size-lab/printer@1"`) holds:
+
+- specs: `name`, `brand`, `type`, `functions`, `dims_mm.closed` (official size in mm, required),
+  `dims_mm.max`, `weight_kg`, `specs` (rows with the same labels as the built-in printers), one `price`
+  in any ISO currency, `running_cost.cartridges` (cost per page is worked out from them),
+  `software`, `notes`, and a source URL for every number;
+- `cable_space.sockets`: kind (C13, C7, C5, DC, USB-B, RJ45, RJ11), position and recess of each plug
+  on the back; the page draws the plugs and bent cables and measures the space they need;
+- `model`: a recipe in centimetres, in the same frame as the GLBs (x across with +x to the right
+  seen from the front, y up from the shelf, +z toward the front, origin at the bottom centre): parts
+  (`body` plus moving parts with a `pivot`), each made of `box` (x/y/z from–to ranges, optional
+  rounded edges), `profile` (a side outline of [z, y] points pushed across a width), `cylinder` and
+  `inset` (a flat dark rectangle on a face), with colour, roughness and glow; and `states`
+  (`printing`, `refill`, `lid_open`) as lists of `rotate` / `move` / `show` / `hide`.
+
+The page checks the file (format, required fields, number ranges, at most 400 shapes and 500 KB,
+only http(s) links, text shown as text), builds the three.js model and a geom object like
+`docs/data/*.geom.json` (state envelopes, cable space, body size), and warns when the closed shape
+differs from the official size by more than 0.5 cm. A file without `model` shows a plain box at the
+official size. Errors are listed in words the visitor can paste back to their AI.
 
 ## Run the site locally
 
