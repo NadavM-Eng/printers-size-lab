@@ -1,0 +1,96 @@
+{
+ "id": "pantum-bp2300nw",
+ "name": "Pantum BP2300NW",
+ "brand": "Pantum",
+ "type": "Mono laser printer",
+ "functions": [
+  "print"
+ ],
+ "dims_mm": {
+  "closed": {
+   "w": 337,
+   "d": 220,
+   "h": 179,
+   "source": "https://eu.pantum.com/product-center/1752589603319685122.html",
+   "includes": "Body with the front input tray folded up and the top output tray closed (BP2300 series user guide 'product size' 337 x 220 x 179 mm)"
+  },
+  "printing": {
+   "w": 337,
+   "d": 369,
+   "h": 238,
+   "source": "model build",
+   "includes": "front door folded down as the feeder tray (15 cm in front at shelf level) + output flap flipped forward out of the top"
+  },
+  "refill": {
+   "w": 337,
+   "d": 369,
+   "h": 179,
+   "source": "model build",
+   "includes": "front door folded down as the feeder tray; paper is loaded onto it"
+  }
+ },
+ "weight_kg": {
+  "value": 4.8,
+  "what": "without packaging, with the supplied (starter) toner cartridge",
+  "source": "https://eu.pantum.com/product-center/1752589603319685122.html"
+ },
+ "print_speed_ppm": {
+  "a4": 22,
+  "letter": 23,
+  "source": "https://eu.pantum.com/product-center/1752589603319685122.html"
+ },
+ "duplex": "manual",
+ "connectivity": {
+  "usb": true,
+  "wifi": true,
+  "ethernet": true,
+  "wifi_direct": true,
+  "bluetooth": true,
+  "details": "USB 2.0; IEEE802.3 10/100Base-Tx Ethernet; 2.4/5 GHz dual-band Wi-Fi 802.11a/b/g/n; Bluetooth (for app setup); Wi-Fi Direct (printer hotspot)",
+  "source": "https://eu.pantum.com/product-center/1752589603319685122.html"
+ },
+ "paper": {
+  "input_sheets": 150,
+  "input_type": "front fold-down input tray (the lower front panel opens; paper sticks out in front)",
+  "output_sheets": 100,
+  "output_type": "top output tray",
+  "source": "https://eu.pantum.com/product-center/1752589603319685122.html"
+ },
+ "scanner": null,
+ "toner": {
+  "starter_pages": 700,
+  "standard": {
+   "code": "TL-A2310H (TL-2310H)",
+   "pages": 1600
+  },
+  "source": "https://www.payngo.co.il/339568.html"
+ },
+ "price": {
+  "ils": {
+   "value": 449,
+   "url": "https://www.payngo.co.il/339568.html",
+   "where": "Pay N Go (Machsanei Chashmal)",
+   "date": "2026-11-17"
+  }
+ },
+ "notes": "Model done 2026-11-17 (see measurements/MEASUREMENTS.md, Model status).",
+ "cable_space": {
+  "power": {
+   "type": "C13 (IEC kettle plug, straight cord in the box; C14 inlet mounted vertically)",
+   "position": "lower back, in the corner pillar at the printer's right end: 2.1 cm from the left edge seen from behind, centre 3.1 cm up",
+   "recessed": false,
+   "recess_cm": 0.5,
+   "note": "only a 0.5 cm frame; the plug (~3.4 cm) and strain relief stick straight out before the cord bends down"
+  },
+  "data": {
+   "type": "RJ45 Ethernet (USB-B just below it in the same pocket; Wi-Fi also available)",
+   "position": "same corner pillar: 1.35 cm from the left edge seen from behind, RJ45 centre 12.9 cm up, USB-B centre 9.7 cm up",
+   "recessed": false,
+   "recess_cm": 0.8,
+   "note": "shallow framed pocket; the plug sticks out ~2.5 cm. Not needed if the printer is used over Wi-Fi"
+  },
+  "behind_body_cm": 6.4,
+  "why": "Flat back with only shallow socket frames, so the straight C13 mains plug adds to the depth: the user's 'sticks out' case (5-8 cm). The build measures 6.4 cm from the back face to the cord bend.",
+  "source": "official rear drawing, BP2300 Series User Guide EN V1.4 p.2 (photo 14); real BP2300W port close-up https://altv-media.sgp1.digitaloceanspaces.com/2025/03/13235742/Pantum-BP2300W-Review-5.jpg (photo 22); hitechcentury BP2300W back (photo 12). No real photo of the power inlet was found: its position is from the manual drawing."
+ }
+}

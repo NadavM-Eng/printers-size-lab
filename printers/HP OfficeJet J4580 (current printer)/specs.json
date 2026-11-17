@@ -1,0 +1,141 @@
+{
+ "id": "hp-officejet-j4580",
+ "name": "HP Officejet J4580 All-in-One",
+ "brand": "HP",
+ "type": "Colour inkjet all-in-one with fax and document feeder",
+ "functions": [
+  "print",
+  "scan",
+  "copy",
+  "fax"
+ ],
+ "model_number": {
+  "value": "CB780A",
+  "series": "HP Officejet J4500 All-in-One series (J4580 = USB + fax + 20-sheet ADF; the J4680 is the same body with Wi-Fi)",
+  "evidence": "the label on the back of the unit reads CB780A; the control panel reads 'HP Officejet J4580 All-in-One'",
+  "source": "https://www.newegg.com/hp-officejet-j4580-cb780a-thermal-inkjet/p/N82E16828115212"
+ },
+ "dims_mm": {
+  "closed": {
+   "w": 433.5,
+   "d": 270,
+   "h": 216.7,
+   "source": "https://www.manualowl.com/m/Hewlett-Packard/J4580/Manual/7122?page=160",
+   "includes": "Width and height are HP's. The depth is NOT HP's figure: HP lists 401.5 mm, which includes the paper tray pulled out. Closed (tray pushed in, what stands on the shelf) the printer is 27.0 cm deep at the control panel and 23.5 cm at the base where it rests on the shelf. The base is the user's measurement (24.5 cm shelf - 4.5 cm wall gap + 3.5 cm overhang); the panel is that times the panel/base ratio in the straight side photo 05 (400 / 348 px = 1.149). An earlier 27.6 cm came from a 24.0 cm base estimate (see measurements/MEASUREMENTS.md)."
+  },
+  "official": {
+   "w": 433.5,
+   "d": 401.5,
+   "h": 216.7,
+   "what": "HP's published size (W x D x H). HP does not say what the depth includes; the photos show it can only be with the main paper tray pulled out (tray out 35.8 cm, tray + extender fully out 43.2 cm, 47.7 cm with the paper stop raised)",
+   "source": "https://www.manualowl.com/m/Hewlett-Packard/J4580/Manual/7122?page=160"
+  },
+  "max": {
+   "w": 433.5,
+   "d": 477,
+   "h": 216.7,
+   "what": "main tray pulled out, tray extender out and paper stop raised (printing); lid open needs about 38 cm of height",
+   "source": "https://www.newegg.com/hp-officejet-j4580-cb780a-thermal-inkjet/p/N82E16828115212"
+  }
+ },
+ "weight_kg": {
+  "value": 5.9,
+  "what": "without ink cartridges",
+  "source": "https://www.manualowl.com/m/Hewlett-Packard/J4580/Manual/7122?page=160"
+ },
+ "print_speed_ppm": {
+  "black_max": 28,
+  "colour_max": 22,
+  "what": "draft mode, A4; normal mode 9 ppm black, 6.5 ppm colour",
+  "source": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf"
+ },
+ "duplex": "none",
+ "connectivity": {
+  "usb": true,
+  "wifi": false,
+  "ethernet": false,
+  "wifi_direct": false,
+  "fax": "RJ11 1-LINE and 2-EXT",
+  "what": "Hi-Speed USB 2.0 only (no network)",
+  "source": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf"
+ },
+ "paper": {
+  "input_sheets": 100,
+  "input_type": "front main tray (printed pages land on top of the stack)",
+  "manual_feed": null,
+  "notes": "The main tray slides out of the front; a tray extender and a flip-up paper stop slide out of it. With the tray pushed in, A4 paper sticks out of the front.",
+  "source": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf"
+ },
+ "scanner": {
+  "type": "flatbed",
+  "adf": true,
+  "adf_sheets": 20,
+  "resolution": "1200 x 2400 dpi (box)",
+  "source": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf"
+ },
+ "display": "2-line monochrome text LCD with a phone keypad",
+ "ink": {
+  "cartridges": [
+   "HP 901 Black (CC653AE)",
+   "HP 901XL Black (CC654AE)",
+   "HP 901 Tri-colour (CC656AE)"
+  ],
+  "source": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf"
+ },
+ "power": {
+  "type": "external 32 V DC power adapter (HP 0957-2242), 100-240 V AC in, 17 W printing",
+  "source": "https://docs.rs-online.com/8ee5/0900766b80c16290.pdf"
+ },
+ "duty_cycle_pages_month": {
+  "value": 3000,
+  "source": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf"
+ },
+ "in_the_box": {
+  "items": "Printer; HP 901 Black and HP 901 Tri-colour ink cartridges; external power adapter (brick) and its AC power cord; software and user guide on CD-ROM. No USB cable.",
+  "region": "UK/EMEA (CB780A, RS Components datasheet)",
+  "notes": "Newegg's US box photo also shows a phone (fax) cord and a phone-cord adapter. The Israeli box list was not found (the model was sold 2008-2010).",
+  "source": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf"
+ },
+ "price": {
+  "ils": {
+   "value": null,
+   "url": null,
+   "where": null,
+   "date": "2026-11-17",
+   "note": "Discontinued; no Israeli shop or second-hand listing found (zap, yad2, KSP, Ivory)."
+  },
+  "usd": {
+   "value": 269,
+   "url": "https://www.ebay.com/itm/186945643709",
+   "where": "eBay US, new old stock in box",
+   "date": "2026-11-17",
+   "note": "Discontinued; new-in-box units still listed at $269-280. A used one in Bulgaria was listed at 10 EUR (alo.bg, expired)."
+  },
+  "used": {
+   "eur": 10,
+   "url": "https://www.alo.bg/printer-hp-officejet-j4580-all-in-one-10668101",
+   "where": "alo.bg (Bulgaria), used, listing expired",
+   "date": "2026-11-17"
+  }
+ },
+ "cable_space": {
+  "power": {
+   "type": "HP 3-pin DC plug (purple socket) from the external 32 V brick",
+   "position": "33.9 cm from the left seen from behind, 9.4 cm up",
+   "recessed": false,
+   "recess_cm": 0.3,
+   "plug_inside_outline": false
+  },
+  "data": {
+   "type": "USB-B",
+   "position": "31.3 cm from the left seen from behind, 9.4 cm up",
+   "recessed": false,
+   "recess_cm": 0.3
+  },
+  "other": "Fax RJ11 pair (1-LINE, 2-EXT) at 38.6 cm from the left seen from behind, 9.5 cm up, same panel; unused on the shelf. All ports sit on one framed panel only ~3 mm deep near the left-rear corner (seen from the front). The rear notch in the lower middle of the back (paper path, z 0.6-7.5 cm) is recessed and adds nothing.",
+  "behind_body_cm": 4.5,
+  "why": "The plugs go straight into an almost flat back (3 mm panel), so the USB plug with its strain relief plus the bent cable sets the gap; measured 4.5 cm from the wall on the user's shelf.",
+  "source": "photos: https://www.newegg.com/hp-officejet-j4580-cb780a-thermal-inkjet/p/N82E16828115212 (back, 3/4 back) and the user's ruler photo of the gap behind the printer"
+ },
+ "notes": "This is the user's current printer (bought around 2009, now yellowed). It is wide and shallow: 43.4 cm wide, 23.5 cm deep at the base and 27.0 cm at the control panel, which sticks out 3.5 cm in front of the base (10.3-15.3 cm above the shelf). HP's listed depth of 40.2 cm is with the paper tray pulled out. In use the tray, its extender and paper stop reach about 47.7 cm from the back. The scanner lid (with the document feeder) opens upward from the back and then reaches about 38 cm high."
+}

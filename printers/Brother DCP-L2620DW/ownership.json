@@ -1,0 +1,219 @@
+{
+ "id": "brother-dcp-l2620dw",
+ "researched": "2026-11-17",
+ "consumables": [
+  {
+   "kind": "toner",
+   "role": "starter",
+   "code": null,
+   "original": true,
+   "pages": 700,
+   "pages_source": "https://www.brother.co.uk/printers/laser-printers/dcp-l2620dw",
+   "price_ils": null,
+   "price_usd": null,
+   "price_other": null
+  },
+  {
+   "kind": "toner",
+   "role": "standard",
+   "code": "TN-2510",
+   "original": true,
+   "pages": 1200,
+   "pages_source": "https://www.bug.co.il/brand/brother/printer/toner/black/tn2510",
+   "price_ils": {
+    "value": 254,
+    "where": "Beit HaFax (lowest original offer, zap.co.il comparison)",
+    "url": "https://www.zap.co.il/model.aspx?modelid=1224285",
+    "note": "Shipping of 10 ILS included. Seen 2026-11-17. VAT status not stated on the page. Ivory lists 263 ILS but calls the item 'original alternative' (unclear). Bug lists 300 ILS and marks it temporarily out of stock. (Same cartridge as the HL-L2400DW; offer found in that printer's research. bug.co.il listed 300 but out of stock.)"
+   },
+   "price_usd": null,
+   "price_other": {
+    "value": 71.51,
+    "currency": "GBP",
+    "where": "Printerland (UK), Brother original TN2510",
+    "url": "https://www.printerland.co.uk/consumables/toner-cartridges/brother-toner-cartridges/brother-dcp-series-toner-cartridges/brother-dcp-l2620dw-multifunction-printer-toner-cartridges/39008",
+    "note": "Including VAT (59.59 ex VAT). Shop lists 5.0p per page. No US price found."
+   },
+   "price_ils_was": {
+    "value": 300,
+    "where": "bug.co.il (Brother original TN2510)",
+    "url": "https://www.bug.co.il/brand/brother/printer/toner/black/tn2510",
+    "note": "Shown as temporarily out of stock when opened. The Eilat branch price (254.24) is not used. Printerland (UK) states 1,200 pages, ISO-based."
+   }
+  },
+  {
+   "kind": "toner",
+   "role": "high_yield",
+   "code": "TN-2510XL",
+   "original": true,
+   "pages": 3000,
+   "pages_source": "https://www.bug.co.il/brand/brother/printer/toner/black/tn2510xl",
+   "price_ils": {
+    "value": 398,
+    "where": "HD Toner (lowest original offer, zap.co.il comparison)",
+    "url": "https://www.zap.co.il/model.aspx?modelid=1227206",
+    "note": "Free shipping. Seen 2026-11-17. Ivory lists 499 ILS (its description says 'original alternative'). Bug lists 550 ILS and marks it temporarily out of stock; Bug's Eilat price is 466.1. (Same cartridge as the HL-L2400DW; offer found in that printer's research. bug.co.il listed 550 but out of stock.)"
+   },
+   "price_usd": null,
+   "price_other": {
+    "value": 107.55,
+    "currency": "GBP",
+    "where": "Printerland (UK), Brother original TN2510XL",
+    "url": "https://www.printerland.co.uk/consumables/toner-cartridges/brother-toner-cartridges/brother-dcp-series-toner-cartridges/brother-dcp-l2620dw-multifunction-printer-toner-cartridges/39008",
+    "note": "Including VAT (89.63 ex VAT). Shop lists 3.0p per page. Other UK sellers were seen in search results at about GBP 72-78 but were not opened, so this is the high end."
+   },
+   "price_ils_was": {
+    "value": 550,
+    "where": "bug.co.il (Brother original TN2510XL)",
+    "url": "https://www.bug.co.il/brand/brother/printer/toner/black/tn2510xl",
+    "note": "Shown as temporarily out of stock when opened; Eilat branch price 466.1 not used. zap.co.il shows a range of 398 to 1,520 with no shop named, so it is not used. Yield 3,000 also on Printerland."
+   }
+  },
+  {
+   "kind": "toner",
+   "role": "standard",
+   "code": "TN2510PL",
+   "original": false,
+   "pages": 1200,
+   "pages_source": "https://www.printerland.co.uk/consumables/toner-cartridges/brother-toner-cartridges/brother-dcp-series-toner-cartridges/brother-dcp-l2620dw-multifunction-printer-toner-cartridges/39008",
+   "price_ils": null,
+   "price_usd": null,
+   "price_other": {
+    "value": 43.19,
+    "currency": "GBP",
+    "where": "Printerland (UK), own-brand compatible",
+    "url": "https://www.printerland.co.uk/consumables/toner-cartridges/brother-toner-cartridges/brother-dcp-series-toner-cartridges/brother-dcp-l2620dw-multifunction-printer-toner-cartridges/39008",
+    "note": "Including VAT (35.99 ex VAT). Shop lists 3.0p per page. No Israeli compatible TN-2510 found."
+   }
+  },
+  {
+   "kind": "toner",
+   "role": "high_yield",
+   "code": "TN2510XLPL",
+   "original": false,
+   "pages": 3000,
+   "pages_source": "https://www.printerland.co.uk/consumables/toner-cartridges/brother-toner-cartridges/brother-dcp-series-toner-cartridges/brother-dcp-l2620dw-multifunction-printer-toner-cartridges/39008",
+   "price_ils": null,
+   "price_usd": null,
+   "price_other": {
+    "value": 55.85,
+    "currency": "GBP",
+    "where": "Printerland (UK), own-brand compatible",
+    "url": "https://www.printerland.co.uk/consumables/toner-cartridges/brother-toner-cartridges/brother-dcp-series-toner-cartridges/brother-dcp-l2620dw-multifunction-printer-toner-cartridges/39008",
+    "note": "Including VAT (46.54 ex VAT). Shop lists 1.6p per page. No Israeli compatible TN-2510XL found; European compatibles seen in search results were not opened."
+   }
+  },
+  {
+   "kind": "drum",
+   "role": "drum",
+   "code": "DR-2510",
+   "original": true,
+   "pages": 15000,
+   "pages_source": "https://www.bug.co.il/brand/brother/printer/drum/black/dr2510",
+   "price_ils": {
+    "value": 456,
+    "where": "zap.co.il offer: Beit HaFax (בית הפקס), original Brother drum",
+    "url": "https://www.zap.co.il/compmodels.aspx?modelid=1239395",
+    "note": "Includes 10 shipping, up to 3 business days. Other zap offers: 467 (Komp Master, title says DR-2510V1), 470, 479, 497. bug.co.il shows 620 (out of stock when opened). Check that a DR-2510V1 listing is the same part."
+   },
+   "price_usd": null,
+   "price_other": {
+    "value": 88.27,
+    "currency": "GBP",
+    "where": "Printerland (UK), Brother DR-2510 drum",
+    "url": "https://www.printerland.co.uk/consumables/toner-cartridges/brother-toner-cartridges/brother-dcp-series-toner-cartridges/brother-dcp-l2620dw-multifunction-printer-toner-cartridges/39008",
+    "note": "Ex VAT, as listed on that page."
+   }
+  },
+  {
+   "kind": "toner",
+   "role": "standard",
+   "code": "TN-2510",
+   "original": false,
+   "pages": 1200,
+   "pages_source": "https://www.zap.co.il/model.aspx?modelid=1224285",
+   "price_ils": {
+    "value": 48,
+    "where": "PENPALL (zap.co.il comparison)",
+    "url": "https://www.zap.co.il/model.aspx?modelid=1224285",
+    "note": "Free shipping, up to 5 business days. Listing titled 'compatible black toner TN2510', claimed yield 1200 pages. Seen 2026-11-17. Yield and print quality not verified. (Same cartridge as the HL-L2400DW; offer found in that printer's research.)"
+   },
+   "price_usd": null,
+   "price_other": null,
+   "note": "Cheapest compatible standard toner found in Israel. Price is far below the originals. No compatible XL price was verified.",
+   "code_note": "TN-2510 (compatible, Penpall)"
+  }
+ ],
+ "third_party_cartridges": {
+  "allowed": "unknown",
+  "summary": "No report found about this model rejecting third-party toner. Brother's Australian FAQ says a non-genuine cartridge should go to its maker or seller, and mentions no chip or firmware rule. Chip-equipped compatibles are sold in the UK and Europe, and Brother has denied in press reports that firmware blocks third-party toner, but I could not read that article in full.",
+  "source": "https://www.brother.com.au/en/contents/faq-toner-cartridge-issue"
+ },
+ "windows": {
+  "rating": "unknown",
+  "why": "The only model-specific Windows and setup pages I could open are Brother's manual pages and the Which? listing; no owner reports about this model's Windows use were readable, and the scanning complaints I did read are about a sibling model.",
+  "driver": "Not verified. Brother's download list for this model did not render and third-party driver sites returned 403. Which? lists the model as compatible with Windows 10 and 11.",
+  "app_required": "optional",
+  "windows_11": "yes",
+  "problems": [
+   "Wi-Fi drop: the machine can disconnect from the wireless network; Brother's fix is Recover WLAN on the panel",
+   "Sibling DCP-L2550DW: wireless scanning stopped after a Windows 11 update, and the thread shows no confirmed fix",
+   "Brother's network repair step: check that the printer IP and subnet match the PC; Brother points to its Network Connection Repair Tool"
+  ],
+  "scanning": "Flatbed (CIS) scanner with A4/Letter glass, no document feeder. Brother's Web Services guide (DCP-L family) adds the device on Windows via Control Panel > Add a device so it can scan over the network; it names no app and no account. The guide does not name this model, iPrint&Scan or Windows Scan, and USB scanning on Windows 11 is not verified.",
+  "sources": [
+   {
+    "url": "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-E7CB00ED-111E-4823-9806-69B2AD6E579B_1.html",
+    "what": "Web Services setup for installing the scanner driver on Windows 10 and 11 (DCP-L family manual); no account or app named"
+   },
+   {
+    "url": "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-9BE6EB6D-E57E-4E81-A2E4-2E4205064410_1.html",
+    "what": "Lists DCP-L2620DW for Recover WLAN after a wireless drop; Network Connection Repair Tool for IP mismatch"
+   },
+   {
+    "url": "https://learn.microsoft.com/en-us/answers/a/12327232",
+    "what": "Sibling model DCP-L2550DW (not this printer): wireless scanning failed after a Windows 11 update; printing still worked; no confirmed fix"
+   },
+   {
+    "url": "https://www.which.co.uk/reviews/printers-and-ink/brother-dcp-l2620dw",
+    "what": "Feature listing: compatible with Windows 10 and 11, Wi-Fi Direct, AirPrint, not compatible with macOS; review text paywalled"
+   }
+  ]
+ },
+ "forums": {
+  "rating": "unknown",
+  "why": "I could not read any owner opinions for this model: the review pages I opened had no reviews or were paywalled, and the Back Market, digitec and Amazon pages were blocked or timed out.",
+  "praise": [],
+  "complaints": [],
+  "sources_read": 0,
+  "sources": [
+   {
+    "url": "https://www.zap.co.il/model.aspx?modelid=1213266",
+    "what": "Israeli price comparison page: 0 owner reviews, rating placeholder 0.0"
+   },
+   {
+    "url": "https://www.bug.co.il/brand/brother/mono/laser/printer/dcpl2620dw",
+    "what": "Israeli shop page: no customer reviews shown (page was not fully read)"
+   },
+   {
+    "url": "https://www.which.co.uk/reviews/printers-and-ink/brother-dcp-l2620dw",
+    "what": "Which? test page: verdict and pros/cons behind a sign-up wall; no owner comments"
+   }
+  ]
+ },
+ "not_found": [
+  "Brother's own store and product pages (store.brother.co.uk, brother.co.uk) returned 403 when opened, so the official yield and cartridge pages were not read. The 700-page starter figure is from specs.json.",
+  "Starter toner code: not found on any page I could read.",
+  "Israeli compatible TN-2510 and TN-2510XL cartridges: none found on bug.co.il or zap.co.il; KSP and Ivory searches returned no results and the KSP fetch failed.",
+  "Israeli prices from zap.co.il for TN-2510XL: a range of 398 to 1,520 with no shop named; not used.",
+  "US prices for either cartridge: no US retailer listing found. Amazon returned 403 and 503 when fetched. The printer is not sold in the US (specs.json).",
+  "Yield conflict: aio.lv lists TN-2510 at 2,500 pages, while Bug, Printerland and UK sellers say 1,200. I used 1,200.",
+  "Reddit: no DCP-L2620DW threads found by search; reddit.com fetch refused. A mirror thread on the sibling DCP-L2540DW returned 404.",
+  "Owner reviews: Amazon UK, Back Market (403), digitec.ch (timed out three times), Which? (paywalled), quechoisir.org (paywalled score). Staples and Best Buy pages are for the DCP-L2640DW only.",
+  "Windows 11 on Arm: a search snippet says the model is on Brother's Arm list, but the Brother Windows 11 compatibility page I opened has no DCP-L2620DW entry. Not used.",
+  "Full Driver & Software Package: contents, file size and version not verified; Brother's download list did not render and printerdrivers.com returned 403.",
+  "iPrint&Scan and Windows Scan support for this model: not verified on any page I could open.",
+  "Model-specific third-party cartridge rejection: no report found. The Tom's Hardware article on Brother's firmware denial returned only its headline.",
+  "Drum stock and price in Israel beyond the zap.co.il offers: bug.co.il showed 620 and was out of stock when opened."
+ ]
+}

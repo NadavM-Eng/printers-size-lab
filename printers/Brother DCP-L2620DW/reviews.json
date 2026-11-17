@@ -1,0 +1,113 @@
+{
+ "id": "brother-dcp-l2620dw",
+ "researched": "2026-11-17",
+ "windows": {
+  "rating": "mixed",
+  "why": "Brother's own Windows 11 FAQs describe USB scanning failures and driver-install errors for this model, and a sibling's wireless scanning broke after a Windows 11 update with no confirmed fix, while owners of the US sibling DCP-L2640DW praise its scanning and Wi-Fi setup.",
+  "driver": "Brother's Full Driver & Software Package, which Brother's Windows 11 FAQs say to download from the model's Downloads page; the Brother EU Downloads page for this model rendered with no file list, so the version and size were not verified. Whether Windows Update installs a built-in driver was not verified.",
+  "app_required": "optional",
+  "windows_11": "yes",
+  "problems": [
+   "USB scanning on Windows 11: scan button does not work and the machine may not appear as a scanner (Brother's fix: remove the software, turn off Windows Ready Print and protected print mode, reinstall the Full Driver; Brother recommends a network connection instead)",
+   "Network scan blocked by firewall (fixed by allowing iPrint&Scan.exe and iPSNotifier.exe on Windows, or UDP port 54925 per Brother)",
+   "Computer name not shown on the machine's LCD, so scans cannot be sent to the PC (fixed by Brother's repair tool)",
+   "Wi-Fi drops (fixed by Recover WLAN on the panel, per Brother's Online User's Guide)",
+   "Driver install errors and printing failures on Windows 11 (Brother FAQ titles; the fix text was not read, no fix confirmed)",
+   "Sibling DCP-L2550DW: wireless scanning stopped after a Windows 11 update, printing still worked; no confirmed fix in the thread (sibling model, not this one)"
+  ],
+  "scanning": "Flatbed (CIS) scanner with no document feeder. On Windows, Brother's FAQs route network scanning through Brother iPrint&Scan (iPrint&Scan.exe and iPSNotifier.exe handle the scan button, and the firewall must allow them). Brother's Windows 11 FAQ says USB scanning is unreliable, so use a network connection. Brother's FAQs for the sibling DCP-L2520DW say to set the Brother TWAIN or WIA driver as the primary source in scanning apps; that is not confirmed for this model. The Windows Scan app was not verified for this model.",
+  "sources": [
+   {
+    "url": "https://support.brother.com/g/b/faqend.aspx?c=gb&lang=en&prod=dcpl2620dw_eu&faqid=faq00002637_017",
+    "what": "Brother UK FAQ for DCP-L2620DW, 'I cannot scan via network' (26/08/2026). Use Brother iPrint&Scan over the network; if the scan button fails, allow Brother iPrint&Scan.exe and iPSNotifier.exe through the Windows firewall; repair tool when the computer name does not appear on the LCD."
+   },
+   {
+    "url": "https://support.brother.com/g/b/faqend.aspx?c=eu_ot&lang=en&prod=dcpl2620dw_eu&faqid=faq00100875_000",
+    "what": "Brother FAQ for DCP-L2620DW, 'I cannot scan with a USB cable... (Windows 11 / Windows 11 Arm)' (13/11/2026). Lists USB scanning faults on Windows 11. Option A: uninstall, turn off Windows Ready Print and protected print mode, reinstall the Full Driver & Software Package. Option B: switch to a wireless or wired network connection."
+   },
+   {
+    "url": "https://support.brother.com/g/b/faqlist.aspx?c=eu_ot&lang=en&prod=dcpl2620dw_eu&tabid=3",
+    "what": "Brother FAQ list for DCP-L2620DW (155 items). Titles include Windows 11 driver install errors, 'I cannot install the printer driver or print in Windows 11', Windows 11 apps not working, and scanning slowness on Windows. Only titles were read, not the answers to the driver items."
+   },
+   {
+    "url": "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-9BE6EB6D-E57E-4E81-A2E4-2E4205064410_1.html",
+    "what": "Brother Online User's Guide, 'My Machine Cannot Print, Scan, or Use the PC-FAX Receive Function over the Network', listing DCP-L2620DW. Wi-Fi drop fixed by Recover WLAN; Windows firewall: allow UDP 54925 for network scanning; IP/subnet check with the Network Connection Repair Tool; reinstall the driver as the last step."
+   },
+   {
+    "url": "https://support.brother.com/g/b/faqend.aspx?c=us_ot&lang=en&prod=dcpl2520dw_us_eu&faqid=faq00002637_009",
+    "what": "Brother US FAQ for the sibling DCP-L2520DW (not this model), 'I can print but cannot scan via network (For Windows)'. Steps: check the TWAIN/WIA driver is the primary source (Windows 11), check firewall ports 54925, 137 and 161, and uninstall and reinstall the drivers."
+   },
+   {
+    "url": "https://learn.microsoft.com/en-us/answers/questions/5607841/unable-to-scan",
+    "what": "Microsoft Q&A thread (Nov 2025). Sibling DCP-L2550DW: wireless and USB scanning stopped after a Windows 11 update while printing still worked; the accepted answer pointed to the Brother scanner driver, and the poster said reinstalling did not help. No confirmed fix."
+   },
+   {
+    "url": "https://www.walmart.com/reviews/product/5253181286",
+    "what": "Walmart reviews for the sibling DCP-L2640DW (US; has a feeder, so not identical). Owners praise scanning ('document capture operates smoothly') and Wi-Fi connection. Two one-star reviews say scanning did not work over USB or wireless; one Brother reply points to the Full Driver page."
+   }
+  ]
+ },
+ "forums": {
+  "rating": "good",
+  "why": "A 10 out of 10 score from six LDLC reviews of this exact model and 4.3 out of 5 from 1,003 Walmart ratings for the US sibling DCP-L2640DW, with praise for easy setup and scanning and complaints about occasional Wi-Fi dropouts, sleep wake-up and toner cost.",
+  "stars": [
+   {
+    "where": "Best Buy US, DCP-L2640DW (sibling)",
+    "score": 4.6,
+    "out_of": 5,
+    "reviews": 373,
+    "url": "https://www.bestbuy.com/product/brother-dcp-l2640dw-wireless-black-and-white-refresh-subscription-eligible-3-in-1-laser-printer-great-for-small-offices-gray/J7CJ384JGP/sku/6569814",
+    "checked": "Coordinator read this on Best Buy on 2026-11-17 (product tile: 4.6 out of 5 with 373 reviews)."
+   },
+   {
+    "where": "Walmart US, DCP-L2640DW (sibling with ADF; 1,003 ratings, 452 written reviews)",
+    "score": 4.3,
+    "out_of": 5,
+    "reviews": 1003,
+    "url": "https://www.walmart.com/reviews/product/5253181286"
+   },
+   {
+    "where": "LDLC, France, DCP-L2620DW (this model; 6 reviews)",
+    "score": 10,
+    "out_of": 10,
+    "reviews": 6,
+    "url": "https://www.ldlc.com/en/reviews/PB00581229.html"
+   }
+  ],
+  "praise": [
+   "Easy setup and easy to use (LDLC, Walmart sibling)",
+   "Clear print quality (LDLC, Walmart sibling)",
+   "Smooth document scanning with clear images (Walmart sibling)",
+   "Low cost per page (Walmart sibling)",
+   "Wi-Fi connects easily and has no communication problems (LDLC, Walmart sibling)",
+   "Works on Linux over USB, including scanning (LDLC, this model)",
+   "Automatic two-sided printing (LDLC, this model)"
+  ],
+  "complaints": [
+   "Some owners needed several presses to print or saw slow starts (Walmart sibling)",
+   "Frequent toner refills, costly ink use (Walmart sibling summary)",
+   "Some units were defective or would not print, and support was hard to reach (Walmart sibling, one-star reviews)",
+   "Scanner not recognised over USB or wirelessly for some owners (Walmart sibling, one-star reviews)",
+   "Large and heavy (Walmart sibling)"
+  ],
+  "sources_read": 3,
+  "sources": [
+   {
+    "url": "https://www.ldlc.com/en/reviews/PB00581229.html",
+    "what": "LDLC reviews of DCP-L2620DW (this model): global 10/10 from 6 reviews. Easy setup and use; no Wi-Fi communication problems; works on Linux over USB, printing and scanning; automatic duplex; no Windows-specific comments."
+   },
+   {
+    "url": "https://www.walmart.com/reviews/product/5253181286",
+    "what": "Walmart reviews of the sibling DCP-L2640DW (US, has a document feeder): 4.3 out of 5 from 1,003 ratings, 452 written reviews. Pros: low cost per page, print quality, easy scanning, easy Wi-Fi. Complaints listed above; several one-star reviews concern defects and scanning."
+   },
+   {
+    "url": "https://www.zap.co.il/model.aspx?modelid=1213266",
+    "what": "zap.co.il page for DCP-L2620DW (Israel): shows shop-level ratings and sellers only, no owner product reviews. Not used for star ratings."
+   }
+  ]
+ },
+ "blocked_sites": [
+  "galaxus.at (DCP-L2620DW ratings page, Austria): captcha 'Are you a robot?' shown; not passed, not read",
+  "which.co.uk (Which? review of DCP-L2620DW): expert review behind a sign-up wall; no owner comments read"
+ ]
+}

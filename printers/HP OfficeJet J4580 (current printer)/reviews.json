@@ -1,0 +1,62 @@
+{
+  "id": "hp-officejet-j4580",
+  "researched": "2026-11-17",
+  "windows": {
+    "rating": "mixed",
+    "why": "Windows 10 and 11 print through the Windows built-in driver, and a few owners got HP's full package working on Windows 11, but HP's J4580 page usually lists no Windows 11 driver and scanning on Windows 11 failed for at least one owner in May 2026 with no fix found.",
+    "driver": "Windows built-in (basic) driver for printing, which HP's own Windows 10 guidance (quoted by a volunteer in January 2023) points to. For full features, owners use a download from HP's J4500 Series or J4580 software page, which volunteers link as 'Officejet J4580 - driver software - Windows'; one owner reports it worked on Windows 11 in May 2026, another reports scanning still not recognised with it. An April 2025 HP Support reply says the full package on Windows 11 covers printing, scanning and faxing (no owner confirmed that).",
+    "app_required": "optional",
+    "windows_11": "basic only",
+    "problems": [
+      "No Windows 11 full driver on HP's J4580 page in threads from 2022 to 2024 (no fix in those threads; a volunteer download link was offered, and one 2026 owner says it installed)",
+      "Windows 11 says 'Officejet J4500 Series driver is unavailable' under Bluetooth and devices (fixed for one owner in May 2026 by installing the volunteer-linked driver; thread 9650149)",
+      "Scanner not recognised on a new Windows 11 laptop that prints fine, even after the volunteer driver (no fix found; owner gave up in May 2026; thread 9651955)",
+      "HP Scan Doctor says the full software is not installed, so scanning fails (fixed for one owner in January 2022 by a community instruction the owner followed; thread 8258748)",
+      "Fax on Windows 11: no page read says it works; the built-in driver covers printing and scanning only (not verified)"
+    ],
+    "scanning": "The device has a flatbed scanner with a 20-sheet document feeder. On Windows 11, owners have scanned with HP's full package, but in May 2026 a new Windows 11 laptop did not see the scanner even though it printed; HP's built-in-driver guidance points to the Windows Fax and Scan, Paint or Windows Scan apps, and no owner confirmed that route for this model.",
+    "sources": [
+      {"url": "https://h30434.www3.hp.com/t5/Scanning-Faxing-Copying/How-do-I-find-the-full-software-solution-HP-Officejet-J4580/td-p/8258748", "what": "January 2022, Windows 11 owner: Scan Doctor says the full software is missing. A community volunteer replies that the printer is not compatible with Windows 11, no driver is available (citing an HP document not opened here), and suggests the Windows Scan app. The owner says scanning then worked after another community instruction."},
+      {"url": "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Drivers-and-Software-Needed-for-Officejet-J4580/m-p/8600886", "what": "January 2023 reply by a community volunteer: no full driver is listed for Windows 10; the printer is supported on Windows 10 with the Windows built-in driver; scanning via Windows Fax and Scan, Paint or the Windows Scan app."},
+      {"url": "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Driver-for-Windows-11-Officejet-J4580/m-p/8522696", "what": "October 2022, Windows 11 owner: no driver on HP's page; a volunteer posts a download link. No confirmation of the result. (The linked file is hosted outside HP and was not used.)"},
+      {"url": "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Driver-for-HP-OfficeJet-J4580-All-in-one-Printer/m-p/9162986", "what": "August 2024, Windows 11 owner: cannot find a Windows 11 driver. A volunteer suggests the 'Officejet J4500 - driver software - Windows' download. No result shown."},
+      {"url": "https://h30434.www3.hp.com/t5/AI-PCs/driver-for-hp-officejet-j4580-on-windows-11/m-p/9376980", "what": "April 2025, HP Support community reply: download the full-feature driver package for Windows 11 from HP's J4580 software page, install over USB, which installs printing, scanning and faxing; the HP app from the Microsoft Store is optional. No owner reply."},
+      {"url": "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Need-a-Windows-11-driver-for-HP-Office-jet-J4580/m-p/9650149", "what": "May 2026, solved: Windows 11 owner cannot find the driver on the support page and sees 'Officejet J4500 Series driver is unavailable'. A volunteer links 'Officejet J4580 - driver software - Windows'; the owner says it worked."},
+      {"url": "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/win-11-laptop-does-not-recognise-Officejet-J4580-scanner-but/m-p/9651955", "what": "May 2026, Windows 11 owner: printing works, scanner not recognised; the volunteer's driver link and a Windows scanner-troubleshooting video did not fix it; the owner concluded HP and Microsoft had abandoned it."}
+    ]
+  },
+  "forums": {
+    "rating": "unknown",
+    "why": "Only two owner-opinion pages could be read (eBay UK's 12 reviews and a small Russian reader poll), which is below the three-source minimum, so the star score is reported but not rated.",
+    "stars": [
+      {"where": "eBay UK (product reviews, J4580, mostly pre-owned units)", "score": 4.5, "out_of": 5, "reviews": 15, "url": "https://www.ebay.co.uk/urw/HP-OfficeJet-j4580-All-In-One-Inkjet-Printer/product-reviews/73193885"}
+    ],
+    "praise": [
+      "easy setup, plug and play (eBay: 94% of raters say easy to set up)",
+      "good print quality (eBay: 81% of raters)",
+      "good value (eBay: 78% of raters)",
+      "cartridges easy to swap and self-align (eBay review, 2017)",
+      "used units worked as a drop-in replacement for an older J4500-series unit (eBay reviews, 2018 and 2022)",
+      "compact, stylish, cheap, good photo print quality (zoom.cnews.ru reader poll, very small sample: 6, 5 and 4 votes)"
+    ],
+    "complaints": [
+      "one unit failed mechanically after years of use, with warning clunks (eBay review, 2017)",
+      "paper jam error stayed after unplugging with no paper loaded (eBay review, 2017)",
+      "only one power cord in the box (eBay review, 2017)",
+      "HP no longer sells it, and the newer replacement needs internet driver downloads, which is a problem on offline PCs (eBay review, 2017)",
+      "expensive to run, and hard to set up (zoom.cnews.ru reader poll, 2 votes against running cost, 3 against setup)"
+    ],
+    "sources_read": 2,
+    "sources": [
+      {"url": "https://www.ebay.co.uk/urw/HP-OfficeJet-j4580-All-In-One-Inkjet-Printer/product-reviews/73193885", "what": "Re-read in this pass: 4.5 out of 5 from 15 ratings, 12 written reviews (10 shown). Category ratings: 94% easy to set up, 81% good print quality, 78% good value. Mostly positive; one mechanical failure, a paper-jam error and a missing power cord."},
+      {"url": "https://zoom.cnews.ru/goods_card/item/108022/hp-officejet-j4580", "what": "Russian tech site (ZOOM.Cnews) reader poll for the J4580: votes show cheap, stylish, compact and good photo quality; expensive to run and hard to set up. Sample is very small, and the page also lists 100-sheet input, 20-sheet document feeder and USB 2.0 only, with PC Fax listed."}
+    ]
+  },
+  "blocked_sites": [
+    "alaTest (J4580 review page): 'Under maintenance', HTTP 404; its 3.9 out of 5 from 1,057 reviews is from a search summary only and is not used",
+    "desertcart.sg (J4580 listing): Cloudflare security check, HTTP 403; a 3.8 out of 5 (91 reviews) figure is from a search summary only and is not used",
+    "ypc.co.uk (J4580 product page): Cloudflare security check, HTTP 403, left at once",
+    "Best Buy (J4580 review URL guessed from a search result): HTTP 404, page not found",
+    "Reddit and Amazon: not visited in this pass"
+  ]
+}

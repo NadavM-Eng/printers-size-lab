@@ -1,0 +1,126 @@
+{
+  "id": "brother-hl-l2400dw",
+  "researched": "2026-11-17",
+  "windows": {
+    "rating": "mixed",
+    "why": "Owners report it works on Windows 11, but Brother's own pages describe Wi-Fi disconnects for this model, and the bundled setup software and Windows 11 USB install step draw repeated complaints; Brother gives fixes for most of them.",
+    "driver": "Brother's Full Driver & Software Package, which Brother's Windows Wi-Fi FAQ tells users to reinstall; Brother's EU downloads page for the HL-L2400DW lists Windows 11 and 10 software (EasySetup, iPrint&Scan, Uninstall Tool). Whether Windows Update installs a built-in driver was not verified.",
+    "app_required": "optional",
+    "windows_11": "yes",
+    "problems": [
+      "Wi-Fi drops, machine leaves the network (fixed by Recover WLAN on the panel, the Network Connection Repair Tool, or a firmware update, per Brother)",
+      "Printer shows Offline in Windows (Brother: Offline means the driver is not working; fixed by selecting a working driver or reinstalling the Full Driver package)",
+      "Windows 11 USB install blocked by 'Default install printers using Windows Ready Print' (fixed by turning that option off, per Brother FAQ)",
+      "Bundled EasySetup software described as buggy under Windows 11 (owner review; no fix found in the software itself, the full package from Brother's site is the workaround reported)",
+      "Wi-Fi setup must be repeated on each device (owner review; no fix found)",
+      "Wi-Fi network or router change needs driver uninstall and Wi-Fi setup again (fixed by Brother's uninstall and reconfigure steps)"
+    ],
+    "scanning": null,
+    "sources": [
+      {
+        "url": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-9BE6EB6D-E57E-4E81-A2E4-2E4205064410_1.html",
+        "what": "Brother Online User's Guide, page for HL-L2400DW among other models: 'My Machine Cannot Print over the Network'. Cause is the machine disconnecting from the wireless network; action is Recover WLAN. Windows IP/subnet check with the Network Connection Repair Tool; last step is to uninstall and reinstall the driver."
+      },
+      {
+        "url": "https://support.brother.com/g/b/faqend.aspx?c=nz&lang=en&prod=hll2400dw_eu_as&faqid=faq00100428_014",
+        "what": "Brother FAQ for HL-L2400DW (Windows) 'I cannot print on a wireless (Wi-Fi) network'. Steps: remove and re-add duplicate printer icons, check status (Offline means the driver is not working), reinstall the Full Driver & Software Package, update machine and router firmware."
+      },
+      {
+        "url": "https://support.brother.com/g/b/faqend.aspx?c=eu_ot&lang=en&prod=hll2400dwe_eu&faqid=faq00100867_000",
+        "what": "Brother FAQ dated 17/06/2026 for the HL-L2400DWE page (same machine body; HL-L2400DW listed in related models): on Windows 11 with USB, disable 'Default install printers using Windows Ready Print' before installing the driver."
+      },
+      {
+        "url": "https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=hll2400dw_eu_as",
+        "what": "Brother Downloads for HL-L2400DW (EU). Windows packages listed for Win11 / Win10: iPrint&Scan (06/11/2026), EasySetup (30/10/2026), Uninstall Tool and Mass Deployment Tool. Full Software Package is listed under macOS on this page."
+      },
+      {
+        "url": "https://www.ldlc.com/en/reviews/PB00577967.html",
+        "what": "Reviews for the HL-L2400DWE (same body, Wi-Fi model). Owners: 'Under Win 11, the easysetup software must be buggy'; Wi-Fi setup must be repeated per device; USB cable useful for setup; drivers available on Brother's site; works with Windows 11 (review by LDLCLB)."
+      }
+    ]
+  },
+  "forums": {
+    "rating": "good",
+    "why": "Shop ratings of 4.2 and 4.4 out of 5 for the US sibling HL-L2460DW and a 10/10 score from 16 LDLC reviews of the HL-L2400DWE, with repeated complaints about Wi-Fi setup and drops.",
+    "stars": [
+      {
+        "where": "Best Buy, US, HL-L2460DW (sibling, same engine; product page only, review text did not load)",
+        "score": 4.4,
+        "out_of": 5,
+        "reviews": 354,
+        "url": "https://www.bestbuy.com/product/brother-hl-l2460dw-wireless-black-and-white-refresh-subscription-eligible-laser-printer-great-for-home-offices-gray/J7CJ3842YR/sku/6569816"
+      },
+      {
+        "where": "Walmart US, HL-L2460DW (sibling; 599 ratings, 323 written reviews)",
+        "score": 4.2,
+        "out_of": 5,
+        "reviews": 599,
+        "url": "https://www.walmart.com/reviews/product/5302115190"
+      },
+      {
+        "where": "LDLC, France, HL-L2400DWE (same body, Wi-Fi model)",
+        "score": 10,
+        "out_of": 10,
+        "reviews": 16,
+        "url": "https://www.ldlc.com/en/reviews/PB00577967.html"
+      },
+      {
+        "where": "zap.co.il, Israel, HL-L2400DW",
+        "score": 3.5,
+        "out_of": 5,
+        "reviews": 4,
+        "url": "https://www.zap.co.il/model.aspx?modelid=1213264"
+      },
+      {
+        "where": "ProductReview.com.au, HL-L2400DW (one review)",
+        "score": 1.0,
+        "out_of": 5,
+        "reviews": 1,
+        "url": "https://www.productreview.com.au/listings/brother-hl-l2400dw"
+      }
+    ],
+    "praise": [
+      "Print quality and speed (LDLC; Walmart sibling reviews)",
+      "Automatic duplex printing (LDLC)",
+      "Low cost per page (LDLC)",
+      "Easy setup for many owners (LDLC; Walmart sibling reviews)",
+      "Works with Windows 11 (LDLC)"
+    ],
+    "complaints": [
+      "Wi-Fi setup tedious, repeated for each device (LDLC)",
+      "Bundled setup software old or buggy under Windows 11 (LDLC)",
+      "Wi-Fi network drops now and then (Walmart sibling, HL-L2460DW)",
+      "Slow to wake from sleep (Walmart sibling, HL-L2460DW)",
+      "Duplex not supported under Ubuntu (LDLC)",
+      "Weak documentation and bulky body (LDLC)",
+      "Toner-low warning before the rated page count (ProductReview, one review)"
+    ],
+    "sources_read": 5,
+    "sources": [
+      {
+        "url": "https://www.bestbuy.com/product/brother-hl-l2460dw-wireless-black-and-white-refresh-subscription-eligible-laser-printer-great-for-home-offices-gray/J7CJ3842YR/sku/6569816",
+        "what": "Best Buy product page for HL-L2460DW (US sibling): rating 4.4 out of 5 from 354 reviews. Review text on the reviews page did not render."
+      },
+      {
+        "url": "https://www.walmart.com/reviews/product/5302115190",
+        "what": "Walmart reviews for HL-L2460DW (US sibling): 4.2 out of 5 from 599 ratings. Pros: print quality, simple wireless setup. Neutral: network connection occasionally drops; ink use. Reviews mention difficult first setup and slow wake from sleep."
+      },
+      {
+        "url": "https://www.ldlc.com/en/reviews/PB00577967.html",
+        "what": "LDLC reviews of HL-L2400DWE (same body): global 10/10 from 16 reviews. Praise for duplex, speed, quality, value, Windows 11. Complaints: Wi-Fi setup per device, buggy easy-setup software on Windows 11, no duplex on Ubuntu, bulky, weak documentation."
+      },
+      {
+        "url": "https://www.zap.co.il/model.aspx?modelid=1213264",
+        "what": "zap.co.il page for HL-L2400DW: product rating 3.5 from 4 opinions (rating only, no text shown). Shop-level ratings on the page are seller ratings and were not used."
+      },
+      {
+        "url": "https://www.productreview.com.au/listings/brother-hl-l2400dw",
+        "what": "ProductReview listing for HL-L2400DW: 1.0 from 1 review. The reviewer says a toner-replace warning appeared well before the rated page count and blames the counter. Single review, not weighted heavily."
+      }
+    ]
+  },
+  "blocked_sites": [
+    "digitec.ch (ratings page for HL-L2400DW, Switzerland): captcha 'Are you a robot?' shown instead of the page; not passed, not read",
+    "uk.trustpilot.com (Viking Direct HL-L2400DW reviews): HTTP 403 with a 'Verifying Connection' page; not read"
+  ]
+}

@@ -1,0 +1,221 @@
+{
+ "id": "xerox-b230",
+ "researched": "2026-11-17",
+ "consumables": [
+  {
+   "kind": "toner",
+   "role": "standard",
+   "code": "006R04399",
+   "original": true,
+   "pages": 1200,
+   "pages_source": "https://www.shop.xerox.com/006r04399",
+   "price_ils": null,
+   "price_usd": {
+    "value": 63.99,
+    "where": "Xerox Shop (Xerox US store)",
+    "url": "https://www.shop.xerox.com/006r04399",
+    "note": "Xerox US store price, fetched 2026-11-17; Staples and other US listings differ"
+   },
+   "price_other": {
+    "value": 61.37,
+    "where": "Xerox UK (GBP, inc. VAT)",
+    "url": "https://www.xerox.co.uk/en-gb/office/printers/xerox-b230-printer/supplies",
+    "note": "GBP 61.37 inc. VAT (GBP 51.14 ex. VAT)"
+   }
+  },
+  {
+   "kind": "toner",
+   "role": "high_yield",
+   "code": "006R04403 (006R04400 in the US and UK)",
+   "original": true,
+   "pages": 3000,
+   "pages_source": "https://xerox.com/en-in/supplies-and-accessories/006R04403",
+   "price_ils": {
+    "value": 236,
+    "where": "PENPALL (via Zap price comparison, 17 shops, 236-406 ILS)",
+    "url": "https://www.zap.co.il/model.aspx?modelid=1146837",
+    "note": "Cheapest original single cartridge, shipping free. Israeli shops sell this 3,000-page cartridge as 006R04403 (Xerox India page lists it for B225/B230/B235, 3,000 pages, high capacity). The UK/US maker SKU for the same 3,000-page class is 006R04400, so the two codes are treated as the same product here, not proven identical. Cost per page: 0.079 ILS."
+   },
+   "price_usd": {
+    "value": 124.99,
+    "where": "Xerox Shop (Xerox US store), code 006R04400",
+    "url": "https://www.shop.xerox.com/006r04400",
+    "note": "US SKU 006R04400, 3,000 pages (ISO/IEC 19752 per footnote on the page at fetch time)"
+   },
+   "price_other": {
+    "value": 105.22,
+    "where": "Xerox UK (GBP, inc. VAT), code 006R04400",
+    "url": "https://www.xerox.co.uk/en-gb/office/printers/xerox-b230-printer/supplies",
+    "note": "GBP 105.22 inc. VAT (GBP 87.68 ex. VAT)"
+   },
+   "code_note": "Israeli shops sell 006R04403; the US and UK code for the 3,000-page cartridge is 006R04400"
+  },
+  {
+   "kind": "toner",
+   "role": "high_yield",
+   "code": "006R04403",
+   "original": false,
+   "pages": 3000,
+   "pages_source": "https://www.zap.co.il/model.aspx?modelid=1146837",
+   "price_ils": {
+    "value": 154,
+    "where": "Beit HaFax (בית הפקס) via Zap",
+    "url": "https://www.zap.co.il/model.aspx?modelid=1146837",
+    "note": "Compatible/refurbished, incl. 10 ILS shipping. Claimed 3,000 pages per listing description; not checked on the shop page. Compatible range on this comparison page: 154-355 ILS. Cost per page at claimed yield: about 0.051 ILS."
+   },
+   "price_usd": null,
+   "price_other": null,
+   "code_note": "006R04403 (compatible, SKU not stated on listing)"
+  },
+  {
+   "kind": "toner",
+   "role": "starter",
+   "code": null,
+   "original": true,
+   "pages": 1200,
+   "pages_source": "https://office.xerox.com/latest/B23BR-01E.PDF",
+   "price_ils": null,
+   "price_usd": null,
+   "price_other": null
+  },
+  {
+   "kind": "drum",
+   "role": "drum",
+   "code": "013R00691",
+   "original": true,
+   "pages": 12000,
+   "pages_source": "https://www.shop.xerox.com/013r00691",
+   "price_ils": {
+    "value": 315,
+    "where": "Dio Ink (דיו אינק) via Zap, 15 ILS shipping included",
+    "url": "https://www.zap.co.il/fs?pid=1215180067&sog=h-ink&s=0&indicator=10",
+    "note": "Cheapest of 15 original imaging-unit offers on Zap (315-480 ILS). Listed as a drum/imaging unit, not toner. Cost per page at 12,000: about 0.026 ILS."
+   },
+   "price_usd": {
+    "value": 96.99,
+    "where": "Xerox Shop (Xerox US store)",
+    "url": "https://www.shop.xerox.com/013r00691",
+    "note": "Listed as 'Imaging Unit (not toner)', 12,000 pages"
+   },
+   "price_other": {
+    "value": 86.42,
+    "where": "Xerox UK (GBP, inc. VAT)",
+    "url": "https://www.xerox.co.uk/en-gb/office/printers/xerox-b230-printer/supplies",
+    "note": "GBP 86.42 inc. VAT (GBP 72.02 ex. VAT)"
+   }
+  },
+  {
+   "kind": "drum",
+   "role": "drum",
+   "code": "013R00691",
+   "original": false,
+   "pages": 12000,
+   "pages_source": "https://www.zap.co.il/fs?pid=1447041979&sog=h-ink&s=0&indicator=10",
+   "price_ils": {
+    "value": 100,
+    "where": "PENPALL via Zap",
+    "url": "https://www.zap.co.il/fs?pid=1447041979&sog=h-ink&s=0&indicator=10",
+    "note": "Compatible drum, free shipping. Cheapest of 5 compatible offers (100-255 ILS). Claimed 12,000 pages per listing, not checked on the shop page."
+   },
+   "price_usd": null,
+   "price_other": null,
+   "code_note": "013R00691 (compatible)"
+  }
+ ],
+ "third_party_cartridges": {
+  "allowed": "nags",
+  "summary": "No report found that firmware blocks third-party toner on the B230 itself. A Xerox B235 service manual (sibling model on the same platform) describes a 'non-Xerox supply detected' warning that can be bypassed by a key sequence; this is a search excerpt, not a page I could open. One Xerox.ca owner blames a chip for blocking cheaper cartridges (single anecdote).",
+  "source": "https://manualshive.com/en/manual/xerox/b235/3682283?page=261"
+ },
+ "windows": {
+  "rating": "mixed",
+  "why": "Xerox publishes Windows 10 and 11 drivers and the built-in IPP driver works, but owners and one reviewer report Wi-Fi setup trouble on the small screen and a setup failure with Xerox's recommended print system.",
+  "driver": "Xerox full driver packages from support.xerox.com: PCL6 V4 7.249.0.0 (Jan 2022, lists Windows 10 x64 and Windows 11) and generic PPD 5.810.0.0 (Jul 2021, lists Windows 10 and 11, no Windows on ARM). Windows 11 also offers the inbox Microsoft IPP class driver. Xerox says newer devices are no longer added to its Global Print Driver.",
+  "app_required": "optional",
+  "windows_11": "yes",
+  "problems": [
+   "ITPro reviewer: Xerox software failed with the recommended Type 4 Print System; Type 3 worked",
+   "Wi-Fi password is hard to enter on the small LCD, at least during first setup",
+   "Reports of Wi-Fi disconnects and having to re-enter passwords (one comparison article)",
+   "Unofficial help sites describe 'offline' status after Wi-Fi setup (not confirmed for B230)"
+  ],
+  "scanning": null,
+  "sources": [
+   {
+    "url": "https://support.xerox.com/en-ae/product/xerox-b230-printer/content/154256",
+    "what": "PCL6 driver 7.249.0.0 (Jan 2022): Windows 10 x64 and Windows 11 listed; no ARM"
+   },
+   {
+    "url": "https://support.xerox.com/en-us/product/xerox-b230-printer/content/152267",
+    "what": "Generic PPD driver 5.810.0.0 (Jul 2021): Windows 10 and Windows 11 listed; Windows on ARM not listed"
+   },
+   {
+    "url": "https://www.itpro.com/hardware/peripherals/367506/xerox-b230-review-a-value-conscious-workhorse",
+    "what": "Review: Type 4 Print System failed in test, Type 3 worked; no other Windows issues mentioned"
+   },
+   {
+    "url": "https://www.xerox.ca/en-ca/office/printers/xerox-b230-printer/reviews?page=2",
+    "what": "Owner reviews: Wi-Fi password entry on small screen, setup confusion at first"
+   },
+   {
+    "url": "https://www.print-technology.com/best-laser-printers-with-cheap-toner/",
+    "what": "Comparison article: Wi-Fi disconnect and password re-entry complaints; article has part-number errors, so used only for the Wi-Fi remark"
+   }
+  ]
+ },
+ "forums": {
+  "rating": "mixed",
+  "why": "Owners praise reliability, wireless use, two-sided printing and no subscription, but repeat complaints about Wi-Fi setup, toner cost and one very costly support case.",
+  "praise": [
+   "Reliable, few problems (switchers from HP say so)",
+   "Wireless and phone printing work well",
+   "Two-sided printing",
+   "No subscription; Linux and Chromebook support",
+   "Toner lasts a long time",
+   "Good print quality once toner darkness is raised"
+  ],
+  "complaints": [
+   "Wi-Fi password setup hard on the small screen",
+   "Wi-Fi connection problems, some owners want Ethernet",
+   "Expensive replacement toner and drum",
+   "One reviewer cites 260 USD of tech support to get it working (same review twice)",
+   "Paper feed pulls several sheets at once and jams at the back (one review)",
+   "Prints a scanner report several times a day with no way to stop it (one review)",
+   "Starter toner rated only about 750 pages in one report"
+  ],
+  "sources_read": 4,
+  "sources": [
+   {
+    "url": "https://www.xerox.com/en-us/office/printers/xerox-b230-printer/reviews",
+    "what": "10 visible of 27 ratings; all show 5 stars but text is mixed; praise for reliability and wireless, complaints about support cost and paper feed; Wi-Fi password setup"
+   },
+   {
+    "url": "https://www.xerox.ca/en-ca/office/printers/xerox-b230-printer/reviews?page=2",
+    "what": "10 reviews: praise for Wi-Fi, reliability, two-sided; complaints about toner cost, gibberish prints, support, scanner report"
+   },
+   {
+    "url": "https://www.itpro.com/hardware/peripherals/367506/xerox-b230-review-a-value-conscious-workhorse",
+    "what": "Editorial review: 'excellent value' for black text; running cost about 2p per page for toner; Type 4 setup issue"
+   },
+   {
+    "url": "https://www.print-technology.com/best-laser-printers-with-cheap-toner/",
+    "what": "Comparison article: expensive toner, Wi-Fi disconnects, high OEM cost per page; part numbers in it are wrong, so only general remarks used"
+   }
+  ]
+ },
+ "not_found": [
+  "Israeli price for the 1,200-page standard toner 006R04399: zap.co.il search for 006R04399 and Xerox B230 returned no B230 standard listing (only a B210/B215 toner and the 3,000-page SKU). KSP and Wisebuy searches failed or had no results; ksp.co.il returned 403. Ivory and Bug not reached.",
+  "Compatible 1,200-page standard toner in Israel: not found.",
+  "Starter cartridge code and price: the box cartridge is a 1,200-page starter (EU datasheet) but no separate code or shop price was found.",
+  "6,000-page toner 006R04401 (in the Xerox datasheet): no shop page or Israeli listing found; the Xerox UK and US store pages list only the 1,200, 3,000 and drum SKUs.",
+  "Part-number conflict: aio.lv lists 006R04402 as a 1,200-page B230 toner. Not confirmed by any maker page; the Xerox UK and US store list 006R04399 for 1,200 pages.",
+  "Firmware blocking of third-party toner on the B230 itself: no B230-specific source found. Xerox support KB0326768 (firmware update guide) does not mention supplies. A 2022 B230 readme (MSLSG.081.215, PDF) mentions a fix for rejected PagePack supply activation codes; I did not open the PDF.",
+  "Reddit (r/printers): WebFetch refuses reddit.com and WebSearch cannot filter to it; no Reddit threads reached.",
+  "Amazon UK reviews (503), Walmart Business reviews (robot check), Staples reviews (404), Adorama reviews (403): not read.",
+  "HWzone and other Israeli forums: no B230 thread found.",
+  "Israeli Xerox brochure (arbikas.com) for the 006R04403 SKU: 403, not opened; the SKU was confirmed on Xerox India instead.",
+  "Windows on ARM driver: not listed on either Xerox driver page.",
+  "Xerox official Wi-Fi setup KB article: only a search summary was seen, not opened; the B230 Wi-Fi video was not checked.",
+  "Process note: one Browser-pane navigation (tab-17, shop.xerox.com/006r04399) was used by mistake despite the brief forbidding browser tools; its page was not used for any data. One WebFetch of a PDF (the Adorama B230 user guide) saved a binary file to the Claude tool-results folder; no data from it was used."
+ ]
+}

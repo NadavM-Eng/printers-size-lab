@@ -1,0 +1,130 @@
+{
+ "id": "hp-officejet-j4580",
+ "researched": "2026-11-17",
+ "consumables": [
+  {
+   "kind": "ink",
+   "role": "standard",
+   "code": "HP 901 black",
+   "original": true,
+   "pages": 200,
+   "pages_source": "https://www.4inkjets.com/oem-hp-cc653an-black-ink-cartridge-cc653an",
+   "price_ils": null,
+   "price_usd": {
+    "value": 24.97,
+    "where": "Tonerbuzz (US part CC653AN)",
+    "url": "https://www.tonerbuzz.com/hp-officejet-j4580/",
+    "note": "Listed as unavailable (out of stock) on the page. Same HP 901 black, sold under the US code CC653AN; the 4inkjets US listing shows $27.73, backordered. Yield 200 pages is from the 4inkjets and Tonerbuzz pages (the footnote there cites ISO-19752, not the ink standard ISO/IEC 24711).",
+    "availability": "out of stock"
+   },
+   "price_other": null
+  },
+  {
+   "kind": "ink",
+   "role": "high_yield",
+   "code": "HP 901XL black",
+   "original": true,
+   "pages": 700,
+   "pages_source": "https://www.stockinthechannel.co.uk/Product/HP-CC654AE-901XL-Printhead-cartridge-black-high-capacity-700-pages-ISO-IEC-24711-14ml-for-HP-OfficeJet-J-4500/51161456",
+   "price_ils": null,
+   "price_usd": {
+    "value": 51.08,
+    "where": "Tonerbuzz (US part CC654AN)",
+    "url": "https://www.tonerbuzz.com/hp-officejet-j4580/",
+    "note": "Listed as unavailable (out of stock). Same HP 901XL black, US code CC654AN; the 4inkjets US listing shows $53.48, backordered. Yield 700 pages (ISO/IEC 24711) is from the stockinthechannel page.",
+    "availability": "out of stock"
+   },
+   "price_other": null
+  },
+  {
+   "kind": "ink",
+   "role": "colour",
+   "code": "HP 901 tri-colour",
+   "original": true,
+   "pages": 360,
+   "pages_source": "https://www.4inkjets.com/oem-hp-cc656an-color-ink-cartridge-cc656an",
+   "price_ils": null,
+   "price_usd": {
+    "value": 40.03,
+    "where": "Tonerbuzz (US part CC656AN)",
+    "url": "https://www.tonerbuzz.com/hp-officejet-j4580/",
+    "note": "Listed as out of stock. Same HP 901 tri-colour, US code CC656AN; the 4inkjets US listing shows $43.58, backordered. Yield 360 pages is from the 4inkjets and Tonerbuzz pages; the 4inkjets footnote cites ISO-19752. Some listings show code CC656AA (Officeworks); not used.",
+    "availability": "out of stock"
+   },
+   "price_other": null
+  },
+  {
+   "kind": "ink",
+   "role": "high_yield",
+   "code": "HP 901XL black",
+   "original": false,
+   "pages": 700,
+   "pages_source": "https://www.zap.co.il/model.aspx?modelid=731606",
+   "price_ils": {
+    "value": 95,
+    "where": "Peri Dio (פרי דיו), offer on zap.co.il",
+    "url": "https://www.zap.co.il/fs?pid=1467541022&sog=h-ink&s=1&indicator=10",
+    "note": "Compatible black printhead; the shop claims 700 pages at 5% coverage. Free shipping, up to 3 business days. Cheapest sticker price on the zap page is 85 ILS (Doctor Dio, claims 500 pages): https://www.zap.co.il/fs?pid=1462761828&sog=h-ink&s=0&indicator=10"
+   },
+   "price_usd": null,
+   "price_other": null
+  }
+ ],
+ "third_party_cartridges": {
+  "allowed": "unknown",
+  "summary": "No page I opened says the J4580 blocks or nags about third-party 901 cartridges. A 2017 article on HP firmware that blocked non-HP cartridges names other OfficeJet models, not the OfficeJet 4500 or J4580. Compatible 901 cartridges are on sale in Israel (zap.co.il).",
+  "source": "https://enxmag.com/twii/feature-articles/2017/09/hp-security-firmware-update-again-said-to-be-disabling-use-of-non-hp-ink-cartridges"
+ },
+ "windows": {
+  "rating": "unknown",
+  "why": "Only two opened pages mention Windows (one third-party driver database and one owner review); every HP Community thread and HP support page I tried returned 403, so there are too few sources to rate it.",
+  "driver": "Not confirmed from an HP page. A third-party driver database (treexy.com) lists three 2006-2008 'Officejet J4500 Series' driver packages as compatible with Windows 10 and 11. A HP Community reply seen only in search results (not opened) says HP has no dedicated Windows 11 driver for the J4580 and suggests the Windows 10 Full Feature package.",
+  "app_required": "optional",
+  "windows_11": null,
+  "problems": [],
+  "scanning": "The J4580 has a flatbed scanner with a 20-sheet ADF (see specs). No page I opened describes how scanning works on Windows 10 or 11.",
+  "sources": [
+   {
+    "url": "https://treexy.com/products/driver-fusion/database/printers/hewlett-packard-hp/officejet-j4500-series/",
+    "what": "Third-party driver database: three 'Officejet J4500 Series' packages (versions 61.73.264.31 dated 2008, 61.73.242.0 dated 2007, 6.1.7600.16385 dated 2006), each listed for Windows 11, 10, 8.1, 8 and 7. Not an HP source."
+   },
+   {
+    "url": "https://www.ebay.co.uk/urw/HP-OfficeJet-j4580-All-In-One-Inkjet-Printer/product-reviews/73193885",
+    "what": "One owner review says the printer 'Works fine with MS 10 OS'. No Windows 11 or setup problems mentioned in the reviews on that page."
+   }
+  ]
+ },
+ "forums": {
+  "rating": "unknown",
+  "why": "I could open only one distinct review page (12 owner reviews, 4.5 of 5 from 15 ratings); the other forum and review sources were blocked, not found or unreadable.",
+  "praise": [
+   "easy setup, plug and play",
+   "cartridges easy to swap and self-align",
+   "buyers used it to replace an older J4500-series unit that had died, and say it works like the old one"
+  ],
+  "complaints": [
+   "a 'paper jam' error that stayed after unplugging, with no paper loaded (one review)",
+   "only one power cord in the box (one review)",
+   "an owner says HP discontinued a good printer and that the newer replacement model needs internet downloads for its driver (one review)"
+  ],
+  "sources_read": 1,
+  "sources": [
+   {
+    "url": "https://www.ebay.co.uk/urw/HP-OfficeJet-j4580-All-In-One-Inkjet-Printer/product-reviews/73193885",
+    "what": "eBay UK reviews for the J4580: 12 reviews (10 shown), overall 4.5/5 from 15 ratings. Mostly positive on setup and reliability; one paper-jam complaint and one missing power cord. (The eBay DE page shows the same reviews.)"
+   }
+  ]
+ },
+ "not_found": [
+  "Israeli price of the ORIGINAL HP 901 black (CC653AE), 901XL black (CC654AE) and 901 tri-colour (CC656AE): none found. zap.co.il lists only compatible CC654 offers (no CC653 or CC656 results); ksp.co.il returned 403; ivory.co.il returned 404; bug.co.il had no 901 page at the URL tried; the hp.com/il-he pages found were for other models (HP 869, 654, 903, 912).",
+  "Israeli compatible 901 black (CC653AE) and 901 tri-colour (CC656AE): no offers found on zap.co.il.",
+  "In-stock USD prices for the originals: the only prices found were for out-of-stock or backordered items (Tonerbuzz, 4inkjets), using the US codes CC653AN, CC654AN and CC656AN. Amazon, B&H, the HP US store and Staples were not reached.",
+  "Official HP yield pages (hp.com) not reached. RS Online pages returned 403, Icecat showed a bot check, Sumillion returned 404, and EMPR Group returned 403; their yields were not used except where noted.",
+  "Dynamic Security or HP+ on the J4580: no opened page confirms either. The CartridgeSave 901 compatibility page returned 403.",
+  "Windows: all HP Community threads on h30434.www3.hp.com (including the Windows 11 J4580 threads) returned 403, as did printerdrivers.com and the ElevenForum thread. HP support driver pages were not reachable. The Windows 11 status is therefore left null; search snippets pointed to a Windows 10 Full Feature package, but that is not confirmed.",
+  "Windows on ARM: not checked.",
+  "Windows problems (Wi-Fi, offline, sleep and wake, forced apps or accounts) for the J4580: not confirmed from any opened page. The J4580 is USB only (no Wi-Fi) per specs.",
+  "Forums: Reddit (blocked), alaTest (404), Guenstiger (403), TakeSpec (521), Zoom.CNews (text unreadable). No zap.co.il J4580 review page. Only one distinct review page could be read.",
+  "Cost per page in ILS for the originals: not computable, since no ILS original price was found. In USD, using the out-of-stock prices above: 901 black about $0.12 per page (24.97 / 200), 901XL black about $0.07 per page (51.08 / 700), tri-colour about $0.11 per page (40.03 / 360)."
+ ]
+}

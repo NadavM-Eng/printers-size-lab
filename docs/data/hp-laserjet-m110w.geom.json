@@ -1,0 +1,214 @@
+{
+ "id": "hp-laserjet-m110w",
+ "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+ "nodes": {
+  "body": "hp-laserjet-m110w_body",
+  "input_tray": "hp-laserjet-m110w_input_tray",
+  "tray_ext": "hp-laserjet-m110w_tray_ext",
+  "paper": "hp-laserjet-m110w_paper",
+  "support": "hp-laserjet-m110w_support",
+  "cable_power": "hp-laserjet-m110w_cable_power",
+  "cable_usb": "hp-laserjet-m110w_cable_usb"
+ },
+ "parts": {
+  "body": {
+   "node": "hp-laserjet-m110w_body",
+   "kind": "body",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "input_tray": {
+   "node": "hp-laserjet-m110w_input_tray",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.009,
+    0.0892
+   ]
+  },
+  "tray_ext": {
+   "node": "hp-laserjet-m110w_tray_ext",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.009,
+    0.0892
+   ]
+  },
+  "paper": {
+   "node": "hp-laserjet-m110w_paper",
+   "kind": "moving",
+   "hidden": true,
+   "pivot_m": null
+  },
+  "support": {
+   "node": "hp-laserjet-m110w_support",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.1388,
+    0.087
+   ]
+  },
+  "cable_power": {
+   "node": "hp-laserjet-m110w_cable_power",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "cable_usb": {
+   "node": "hp-laserjet-m110w_cable_usb",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  }
+ },
+ "states": {
+  "printing": [
+   {
+    "part": "input_tray",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 90.0
+   },
+   {
+    "part": "tray_ext",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 90.0
+   },
+   {
+    "part": "tray_ext",
+    "move": [
+     0.0,
+     0.0,
+     0.0285
+    ]
+   },
+   {
+    "part": "paper",
+    "show": true
+   },
+   {
+    "part": "support",
+    "move": [
+     0.0,
+     0.0076,
+     0.0987
+    ]
+   }
+  ],
+  "refill": [
+   {
+    "part": "input_tray",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 90.0
+   },
+   {
+    "part": "tray_ext",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 90.0
+   },
+   {
+    "part": "tray_ext",
+    "move": [
+     0.0,
+     0.0,
+     0.0285
+    ]
+   },
+   {
+    "part": "paper",
+    "show": true
+   }
+  ]
+ },
+ "body_size_cm": [
+  34.6,
+  18.9,
+  15.9
+ ],
+ "envelopes_m": {
+  "closed": {
+   "min": [
+    -0.173,
+    0.0,
+    -0.0945
+   ],
+   "max": [
+    0.173,
+    0.159,
+    0.0945
+   ]
+  },
+  "printing": {
+   "min": [
+    -0.173,
+    0.0,
+    -0.0945
+   ],
+   "max": [
+    0.173,
+    0.159,
+    0.235
+   ]
+  },
+  "refill": {
+   "min": [
+    -0.173,
+    0.0,
+    -0.0945
+   ],
+   "max": [
+    0.173,
+    0.159,
+    0.235
+   ]
+  }
+ },
+ "cable_back_gap_cm": 6.81,
+ "sockets": [
+  {
+   "part": "cable_power",
+   "kind": "C13v",
+   "x": -13.94,
+   "z": 2.99,
+   "recess": 0.08000000000000007,
+   "angled": false,
+   "far_y_cm": 16.26
+  },
+  {
+   "part": "cable_usb",
+   "kind": "USB-B",
+   "x": -14.65,
+   "z": 10.2,
+   "recess": 2.58,
+   "angled": false,
+   "far_y_cm": 12.21
+  }
+ ],
+ "triangles": 18254,
+ "glb_mb": 0.57,
+ "notes": [
+  "Power inlet (C14, turned 90 deg) is flush on the flat back: the C13 plug and its strain relief stick straight out. USB-B sits in a 2.5 cm deep corner pocket; no Ethernet.",
+  "It cannot print closed: the front door folds down into the paper tray (11.2 cm in front), the tray extension adds 2.85 cm (33.0 cm deep in total, HP user guide: 32.96 cm) and the grey output extension slides out about 10 cm over it. HP's datasheet maximum is 36.0 cm.",
+  "The top cover (toner door) lifts to 28 cm for toner changes only; not modelled as a state."
+ ]
+}

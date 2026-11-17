@@ -1,0 +1,105 @@
+{
+  "id": "xerox-b110",
+  "researched": "2026-11-17",
+  "consumables": [
+    {
+      "kind": "toner",
+      "role": "standard",
+      "code": "006R04962",
+      "original": true,
+      "pages": 1500,
+      "pages_source": "https://www.planeo.cz/xerox-006r04962-black",
+      "price_ils": {
+        "value": 246,
+        "where": "Toner Supply, listed on zap.co.il",
+        "url": "https://www.zap.co.il/fs?pid=1388759187&sog=h-ink&indicator=20",
+        "note": "Lowest of five listings for original 006R04962 on zap.co.il search (others 274, 292, 296, 319 ILS). Read 2026-11-17. The zap link redirects to the shop page, which needs JavaScript, so the price is taken from zap's listing. Shipping and VAT wording not checked. Israeli shops list this code, not 006R04961. The Xerox spec sheet calls 006R04962 the same cartridge for other regions; not verified on a Xerox page."
+      },
+      "price_usd": null,
+      "price_other": {
+        "value": 1419,
+        "where": "Planeo (Czech Republic)",
+        "url": "https://www.planeo.cz/xerox-006r04962-black",
+        "note": "CZK, incl. VAT (page also shows 1,173 CZK excl. VAT). Original Xerox 006R04962, up to 1,500 pages."
+      }
+    },
+    {
+      "kind": "toner",
+      "role": "standard",
+      "code": "006R04961",
+      "original": true,
+      "pages": 1500,
+      "pages_source": "https://www.4inkjets.com/oem-xerox-black-006r04961-standard-yield-toner-cartridge",
+      "price_ils": null,
+      "price_usd": null,
+      "price_other": null
+    },
+    {
+      "kind": "toner",
+      "role": "standard",
+      "code": "006R04961",
+      "original": false,
+      "pages": 1500,
+      "pages_source": "https://www.4inkjets.com/compatible-xerox-black-006r04961-standard-yield-toner-cartridge",
+      "price_ils": null,
+      "price_usd": null,
+      "price_other": {
+        "value": 36.99,
+        "where": "4inkjets (US)",
+        "url": "https://www.4inkjets.com/compatible-xerox-black-006r04961-standard-yield-toner-cartridge",
+        "note": "USD, compatible (third-party), our price 36.99 vs regular 48.99; 123inkjets showed 39.99 for the same item. No Israeli compatible price for the B110 found (zap.co.il shows one 292 ILS listing by Comp Master that is labelled original and is ambiguous, so it is not used)."
+      }
+    }
+  ],
+  "third_party_cartridges": {
+    "allowed": "unknown",
+    "summary": "No B110-specific statement found, and no B110 firmware or chip-block report was found. Xerox's support article for the B215 (a sibling model, not the B110) says other toner 'may affect print quality, product reliability and are not supported' and triggers a cartridge error.",
+    "source": "https://www.support.xerox.com/en-us/article/en/2109260"
+  },
+  "windows": {
+    "rating": "unknown",
+    "why": "Xerox publishes a Windows 10 and 11 driver installer for the B110 (released 2026-04-01), but I found no owner reports about the B110 on Windows, so its real-world behaviour cannot be rated.",
+    "driver": "Xerox full driver package: Xerox_B110_Windows_Software_Installer-Package.exe, 138 MB, from Xerox support. It contains the B110 print driver 3.12.38.03, Easy Print Manager 2.0.01.59 and Easy Wireless Setup 3.70.18.1. The page lists a Windows 11 option and a 'Windows 11 ARM64' option in the platform menu, but does not confirm which file applies to ARM64. Not checked: whether Windows' built-in or IPP class driver works without this package.",
+    "app_required": "optional",
+    "windows_11": "yes",
+    "problems": [],
+    "scanning": null,
+    "sources": [
+      {
+        "url": "https://www.xerox.co.uk/en-gb/office/printers/xerox-b110-printer/specifications",
+        "what": "Operating system row: Microsoft Windows 10 (32/64-bit) and Windows 11 (32/64-bit) are listed as supported. Also says availability varies by country."
+      },
+      {
+        "url": "https://www.support.xerox.com/en-us/product/xerox-b110-printer/downloads",
+        "what": "B110 downloads page: Windows installer package (driver 3.12.38.03 plus two utilities, released 2026-04-01, 138.32 MB), firmware V3.50.01.06 released 2026-03-31, and a Platform menu with Windows 10, Windows 10 x64, Windows 11 and Windows 11 ARM64. Terms and Conditions checkbox needed before download. No account requirement stated."
+      }
+    ]
+  },
+  "forums": {
+    "rating": "unknown",
+    "why": "Only one page with owner opinions on the B110 was found (a summary of 118 Amazon.de reviews); no forum threads or Israeli owner reviews for the B110 were found.",
+    "praise": ["Easy to use", "Compact design", "Good print quality for text documents", "Supports WLAN and Apple AirPrint"],
+    "complaints": ["No scan, copy or fax functions", "No automatic duplex printing", "No LAN connection", "Relatively high power consumption while printing"],
+    "sources_read": 1,
+    "sources": [
+      {
+        "url": "https://www.testberichte.de/p/xerox-tests/b110-testbericht.html",
+        "what": "Summary of 118 Amazon.de reviews, average 3.8 stars; praise and complaints listed as above. Test score 2.2 (page also shows 2.60 in its conclusion). No Windows-specific remarks."
+      }
+    ]
+  },
+  "not_found": [
+    "Israeli price for 006R04961 (the code in specs.json): no Israeli listing found. Israeli shops (zap.co.il) list 006R04962 instead, so the Israeli price above is for 006R04962.",
+    "Starter cartridge: its 700-page yield and code are from specs.json only. The Xerox spec PDF (xerox.co.uk B10BR-01E.PDF / office.xerox.com) could not be read as text, so the 700 figure is unverified and no starter entry is listed.",
+    "Official Xerox consumables page for the B110 (supplies, yields, drum) could not be reached. The 1,500-page yield comes from 4inkjets (ISO/IEC 19752 note) and Planeo, not from Xerox.",
+    "High-yield cartridge: none listed on 4inkjets or 123inkjets for the B110 (only standard 006R04961 items). Not confirmed on a Xerox page.",
+    "Separate drum: no B110 drum or imaging unit is listed on 4inkjets or 123inkjets. The 'built into the cartridge' statement in specs.json is not confirmed by a Xerox page.",
+    "Original 006R04961 in USD: 4inkjets shows 'Coming Soon' with no price; 123inkjets shows an average of 200 USD with no sale price, which is not treated as a real price.",
+    "Israeli compatible cartridge price: none reliable. zap.co.il lists a 292 ILS 'Comp Master' item for 006R04962 that is labelled original in one listing and looks compatible from the seller name, so it was left out. Israeli retailer pages (KSP, Ivory) could not be fetched (403 and 404).",
+    "Third-party cartridge blocking for the B110: no B110-specific source. The Xerox support article used names the B215, not the B110.",
+    "Windows: no B110 owner reports about Wi-Fi setup, offline status, sleep/wake, or update problems were found. Searches for Reddit and Israeli forum threads returned nothing B110-specific. Whether the bundled utilities need an account was not stated on the Xerox page.",
+    "Windows on ARM: the platform menu has a 'Windows 11 ARM64' option, but the B110 package is not shown as built for it.",
+    "Forum sources: no Reddit, Xerox community or HWzone threads about the B110 were found. A wisebuy.co.il page titled Xerox B110 holds 2009-2011 reviews of what looks like an older multifunction model, so it was not used.",
+    "Printer scanning: the B110 has no scanner (specs.json), so no scanning rating is given."
+  ]
+}

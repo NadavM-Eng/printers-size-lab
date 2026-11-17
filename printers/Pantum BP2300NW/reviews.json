@@ -1,0 +1,87 @@
+{
+  "id": "pantum-bp2300nw",
+  "researched": "2026-11-17",
+  "windows": {
+    "rating": "good",
+    "why": "The BP2300NW and its relatives install driverless on Windows 8.1 to 11, but the rating rests on the maker page and three press reviews of the BP2300W, with no owner report on Windows found in this pass; reviewers describe a fiddly USB-first Wi-Fi setup.",
+    "driver": "Windows 10 and 11 install it without a manual driver (driverless, the driver installs on first connection, per the Inforeco and Adam Lobo pages). Pantum's own BP2300NW page offers a one-step driver download with Windows 11 32/64-bit listed. Adam Lobo reports that a CD driver is included. The Pantum driver download page itself was not opened. Third-party driver databases (Treexy) list BP2300W and BP2300NW IPP entries, but they are not the maker's site and were not used.",
+    "app_required": "optional",
+    "windows_11": "yes",
+    "problems": [
+      "Setup on Windows goes over USB first, and Wi-Fi is configured afterwards (pokde review of the BP2300W: 'a bit of puzzle solving'; no fix found in the reviews)",
+      "The Pantum mobile app finds the printer only when the device is on the same Wi-Fi network (adamlobo, BP2300W; setup note, no fix needed)",
+      "No owner report about Windows offline status, Wi-Fi drops, sleep/wake or forced updates was found for any BP2300 model (absence of reports, not a tested result)"
+    ],
+    "scanning": null,
+    "sources": [
+      {
+        "url": "https://eu.pantum.com/product-center/1752589603319685122.html",
+        "what": "Pantum page for BP2300NW (read in the first pass; not re-read this pass):'One-step Driver Installation', driver download link, Windows 10 and 11 (32 and 64-bit) listed, USB cable in the box."
+      },
+      {
+        "url": "https://www.inforeco.com/en/p/BP2300W/pantum-bp2300w-laser-printer",
+        "what": "Retailer page for BP2300W (first pass): driverless install, driver installs automatically on first connection; Windows 8.1, 10 and 11 listed. Model is the BP2300W, not the NW."
+      },
+      {
+        "url": "https://adamlobo.tv/?p=26830",
+        "what": "BP2300W review (Adam Lobo TV, first pass): driverless install on Windows 8.1, 10 and 11; a CD driver is included; other systems use drivers from Pantum's website; Wi-Fi setup straightforward. Model is the BP2300W."
+      },
+      {
+        "url": "https://hitechcentury.com/?p=87008",
+        "what": "BP2300W review (Hitech Century, first pass): setup described as a relatively simple task; a Windows app is available; the printer runs its own installation once connected to a PC. Model is the BP2300W."
+      },
+      {
+        "url": "https://pokde.net/review/pantum-bp2300w-review",
+        "what": "BP2300W review (Pokde, Malaysia, first pass): on Windows the printer works over USB first and Wi-Fi is set up afterwards, which the reviewer found fiddly; the mobile app setup was easier. Model is the BP2300W."
+      }
+    ]
+  },
+  "forums": {
+    "rating": "unknown",
+    "why": "No Reddit thread, Pantum community forum thread, Israeli owner discussion or product review for the BP2300, BP2300W or BP2300NW turned up; the Zap page for the BP2300NW has no product reviews, and the sources read are press reviews and retailer rating summaries, not owner posts.",
+    "stars": [],
+    "praise": [
+      "Cheap per page for light use (Pokde, BP2300W: about RM0.12 per page)",
+      "Crisp small text and quick first page (Hitech Century and testberichte.de, BP2300W)",
+      "Easy setup through the mobile app (testberichte.de and Adam Lobo, BP2300W)",
+      "Compact, suited to home or small office (Adam Lobo, BP2300W)",
+      "Amazon.de customer average 4.6 from 69 ratings (shown on testberichte.de, BP2300W; the individual reviews were not read)"
+    ],
+    "complaints": [
+      "Loud when printing (all four press sources, BP2300W)",
+      "Weak on detailed images, with grid or banding lines (Hitech Century, BP2300W)",
+      "No automatic duplex; duplex is manual (Adam Lobo and Hitech Century, BP2300W)",
+      "Drum and toner are one unit that must be replaced together, which raises running cost (Adam Lobo, BP2300W)",
+      "150-sheet input tray may be limiting for high volume (Adam Lobo, BP2300W)"
+    ],
+    "sources_read": 5,
+    "sources": [
+      {
+        "url": "https://pokde.net/review/pantum-bp2300w-review",
+        "what": "Review of the BP2300W, score 8.3/10. Good for light and family use; cost per page about RM0.12; loud; USB-first setup on Windows."
+      },
+      {
+        "url": "https://hitechcentury.com/?p=87008",
+        "what": "Review of the BP2300W, rated 3.4. Adequate for simple mono jobs; crisp small text; weak images with banding; rather noisy."
+      },
+      {
+        "url": "https://adamlobo.tv/?p=26830",
+        "what": "Review of the BP2300W, March 2025. Solid for budget users; no auto duplex; no Ethernet; drum and toner are one unit; can get quite loud."
+      },
+      {
+        "url": "https://www.testberichte.de/p/pantum-tests/bp2300w-testbericht.html",
+        "what": "German review of the BP2300W: fast, easy setup via the app, noise is a weakness; the page cites an Amazon.de average of 4.6 from 69 ratings. Its scores contradict each other, so not used for a rating."
+      },
+      {
+        "url": "https://www.zap.co.il/ratemodel.aspx?modelid=1229001",
+        "what": "Zap Israel product review page for the Pantum BP2300NW (read in this pass): 'no product reviews of the BP2300NW'. Seller ratings shown on the page (4.8 from 471 and 4.97 from 1,630 reviews) belong to shops, not to the printer, so they are not counted as a product rating."
+      }
+    ]
+  },
+  "blocked_sites": [
+    "bhphotovideo.com: Cloudflare robot check (HTTP 403); not used",
+    "walmart.com: search for 'pantum bp2300nw' returned 0 results (not blocked, no listing)",
+    "bestbuy.com: search for 'pantum bp2300' returned no Pantum printer listing in the visible results (not blocked, no listing)",
+    "payngo.co.il (first pass): HTTP 403; not used"
+  ]
+}

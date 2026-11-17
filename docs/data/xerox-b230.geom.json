@@ -1,0 +1,145 @@
+{
+ "id": "xerox-b230",
+ "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+ "nodes": {
+  "body": "xerox-b230_body",
+  "cassette": "xerox-b230_cassette",
+  "flap": "xerox-b230_flap",
+  "cable_power": "xerox-b230_cable_power",
+  "cable_eth": "xerox-b230_cable_eth"
+ },
+ "parts": {
+  "body": {
+   "node": "xerox-b230_body",
+   "kind": "body",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "cassette": {
+   "node": "xerox-b230_cassette",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.0025,
+    0.1665
+   ]
+  },
+  "flap": {
+   "node": "xerox-b230_flap",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    -0.004,
+    0.2147,
+    0.1538
+   ]
+  },
+  "cable_power": {
+   "node": "xerox-b230_cable_power",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "cable_eth": {
+   "node": "xerox-b230_cable_eth",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  }
+ },
+ "states": {
+  "printing": [
+   {
+    "part": "flap",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 100.0
+   }
+  ],
+  "refill": [
+   {
+    "part": "cassette",
+    "move": [
+     0.0,
+     0.0,
+     0.26
+    ]
+   }
+  ]
+ },
+ "body_size_cm": [
+  35.5,
+  33.4,
+  23.14
+ ],
+ "envelopes_m": {
+  "closed": {
+   "min": [
+    -0.1775,
+    0.0,
+    -0.1665
+   ],
+   "max": [
+    0.1775,
+    0.2314,
+    0.1675
+   ]
+  },
+  "printing": {
+   "min": [
+    -0.1775,
+    0.0,
+    -0.1665
+   ],
+   "max": [
+    0.1775,
+    0.2791,
+    0.1675
+   ]
+  },
+  "refill": {
+   "min": [
+    -0.1775,
+    0.0,
+    -0.1665
+   ],
+   "max": [
+    0.1775,
+    0.2314,
+    0.4267
+   ]
+  }
+ },
+ "cable_back_gap_cm": 3.29,
+ "sockets": [
+  {
+   "part": "cable_power",
+   "kind": "C13v",
+   "x": -15.3,
+   "z": 4.35,
+   "recess": 3.6,
+   "angled": false,
+   "far_y_cm": 19.94
+  },
+  {
+   "part": "cable_eth",
+   "kind": "RJ45",
+   "x": -16.56,
+   "z": 16.5,
+   "recess": 3.0,
+   "angled": false,
+   "far_y_cm": 18.54
+  }
+ ],
+ "triangles": 15430,
+ "glb_mb": 0.64,
+ "notes": [
+  "Height 23.2 cm includes the raised LCD pod; the top cover itself is 21.6 cm (216 mm).",
+  "Power inlet and data ports sit in two notches cut into the rounded rear corner on the left side (seen from the front), open to the back and the side, about 3.6 cm (power) and 3.0 cm (Ethernet/USB) deep (real photo 12_back_ports_real). The C13 plug body fits inside; only its strain relief and the bent cable stick out behind the printer.",
+  "With A4 (or Legal) paper the tray extends out of the back at the bottom centre under a dust cover (ITPro; real photo 11_back34_real). About 2 cm for A4, more for Legal; not modelled."
+ ]
+}

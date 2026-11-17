@@ -1,0 +1,208 @@
+{
+ "id": "pantum-bp2300nw",
+ "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+ "nodes": {
+  "body": "pantum-bp2300nw_body",
+  "output_tray": "pantum-bp2300nw_output_tray",
+  "output_stop": "pantum-bp2300nw_output_stop",
+  "input_tray": "pantum-bp2300nw_input_tray",
+  "paper_stop": "pantum-bp2300nw_paper_stop",
+  "paper": "pantum-bp2300nw_paper",
+  "cable_power": "pantum-bp2300nw_cable_power",
+  "cable_eth": "pantum-bp2300nw_cable_eth"
+ },
+ "parts": {
+  "body": {
+   "node": "pantum-bp2300nw_body",
+   "kind": "body",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "output_tray": {
+   "node": "pantum-bp2300nw_output_tray",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.177,
+    0.095
+   ]
+  },
+  "output_stop": {
+   "node": "pantum-bp2300nw_output_stop",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    -0.008,
+    0.1733,
+    -0.041
+   ]
+  },
+  "input_tray": {
+   "node": "pantum-bp2300nw_input_tray",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.004,
+    0.1065
+   ]
+  },
+  "paper_stop": {
+   "node": "pantum-bp2300nw_paper_stop",
+   "kind": "moving",
+   "hidden": true,
+   "pivot_m": null
+  },
+  "paper": {
+   "node": "pantum-bp2300nw_paper",
+   "kind": "detail",
+   "hidden": true,
+   "pivot_m": null
+  },
+  "cable_power": {
+   "node": "pantum-bp2300nw_cable_power",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "cable_eth": {
+   "node": "pantum-bp2300nw_cable_eth",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  }
+ },
+ "states": {
+  "printing": [
+   {
+    "part": "input_tray",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 90.0
+   },
+   {
+    "part": "paper_stop",
+    "show": true
+   },
+   {
+    "part": "paper",
+    "show": true
+   },
+   {
+    "part": "output_tray",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 163.0
+   },
+   {
+    "part": "output_stop",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 253.0
+   },
+   {
+    "part": "output_stop",
+    "move": [
+     0.0,
+     0.047,
+     0.265
+    ]
+   }
+  ],
+  "refill": [
+   {
+    "part": "input_tray",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 90.0
+   },
+   {
+    "part": "paper_stop",
+    "show": true
+   }
+  ]
+ },
+ "body_size_cm": [
+  33.7,
+  22.03,
+  17.93
+ ],
+ "envelopes_m": {
+  "closed": {
+   "min": [
+    -0.1685,
+    0.0,
+    -0.11
+   ],
+   "max": [
+    0.1685,
+    0.1793,
+    0.1103
+   ]
+  },
+  "printing": {
+   "min": [
+    -0.1685,
+    0.0,
+    -0.11
+   ],
+   "max": [
+    0.1685,
+    0.2378,
+    0.2593
+   ]
+  },
+  "refill": {
+   "min": [
+    -0.1685,
+    0.0,
+    -0.11
+   ],
+   "max": [
+    0.1685,
+    0.1793,
+    0.2593
+   ]
+  }
+ },
+ "cable_back_gap_cm": 6.39,
+ "sockets": [
+  {
+   "part": "cable_power",
+   "kind": "C13v",
+   "x": 14.74,
+   "z": 3.1,
+   "recess": 0.5,
+   "angled": false,
+   "far_y_cm": 17.39
+  },
+  {
+   "part": "cable_eth",
+   "kind": "RJ45",
+   "x": 15.5,
+   "z": 12.9,
+   "recess": 0.8,
+   "angled": false,
+   "far_y_cm": 15.09
+  }
+ ],
+ "triangles": 39048,
+ "glb_mb": 1.11,
+ "notes": [
+  "Ports and mains inlet on the back, at the printer's right end (left seen from behind); shallow pockets only (0.8 and 0.5 cm), so the C13 mains plug sticks out ~5 cm before the cable bends: about 6.4 cm between the back and the wall.",
+  "To print, the whole front door folds down as the paper tray (15 cm in front, at shelf level; it must stay open while paper is loaded) and the output flap flips forward out of the top (12 cm in front, 22-24 cm high)."
+ ]
+}

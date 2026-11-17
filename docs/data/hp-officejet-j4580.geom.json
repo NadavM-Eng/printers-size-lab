@@ -1,0 +1,234 @@
+{
+ "id": "hp-officejet-j4580",
+ "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+ "nodes": {
+  "body": "hp-officejet-j4580_body",
+  "lid": "hp-officejet-j4580_lid",
+  "cassette": "hp-officejet-j4580_cassette",
+  "extender": "hp-officejet-j4580_extender",
+  "flap": "hp-officejet-j4580_flap",
+  "cable_power": "hp-officejet-j4580_cable_power",
+  "cable_usb": "hp-officejet-j4580_cable_usb"
+ },
+ "parts": {
+  "body": {
+   "node": "hp-officejet-j4580_body",
+   "kind": "body",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "lid": {
+   "node": "hp-officejet-j4580_lid",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.146,
+    -0.129
+   ]
+  },
+  "cassette": {
+   "node": "hp-officejet-j4580_cassette",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "extender": {
+   "node": "hp-officejet-j4580_extender",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "flap": {
+   "node": "hp-officejet-j4580_flap",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.0198,
+    0.098
+   ]
+  },
+  "cable_power": {
+   "node": "hp-officejet-j4580_cable_power",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "cable_usb": {
+   "node": "hp-officejet-j4580_cable_usb",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  }
+ },
+ "states": {
+  "printing": [
+   {
+    "part": "cassette",
+    "move": [
+     0.0,
+     0.0,
+     0.118
+    ]
+   },
+   {
+    "part": "extender",
+    "move": [
+     0.0,
+     0.0,
+     0.196
+    ]
+   },
+   {
+    "part": "flap",
+    "move": [
+     0.0,
+     0.0,
+     0.196
+    ]
+   },
+   {
+    "part": "flap",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 155.0
+   }
+  ],
+  "refill": [
+   {
+    "part": "cassette",
+    "move": [
+     0.0,
+     0.0,
+     0.118
+    ]
+   },
+   {
+    "part": "extender",
+    "move": [
+     0.0,
+     0.0,
+     0.118
+    ]
+   },
+   {
+    "part": "flap",
+    "move": [
+     0.0,
+     0.0,
+     0.118
+    ]
+   }
+  ],
+  "lid_open": [
+   {
+    "part": "lid",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": -75.0
+   }
+  ]
+ },
+ "body_size_cm": [
+  43.38,
+  26.99,
+  21.67
+ ],
+ "envelopes_m": {
+  "closed": {
+   "min": [
+    -0.2171,
+    0.0,
+    -0.135
+   ],
+   "max": [
+    0.2167,
+    0.2167,
+    0.1349
+   ]
+  },
+  "printing": {
+   "min": [
+    -0.2171,
+    0.0,
+    -0.135
+   ],
+   "max": [
+    0.2167,
+    0.2167,
+    0.3395
+   ]
+  },
+  "refill": {
+   "min": [
+    -0.2171,
+    0.0,
+    -0.135
+   ],
+   "max": [
+    0.2167,
+    0.2167,
+    0.218
+   ]
+  },
+  "lid_open": {
+   "min": [
+    -0.2171,
+    0.0,
+    -0.1931
+   ],
+   "max": [
+    0.2167,
+    0.3884,
+    0.1349
+   ]
+  }
+ },
+ "cable_back_gap_cm": 4.49,
+ "sockets": [
+  {
+   "part": "cable_power",
+   "kind": "HP DC",
+   "x": -12.224999999999998,
+   "z": 9.35,
+   "recess": 0.3,
+   "angled": false,
+   "far_y_cm": 17.97
+  },
+  {
+   "part": "cable_usb",
+   "kind": "USB-B",
+   "x": -9.724999999999998,
+   "z": 9.5,
+   "recess": 0.0,
+   "angled": false,
+   "far_y_cm": 17.99
+  }
+ ],
+ "triangles": 22400,
+ "glb_mb": 0.91,
+ "notes": [
+  "Closed = main paper tray pushed in. HP's listed depth (40.15 cm) is with the tray pulled out.",
+  "The base rests on the shelf from the back plane to 23.5 cm (user: 24.5 - 4.5 + 3.5); its front wall is nearly vertical (23.7 cm at the scanner seam); the control panel reaches 27.0 cm at z 10.3-15.3.",
+  "USB-B and the HP DC plug go into a flat back (3 mm panel): 4.5 cm wall-to-back measured on the shelf.",
+  "Lid open 75 deg: the document feeder swings about 6.5 cm behind the back plane."
+ ],
+ "base": {
+  "what": "the cream base, the part that rests on the shelf (the control panel overhangs it)",
+  "back_plane_y_cm": 13.5,
+  "base_front_at_shelf_y_cm": -10.0,
+  "base_depth_at_shelf_cm": 23.5,
+  "base_front_at_seam_y_cm": -10.2,
+  "base_depth_at_seam_cm": 23.7,
+  "panel_front_y_cm": -13.5,
+  "panel_underside_z_cm": 10.3,
+  "frame": "builder frame: cm, front = -y, back = +y, y = 0 at the middle of the closed depth"
+ }
+}

@@ -1,0 +1,106 @@
+{
+ "id": "hp-laserjet-m110w",
+ "researched": "2026-11-17",
+ "consumables": [
+  {
+   "kind": "toner",
+   "role": "starter",
+   "code": "HP 142A (W1420A)",
+   "original": true,
+   "pages": 300,
+   "pages_source": "https://ik.imagekit.io/pimberly/595e406f0f15f30010780448/063ed4cc/6720f56d4ce6230011b68539/HP7MD66FB19_TECH.pdf",
+   "price_ils": null,
+   "price_usd": null,
+   "price_other": null,
+   "code_note": "HP 142A (W1420A), starter cartridge in the box"
+  },
+  {
+   "kind": "toner",
+   "role": "standard",
+   "code": "HP 142A (W1420A)",
+   "original": true,
+   "pages": 950,
+   "pages_source": "https://www.hp.com/il-he/products/ink-toner/product-details/34914203",
+   "price_ils": {
+    "value": 204,
+    "where": "PENPALL (offer on zap.co.il model page)",
+    "url": "https://www.zap.co.il/fs?pid=1298364072&sog=h-ink&s=0&indicator=10",
+    "note": "Lowest of 22 original offers on https://www.zap.co.il/model.aspx?modelid=1151240 (others: Doctor Toner 205, Bug 261). Free shipping, up to 5 days. Read from a page summary; check the live price."
+   },
+   "price_usd": null,
+   "price_other": {
+    "value": 40.4,
+    "currency": "GBP",
+    "where": "Cartridge Save",
+    "url": "https://www.cartridgesave.co.uk/toner-cartridges/HP/LaserJet-M110w.html",
+    "note": "Inc VAT, 950 pages, 4.3p per page. Page says HP 142A is the non-US equivalent for the M110w."
+   },
+   "price_usd_dropped": {
+    "value": 47.95,
+    "where": "Lambda-Tek",
+    "url": "https://www.lambda-tek.com/HP-W1420A-shUS/B46231292?viewSpec=y",
+    "note": "Shown as $47.95 before VAT ($57.54 with VAT). The shop's country is not clear, so this is not a confirmed US price. No US Amazon, B&H or HP store price found."
+   }
+  },
+  {
+   "kind": "toner",
+   "role": "standard",
+   "code": "HP 142A (W1420A)",
+   "original": false,
+   "pages": 950,
+   "pages_source": "https://www.zap.co.il/model.aspx?modelid=1151240",
+   "price_ils": {
+    "value": 80,
+    "where": "PENPALL (offer on zap.co.il model page)",
+    "url": "https://www.zap.co.il/fs?pid=1427479199&sog=h-ink&s=0&indicator=10",
+    "note": "Claimed 950 pages. Compatible offers on the same page run from 80 to 330 ILS (20 offers). Whether it works on this printer is untested; see third_party_cartridges."
+   },
+   "price_usd": null,
+   "price_other": {
+    "value": 24.65,
+    "currency": "GBP",
+    "where": "Cartridge Save",
+    "url": "https://www.cartridgesave.co.uk/toner-cartridges/HP/LaserJet-M110w.html",
+    "note": "Inc VAT, 950 pages. The page says it is 'Not compatible with HP+'."
+   },
+   "code_note": "HP 142A compatible (W1420A)"
+  }
+ ],
+ "third_party_cartridges": {
+  "allowed": "blocked",
+  "summary": "Retailer pages for this printer say its dynamic security blocks cartridges with a non-HP chip and that it is meant to work only with new or reused HP chips. Israeli sellers still list compatible 142A cartridges for it at 80 to 330 ILS; whether a given one works is untested, and the castleink page warns that firmware updates are more likely to block non-HP toner.",
+  "source": "https://www.arp.nl/shop/hp-laserjet-m110w-printer--4613478--p"
+ },
+ "windows": {
+  "rating": "unknown",
+  "why": "No Windows driver, setup or support page could be read: HP Community and printerdrivers.com returned HTTP 403, so there are fewer than three sources I could verify.",
+  "driver": null,
+  "app_required": null,
+  "windows_11": null,
+  "problems": [],
+  "scanning": null,
+  "sources": []
+ },
+ "forums": {
+  "rating": "unknown",
+  "why": "The review pages I tried could not be read (Best Buy timed out, Staples returned 404, HP Community returned 403), so I have no verified owner comments.",
+  "praise": [],
+  "complaints": [],
+  "sources_read": 0,
+  "sources": []
+ },
+ "not_found": [
+  "HP 142X / high-yield cartridge for the M110w: none found in Israel. castleink (https://castleink.com/blogs/printer-help/what-toner-does-the-hp-laserjet-m110we-use) says no high-yield cartridge exists for this printer in the US, and its earlier wording that the M110we takes 142X was retracted. One third-party listing claimed 142X at about 2000 pages, unverified and not used. No Israeli 142X listing found.",
+  "Starter yield 300 pages: taken from specs.json. The HP tech sheet PDF (ik.imagekit.io) returned only binary data, so I could not re-check it.",
+  "Standard yield method: HP's Israeli page gives 950 pages but does not state the ISO/IEC 19752 method. zap lists 950 pages at 5% coverage.",
+  "No separate drum: the cartridge is one unit (per specs.json).",
+  "Starter cartridge price: not sold separately, so null.",
+  "US dollar price from Amazon, B&H, Staples or the HP US store: not found. The Staples product page returned 404. Lambda-Tek's country is unclear (see price_usd note).",
+  "HP+ and account status of the plain M110w (7MD66F) versus the M110we (7MD66E): I could not open HP's pages (hp.com/us-en M110we page not read). The M110w-is-not-HP+ statement rests on specs.json. The Israeli Bug page (https://www.bug.co.il/brand/hp/laserjet/m110w, opened) lists the M110w at 449 ILS with a 1-year HP Israel warranty and says it is meant to work only with genuine HP cartridges, with no HP+ mention.",
+  "Windows driver source (built-in, full HP package, or HP Smart): HP Community and printerdrivers.com pages returned HTTP 403. HP Dynamic Security PDF and support.hp.com pages could not be read either. Search snippets only mention HP Smart being optional for USB, Driver Unavailable errors, a failed full install, and a built-in Windows driver over USB. None of this was verified on a page I opened, so it is not in the fields.",
+  "Windows 11 support, Windows on ARM, and HP Smart account requirements: not verified.",
+  "Windows setup problems (2.4 GHz only Wi-Fi, offline status after router change, sleep/wake, updates): only search snippets from HP Community. Not verified on an opened page.",
+  "Owner reviews: Best Buy's M110w reviews (search snippet: about 150 reviews, 4.4 of 5) and Staples reviews were not readable, so praise and complaints are unverified. No Reddit thread and no HWzone thread surfaced in any search.",
+  "Israeli price spread for the printer itself: zap.co.il range and Kravitz 340 ILS come from specs.json. Bug shows 449 ILS. Not used in the consumables figures."
+ ]
+}

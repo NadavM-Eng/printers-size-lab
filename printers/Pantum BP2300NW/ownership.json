@@ -1,0 +1,149 @@
+{
+ "id": "pantum-bp2300nw",
+ "researched": "2026-11-17",
+ "consumables": [
+  {
+   "kind": "toner",
+   "role": "standard",
+   "code": "TL-A2310H",
+   "original": true,
+   "pages": 1600,
+   "pages_source": "https://eu.pantum.com/product-center/1752589603319685122.html",
+   "price_ils": {
+    "value": 248,
+    "where": "Bait HaFax (בית הפקס) via zap.co.il",
+    "url": "https://www.zap.co.il/model.aspx?modelid=1236711",
+    "note": "Cheapest of 17 offers that zap.co.il labels original (מקורי). Zap's table shows 10 ILS shipping included in the price. Zap's label was not checked per seller. Other original offers: HD Toner 249 (free shipping), Incdipo 289, Printers Plus 306. Cost per page at 1,600 pages: about 0.155 ILS. Supply in Israel is not scarce: zap lists 17 original and 9 compatible offers."
+   },
+   "price_usd": null,
+   "price_other": {
+    "value": 42.13,
+    "currency": "EUR",
+    "where": "Varlė.lt (Lithuania)",
+    "url": "https://www.varle.lt/toneriai-lazeriniams-spausdintuvams/pantum-tla2310h-tl-a2310h-lazerine-kasete-juoda--35655635.html",
+    "note": "Listed as original (Originalus) at about 1,600 pages. Price as read on the page, not converted to USD."
+   },
+   "code_note": "TL-A2310H (family code TL-*2310H; zap.co.il lists it as TLA2310H)"
+  },
+  {
+   "kind": "toner",
+   "role": "starter",
+   "code": "TL-C2310E",
+   "original": true,
+   "pages": 700,
+   "pages_source": "https://adamlobo.tv/?p=26830",
+   "price_ils": null,
+   "price_usd": null,
+   "price_other": null,
+   "code_note": "TL-C2310E (named in the reviews; Pantum's own pages do not list the starter)"
+  },
+  {
+   "kind": "toner",
+   "role": "standard",
+   "code": "TL-A2310H",
+   "original": false,
+   "pages": null,
+   "pages_source": null,
+   "price_ils": {
+    "value": 149,
+    "where": "Bait HaFax (בית הפקס) via zap.co.il",
+    "url": "https://www.zap.co.il/model.aspx?modelid=1236711",
+    "note": "Cheapest of nine compatible (תואם/חלופי) offers on zap.co.il. Shipping of 10 ILS included. The yield this listing claims was not checked, so no cost per page is given."
+   },
+   "price_usd": null,
+   "price_other": null,
+   "code_note": "TL-A2310H compatible (code not stated on the listing)"
+  }
+ ],
+ "third_party_cartridges": {
+  "allowed": "unknown",
+  "summary": "No Pantum page I opened says whether the BP2300 family blocks non-genuine toner. Pantum's product page only links to a general 'Consumables Anti-Counterfeiting Identification' page. Compatible toner is sold in Israel, so the cartridge can be replaced by a third party, but whether the printer accepts it is unverified.",
+  "source": "https://eu.pantum.com/product-center/1752589603319685122.html"
+ },
+ "windows": {
+  "rating": "good",
+  "why": "Driverless install works on Windows 8.1 to 11 and Pantum lists Windows 11 support, but evidence is thin (three press reviews, mostly of the BP2300W) and reviewers report only a one-time setup annoyance.",
+  "driver": "Windows 10 and 11 install it without a manual driver (driverless, the driver installs on first connection, per the Inforeco and Adam Lobo pages). Pantum's own page offers a one-step driver download with Windows 11 32/64-bit listed. Adam Lobo reports that a CD driver is included. The Pantum driver download page itself was not opened.",
+  "app_required": "optional",
+  "windows_11": "yes",
+  "problems": [
+   "Setup on Windows goes over USB first, and Wi-Fi is configured afterwards (pokde review: 'a bit of puzzle solving')",
+   "The Pantum mobile app finds the printer only when the device is on the same Wi-Fi network (adamlobo)"
+  ],
+  "scanning": null,
+  "sources": [
+   {
+    "url": "https://eu.pantum.com/product-center/1752589603319685122.html",
+    "what": "Pantum page for BP2300NW: 'One-step Driver Installation', driver download link, Windows 11 (32 and 64-bit) listed, USB cable in the box."
+   },
+   {
+    "url": "https://www.inforeco.com/en/p/BP2300W/pantum-bp2300w-laser-printer",
+    "what": "Retailer page for BP2300W: driverless install, driver installs automatically on first connection; Windows 8.1, 10 and 11 listed."
+   },
+   {
+    "url": "https://adamlobo.tv/?p=26830",
+    "what": "BP2300W review (Adam Lobo TV): driverless install on Windows 8.1, 10 and 11; a CD driver is included; other systems use drivers from Pantum's website; Wi-Fi setup straightforward."
+   },
+   {
+    "url": "https://hitechcentury.com/?p=87008",
+    "what": "BP2300W review (Hitech Century): setup described as a relatively simple task; a Windows app is available; the printer runs its own installation once connected to a PC."
+   },
+   {
+    "url": "https://pokde.net/review/pantum-bp2300w-review",
+    "what": "BP2300W review (Pokde, Malaysia): on Windows the printer works over USB first and Wi-Fi is set up afterwards, which the reviewer found fiddly; the mobile app setup was easier."
+   }
+  ]
+ },
+ "forums": {
+  "rating": "unknown",
+  "why": "No Reddit thread, Pantum community forum thread or Israeli owner discussion for the BP2300, BP2300W or BP2300NW turned up; the four sources read are press reviews and a retailer rating summary, not owner posts.",
+  "praise": [
+   "Cheap per page for light use (Pokde: about RM0.12 per page)",
+   "Crisp small text and quick first page (Hitech Century, testberichte.de)",
+   "Easy setup through the mobile app (testberichte.de, Adam Lobo)",
+   "Compact, suited to home or small office (Adam Lobo)",
+   "Amazon.de customer average 4.6 from 69 ratings (shown on testberichte.de; the individual reviews were not read)"
+  ],
+  "complaints": [
+   "Loud when printing (all four sources)",
+   "Weak on detailed images, with grid or banding lines (Hitech Century)",
+   "No automatic duplex; duplex is manual (Adam Lobo, Hitech Century)",
+   "Drum and toner are one unit that must be replaced together, which raises running cost (Adam Lobo)",
+   "150-sheet input tray may be limiting for high volume (Adam Lobo)"
+  ],
+  "sources_read": 4,
+  "sources": [
+   {
+    "url": "https://pokde.net/review/pantum-bp2300w-review",
+    "what": "Review of the BP2300W, score 8.3/10. Good for light and family use; cost per page about RM0.12; loud; USB-first setup on Windows."
+   },
+   {
+    "url": "https://hitechcentury.com/?p=87008",
+    "what": "Review of the BP2300W, rated 3.4. Adequate for simple mono jobs; crisp small text; weak images with banding; rather noisy."
+   },
+   {
+    "url": "https://adamlobo.tv/?p=26830",
+    "what": "Review of the BP2300W, March 2025. Solid for budget users; no auto duplex; no Ethernet; drum and toner are one unit; can get quite loud."
+   },
+   {
+    "url": "https://www.testberichte.de/p/pantum-tests/bp2300w-testbericht.html",
+    "what": "German review of the BP2300W: fast, easy setup via the app, noise is a weakness; the page cites an Amazon.de average of 4.6 from 69 ratings. Its scores contradict each other, so not used for a rating."
+   }
+  ]
+ },
+ "not_found": [
+  "High-yield cartridge for this family: none on Pantum's pages or the Israeli shops. Only TL-*2310H (1,600 pages) and the starter (700 pages) were found.",
+  "Starter code: the Pantum pages list only TL-*2310H, so the starter code TL-C2310E comes from the reviews only. Specs.json cites payngo.co.il for the TL-A2310H (TL-2310H) code and 1,600 pages; payngo.co.il returned HTTP 403 and could not be opened, so that page is not used here.",
+  "Drum: the drum is built into the cartridge (Adam Lobo: 'the drum and toner are a single unit'). Pantum's pages do not state this. No separate drum unit exists in the Pantum product pages I opened.",
+  "USD price of the original cartridge: searched Amazon, B&H and the US market; no US listing turned up. Only European prices were found (Varlė.lt EUR 42.13 used as price_other).",
+  "Official Israeli importer or distributor of Pantum: not found. bug.co.il's Pantum page does not name one in its first 100,000 characters. Techno-Rezef appeared in a search but is not confirmed as a Pantum distributor.",
+  "Non-genuine toner blocking, firmware, chip behaviour: no Pantum-specific source found. Results were all HP, Brother or Kyocera.",
+  "Reddit (r/printers and similar): searched; no BP2300 thread found.",
+  "Pantum community or support forum threads for the BP2300 family: none found. The threads that came up are for other models (P2500W, P2502W, BM2300AW, P3012DW, Pantum 200W), so they were not used.",
+  "Israeli owner reviews (zap.co.il reviews, HWzone): none found for this model.",
+  "Windows problems not found for this model: offline status, sleep and wake, forced accounts, broken Windows updates, Windows on ARM. Searches returned only other models.",
+  "Pantum driver download page: not reached. Third-party driver databases (Treexy) list BP2300 versions but are not the maker's site, so they are not used.",
+  "Compatible cartridge yield: the Israeli compatible listing does not state a yield in the page I read, so no cost per page is given for it.",
+  "Printer price in Israel: payngo.co.il (the specs.json source) returned HTTP 403, so the 449 ILS figure in specs.json was not checked."
+ ]
+}

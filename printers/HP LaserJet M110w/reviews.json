@@ -1,0 +1,123 @@
+{
+ "id": "hp-laserjet-m110w",
+ "researched": "2026-11-17",
+ "windows": {
+  "rating": "mixed",
+  "why": "Owners on Windows 10 and 11 print fine once set up, either with HP's app, HP's full software, or the built-in Windows driver over USB, but Wi-Fi setup, offline status and app detection failures recur and several threads end with no confirmed fix.",
+  "driver": "HP's full-feature software (a volunteer reply dates it to 24 March 2022) or the basic driver from HP's Windows 11 downloads, and the built-in Windows driver used over USB (reported to work on Windows 11 in 2022). HP Smart is optional, not required.",
+  "app_required": "optional",
+  "windows_11": "yes",
+  "problems": [
+   "Wi-Fi setup fails with error -3 after a network or PC change (fixed by a factory reset and setup on the 2.4 GHz band, after splitting a dual-band router that uses one shared name; thread 9230238)",
+   "HP app cannot detect the printer, shows 'Driver Unavailable' or 'impossible to install' (no confirmed fix; HP replies only give generic steps such as reinstalling the full software and restarting the Print Spooler)",
+   "Setup stalls at the WPS PIN step after the printer appears as DIRECT-1d, with the Wi-Fi light blinking (no answer in thread 9255878)",
+   "Orange attention light blinking and printing stops (suggested fixes: power drain and firmware update, from an HP moderator; no confirmation from the poster; thread 9085573)",
+   "Attention light and a 'Door open' message with the printer closed, and an HP app registration error OW_4XX_OWSWS00001 (HP volunteer suggests removing packaging plastic from inside, then re-doing Wi-Fi setup by video; no confirmed result; thread 9438018)",
+   "M110we only: 'verify account' and 'not connected to internet' Instant Ink account error (no fix in the thread, which asks the poster to send account details privately; thread 8386448)",
+   "M110we only: red light blinking after a genuine HP W1410A toner was not recognised (fixed by a printer reset and reinstall; thread 9645455)"
+  ],
+  "scanning": null,
+  "sources": [
+   {
+    "url": "https://h30434.www3.hp.com/t5/Printer-Wireless-Networking-Internet/How-to-install-my-hp-laserjet-M110w/m-p/9184962",
+    "what": "HP Community administrator reply (Windows 11, M110w): download the full HP app or basic driver from HP's Windows 11 page, connect by USB or Wi-Fi, HP app optional; may need USB temporarily for Wi-Fi setup."
+   },
+   {
+    "url": "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/M110w-USB-Connection-HP-Smart-not-needed/m-p/8462925",
+    "what": "Owner (Windows 11, 2022, M110w): Windows used the built-in driver over USB, test page and prints worked without HP Smart; a volunteer says HP Smart gives more print options."
+   },
+   {
+    "url": "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Unable-to-re-set-up-M110W/m-p/9230238",
+    "what": "Solved thread (Windows 11, M110w): error -3 after a network change; a volunteer gives the full-feature software date (24 March 2022); fix was to split the 2.4 GHz and 5 GHz bands, since the printer only uses 2.4 GHz."
+   },
+   {
+    "url": "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/HP-Laser-Jet-M110w-setup/td-p/9255878",
+    "what": "Windows 11 owner (Dec 2024, M110w): HP app could not detect the printer on Windows or Android; printer appeared as DIRECT-1d; WPS PIN not in documents. No answer shown."
+   },
+   {
+    "url": "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/impossible-to-install-the-printer-HP-laserjet-M110w/m-p/9170992",
+    "what": "Owner (Sept 2024): HP app buggy and printer shows not available; moderator reply gives generic steps (full driver, spooler restart, manual add, Windows update). No confirmation."
+   },
+   {
+    "url": "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Driver-Unavailable/m-p/9229361",
+    "what": "Owner (Nov 2024, labelled M110we): 'Driver Unavailable' with Wi-Fi connected; HP administrator's generic steps (default printer, reinstall driver, HP app, firmware). No confirmation."
+   },
+   {
+    "url": "https://h30434.www3.hp.com/t5/Printing-Errors-or-Lights-Stuck-Print-Jobs/Printer-Stopped-Working-and-Orange-Light-Blinking-on-M110w/m-p/9085573",
+    "what": "Windows 11 owner (May 2024, M110w): printing stopped with the orange light flashing; HP moderator suggests a power drain and a firmware update."
+   },
+   {
+    "url": "https://h30434.www3.hp.com/t5/Printing-Errors-or-Lights-Stuck-Print-Jobs/Attention-Light-Blinking/m-p/9438018",
+    "what": "Owner (July 2025, M110w): attention light blinking, 'Door open' message and HP app error OW_4XX_OWSWS00001; volunteer suggests removing packaging plastic and redoing Wi-Fi setup."
+   },
+   {
+    "url": "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Laserjet-M110w-problem-verify-account/td-p/8386448",
+    "what": "M110we only (2022, Windows 11): 'verify account' and 'not connected to internet' Instant Ink error; the thread asks for account details by private message. Unresolved in the page read."
+   },
+   {
+    "url": "https://h30434.www3.hp.com/t5/HP-Instant-Ink/HP-LaserJet-M110w-red-light-blinking-instant-ink-cancelled/m-p/9645455",
+    "what": "M110we only (April 2026, Windows 11): red light blinking, Instant Ink cancelled, genuine HP W1410A toner not recognised; solved by a printer reset and reinstall."
+   }
+  ]
+ },
+ "forums": {
+  "rating": "good",
+  "why": "Shop ratings are positive (4.3 out of 5 from 175 Best Buy reviews, 4 out of 5 from 14 on zap.co.il), but the review text could not be read, and HP support threads show Wi-Fi setup failures that often end without a fix",
+  "stars": [
+   {
+    "where": "Best Buy (product rating, M110w, SKU 6501168)",
+    "score": 4.3,
+    "out_of": 5,
+    "reviews": 175,
+    "url": "https://www.bestbuy.com/product/hp-laserjet-m110w-wireless-ai-enabled-black-and-white-laser-printer-white/JJ8FCTWLXK/sku/6501168",
+    "was": {
+     "score": 4.4,
+     "reviews": 354
+    },
+    "checked": "Coordinator re-read Best Buy on 2026-11-17: the M110w tile shows 4.3 out of 5 with 175 reviews. The first figure (4.4 from 354) belonged to the Brother HL-L2460DW shown on the same page."
+   },
+   {
+    "where": "zap.co.il (owner reviews, M110w)",
+    "score": 4.0,
+    "out_of": 5,
+    "reviews": 14,
+    "url": "https://www.zap.co.il/ratemodel.aspx?modelid=1145765"
+   }
+  ],
+  "praise": [
+   "very compact, the smallest laser printer one owner found (zap, Nov 2025)",
+   "print quality and speed described as good (zap, 2025)",
+   "phone-app setup over Bluetooth was quick, with no HP account needed (zap, Dec 2024, a Linux PC)",
+   "simple to use (zap, 2025)"
+  ],
+  "complaints": [
+   "connection to the computer drops (zap, 2024)",
+   "small, costly toner (zap, 2024)",
+   "paper tray is short and needs several sheets to feed (zap, 2023)",
+   "slow from pressing print to paper (zap, one year of use)",
+   "paper feed unreliable (zap, 2022)",
+   "HP app failed to set up one owner, but a manual install worked (zap, 2023)",
+   "a 2025 owner warns that after using a non-HP cartridge, a firmware update may stop it working (zap, Nov 2025)",
+   "a non-HP cartridge showed 'Err 11 ... non-HP chip' (HP Community thread 9667296; this thread is about the M139w, not the M110w)"
+  ],
+  "sources_read": 2,
+  "sources": [
+   {
+    "url": "https://www.zap.co.il/ratemodel.aspx?modelid=1145765",
+    "what": "zap.co.il owner reviews for the M110w: 14 reviews, shown as 4 out of 5; mostly positive on size and setup, with complaints on toner cost, connection drops and a short paper tray."
+   },
+   {
+    "url": "https://www.bestbuy.com/product/hp-laserjet-m110w-wireless-ai-enabled-black-and-white-laser-printer-white/JJ8FCTWLXK/sku/6501168",
+    "what": "Best Buy product page for the M110w (model M110W/7MD66F): first rating shown is 4.4 out of 5 from 354 reviews. The review list on the Best Buy reviews pages did not load, so no review text is used."
+   }
+  ],
+  "rating_was": "unknown",
+  "why_was": "Only two owner-opinion pages with star ratings could be read (zap.co.il's 14 reviews and the Best Buy product rating, whose review text did not load), which is below the three-source minimum, so the star figures are reported but not rated.",
+  "rated_by": "Coordinator, after re-reading the Best Buy figure; the researcher had left it unrated for having two sources."
+ },
+ "blocked_sites": [
+  "Best Buy reviews pages (/site/reviews and /product/.../reviews): 0 of 0 reviews loaded in the page text; the rating was read from the product page instead",
+  "B&H Photo: Cloudflare security check (HTTP 403), left at once",
+  "desertcart.sg: Cloudflare security check (HTTP 403), left at once"
+ ]
+}

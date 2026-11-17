@@ -1,0 +1,3701 @@
+{
+ "generated": "2026-11-17",
+ "printers": [
+  {
+   "id": "hp-officejet-j4580",
+   "name": "HP Officejet J4580 All-in-One",
+   "brand": "HP",
+   "group": "Your printer",
+   "current": true,
+   "type": "Colour inkjet all-in-one with fax and document feeder",
+   "has_model": true,
+   "dims_mm": {
+    "closed": {
+     "w": 433.5,
+     "d": 270,
+     "h": 216.7,
+     "source": "https://www.manualowl.com/m/Hewlett-Packard/J4580/Manual/7122?page=160",
+     "includes": "Width and height are HP's. The depth is NOT HP's figure: HP lists 401.5 mm, which includes the paper tray pulled out. Closed (tray pushed in, what stands on the shelf) the printer is 27.0 cm deep at the control panel and 23.5 cm at the base where it rests on the shelf. The base is the user's measurement (24.5 cm shelf - 4.5 cm wall gap + 3.5 cm overhang); the panel is that times the panel/base ratio in the straight side photo 05 (400 / 348 px = 1.149). An earlier 27.6 cm came from a 24.0 cm base estimate (see measurements/MEASUREMENTS.md)."
+    },
+    "official": {
+     "w": 433.5,
+     "d": 401.5,
+     "h": 216.7,
+     "what": "HP's published size (W x D x H). HP does not say what the depth includes; the photos show it can only be with the main paper tray pulled out (tray out 35.8 cm, tray + extender fully out 43.2 cm, 47.7 cm with the paper stop raised)",
+     "source": "https://www.manualowl.com/m/Hewlett-Packard/J4580/Manual/7122?page=160"
+    },
+    "max": {
+     "w": 433.5,
+     "d": 477,
+     "h": 216.7,
+     "what": "main tray pulled out, tray extender out and paper stop raised (printing); lid open needs about 38 cm of height",
+     "source": "https://www.newegg.com/hp-officejet-j4580-cb780a-thermal-inkjet/p/N82E16828115212"
+    }
+   },
+   "weight_kg": 5.9,
+   "price_ils": null,
+   "price_usd": 269,
+   "scanner": true,
+   "rows": [
+    {
+     "label": "Notes",
+     "value": "This is your current printer (bought around 2009, now yellowed).",
+     "more": [
+      {
+       "p": "It is wide and shallow: 43.4 cm wide, 23.5 cm deep at the base and 27.0 cm at the control panel, which sticks out 3.5 cm in front of the base (10.3-15.3 cm above the shelf). HP's listed depth of 40.2 cm is with the paper tray pulled out."
+      },
+      {
+       "p": "In use the tray, its extender and paper stop reach about 47.7 cm from the back. The scanner lid (with the document feeder) opens upward from the back and then reaches about 38 cm high."
+      }
+     ]
+    },
+    {
+     "label": "Cost per page in Israel",
+     "value": "₪0.14 per page, compatible cartridge only",
+     "more": [
+      {
+       "p": "No original cartridge was found on sale."
+      },
+      {
+       "p": "Compatible HP 901XL black (700 pages, ₪95 at Peri Dio)."
+      }
+     ],
+     "href": "https://www.zap.co.il/fs?pid=1467541022&sog=h-ink&s=1&indicator=10"
+    },
+    {
+     "label": "Cost per page international",
+     "value": "$0.073 per page",
+     "more": [
+      {
+       "p": "Original HP 901XL black (700 pages, $51 at Tonerbuzz, out of stock)."
+      }
+     ],
+     "href": "https://www.tonerbuzz.com/hp-officejet-j4580/"
+    },
+    {
+     "label": "Cartridge prices",
+     "value": [
+      "HP 901 black, 200 pages: $25 at Tonerbuzz, out of stock",
+      "HP 901XL black, 700 pages: $51 at Tonerbuzz, out of stock",
+      "HP 901 tri-colour, 360 pages: $40 at Tonerbuzz, out of stock",
+      "HP 901XL black (compatible), 700 pages: ₪95 at Peri Dio"
+     ]
+    },
+    {
+     "label": "Compatible cartridges",
+     "value": "Not clear",
+     "more": [
+      {
+       "p": "No page the research opened says the J4580 blocks or nags about third-party 901 cartridges. A 2017 article on HP firmware that blocked non-HP cartridges names other OfficeJet models, not the OfficeJet 4500 or J4580. Compatible 901 cartridges are on sale in Israel (zap.co.il)."
+      }
+     ],
+     "href": "https://enxmag.com/twii/feature-articles/2017/09/hp-security-firmware-update-again-said-to-be-disabling-use-of-non-hp-ink-cartridges"
+    },
+    {
+     "label": "Software on Windows",
+     "value": "Mixed",
+     "more": [
+      {
+       "p": "Windows 10 and 11 print through the Windows built-in driver, and a few owners got HP's full package working on Windows 11, but HP's J4580 page usually lists no Windows 11 driver and scanning on Windows 11 failed for at least one owner in May 2026 with no fix found."
+      },
+      {
+       "label": "Driver",
+       "p": "Windows built-in (basic) driver for printing, which HP's own Windows 10 guidance (quoted by a volunteer in January 2023) points to. For full features, owners use a download from HP's J4500 Series or J4580 software page, which volunteers link as 'Officejet J4580 - driver software - Windows'; one owner reports it worked on Windows 11 in May 2026, another reports scanning still not recognised with it. An April 2025 HP Support reply says the full package on Windows 11 covers printing, scanning and faxing (no owner confirmed that)."
+      },
+      {
+       "label": "App required",
+       "p": "optional"
+      },
+      {
+       "label": "Known problems",
+       "items": [
+        "No Windows 11 full driver on HP's J4580 page in threads from 2022 to 2024 (no fix in those threads; a volunteer download link was offered, and one 2026 owner says it installed)",
+        "Windows 11 says 'Officejet J4500 Series driver is unavailable' under Bluetooth and devices (fixed for one owner in May 2026 by installing the volunteer-linked driver; thread 9650149)",
+        "Scanner not recognised on a new Windows 11 laptop that prints fine, even after the volunteer driver (no fix found; owner gave up in May 2026; thread 9651955)",
+        "HP Scan Doctor says the full software is not installed, so scanning fails (fixed for one owner in January 2022 by a community instruction the owner followed; thread 8258748)",
+        "Fax on Windows 11: no page read says it works; the built-in driver covers printing and scanning only (not verified)"
+       ]
+      },
+      {
+       "label": "Scanning",
+       "p": "The device has a flatbed scanner with a 20-sheet document feeder. On Windows 11, owners have scanned with HP's full package, but in May 2026 a new Windows 11 laptop did not see the scanner even though it printed; HP's built-in-driver guidance points to the Windows Fax and Scan, Paint or Windows Scan apps, and no owner confirmed that route for this model."
+      }
+     ],
+     "href": "https://h30434.www3.hp.com/t5/Scanning-Faxing-Copying/How-do-I-find-the-full-software-solution-HP-Officejet-J4580/td-p/8258748"
+    },
+    {
+     "label": "What owners say",
+     "value": "Not enough evidence",
+     "more": [
+      {
+       "p": "Only two owner-opinion pages could be read (eBay UK's 12 reviews and a small Russian reader poll), which is below the three-source minimum, so the star score is reported but not rated."
+      },
+      {
+       "label": "Ratings",
+       "items": [
+        "4.5 of 5 from 15 reviews at eBay UK"
+       ]
+      },
+      {
+       "label": "Praise",
+       "items": [
+        "easy setup, plug and play (eBay: 94% of raters say easy to set up)",
+        "good print quality (eBay: 81% of raters)",
+        "good value (eBay: 78% of raters)",
+        "cartridges easy to swap and self-align (eBay review, 2017)",
+        "used units worked as a drop-in replacement for an older J4500-series unit (eBay reviews, 2018 and 2022)",
+        "compact, stylish, cheap, good photo print quality (zoom.cnews.ru reader poll, very small sample: 6, 5 and 4 votes)"
+       ]
+      },
+      {
+       "label": "Complaints",
+       "items": [
+        "one unit failed mechanically after years of use, with warning clunks (eBay review, 2017)",
+        "paper jam error stayed after unplugging with no paper loaded (eBay review, 2017)",
+        "only one power cord in the box (eBay review, 2017)",
+        "HP no longer sells it, and the newer replacement needs internet driver downloads, which is a problem on offline PCs (eBay review, 2017)",
+        "expensive to run, and hard to set up (zoom.cnews.ru reader poll, 2 votes against running cost, 3 against setup)"
+       ]
+      },
+      {
+       "p": "2 sources read."
+      }
+     ],
+     "href": "https://www.ebay.co.uk/urw/HP-OfficeJet-j4580-All-In-One-Inkjet-Printer/product-reviews/73193885"
+    },
+    {
+     "label": "Type",
+     "value": "Colour inkjet all-in-one with fax and document feeder"
+    },
+    {
+     "label": "Functions",
+     "value": "Print, scan, copy, fax"
+    },
+    {
+     "label": "Size closed (W × D × H)",
+     "value": "43.4 × 27 × 21.7 cm",
+     "href": "https://www.manualowl.com/m/Hewlett-Packard/J4580/Manual/7122?page=160"
+    },
+    {
+     "label": "Size in use (W × D × H)",
+     "value": "43.4 × 47.7 × 21.7 cm",
+     "href": "https://www.newegg.com/hp-officejet-j4580-cb780a-thermal-inkjet/p/N82E16828115212",
+     "note": "main tray pulled out, tray extender out and paper stop raised (printing); lid open needs about 38 cm of height"
+    },
+    {
+     "label": "Cable space behind",
+     "value": "4.5 cm",
+     "more": [
+      {
+       "p": "The plugs go straight into an almost flat back (3 mm panel), so the USB plug with its strain relief plus the bent cable sets the gap; measured 4.5 cm from the wall on your shelf."
+      }
+     ]
+    },
+    {
+     "label": "Weight",
+     "value": "5.9 kg",
+     "href": "https://www.manualowl.com/m/Hewlett-Packard/J4580/Manual/7122?page=160",
+     "note": "without ink cartridges"
+    },
+    {
+     "label": "Print speed",
+     "value": "Up to 28 pages/min black, 22 colour",
+     "href": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf"
+    },
+    {
+     "label": "Two-sided printing",
+     "value": "No"
+    },
+    {
+     "label": "Connections",
+     "value": "USB",
+     "href": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf"
+    },
+    {
+     "label": "Paper in",
+     "value": "100 sheets, front main tray (printed pages land on top of the stack)",
+     "href": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf"
+    },
+    {
+     "label": "Scanner",
+     "value": "Flatbed, document feeder (20 sheets)",
+     "href": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf"
+    },
+    {
+     "label": "Display",
+     "value": "2-line monochrome text LCD with a phone keypad"
+    },
+    {
+     "label": "Ink",
+     "value": "HP 901 Black (CC653AE), HP 901XL Black (CC654AE), HP 901 Tri-colour (CC656AE)",
+     "href": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf"
+    },
+    {
+     "label": "In the box",
+     "value": "Printer; HP 901 Black and HP 901 Tri-colour ink cartridges; external power adapter (brick) and its AC power cord; software and user guide on CD-ROM. No USB cable.",
+     "href": "https://docs.rs-online.com/b99e/0900766b80c16291.pdf",
+     "more": [
+      {
+       "p": "As listed for UK/EMEA (CB780A, RS Components datasheet)."
+      },
+      {
+       "p": "Newegg's US box photo also shows a phone (fax) cord and a phone-cord adapter."
+      },
+      {
+       "p": "The Israeli box list was not found (the model was sold 2008-2010)."
+      }
+     ]
+    },
+    {
+     "label": "Price international",
+     "value": "$269",
+     "href": "https://www.ebay.com/itm/186945643709",
+     "more": [
+      {
+       "p": "eBay US, new old stock in box"
+      },
+      {
+       "p": "2026-11-17"
+      },
+      {
+       "p": "Discontinued; new-in-box units still listed at $269-280. A used one in Bulgaria was listed at 10 EUR (alo.bg, expired)."
+      }
+     ]
+    }
+   ],
+   "page_compatible_ils": 0.1357,
+   "page_usd": 0.073,
+   "windows_rating": "mixed",
+   "forums_rating": "unknown",
+   "notes": "This is your current printer (bought around 2009, now yellowed). It is wide and shallow: 43.4 cm wide, 23.5 cm deep at the base and 27.0 cm at the control panel, which sticks out 3.5 cm in front of the base (10.3-15.3 cm above the shelf). HP's listed depth of 40.2 cm is with the paper tray pulled out. In use the tray, its extender and paper stop reach about 47.7 cm from the back. The scanner lid (with the document feeder) opens upward from the back and then reaches about 38 cm high.",
+   "sources": [
+    "https://docs.rs-online.com/8ee5/0900766b80c16290.pdf",
+    "https://docs.rs-online.com/b99e/0900766b80c16291.pdf",
+    "https://enxmag.com/twii/feature-articles/2017/09/hp-security-firmware-update-again-said-to-be-disabling-use-of-non-hp-ink-cartridges",
+    "https://h30434.www3.hp.com/t5/AI-PCs/driver-for-hp-officejet-j4580-on-windows-11/m-p/9376980",
+    "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Driver-for-HP-OfficeJet-J4580-All-in-one-Printer/m-p/9162986",
+    "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Driver-for-Windows-11-Officejet-J4580/m-p/8522696",
+    "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Drivers-and-Software-Needed-for-Officejet-J4580/m-p/8600886",
+    "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Need-a-Windows-11-driver-for-HP-Office-jet-J4580/m-p/9650149",
+    "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/win-11-laptop-does-not-recognise-Officejet-J4580-scanner-but/m-p/9651955",
+    "https://h30434.www3.hp.com/t5/Scanning-Faxing-Copying/How-do-I-find-the-full-software-solution-HP-Officejet-J4580/td-p/8258748",
+    "https://treexy.com/products/driver-fusion/database/printers/hewlett-packard-hp/officejet-j4500-series/",
+    "https://www.alo.bg/printer-hp-officejet-j4580-all-in-one-10668101",
+    "https://www.ebay.co.uk/urw/HP-OfficeJet-j4580-All-In-One-Inkjet-Printer/product-reviews/73193885",
+    "https://www.ebay.com/itm/186945643709",
+    "https://www.manualowl.com/m/Hewlett-Packard/J4580/Manual/7122?page=160",
+    "https://www.newegg.com/hp-officejet-j4580-cb780a-thermal-inkjet/p/N82E16828115212",
+    "https://www.tonerbuzz.com/hp-officejet-j4580/",
+    "https://www.zap.co.il/fs?pid=1467541022&sog=h-ink&s=1&indicator=10",
+    "https://zoom.cnews.ru/goods_card/item/108022/hp-officejet-j4580"
+   ],
+   "geom": {
+    "id": "hp-officejet-j4580",
+    "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+    "nodes": {
+     "body": "hp-officejet-j4580_body",
+     "lid": "hp-officejet-j4580_lid",
+     "cassette": "hp-officejet-j4580_cassette",
+     "extender": "hp-officejet-j4580_extender",
+     "flap": "hp-officejet-j4580_flap",
+     "cable_power": "hp-officejet-j4580_cable_power",
+     "cable_usb": "hp-officejet-j4580_cable_usb"
+    },
+    "parts": {
+     "body": {
+      "node": "hp-officejet-j4580_body",
+      "kind": "body",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "lid": {
+      "node": "hp-officejet-j4580_lid",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.146,
+       -0.129
+      ]
+     },
+     "cassette": {
+      "node": "hp-officejet-j4580_cassette",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "extender": {
+      "node": "hp-officejet-j4580_extender",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "flap": {
+      "node": "hp-officejet-j4580_flap",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.0198,
+       0.098
+      ]
+     },
+     "cable_power": {
+      "node": "hp-officejet-j4580_cable_power",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "cable_usb": {
+      "node": "hp-officejet-j4580_cable_usb",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     }
+    },
+    "states": {
+     "printing": [
+      {
+       "part": "cassette",
+       "move": [
+        0.0,
+        0.0,
+        0.118
+       ]
+      },
+      {
+       "part": "extender",
+       "move": [
+        0.0,
+        0.0,
+        0.196
+       ]
+      },
+      {
+       "part": "flap",
+       "move": [
+        0.0,
+        0.0,
+        0.196
+       ]
+      },
+      {
+       "part": "flap",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 155.0
+      }
+     ],
+     "refill": [
+      {
+       "part": "cassette",
+       "move": [
+        0.0,
+        0.0,
+        0.118
+       ]
+      },
+      {
+       "part": "extender",
+       "move": [
+        0.0,
+        0.0,
+        0.118
+       ]
+      },
+      {
+       "part": "flap",
+       "move": [
+        0.0,
+        0.0,
+        0.118
+       ]
+      }
+     ],
+     "lid_open": [
+      {
+       "part": "lid",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": -75.0
+      }
+     ]
+    },
+    "body_size_cm": [
+     43.38,
+     26.99,
+     21.67
+    ],
+    "envelopes_m": {
+     "closed": {
+      "min": [
+       -0.2171,
+       0.0,
+       -0.135
+      ],
+      "max": [
+       0.2167,
+       0.2167,
+       0.1349
+      ]
+     },
+     "printing": {
+      "min": [
+       -0.2171,
+       0.0,
+       -0.135
+      ],
+      "max": [
+       0.2167,
+       0.2167,
+       0.3395
+      ]
+     },
+     "refill": {
+      "min": [
+       -0.2171,
+       0.0,
+       -0.135
+      ],
+      "max": [
+       0.2167,
+       0.2167,
+       0.218
+      ]
+     },
+     "lid_open": {
+      "min": [
+       -0.2171,
+       0.0,
+       -0.1931
+      ],
+      "max": [
+       0.2167,
+       0.3884,
+       0.1349
+      ]
+     }
+    },
+    "cable_back_gap_cm": 4.49,
+    "sockets": [
+     {
+      "part": "cable_power",
+      "kind": "HP DC",
+      "x": -12.224999999999998,
+      "z": 9.35,
+      "recess": 0.3,
+      "angled": false,
+      "far_y_cm": 17.97
+     },
+     {
+      "part": "cable_usb",
+      "kind": "USB-B",
+      "x": -9.724999999999998,
+      "z": 9.5,
+      "recess": 0.0,
+      "angled": false,
+      "far_y_cm": 17.99
+     }
+    ],
+    "triangles": 22400,
+    "glb_mb": 0.91,
+    "notes": [
+     "Closed = main paper tray pushed in. HP's listed depth (40.15 cm) is with the tray pulled out.",
+     "The base rests on the shelf from the back plane to 23.5 cm (user: 24.5 - 4.5 + 3.5); its front wall is nearly vertical (23.7 cm at the scanner seam); the control panel reaches 27.0 cm at z 10.3-15.3.",
+     "USB-B and the HP DC plug go into a flat back (3 mm panel): 4.5 cm wall-to-back measured on the shelf.",
+     "Lid open 75 deg: the document feeder swings about 6.5 cm behind the back plane."
+    ],
+    "base": {
+     "what": "the cream base, the part that rests on the shelf (the control panel overhangs it)",
+     "back_plane_y_cm": 13.5,
+     "base_front_at_shelf_y_cm": -10.0,
+     "base_depth_at_shelf_cm": 23.5,
+     "base_front_at_seam_y_cm": -10.2,
+     "base_depth_at_seam_cm": 23.7,
+     "panel_front_y_cm": -13.5,
+     "panel_underside_z_cm": 10.3,
+     "frame": "builder frame: cm, front = -y, back = +y, y = 0 at the middle of the closed depth"
+    }
+   },
+   "measured": {
+    "cable_back_gap_cm": 4.5,
+    "base_overhang_cm": 3.5,
+    "note": "Wall to the back of the printer 4.5 cm (cables); the base sticks out about 3.5 cm past the shelf edge; the shelf is 24.5 cm deep."
+   }
+  },
+  {
+   "id": "brother-dcp-l2620dw",
+   "name": "Brother DCP-L2620DW",
+   "brand": "Brother",
+   "group": "Candidates",
+   "current": false,
+   "type": "Mono laser all-in-one (print, copy, flatbed scan)",
+   "has_model": true,
+   "dims_mm": {
+    "closed": {
+     "w": 410,
+     "d": 399,
+     "h": 272,
+     "source": "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-7A38839F-5CD3-4CAD-A170-5EA17E89A64E_1.html",
+     "includes": "Brother's 'typical outline view': width is the scanner/lid (the lower body is narrower, about 38.8 cm at the top tapering to 36 cm at the feet); depth runs from the paper-tray/front-cover face to the rear of the scanner unit and lid hinges (the upper rear overhang). The lower back with the plugs sits about 4.5 cm in front of that rear line. Output support flap folded."
+    },
+    "max": {
+     "w": 410,
+     "d": 424,
+     "h": 587,
+     "what": "from the 3D model, not published by Brother: depth with the output support flap flipped out 42.4 cm; height with the scanner lid raised (about 80 deg, as in the lid-open photo) 58.7 cm; with the paper tray pulled out to load paper the depth is 69.9 cm",
+     "source": "model build/builders/brother_dcp_l2620dw.py (printers/Brother DCP-L2620DW/measurements/MEASUREMENTS.md)"
+    }
+   },
+   "weight_kg": 10.1,
+   "price_ils": 926,
+   "price_usd": 219,
+   "scanner": true,
+   "rows": [
+    {
+     "label": "Notes",
+     "value": "The official 39.9 cm depth already includes the rear overhang, and the plugs hide under it.",
+     "more": [
+      {
+       "p": "The control panel juts out over the paper exit but stays about 1 cm behind the front face. To load paper the whole cassette slides out of the front (about 30 cm)."
+      },
+      {
+       "p": "The scanner lid opens upward from hinges at the back; raised (about 80 deg) its top edge is 58.7 cm above the shelf, so it needs about 32 cm of free height above the printer."
+      }
+     ]
+    },
+    {
+     "label": "Cost per page in Israel",
+     "value": "₪0.16 per page",
+     "more": [
+      {
+       "p": "Original TN-2510XL (3,000 pages, ₪398 at HD Toner) plus drum DR-2510 (15,000 pages, ₪456 at Beit HaFax)."
+      },
+      {
+       "p": "With a compatible cartridge: ₪0.070 per page, TN-2510 (1,200 pages, ₪48 at PENPALL)."
+      }
+     ],
+     "href": "https://www.zap.co.il/model.aspx?modelid=1227206"
+    },
+    {
+     "label": "Cartridge prices",
+     "value": [
+      "TN-2510, 1,200 pages: ₪254 at Beit HaFax",
+      "TN-2510XL, 3,000 pages: ₪398 at HD Toner",
+      "DR-2510, 15,000 pages: ₪456 at Beit HaFax",
+      "TN-2510 (compatible), 1,200 pages: ₪48 at PENPALL"
+     ]
+    },
+    {
+     "label": "Compatible cartridges",
+     "value": "Not clear",
+     "more": [
+      {
+       "p": "No report found about this model rejecting third-party toner. Brother's Australian FAQ says a non-genuine cartridge should go to its maker or seller, and mentions no chip or firmware rule. Chip-equipped compatibles are sold in the UK and Europe, and Brother has denied in press reports that firmware blocks third-party toner, but the research could not read that article in full."
+      }
+     ],
+     "href": "https://www.brother.com.au/en/contents/faq-toner-cartridge-issue"
+    },
+    {
+     "label": "Software on Windows",
+     "value": "Mixed",
+     "more": [
+      {
+       "p": "Brother's own Windows 11 FAQs describe USB scanning failures and driver-install errors for this model, and a sibling's wireless scanning broke after a Windows 11 update with no confirmed fix, while owners of the US sibling DCP-L2640DW praise its scanning and Wi-Fi setup."
+      },
+      {
+       "label": "Driver",
+       "p": "Brother's Full Driver & Software Package, which Brother's Windows 11 FAQs say to download from the model's Downloads page; the Brother EU Downloads page for this model rendered with no file list, so the version and size were not verified. Whether Windows Update installs a built-in driver was not verified."
+      },
+      {
+       "label": "App required",
+       "p": "optional"
+      },
+      {
+       "label": "Known problems",
+       "items": [
+        "USB scanning on Windows 11: scan button does not work and the machine may not appear as a scanner (Brother's fix: remove the software, turn off Windows Ready Print and protected print mode, reinstall the Full Driver; Brother recommends a network connection instead)",
+        "Network scan blocked by firewall (fixed by allowing iPrint&Scan.exe and iPSNotifier.exe on Windows, or UDP port 54925 per Brother)",
+        "Computer name not shown on the machine's LCD, so scans cannot be sent to the PC (fixed by Brother's repair tool)",
+        "Wi-Fi drops (fixed by Recover WLAN on the panel, per Brother's Online User's Guide)",
+        "Driver install errors and printing failures on Windows 11 (Brother FAQ titles; the fix text was not read, no fix confirmed)",
+        "Sibling DCP-L2550DW: wireless scanning stopped after a Windows 11 update, printing still worked; no confirmed fix in the thread (sibling model, not this one)"
+       ]
+      },
+      {
+       "label": "Scanning",
+       "p": "Flatbed (CIS) scanner with no document feeder. On Windows, Brother's FAQs route network scanning through Brother iPrint&Scan (iPrint&Scan.exe and iPSNotifier.exe handle the scan button, and the firewall must allow them). Brother's Windows 11 FAQ says USB scanning is unreliable, so use a network connection. Brother's FAQs for the sibling DCP-L2520DW say to set the Brother TWAIN or WIA driver as the primary source in scanning apps; that is not confirmed for this model. The Windows Scan app was not verified for this model."
+      }
+     ],
+     "href": "https://support.brother.com/g/b/faqend.aspx?c=gb&lang=en&prod=dcpl2620dw_eu&faqid=faq00002637_017"
+    },
+    {
+     "label": "What owners say",
+     "value": "Good",
+     "more": [
+      {
+       "p": "A 10 out of 10 score from six LDLC reviews of this exact model and 4.3 out of 5 from 1,003 Walmart ratings for the US sibling DCP-L2640DW, with praise for easy setup and scanning and complaints about occasional Wi-Fi dropouts, sleep wake-up and toner cost."
+      },
+      {
+       "label": "Ratings",
+       "items": [
+        "4.6 of 5 from 373 reviews at Best Buy US, DCP-L2640DW",
+        "4.3 of 5 from 1,003 reviews at Walmart US, DCP-L2640DW",
+        "10 of 10 from 6 reviews at LDLC, France, DCP-L2620DW"
+       ]
+      },
+      {
+       "label": "Praise",
+       "items": [
+        "Easy setup and easy to use (LDLC, Walmart sibling)",
+        "Clear print quality (LDLC, Walmart sibling)",
+        "Smooth document scanning with clear images (Walmart sibling)",
+        "Low cost per page (Walmart sibling)",
+        "Wi-Fi connects easily and has no communication problems (LDLC, Walmart sibling)",
+        "Works on Linux over USB, including scanning (LDLC, this model)",
+        "Automatic two-sided printing (LDLC, this model)"
+       ]
+      },
+      {
+       "label": "Complaints",
+       "items": [
+        "Some owners needed several presses to print or saw slow starts (Walmart sibling)",
+        "Frequent toner refills, costly ink use (Walmart sibling summary)",
+        "Some units were defective or would not print, and support was hard to reach (Walmart sibling, one-star reviews)",
+        "Scanner not recognised over USB or wirelessly for some owners (Walmart sibling, one-star reviews)",
+        "Large and heavy (Walmart sibling)"
+       ]
+      },
+      {
+       "p": "3 sources read."
+      }
+     ],
+     "href": "https://www.ldlc.com/en/reviews/PB00581229.html"
+    },
+    {
+     "label": "Type",
+     "value": "Mono laser all-in-one (print, copy, flatbed scan)"
+    },
+    {
+     "label": "Functions",
+     "value": "Print, scan, copy"
+    },
+    {
+     "label": "Size closed (W × D × H)",
+     "value": "41 × 39.9 × 27.2 cm",
+     "href": "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-7A38839F-5CD3-4CAD-A170-5EA17E89A64E_1.html"
+    },
+    {
+     "label": "Size in use (W × D × H)",
+     "value": "41 × 42.4 × 58.7 cm",
+     "href": "model build/builders/brother_dcp_l2620dw.py (printers/Brother DCP-L2620DW/measurements/MEASUREMENTS.md)",
+     "more": [
+      {
+       "p": "from the 3D model, not published by Brother: depth with the output support flap flipped out 42.4 cm; height with the scanner lid raised (about 80 deg, as in the lid-open photo) 58.7 cm; with the paper tray pulled out to load paper the depth is 69.9 cm"
+      }
+     ]
+    },
+    {
+     "label": "Cable space behind",
+     "value": "1.4 cm",
+     "more": [
+      {
+       "p": "Both sockets are on the lower back, 4.5 cm in front of the rear line of the scanner overhang, so the plugs sit inside the printer's outline and only the bent cord needs room: your 'concave' case, about 1-2 cm from the wall."
+      }
+     ]
+    },
+    {
+     "label": "Weight",
+     "value": "10.1 kg",
+     "href": "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-7A38839F-5CD3-4CAD-A170-5EA17E89A64E_1.html",
+     "note": "with drum and inbox toner installed"
+    },
+    {
+     "label": "Print speed",
+     "value": "32 pages/min (A4), 34 (Letter)",
+     "href": "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-7A38839F-5CD3-4CAD-A170-5EA17E89A64E_1.html"
+    },
+    {
+     "label": "Two-sided printing",
+     "value": "Automatic"
+    },
+    {
+     "label": "Connections",
+     "value": "USB, Wi-Fi, Wi-Fi Direct",
+     "href": "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-7A38839F-5CD3-4CAD-A170-5EA17E89A64E_1.html"
+    },
+    {
+     "label": "Paper in",
+     "value": "250 sheets, front cassette (pull it fully out to load)",
+     "href": "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-7A38839F-5CD3-4CAD-A170-5EA17E89A64E_1.html"
+    },
+    {
+     "label": "Paper out",
+     "value": "120 sheets, face-down tray under the scanner, with a flip-out support flap"
+    },
+    {
+     "label": "Manual feed",
+     "value": "single-sheet slot in the front cover"
+    },
+    {
+     "label": "Scanner",
+     "value": "Flatbed (cis), a4/letter glass",
+     "href": "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-7A38839F-5CD3-4CAD-A170-5EA17E89A64E_1.html"
+    },
+    {
+     "label": "Display",
+     "value": "2-line LCD (16 characters), keys"
+    },
+    {
+     "label": "Toner",
+     "value": "starter 700 pages; TN-2510 (1,200 pages); TN-2510XL (3,000 pages)",
+     "href": "https://www.brother.co.uk/printers/laser-printers/dcp-l2620dw"
+    },
+    {
+     "label": "Drum",
+     "value": "DR-2510 (15,000 pages)"
+    },
+    {
+     "label": "In the box",
+     "value": "Printer with drum unit and starter (inbox) toner already installed (about 700 pages), power cord, quick setup guide, warranty card. No USB cable, no software disc (drivers are downloaded).",
+     "href": "https://www.bug.co.il/brand/brother/mono/laser/printer/dcpl2620dw",
+     "more": [
+      {
+       "p": "As listed for Israel (bug.co.il listing); Brother UK lists the same: power supply cord, quick setup guide, warranty, device, supplies, drum. bug.co.il: 'מדפסת | טונר | מחסנית | כבל חשמל | מדריך הפעלה מהירה | גלויית אחריות', and 'כבל USB: לא כלול'."
+      }
+     ]
+    },
+    {
+     "label": "Price in Israel",
+     "value": "₪926",
+     "href": "https://www.zap.co.il/model.aspx?modelid=1213266",
+     "more": [
+      {
+       "p": "zap.co.il, lowest of 17 shops (א.ר לייזר ליין, טונר פלוס, פרי דיו)"
+      },
+      {
+       "p": "2026-11-17"
+      },
+      {
+       "p": "range ₪926–₪1,055; bug.co.il ₪949"
+      }
+     ]
+    },
+    {
+     "label": "Price international",
+     "value": "$219",
+     "href": "https://pricespy.co.uk/computers-accessories/computer-peripherals/printers-scanners/multifunction-printers/brother-dcp-l2620dw--p12393287",
+     "more": [
+      {
+       "p": "PriceSpy UK lowest offer £165.90"
+      },
+      {
+       "p": "2026-11-17"
+      },
+      {
+       "p": "not sold in the US; converted from £165.90 at 1.3195 $/£ (x-rates, 17 Nov 2026)"
+      }
+     ]
+    }
+   ],
+   "page_ils": 0.1631,
+   "page_compatible_ils": 0.0704,
+   "windows_rating": "mixed",
+   "forums_rating": "good",
+   "notes": "The official 39.9 cm depth already includes the rear overhang, and the plugs hide under it. The control panel juts out over the paper exit but stays about 1 cm behind the front face. To load paper the whole cassette slides out of the front (about 30 cm). The scanner lid opens upward from hinges at the back; raised (about 80 deg) its top edge is 58.7 cm above the shelf, so it needs about 32 cm of free height above the printer.",
+   "sources": [
+    "https://learn.microsoft.com/en-us/answers/a/12327232",
+    "https://learn.microsoft.com/en-us/answers/questions/5607841/unable-to-scan",
+    "https://pricespy.co.uk/computers-accessories/computer-peripherals/printers-scanners/multifunction-printers/brother-dcp-l2620dw--p12393287",
+    "https://support.brother.com/g/b/faqend.aspx?c=eu_ot&lang=en&prod=dcpl2620dw_eu&faqid=faq00100875_000",
+    "https://support.brother.com/g/b/faqend.aspx?c=gb&lang=en&prod=dcpl2620dw_eu&faqid=faq00002637_017",
+    "https://support.brother.com/g/b/faqend.aspx?c=us_ot&lang=en&prod=dcpl2520dw_us_eu&faqid=faq00002637_009",
+    "https://support.brother.com/g/b/faqlist.aspx?c=eu_ot&lang=en&prod=dcpl2620dw_eu&tabid=3",
+    "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-7A38839F-5CD3-4CAD-A170-5EA17E89A64E_1.html",
+    "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-9BE6EB6D-E57E-4E81-A2E4-2E4205064410_1.html",
+    "https://support.brother.com/g/s/id/htmldoc/mfc/cv_dcpl2508dw/uke/html/GUID-E7CB00ED-111E-4823-9806-69B2AD6E579B_1.html",
+    "https://www.bestbuy.com/product/brother-dcp-l2640dw-wireless-black-and-white-refresh-subscription-eligible-3-in-1-laser-printer-great-for-small-offices-gray/J7CJ384JGP/sku/6569814",
+    "https://www.brother.co.uk/printers/laser-printers/dcp-l2620dw",
+    "https://www.brother.com.au/en/contents/faq-toner-cartridge-issue",
+    "https://www.bug.co.il/brand/brother/mono/laser/printer/dcpl2620dw",
+    "https://www.bug.co.il/brand/brother/printer/toner/black/tn2510",
+    "https://www.bug.co.il/brand/brother/printer/toner/black/tn2510xl",
+    "https://www.ldlc.com/en/reviews/PB00581229.html",
+    "https://www.printerland.co.uk/consumables/toner-cartridges/brother-toner-cartridges/brother-dcp-series-toner-cartridges/brother-dcp-l2620dw-multifunction-printer-toner-cartridges/39008",
+    "https://www.walmart.com/reviews/product/5253181286",
+    "https://www.which.co.uk/reviews/printers-and-ink/brother-dcp-l2620dw",
+    "https://www.zap.co.il/compmodels.aspx?modelid=1239395",
+    "https://www.zap.co.il/model.aspx?modelid=1213266",
+    "https://www.zap.co.il/model.aspx?modelid=1224285",
+    "https://www.zap.co.il/model.aspx?modelid=1227206"
+   ],
+   "geom": {
+    "id": "brother-dcp-l2620dw",
+    "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+    "nodes": {
+     "body": "brother-dcp-l2620dw_body",
+     "lid": "brother-dcp-l2620dw_lid",
+     "cassette": "brother-dcp-l2620dw_cassette",
+     "flap": "brother-dcp-l2620dw_flap",
+     "cable_power": "brother-dcp-l2620dw_cable_power",
+     "cable_usb": "brother-dcp-l2620dw_cable_usb"
+    },
+    "parts": {
+     "body": {
+      "node": "brother-dcp-l2620dw_body",
+      "kind": "body",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "lid": {
+      "node": "brother-dcp-l2620dw_lid",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.257,
+       -0.1935
+      ]
+     },
+     "cassette": {
+      "node": "brother-dcp-l2620dw_cassette",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.003,
+       0.1995
+      ]
+     },
+     "flap": {
+      "node": "brother-dcp-l2620dw_flap",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.1858,
+       0.1845
+      ]
+     },
+     "cable_power": {
+      "node": "brother-dcp-l2620dw_cable_power",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "cable_usb": {
+      "node": "brother-dcp-l2620dw_cable_usb",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     }
+    },
+    "states": {
+     "printing": [
+      {
+       "part": "flap",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 150.0
+      }
+     ],
+     "refill": [
+      {
+       "part": "cassette",
+       "move": [
+        0.0,
+        0.0,
+        0.3
+       ]
+      }
+     ],
+     "lid_open": [
+      {
+       "part": "lid",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": -80.0
+      }
+     ]
+    },
+    "body_size_cm": [
+     41.0,
+     39.9,
+     27.21
+    ],
+    "envelopes_m": {
+     "closed": {
+      "min": [
+       -0.205,
+       0.0,
+       -0.1995
+      ],
+      "max": [
+       0.205,
+       0.2721,
+       0.1995
+      ]
+     },
+     "printing": {
+      "min": [
+       -0.205,
+       0.0,
+       -0.1995
+      ],
+      "max": [
+       0.205,
+       0.2721,
+       0.2243
+      ]
+     },
+     "refill": {
+      "min": [
+       -0.205,
+       0.0,
+       -0.1995
+      ],
+      "max": [
+       0.205,
+       0.2721,
+       0.4995
+      ]
+     },
+     "lid_open": {
+      "min": [
+       -0.205,
+       0.0,
+       -0.2078
+      ],
+      "max": [
+       0.205,
+       0.5865,
+       0.1995
+      ]
+     }
+    },
+    "cable_back_gap_cm": 1.39,
+    "sockets": [
+     {
+      "part": "cable_power",
+      "kind": "C13v",
+      "x": 16.05,
+      "z": 11.6,
+      "recess": 1.0,
+      "angled": false,
+      "far_y_cm": 21.34
+     },
+     {
+      "part": "cable_usb",
+      "kind": "USB-B",
+      "x": -16.1,
+      "z": 7.5,
+      "recess": 0.6,
+      "angled": false,
+      "far_y_cm": 20.19
+     }
+    ],
+    "triangles": 13196,
+    "glb_mb": 0.59,
+    "notes": [
+     "Official 41.0 x 39.9 x 27.2 cm; depth runs from the front cover / tray face to the rear of the scanner unit. The lower back with both sockets is 4.5 cm in front of that line (rear overhang).",
+     "Lower body narrower than the scanner (35.7 cm at the feet, 37.5 cm at 14 cm up, 39 cm under the scanner; sides lean in toward the bottom).",
+     "No Ethernet: USB-B only. Power inlet C14 (C13 cord), turned 90 deg, flush on the lower back."
+    ]
+   },
+   "measured": null
+  },
+  {
+   "id": "brother-hl-l2445dw",
+   "name": "Brother HL-L2445DW",
+   "brand": "Brother",
+   "group": "Candidates",
+   "current": false,
+   "type": "Mono laser printer",
+   "has_model": true,
+   "dims_mm": {
+    "closed": {
+     "w": 356,
+     "d": 360,
+     "h": 183,
+     "source": "https://store.brother.co.uk/catalogs/brotheruk/devices/laser/hl/hll2445dw",
+     "includes": "Paper tray in, output support flap folded, back cover closed. Measured on the photos: the depth runs from the front panel to the small handle tab on the back cover; the flat back panel itself is about 0.9 cm in front of that tab. Cables are not included."
+    }
+   },
+   "weight_kg": 7.1,
+   "price_ils": 710,
+   "price_usd": null,
+   "scanner": false,
+   "rows": [
+    {
+     "label": "Notes",
+     "value": "Same body as the HL-L2400DW.",
+     "more": [
+      {
+       "p": "Differences: Ethernet port (the 2400DW has a blank there), 32 instead of 30 pages/min, 1,200-page starter toner instead of 700. Power plug: a straight-on kettle plug on a flat back, so plan about 6-7 cm behind the printer (your rule: flat back = 5-8 cm)."
+      },
+      {
+       "p": "The back cover folds down to become a 1-sheet face-up tray; it is only needed for thick paper."
+      }
+     ]
+    },
+    {
+     "label": "Cost per page in Israel",
+     "value": "₪0.16 per page",
+     "more": [
+      {
+       "p": "Original TN-2510XL (3,000 pages, ₪398 at HD Toner) plus drum DR-2510 (15,000 pages, ₪456 at Beit HaFax)."
+      },
+      {
+       "p": "With a compatible cartridge: ₪0.070 per page, TN-2510 (1,200 pages, ₪48 at PENPALL)."
+      }
+     ],
+     "href": "https://www.zap.co.il/model.aspx?modelid=1227206"
+    },
+    {
+     "label": "Cartridge prices",
+     "value": [
+      "TN-2510, 1,200 pages: ₪254 at Beit HaFax",
+      "TN-2510XL, 3,000 pages: ₪398 at HD Toner",
+      "DR-2510, 15,000 pages: ₪456 at Beit HaFax",
+      "TN-2510 (compatible), 1,200 pages: ₪48 at PENPALL"
+     ]
+    },
+    {
+     "label": "Compatible cartridges",
+     "value": "Not clear",
+     "more": [
+      {
+       "p": "No source found that says whether this printer rejects or nags about non-Brother TN-2510 cartridges, and no lock-out reports turned up. Compatible TN-2510 cartridges are sold in Israel for this model. The Brother authentication whitepaper the research saw covers inkjet cartridges only."
+      }
+     ],
+     "href": "https://www.zap.co.il/model.aspx?modelid=1224285"
+    },
+    {
+     "label": "Software on Windows",
+     "value": "Mixed",
+     "more": [
+      {
+       "p": "Owners report it works on Windows 11, but Brother's own pages describe Wi-Fi disconnects for this model, and the bundled setup software and Windows 11 USB install step draw repeated complaints; Brother gives fixes for most of them."
+      },
+      {
+       "label": "Driver",
+       "p": "Brother's Full Driver & Software Package, which Brother's Windows Wi-Fi FAQ tells users to reinstall; Brother's EU downloads page for the HL-L2400DW lists Windows 11 and 10 software (EasySetup, iPrint&Scan, Uninstall Tool). Whether Windows Update installs a built-in driver was not verified."
+      },
+      {
+       "label": "App required",
+       "p": "optional"
+      },
+      {
+       "label": "Known problems",
+       "items": [
+        "Wi-Fi drops, machine leaves the network (fixed by Recover WLAN on the panel, the Network Connection Repair Tool, or a firmware update, per Brother)",
+        "Printer shows Offline in Windows (Brother: Offline means the driver is not working; fixed by selecting a working driver or reinstalling the Full Driver package)",
+        "Windows 11 USB install blocked by 'Default install printers using Windows Ready Print' (fixed by turning that option off, per Brother FAQ)",
+        "Bundled EasySetup software described as buggy under Windows 11 (owner review; no fix found in the software itself, the full package from Brother's site is the workaround reported)",
+        "Wi-Fi setup must be repeated on each device (owner review; no fix found)",
+        "Wi-Fi network or router change needs driver uninstall and Wi-Fi setup again (fixed by Brother's uninstall and reconfigure steps)"
+       ]
+      }
+     ],
+     "href": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-9BE6EB6D-E57E-4E81-A2E4-2E4205064410_1.html"
+    },
+    {
+     "label": "What owners say",
+     "value": "Good",
+     "more": [
+      {
+       "p": "Shop ratings of 4.2 and 4.4 out of 5 for the US sibling HL-L2460DW and a 10/10 score from 16 LDLC reviews of the HL-L2400DWE, with repeated complaints about Wi-Fi setup and drops."
+      },
+      {
+       "label": "Ratings",
+       "items": [
+        "4.4 of 5 from 354 reviews at Best Buy, US, HL-L2460DW",
+        "4.2 of 5 from 599 reviews at Walmart US, HL-L2460DW",
+        "10 of 10 from 16 reviews at LDLC, France, HL-L2400DWE",
+        "3.5 of 5 from 4 reviews at zap.co.il, Israel, HL-L2400DW"
+       ]
+      },
+      {
+       "label": "Praise",
+       "items": [
+        "Print quality and speed (LDLC; Walmart sibling reviews)",
+        "Automatic duplex printing (LDLC)",
+        "Low cost per page (LDLC)",
+        "Easy setup for many owners (LDLC; Walmart sibling reviews)",
+        "Works with Windows 11 (LDLC)"
+       ]
+      },
+      {
+       "label": "Complaints",
+       "items": [
+        "Wi-Fi setup tedious, repeated for each device (LDLC)",
+        "Bundled setup software old or buggy under Windows 11 (LDLC)",
+        "Wi-Fi network drops now and then (Walmart sibling, HL-L2460DW)",
+        "Slow to wake from sleep (Walmart sibling, HL-L2460DW)",
+        "Duplex not supported under Ubuntu (LDLC)",
+        "Weak documentation and bulky body (LDLC)",
+        "Toner-low warning before the rated page count (ProductReview, one review)"
+       ]
+      },
+      {
+       "p": "5 sources read."
+      }
+     ],
+     "href": "https://www.bestbuy.com/product/brother-hl-l2460dw-wireless-black-and-white-refresh-subscription-eligible-laser-printer-great-for-home-offices-gray/J7CJ3842YR/sku/6569816"
+    },
+    {
+     "label": "Type",
+     "value": "Mono laser printer"
+    },
+    {
+     "label": "Functions",
+     "value": "Print"
+    },
+    {
+     "label": "Size closed (W × D × H)",
+     "value": "35.6 × 36 × 18.3 cm",
+     "href": "https://store.brother.co.uk/catalogs/brotheruk/devices/laser/hl/hll2445dw"
+    },
+    {
+     "label": "Cable space behind",
+     "value": "6.5 cm",
+     "href": "https://bie-p-001-delivery.sitecorecontenthub.cloud/api/public/content/acdbde75c9e7459391503b5e3619655d?v=caacd236",
+     "more": [
+      {
+       "p": "The power inlet sits on the flat back strip, so the whole kettle plug and its strain relief stick out behind the printer; the RJ45/USB port pocket is only about 1.1 cm deep, so those plugs stick out too (Ethernet about 2.9 cm behind the body), but less than the power plug (6.5 cm, matches the 3D model)."
+      }
+     ]
+    },
+    {
+     "label": "Weight",
+     "value": "7.1 kg",
+     "href": "https://www.brother.com.au/-/media/ap2/Australia/Products/Common/Brochures/HL-L2445DW - Brochure.pdf",
+     "note": "with toner and drum (6.0 kg without consumables)"
+    },
+    {
+     "label": "Print speed",
+     "value": "32 pages/min (A4), 34 (Letter)",
+     "href": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-54D4812C-41E7-4CC4-BC10-F386912482D0_1.html"
+    },
+    {
+     "label": "Two-sided printing",
+     "value": "Automatic"
+    },
+    {
+     "label": "Connections",
+     "value": "USB, Wi-Fi, Ethernet, Wi-Fi Direct",
+     "href": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-54D4812C-41E7-4CC4-BC10-F386912482D0_1.html"
+    },
+    {
+     "label": "Paper in",
+     "value": "250 sheets, front paper tray (cassette)",
+     "href": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-54D4812C-41E7-4CC4-BC10-F386912482D0_1.html"
+    },
+    {
+     "label": "Paper out",
+     "value": "150 sheets, top tray, face down (plus 1 sheet face-up through the back cover)"
+    },
+    {
+     "label": "Manual feed",
+     "value": "single-sheet slot behind a fold-down cover above the paper tray"
+    },
+    {
+     "label": "Scanner",
+     "value": "None"
+    },
+    {
+     "label": "Display",
+     "value": "1-line LCD (16 characters) + Wi-Fi LED"
+    },
+    {
+     "label": "Toner",
+     "value": "starter 1,200 pages; TN-2510 (1,200 pages); TN-2510XL (3,000 pages)",
+     "href": "https://store.brother.co.uk/catalogs/brotheruk/devices/laser/hl/hll2445dw"
+    },
+    {
+     "label": "Drum",
+     "value": "DR-2510 (15,000 pages)"
+    },
+    {
+     "label": "In the box",
+     "value": "Printer with the starter toner (about 1,200 pages) already in the DR-2510 drum unit, AC power cord (C13 kettle-type, detachable), Quick Setup Guide, Product Safety Guide, warranty card. No USB or Ethernet cable.",
+     "href": "https://www.bug.co.il/brand/brother/mono/laser/printer/hll2445dw",
+     "more": [
+      {
+       "p": "As listed for Israel (Bug listing; matches Brother UK 'carton contents' and the Quick Setup Guide)."
+      },
+      {
+       "p": "Bug: 'מדפסת | טונר | מחסנית | כבל חשמל | מדריך הפעלה מהירה | גלויית אחריות', USB cable 'לא כלול'."
+      }
+     ]
+    },
+    {
+     "label": "Price in Israel",
+     "value": "₪710",
+     "href": "https://www.zap.co.il/compmodels.aspx?modelid=1213265",
+     "note": "zap.co.il (lowest of 21 shops: Peri Dio, Inkdepo, A.R. Laser Line, Toner Plus) · 2026-11-17"
+    }
+   ],
+   "page_ils": 0.1631,
+   "page_compatible_ils": 0.0704,
+   "windows_rating": "mixed",
+   "forums_rating": "good",
+   "notes": "Same body as the HL-L2400DW. Differences: Ethernet port (the 2400DW has a blank there), 32 instead of 30 pages/min, 1,200-page starter toner instead of 700. Power plug: a straight-on kettle plug on a flat back, so plan about 6-7 cm behind the printer (your rule: flat back = 5-8 cm). The back cover folds down to become a 1-sheet face-up tray; it is only needed for thick paper.",
+   "sources": [
+    "https://bie-p-001-delivery.sitecorecontenthub.cloud/api/public/content/acdbde75c9e7459391503b5e3619655d?v=caacd236",
+    "https://store.brother.co.uk/catalogs/brotheruk/devices/laser/hl/hll2445dw",
+    "https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=hll2400dw_eu_as",
+    "https://support.brother.com/g/b/faqend.aspx?c=eu_ot&lang=en&prod=hll2400dwe_eu&faqid=faq00100867_000",
+    "https://support.brother.com/g/b/faqend.aspx?c=nz&lang=en&prod=hll2400dw_eu_as&faqid=faq00100428_014",
+    "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-54D4812C-41E7-4CC4-BC10-F386912482D0_1.html",
+    "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-9BE6EB6D-E57E-4E81-A2E4-2E4205064410_1.html",
+    "https://www.bestbuy.com/product/brother-hl-l2460dw-wireless-black-and-white-refresh-subscription-eligible-laser-printer-great-for-home-offices-gray/J7CJ3842YR/sku/6569816",
+    "https://www.brother.com.au/-/media/ap2/Australia/Products/Common/Brochures/HL-L2445DW - Brochure.pdf",
+    "https://www.brother.com.au/en/support/HL-L2400DW/downloads",
+    "https://www.brother.com.au/en/support/hl-l2400dw/faqs/faq00100484_002",
+    "https://www.bug.co.il/brand/brother/mono/laser/printer/hll2445dw",
+    "https://www.ldlc.com/en/reviews/PB00577967.html",
+    "https://www.productreview.com.au/listings/brother-hl-l2400dw",
+    "https://www.walmart.com/reviews/product/5302115190",
+    "https://www.zap.co.il/compmodels.aspx?modelid=1213265",
+    "https://www.zap.co.il/compmodels.aspx?modelid=1239395",
+    "https://www.zap.co.il/model.aspx?modelid=1213264",
+    "https://www.zap.co.il/model.aspx?modelid=1224285",
+    "https://www.zap.co.il/model.aspx?modelid=1227206"
+   ],
+   "geom": {
+    "id": "brother-hl-l2445dw",
+    "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+    "nodes": {
+     "body": "brother-hl-l2445dw_body",
+     "cassette": "brother-hl-l2445dw_cassette",
+     "flap": "brother-hl-l2445dw_flap",
+     "cable_power": "brother-hl-l2445dw_cable_power",
+     "cable_eth": "brother-hl-l2445dw_cable_eth"
+    },
+    "parts": {
+     "body": {
+      "node": "brother-hl-l2445dw_body",
+      "kind": "body",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "cassette": {
+      "node": "brother-hl-l2445dw_cassette",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       -0.0015,
+       0.003,
+       0.18
+      ]
+     },
+     "flap": {
+      "node": "brother-hl-l2445dw_flap",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       -0.0015,
+       0.181,
+       0.1635
+      ]
+     },
+     "cable_power": {
+      "node": "brother-hl-l2445dw_cable_power",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "cable_eth": {
+      "node": "brother-hl-l2445dw_cable_eth",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     }
+    },
+    "states": {
+     "printing": [
+      {
+       "part": "flap",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 70.0
+      }
+     ],
+     "refill": [
+      {
+       "part": "cassette",
+       "move": [
+        0.0,
+        0.0,
+        0.27
+       ]
+      }
+     ]
+    },
+    "body_size_cm": [
+     35.63,
+     36.05,
+     18.31
+    ],
+    "envelopes_m": {
+     "closed": {
+      "min": [
+       -0.1782,
+       0.0,
+       -0.18
+      ],
+      "max": [
+       0.178,
+       0.1831,
+       0.1805
+      ]
+     },
+     "printing": {
+      "min": [
+       -0.1782,
+       0.0,
+       -0.18
+      ],
+      "max": [
+       0.178,
+       0.2078,
+       0.1805
+      ]
+     },
+     "refill": {
+      "min": [
+       -0.1782,
+       0.0,
+       -0.18
+      ],
+      "max": [
+       0.178,
+       0.1831,
+       0.45
+      ]
+     }
+    },
+    "cable_back_gap_cm": 6.49,
+    "sockets": [
+     {
+      "part": "cable_power",
+      "kind": "C13v",
+      "x": 16.2,
+      "z": 10.8,
+      "recess": 0.0,
+      "angled": false,
+      "far_y_cm": 24.49
+     },
+     {
+      "part": "cable_eth",
+      "kind": "RJ45",
+      "x": -16.36,
+      "z": 12.5,
+      "recess": 1.1,
+      "angled": false,
+      "far_y_cm": 20.89
+     }
+    ],
+    "triangles": 13524,
+    "glb_mb": 0.63,
+    "notes": [
+     "Shared body of the HL-L2400DW and HL-L2445DW (the 2445DW adds an RJ45 above the USB-B).",
+     "Official width = 35.3 cm body + 0.3 cm louvred vent on the right side; official depth = front panel to the back-cover handle tab.",
+     "HL-L2445DW: RJ45 jack above the USB-B in the port niche (photo 07_back); the Ethernet cable is the data cable."
+    ]
+   },
+   "measured": null
+  },
+  {
+   "id": "brother-hl-l2400dw",
+   "name": "Brother HL-L2400DW",
+   "brand": "Brother",
+   "group": "Candidates",
+   "current": false,
+   "type": "Mono laser printer",
+   "has_model": true,
+   "dims_mm": {
+    "closed": {
+     "w": 356,
+     "d": 360,
+     "h": 183,
+     "source": "https://store.brother.co.uk/catalogs/brotheruk/devices/laser/hl/hll2400dw",
+     "includes": "Paper tray in, output support flap folded, back cover closed. Measured on the photos: the depth runs from the front panel to the small handle tab on the back cover; the flat back panel itself is about 0.9 cm in front of that tab. Cables are not included."
+    }
+   },
+   "weight_kg": 7.1,
+   "price_ils": 613,
+   "price_usd": 534.85,
+   "scanner": false,
+   "rows": [
+    {
+     "label": "Notes",
+     "value": "Same body as the HL-L2445DW without its Ethernet port; 30 instead of 32 pages/min and a smaller 700-page starter toner.",
+     "more": [
+      {
+       "p": "Power plug: a straight-on kettle plug on a flat back, so plan about 6-7 cm behind the printer (your rule: flat back = 5-8 cm). The back cover folds down to become a 1-sheet face-up tray; it is only needed for thick paper."
+      }
+     ]
+    },
+    {
+     "label": "Cost per page in Israel",
+     "value": "₪0.16 per page",
+     "more": [
+      {
+       "p": "Original TN-2510XL (3,000 pages, ₪398 at HD Toner) plus drum DR-2510 (15,000 pages, ₪456 at Beit HaFax)."
+      },
+      {
+       "p": "With a compatible cartridge: ₪0.070 per page, TN-2510 (1,200 pages, ₪48 at PENPALL)."
+      }
+     ],
+     "href": "https://www.zap.co.il/model.aspx?modelid=1227206"
+    },
+    {
+     "label": "Cartridge prices",
+     "value": [
+      "TN-2510, 1,200 pages: ₪254 at Beit HaFax",
+      "TN-2510XL, 3,000 pages: ₪398 at HD Toner",
+      "DR-2510, 15,000 pages: ₪456 at Beit HaFax",
+      "TN-2510 (compatible), 1,200 pages: ₪48 at PENPALL"
+     ]
+    },
+    {
+     "label": "Compatible cartridges",
+     "value": "Not clear",
+     "more": [
+      {
+       "p": "No source found that says whether this printer rejects or nags about non-Brother TN-2510 cartridges, and no lock-out reports turned up. Compatible TN-2510 cartridges are sold in Israel for this model. The Brother authentication whitepaper the research saw covers inkjet cartridges only."
+      }
+     ],
+     "href": "https://www.zap.co.il/model.aspx?modelid=1224285"
+    },
+    {
+     "label": "Software on Windows",
+     "value": "Mixed",
+     "more": [
+      {
+       "p": "Owners report it works on Windows 11, but Brother's own pages describe Wi-Fi disconnects for this model, and the bundled setup software and Windows 11 USB install step draw repeated complaints; Brother gives fixes for most of them."
+      },
+      {
+       "label": "Driver",
+       "p": "Brother's Full Driver & Software Package, which Brother's Windows Wi-Fi FAQ tells users to reinstall; Brother's EU downloads page for the HL-L2400DW lists Windows 11 and 10 software (EasySetup, iPrint&Scan, Uninstall Tool). Whether Windows Update installs a built-in driver was not verified."
+      },
+      {
+       "label": "App required",
+       "p": "optional"
+      },
+      {
+       "label": "Known problems",
+       "items": [
+        "Wi-Fi drops, machine leaves the network (fixed by Recover WLAN on the panel, the Network Connection Repair Tool, or a firmware update, per Brother)",
+        "Printer shows Offline in Windows (Brother: Offline means the driver is not working; fixed by selecting a working driver or reinstalling the Full Driver package)",
+        "Windows 11 USB install blocked by 'Default install printers using Windows Ready Print' (fixed by turning that option off, per Brother FAQ)",
+        "Bundled EasySetup software described as buggy under Windows 11 (owner review; no fix found in the software itself, the full package from Brother's site is the workaround reported)",
+        "Wi-Fi setup must be repeated on each device (owner review; no fix found)",
+        "Wi-Fi network or router change needs driver uninstall and Wi-Fi setup again (fixed by Brother's uninstall and reconfigure steps)"
+       ]
+      }
+     ],
+     "href": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-9BE6EB6D-E57E-4E81-A2E4-2E4205064410_1.html"
+    },
+    {
+     "label": "What owners say",
+     "value": "Good",
+     "more": [
+      {
+       "p": "Shop ratings of 4.2 and 4.4 out of 5 for the US sibling HL-L2460DW and a 10/10 score from 16 LDLC reviews of the HL-L2400DWE, with repeated complaints about Wi-Fi setup and drops."
+      },
+      {
+       "label": "Ratings",
+       "items": [
+        "4.4 of 5 from 354 reviews at Best Buy, US, HL-L2460DW",
+        "4.2 of 5 from 599 reviews at Walmart US, HL-L2460DW",
+        "10 of 10 from 16 reviews at LDLC, France, HL-L2400DWE",
+        "3.5 of 5 from 4 reviews at zap.co.il, Israel, HL-L2400DW"
+       ]
+      },
+      {
+       "label": "Praise",
+       "items": [
+        "Print quality and speed (LDLC; Walmart sibling reviews)",
+        "Automatic duplex printing (LDLC)",
+        "Low cost per page (LDLC)",
+        "Easy setup for many owners (LDLC; Walmart sibling reviews)",
+        "Works with Windows 11 (LDLC)"
+       ]
+      },
+      {
+       "label": "Complaints",
+       "items": [
+        "Wi-Fi setup tedious, repeated for each device (LDLC)",
+        "Bundled setup software old or buggy under Windows 11 (LDLC)",
+        "Wi-Fi network drops now and then (Walmart sibling, HL-L2460DW)",
+        "Slow to wake from sleep (Walmart sibling, HL-L2460DW)",
+        "Duplex not supported under Ubuntu (LDLC)",
+        "Weak documentation and bulky body (LDLC)",
+        "Toner-low warning before the rated page count (ProductReview, one review)"
+       ]
+      },
+      {
+       "p": "5 sources read."
+      }
+     ],
+     "href": "https://www.bestbuy.com/product/brother-hl-l2460dw-wireless-black-and-white-refresh-subscription-eligible-laser-printer-great-for-home-offices-gray/J7CJ3842YR/sku/6569816"
+    },
+    {
+     "label": "Type",
+     "value": "Mono laser printer"
+    },
+    {
+     "label": "Functions",
+     "value": "Print"
+    },
+    {
+     "label": "Size closed (W × D × H)",
+     "value": "35.6 × 36 × 18.3 cm",
+     "href": "https://store.brother.co.uk/catalogs/brotheruk/devices/laser/hl/hll2400dw"
+    },
+    {
+     "label": "Cable space behind",
+     "value": "6.5 cm",
+     "href": "https://bie-p-001-delivery.sitecorecontenthub.cloud/api/public/content/a845c3dc8d544852bdfddd542afe706b?v=5eb0f1c3",
+     "more": [
+      {
+       "p": "The power inlet sits on the flat back strip, so the whole kettle plug and its strain relief stick out behind the printer; the USB port pocket is only about 1.1 cm deep, so the USB plug sticks out too (about 3.3 cm behind the body), but less than the power plug (6.5 cm, matches the 3D model)."
+      }
+     ]
+    },
+    {
+     "label": "Weight",
+     "value": "7.1 kg",
+     "href": "https://www.brother.com.au/-/media/ap2/Australia/Products/Common/Brochures/HL-L2400DW - Brochure.pdf",
+     "note": "with toner and drum (6.0 kg without consumables)"
+    },
+    {
+     "label": "Print speed",
+     "value": "30 pages/min (A4), 32 (Letter)",
+     "href": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-54D4812C-41E7-4CC4-BC10-F386912482D0_1.html"
+    },
+    {
+     "label": "Two-sided printing",
+     "value": "Automatic"
+    },
+    {
+     "label": "Connections",
+     "value": "USB, Wi-Fi, Wi-Fi Direct",
+     "href": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-54D4812C-41E7-4CC4-BC10-F386912482D0_1.html"
+    },
+    {
+     "label": "Paper in",
+     "value": "250 sheets, front paper tray (cassette)",
+     "href": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-54D4812C-41E7-4CC4-BC10-F386912482D0_1.html"
+    },
+    {
+     "label": "Paper out",
+     "value": "150 sheets, top tray, face down (plus 1 sheet face-up through the back cover)"
+    },
+    {
+     "label": "Manual feed",
+     "value": "single-sheet slot behind a fold-down cover above the paper tray"
+    },
+    {
+     "label": "Scanner",
+     "value": "None"
+    },
+    {
+     "label": "Display",
+     "value": "1-line LCD (16 characters) + Wi-Fi LED"
+    },
+    {
+     "label": "Toner",
+     "value": "starter 700 pages; TN-2510 (1,200 pages); TN-2510XL (3,000 pages)",
+     "href": "https://store.brother.co.uk/catalogs/brotheruk/devices/laser/hl/hll2400dw"
+    },
+    {
+     "label": "Drum",
+     "value": "DR-2510 (15,000 pages)"
+    },
+    {
+     "label": "In the box",
+     "value": "Printer with the starter toner (about 700 pages) already in the DR-2510 drum unit, AC power cord (C13 kettle-type, detachable), Quick Setup Guide, Product Safety Guide, warranty card. No USB cable.",
+     "href": "https://www.bug.co.il/brand/brother/mono/laser/printer/hll2400dw",
+     "more": [
+      {
+       "p": "As listed for Israel (Bug listing; matches Brother UK 'carton contents' and the Quick Setup Guide)."
+      },
+      {
+       "p": "Bug: printer, toner, drum ('מחסנית'), power cord, quick setup guide, warranty card; USB cable not included."
+      }
+     ]
+    },
+    {
+     "label": "Price in Israel",
+     "value": "₪613",
+     "href": "https://www.zap.co.il/compmodels.aspx?modelid=1213264",
+     "note": "zap.co.il (Rafaeli, lowest of the listed shops; Bug lists 669) · 2026-11-17"
+    },
+    {
+     "label": "Price international",
+     "value": "$535",
+     "href": "https://www.desertcart.us/products/569901968-brother-hl-l2400dw-mono-laser-printer-single-function-automatic-2",
+     "more": [
+      {
+       "p": "desertcart.us (imported UK-plug unit, duties included)"
+      },
+      {
+       "p": "2026-11-17"
+      },
+      {
+       "p": "Not a US model, so only importers list it in US$. Brother UK store: £133.42 incl. VAT on 2026-11-17."
+      }
+     ]
+    }
+   ],
+   "page_ils": 0.1631,
+   "page_compatible_ils": 0.0704,
+   "windows_rating": "mixed",
+   "forums_rating": "good",
+   "notes": "Same body as the HL-L2445DW without its Ethernet port; 30 instead of 32 pages/min and a smaller 700-page starter toner. Power plug: a straight-on kettle plug on a flat back, so plan about 6-7 cm behind the printer (your rule: flat back = 5-8 cm). The back cover folds down to become a 1-sheet face-up tray; it is only needed for thick paper.",
+   "sources": [
+    "https://bie-p-001-delivery.sitecorecontenthub.cloud/api/public/content/a845c3dc8d544852bdfddd542afe706b?v=5eb0f1c3",
+    "https://store.brother.co.uk/catalogs/brotheruk/devices/laser/hl/hll2400dw",
+    "https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=hll2400dw_eu_as",
+    "https://support.brother.com/g/b/faqend.aspx?c=eu_ot&lang=en&prod=hll2400dwe_eu&faqid=faq00100867_000",
+    "https://support.brother.com/g/b/faqend.aspx?c=nz&lang=en&prod=hll2400dw_eu_as&faqid=faq00100428_014",
+    "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-54D4812C-41E7-4CC4-BC10-F386912482D0_1.html",
+    "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-9BE6EB6D-E57E-4E81-A2E4-2E4205064410_1.html",
+    "https://www.bestbuy.com/product/brother-hl-l2460dw-wireless-black-and-white-refresh-subscription-eligible-laser-printer-great-for-home-offices-gray/J7CJ3842YR/sku/6569816",
+    "https://www.brother.com.au/-/media/ap2/Australia/Products/Common/Brochures/HL-L2400DW - Brochure.pdf",
+    "https://www.brother.com.au/en/support/HL-L2400DW/downloads",
+    "https://www.brother.com.au/en/support/hl-l2400dw/faqs/faq00100484_002",
+    "https://www.bug.co.il/brand/brother/mono/laser/printer/hll2400dw",
+    "https://www.desertcart.us/products/569901968-brother-hl-l2400dw-mono-laser-printer-single-function-automatic-2",
+    "https://www.ldlc.com/en/reviews/PB00577967.html",
+    "https://www.productreview.com.au/listings/brother-hl-l2400dw",
+    "https://www.walmart.com/reviews/product/5302115190",
+    "https://www.zap.co.il/compmodels.aspx?modelid=1213264",
+    "https://www.zap.co.il/compmodels.aspx?modelid=1239395",
+    "https://www.zap.co.il/model.aspx?modelid=1213264",
+    "https://www.zap.co.il/model.aspx?modelid=1224285",
+    "https://www.zap.co.il/model.aspx?modelid=1227206"
+   ],
+   "geom": {
+    "id": "brother-hl-l2400dw",
+    "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+    "nodes": {
+     "body": "brother-hl-l2400dw_body",
+     "cassette": "brother-hl-l2400dw_cassette",
+     "flap": "brother-hl-l2400dw_flap",
+     "cable_power": "brother-hl-l2400dw_cable_power",
+     "cable_usb": "brother-hl-l2400dw_cable_usb"
+    },
+    "parts": {
+     "body": {
+      "node": "brother-hl-l2400dw_body",
+      "kind": "body",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "cassette": {
+      "node": "brother-hl-l2400dw_cassette",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       -0.0015,
+       0.003,
+       0.18
+      ]
+     },
+     "flap": {
+      "node": "brother-hl-l2400dw_flap",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       -0.0015,
+       0.181,
+       0.1635
+      ]
+     },
+     "cable_power": {
+      "node": "brother-hl-l2400dw_cable_power",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "cable_usb": {
+      "node": "brother-hl-l2400dw_cable_usb",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     }
+    },
+    "states": {
+     "printing": [
+      {
+       "part": "flap",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 70.0
+      }
+     ],
+     "refill": [
+      {
+       "part": "cassette",
+       "move": [
+        0.0,
+        0.0,
+        0.27
+       ]
+      }
+     ]
+    },
+    "body_size_cm": [
+     35.63,
+     36.05,
+     18.31
+    ],
+    "envelopes_m": {
+     "closed": {
+      "min": [
+       -0.1782,
+       0.0,
+       -0.18
+      ],
+      "max": [
+       0.178,
+       0.1831,
+       0.1805
+      ]
+     },
+     "printing": {
+      "min": [
+       -0.1782,
+       0.0,
+       -0.18
+      ],
+      "max": [
+       0.178,
+       0.2078,
+       0.1805
+      ]
+     },
+     "refill": {
+      "min": [
+       -0.1782,
+       0.0,
+       -0.18
+      ],
+      "max": [
+       0.178,
+       0.1831,
+       0.45
+      ]
+     }
+    },
+    "cable_back_gap_cm": 6.49,
+    "sockets": [
+     {
+      "part": "cable_power",
+      "kind": "C13v",
+      "x": 16.2,
+      "z": 10.8,
+      "recess": 0.0,
+      "angled": false,
+      "far_y_cm": 24.49
+     },
+     {
+      "part": "cable_usb",
+      "kind": "USB-B",
+      "x": -16.31,
+      "z": 10.4,
+      "recess": 1.1,
+      "angled": false,
+      "far_y_cm": 21.34
+     }
+    ],
+    "triangles": 14148,
+    "glb_mb": 0.65,
+    "notes": [
+     "Shared body of the HL-L2400DW and HL-L2445DW (the 2445DW adds an RJ45 above the USB-B).",
+     "Official width = 35.3 cm body + 0.3 cm louvred vent on the right side; official depth = front panel to the back-cover handle tab."
+    ]
+   },
+   "measured": null
+  },
+  {
+   "id": "pantum-bp2300nw",
+   "name": "Pantum BP2300NW",
+   "brand": "Pantum",
+   "group": "Candidates",
+   "current": false,
+   "type": "Mono laser printer",
+   "has_model": true,
+   "dims_mm": {
+    "closed": {
+     "w": 337,
+     "d": 220,
+     "h": 179,
+     "source": "https://eu.pantum.com/product-center/1752589603319685122.html",
+     "includes": "Body with the front input tray folded up and the top output tray closed (BP2300 series user guide 'product size' 337 x 220 x 179 mm)"
+    },
+    "printing": {
+     "w": 337,
+     "d": 369,
+     "h": 238,
+     "source": "model build",
+     "includes": "front door folded down as the feeder tray (15 cm in front at shelf level) + output flap flipped forward out of the top"
+    },
+    "refill": {
+     "w": 337,
+     "d": 369,
+     "h": 179,
+     "source": "model build",
+     "includes": "front door folded down as the feeder tray; paper is loaded onto it"
+    }
+   },
+   "weight_kg": 4.8,
+   "price_ils": 449,
+   "price_usd": null,
+   "scanner": false,
+   "rows": [
+    {
+     "label": "Notes",
+     "value": "Model done 2026-11-17 (see measurements/MEASUREMENTS.md, Model status)."
+    },
+    {
+     "label": "Cost per page in Israel",
+     "value": "₪0.15 per page",
+     "more": [
+      {
+       "p": "Original TL-A2310H (1,600 pages, ₪248 at Bait HaFax)."
+      }
+     ],
+     "href": "https://www.zap.co.il/model.aspx?modelid=1236711"
+    },
+    {
+     "label": "Cartridge prices",
+     "value": [
+      "TL-A2310H, 1,600 pages: ₪248 at Bait HaFax",
+      "TL-A2310H (compatible), yield not listed: ₪149 at Bait HaFax"
+     ]
+    },
+    {
+     "label": "Compatible cartridges",
+     "value": "Not clear",
+     "more": [
+      {
+       "p": "No Pantum page the research opened says whether the BP2300 family blocks non-genuine toner. Pantum's product page only links to a general 'Consumables Anti-Counterfeiting Identification' page. Compatible toner is sold in Israel, so the cartridge can be replaced by a third party, but whether the printer accepts it is unverified."
+      }
+     ],
+     "href": "https://eu.pantum.com/product-center/1752589603319685122.html"
+    },
+    {
+     "label": "Software on Windows",
+     "value": "Good",
+     "more": [
+      {
+       "p": "The BP2300NW and its relatives install driverless on Windows 8.1 to 11, but the rating rests on the maker page and three press reviews of the BP2300W, with no owner report on Windows found in this pass; reviewers describe a fiddly USB-first Wi-Fi setup."
+      },
+      {
+       "label": "Driver",
+       "p": "Windows 10 and 11 install it without a manual driver (driverless, the driver installs on first connection, per the Inforeco and Adam Lobo pages). Pantum's own BP2300NW page offers a one-step driver download with Windows 11 32/64-bit listed. Adam Lobo reports that a CD driver is included. The Pantum driver download page itself was not opened. Third-party driver databases (Treexy) list BP2300W and BP2300NW IPP entries, but they are not the maker's site and were not used."
+      },
+      {
+       "label": "App required",
+       "p": "optional"
+      },
+      {
+       "label": "Known problems",
+       "items": [
+        "Setup on Windows goes over USB first, and Wi-Fi is configured afterwards (pokde review of the BP2300W: 'a bit of puzzle solving'; no fix found in the reviews)",
+        "The Pantum mobile app finds the printer only when the device is on the same Wi-Fi network (adamlobo, BP2300W; setup note, no fix needed)",
+        "No owner report about Windows offline status, Wi-Fi drops, sleep/wake or forced updates was found for any BP2300 model (absence of reports, not a tested result)"
+       ]
+      }
+     ],
+     "href": "https://eu.pantum.com/product-center/1752589603319685122.html"
+    },
+    {
+     "label": "What owners say",
+     "value": "Not enough evidence",
+     "more": [
+      {
+       "p": "No Reddit thread, Pantum community forum thread, Israeli owner discussion or product review for the BP2300, BP2300W or BP2300NW turned up; the Zap page for the BP2300NW has no product reviews, and the sources read are press reviews and retailer rating summaries, not owner posts."
+      },
+      {
+       "label": "Praise",
+       "items": [
+        "Cheap per page for light use (Pokde, BP2300W: about RM0.12 per page)",
+        "Crisp small text and quick first page (Hitech Century and testberichte.de, BP2300W)",
+        "Easy setup through the mobile app (testberichte.de and Adam Lobo, BP2300W)",
+        "Compact, suited to home or small office (Adam Lobo, BP2300W)",
+        "Amazon.de customer average 4.6 from 69 ratings (shown on testberichte.de, BP2300W; the individual reviews were not read)"
+       ]
+      },
+      {
+       "label": "Complaints",
+       "items": [
+        "Loud when printing (all four press sources, BP2300W)",
+        "Weak on detailed images, with grid or banding lines (Hitech Century, BP2300W)",
+        "No automatic duplex; duplex is manual (Adam Lobo and Hitech Century, BP2300W)",
+        "Drum and toner are one unit that must be replaced together, which raises running cost (Adam Lobo, BP2300W)",
+        "150-sheet input tray may be limiting for high volume (Adam Lobo, BP2300W)"
+       ]
+      },
+      {
+       "p": "5 sources read."
+      }
+     ],
+     "href": "https://pokde.net/review/pantum-bp2300w-review"
+    },
+    {
+     "label": "Type",
+     "value": "Mono laser printer"
+    },
+    {
+     "label": "Functions",
+     "value": "Print"
+    },
+    {
+     "label": "Size closed (W × D × H)",
+     "value": "33.7 × 22 × 17.9 cm",
+     "href": "https://eu.pantum.com/product-center/1752589603319685122.html"
+    },
+    {
+     "label": "Cable space behind",
+     "value": "6.4 cm",
+     "more": [
+      {
+       "p": "Flat back with only shallow socket frames, so the straight C13 mains plug adds to the depth: your 'sticks out' case (5-8 cm)."
+      },
+      {
+       "p": "The build measures 6.4 cm from the back face to the cord bend."
+      }
+     ]
+    },
+    {
+     "label": "Weight",
+     "value": "4.8 kg",
+     "href": "https://eu.pantum.com/product-center/1752589603319685122.html",
+     "note": "without packaging, with the supplied (starter) toner cartridge"
+    },
+    {
+     "label": "Print speed",
+     "value": "22 pages/min (A4), 23 (Letter)",
+     "href": "https://eu.pantum.com/product-center/1752589603319685122.html"
+    },
+    {
+     "label": "Two-sided printing",
+     "value": "Manual (turn the pages yourself)"
+    },
+    {
+     "label": "Connections",
+     "value": "USB, Wi-Fi, Ethernet, Wi-Fi Direct, Bluetooth",
+     "href": "https://eu.pantum.com/product-center/1752589603319685122.html"
+    },
+    {
+     "label": "Paper in",
+     "value": "150 sheets, front fold-down input tray (the lower front panel opens; paper sticks out in front)",
+     "href": "https://eu.pantum.com/product-center/1752589603319685122.html"
+    },
+    {
+     "label": "Paper out",
+     "value": "100 sheets, top output tray"
+    },
+    {
+     "label": "Scanner",
+     "value": "None"
+    },
+    {
+     "label": "Toner",
+     "value": "starter 700 pages; TL-A2310H (TL-2310H) (1,600 pages)",
+     "href": "https://www.payngo.co.il/339568.html"
+    },
+    {
+     "label": "Price in Israel",
+     "value": "₪449",
+     "href": "https://www.payngo.co.il/339568.html",
+     "note": "Pay N Go (Machsanei Chashmal) · 2026-11-17"
+    }
+   ],
+   "page_ils": 0.155,
+   "windows_rating": "good",
+   "forums_rating": "unknown",
+   "notes": "Model done 2026-11-17 (see measurements/MEASUREMENTS.md, Model status).",
+   "sources": [
+    "https://adamlobo.tv/?p=26830",
+    "https://eu.pantum.com/product-center/1752589603319685122.html",
+    "https://hitechcentury.com/?p=87008",
+    "https://pokde.net/review/pantum-bp2300w-review",
+    "https://www.inforeco.com/en/p/BP2300W/pantum-bp2300w-laser-printer",
+    "https://www.payngo.co.il/339568.html",
+    "https://www.testberichte.de/p/pantum-tests/bp2300w-testbericht.html",
+    "https://www.varle.lt/toneriai-lazeriniams-spausdintuvams/pantum-tla2310h-tl-a2310h-lazerine-kasete-juoda--35655635.html",
+    "https://www.zap.co.il/model.aspx?modelid=1236711",
+    "https://www.zap.co.il/ratemodel.aspx?modelid=1229001"
+   ],
+   "geom": {
+    "id": "pantum-bp2300nw",
+    "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+    "nodes": {
+     "body": "pantum-bp2300nw_body",
+     "output_tray": "pantum-bp2300nw_output_tray",
+     "output_stop": "pantum-bp2300nw_output_stop",
+     "input_tray": "pantum-bp2300nw_input_tray",
+     "paper_stop": "pantum-bp2300nw_paper_stop",
+     "paper": "pantum-bp2300nw_paper",
+     "cable_power": "pantum-bp2300nw_cable_power",
+     "cable_eth": "pantum-bp2300nw_cable_eth"
+    },
+    "parts": {
+     "body": {
+      "node": "pantum-bp2300nw_body",
+      "kind": "body",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "output_tray": {
+      "node": "pantum-bp2300nw_output_tray",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.177,
+       0.095
+      ]
+     },
+     "output_stop": {
+      "node": "pantum-bp2300nw_output_stop",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       -0.008,
+       0.1733,
+       -0.041
+      ]
+     },
+     "input_tray": {
+      "node": "pantum-bp2300nw_input_tray",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.004,
+       0.1065
+      ]
+     },
+     "paper_stop": {
+      "node": "pantum-bp2300nw_paper_stop",
+      "kind": "moving",
+      "hidden": true,
+      "pivot_m": null
+     },
+     "paper": {
+      "node": "pantum-bp2300nw_paper",
+      "kind": "detail",
+      "hidden": true,
+      "pivot_m": null
+     },
+     "cable_power": {
+      "node": "pantum-bp2300nw_cable_power",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "cable_eth": {
+      "node": "pantum-bp2300nw_cable_eth",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     }
+    },
+    "states": {
+     "printing": [
+      {
+       "part": "input_tray",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 90.0
+      },
+      {
+       "part": "paper_stop",
+       "show": true
+      },
+      {
+       "part": "paper",
+       "show": true
+      },
+      {
+       "part": "output_tray",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 163.0
+      },
+      {
+       "part": "output_stop",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 253.0
+      },
+      {
+       "part": "output_stop",
+       "move": [
+        0.0,
+        0.047,
+        0.265
+       ]
+      }
+     ],
+     "refill": [
+      {
+       "part": "input_tray",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 90.0
+      },
+      {
+       "part": "paper_stop",
+       "show": true
+      }
+     ]
+    },
+    "body_size_cm": [
+     33.7,
+     22.03,
+     17.93
+    ],
+    "envelopes_m": {
+     "closed": {
+      "min": [
+       -0.1685,
+       0.0,
+       -0.11
+      ],
+      "max": [
+       0.1685,
+       0.1793,
+       0.1103
+      ]
+     },
+     "printing": {
+      "min": [
+       -0.1685,
+       0.0,
+       -0.11
+      ],
+      "max": [
+       0.1685,
+       0.2378,
+       0.2593
+      ]
+     },
+     "refill": {
+      "min": [
+       -0.1685,
+       0.0,
+       -0.11
+      ],
+      "max": [
+       0.1685,
+       0.1793,
+       0.2593
+      ]
+     }
+    },
+    "cable_back_gap_cm": 6.39,
+    "sockets": [
+     {
+      "part": "cable_power",
+      "kind": "C13v",
+      "x": 14.74,
+      "z": 3.1,
+      "recess": 0.5,
+      "angled": false,
+      "far_y_cm": 17.39
+     },
+     {
+      "part": "cable_eth",
+      "kind": "RJ45",
+      "x": 15.5,
+      "z": 12.9,
+      "recess": 0.8,
+      "angled": false,
+      "far_y_cm": 15.09
+     }
+    ],
+    "triangles": 39048,
+    "glb_mb": 1.11,
+    "notes": [
+     "Ports and mains inlet on the back, at the printer's right end (left seen from behind); shallow pockets only (0.8 and 0.5 cm), so the C13 mains plug sticks out ~5 cm before the cable bends: about 6.4 cm between the back and the wall.",
+     "To print, the whole front door folds down as the paper tray (15 cm in front, at shelf level; it must stay open while paper is loaded) and the output flap flips forward out of the top (12 cm in front, 22-24 cm high)."
+    ]
+   },
+   "measured": null
+  },
+  {
+   "id": "hp-laserjet-m110w",
+   "name": "HP LaserJet M110w",
+   "brand": "HP",
+   "group": "Candidates",
+   "current": false,
+   "type": "Mono laser printer",
+   "has_model": true,
+   "dims_mm": {
+    "closed": {
+     "w": 346,
+     "d": 189,
+     "h": 159,
+     "source": "https://ik.imagekit.io/pimberly/595e406f0f15f30010780448/063ed4cc/6720f56d4ce6230011b68539/HP7MD66FB19_TECH.pdf",
+     "includes": "HP 'minimum dimensions': input tray door closed, output extension pushed in. The 189 mm depth is the whole body, back face to front door; nothing on the back sticks out except the plugged-in cables. Some HP sheets round the height to 158 mm (M110we product sheet); the user guide, the EMEA datasheet and HP's 'Built to Fit' image say 159 mm."
+    },
+    "max": {
+     "w": 346,
+     "d": 360,
+     "h": 280,
+     "what": "HP 'maximum dimensions'. The height 280 mm is with the top cover (toner door, hinged at the back) raised, which is only needed to change toner. The user guide's 'printer fully open' table gives D 329.6 mm, H 280.1 mm.",
+     "source": "https://ik.imagekit.io/pimberly/595e406f0f15f30010780448/063ed4cc/6720f56d4ce6230011b68539/HP7MD66FB19_TECH.pdf",
+     "user_guide": "https://inquirecontent2.ingrammicro.com/User-Manual/1081171656.pdf"
+    }
+   },
+   "weight_kg": 3.8,
+   "price_ils": 340,
+   "price_usd": 129.99,
+   "scanner": false,
+   "rows": [
+    {
+     "label": "Notes",
+     "value": "The smallest printer in this comparison: 34.6 x 18.9 x 15.9 cm closed, so it fits the 24.5 cm shelf with room for the cables.",
+     "more": [
+      {
+       "p": "To print, the front door folds down into the paper tray and sticks out about 14 cm in front (HP: about 33-36 cm total depth in use), and the output extension slides out over it. Paper is loaded only in that front tray; nothing opens at the back."
+      },
+      {
+       "p": "Wi-Fi is 2.4 GHz only."
+      }
+     ]
+    },
+    {
+     "label": "Cost per page in Israel",
+     "value": "₪0.21 per page",
+     "more": [
+      {
+       "p": "Original HP 142A (W1420A) (950 pages, ₪204 at PENPALL)."
+      },
+      {
+       "p": "With a compatible cartridge: ₪0.084 per page, HP 142A (W1420A) (950 pages, ₪80 at PENPALL)."
+      }
+     ],
+     "href": "https://www.zap.co.il/fs?pid=1298364072&sog=h-ink&s=0&indicator=10"
+    },
+    {
+     "label": "Cartridge prices",
+     "value": [
+      "HP 142A (W1420A), 950 pages: ₪204 at PENPALL",
+      "HP 142A (W1420A) (compatible), 950 pages: ₪80 at PENPALL"
+     ]
+    },
+    {
+     "label": "Compatible cartridges",
+     "value": "Blocked",
+     "more": [
+      {
+       "p": "Retailer pages for this printer say its dynamic security blocks cartridges with a non-HP chip and that it is meant to work only with new or reused HP chips. Israeli sellers still list compatible 142A cartridges for it at 80 to 330 ILS; whether a given one works is untested, and the castleink page warns that firmware updates are more likely to block non-HP toner."
+      }
+     ],
+     "href": "https://www.arp.nl/shop/hp-laserjet-m110w-printer--4613478--p"
+    },
+    {
+     "label": "Software on Windows",
+     "value": "Mixed",
+     "more": [
+      {
+       "p": "Owners on Windows 10 and 11 print fine once set up, either with HP's app, HP's full software, or the built-in Windows driver over USB, but Wi-Fi setup, offline status and app detection failures recur and several threads end with no confirmed fix."
+      },
+      {
+       "label": "Driver",
+       "p": "HP's full-feature software (a volunteer reply dates it to 24 March 2022) or the basic driver from HP's Windows 11 downloads, and the built-in Windows driver used over USB (reported to work on Windows 11 in 2022). HP Smart is optional, not required."
+      },
+      {
+       "label": "App required",
+       "p": "optional"
+      },
+      {
+       "label": "Known problems",
+       "items": [
+        "Wi-Fi setup fails with error -3 after a network or PC change (fixed by a factory reset and setup on the 2.4 GHz band, after splitting a dual-band router that uses one shared name; thread 9230238)",
+        "HP app cannot detect the printer, shows 'Driver Unavailable' or 'impossible to install' (no confirmed fix; HP replies only give generic steps such as reinstalling the full software and restarting the Print Spooler)",
+        "Setup stalls at the WPS PIN step after the printer appears as DIRECT-1d, with the Wi-Fi light blinking (no answer in thread 9255878)",
+        "Orange attention light blinking and printing stops (suggested fixes: power drain and firmware update, from an HP moderator; no confirmation from the poster; thread 9085573)",
+        "Attention light and a 'Door open' message with the printer closed, and an HP app registration error OW_4XX_OWSWS00001 (HP volunteer suggests removing packaging plastic from inside, then re-doing Wi-Fi setup by video; no confirmed result; thread 9438018)",
+        "M110we only: 'verify account' and 'not connected to internet' Instant Ink account error (no fix in the thread, which asks the poster to send account details privately; thread 8386448)",
+        "M110we only: red light blinking after a genuine HP W1410A toner was not recognised (fixed by a printer reset and reinstall; thread 9645455)"
+       ]
+      }
+     ],
+     "href": "https://h30434.www3.hp.com/t5/Printer-Wireless-Networking-Internet/How-to-install-my-hp-laserjet-M110w/m-p/9184962"
+    },
+    {
+     "label": "What owners say",
+     "value": "Good",
+     "more": [
+      {
+       "p": "Shop ratings are positive (4.3 out of 5 from 175 Best Buy reviews, 4 out of 5 from 14 on zap.co.il), but the review text could not be read, and HP support threads show Wi-Fi setup failures that often end without a fix."
+      },
+      {
+       "label": "Ratings",
+       "items": [
+        "4.3 of 5 from 175 reviews at Best Buy",
+        "4 of 5 from 14 reviews at zap.co.il"
+       ]
+      },
+      {
+       "label": "Praise",
+       "items": [
+        "very compact, the smallest laser printer one owner found (zap, Nov 2025)",
+        "print quality and speed described as good (zap, 2025)",
+        "phone-app setup over Bluetooth was quick, with no HP account needed (zap, Dec 2024, a Linux PC)",
+        "simple to use (zap, 2025)"
+       ]
+      },
+      {
+       "label": "Complaints",
+       "items": [
+        "connection to the computer drops (zap, 2024)",
+        "small, costly toner (zap, 2024)",
+        "paper tray is short and needs several sheets to feed (zap, 2023)",
+        "slow from pressing print to paper (zap, one year of use)",
+        "paper feed unreliable (zap, 2022)",
+        "HP app failed to set up one owner, but a manual install worked (zap, 2023)",
+        "a 2025 owner warns that after using a non-HP cartridge, a firmware update may stop it working (zap, Nov 2025)",
+        "a non-HP cartridge showed 'Err 11 ... non-HP chip' (HP Community thread 9667296; this thread is about the M139w, not the M110w)"
+       ]
+      },
+      {
+       "p": "2 sources read."
+      }
+     ],
+     "href": "https://www.zap.co.il/ratemodel.aspx?modelid=1145765"
+    },
+    {
+     "label": "Type",
+     "value": "Mono laser printer"
+    },
+    {
+     "label": "Functions",
+     "value": "Print"
+    },
+    {
+     "label": "Size closed (W × D × H)",
+     "value": "34.6 × 18.9 × 15.9 cm",
+     "href": "https://ik.imagekit.io/pimberly/595e406f0f15f30010780448/063ed4cc/6720f56d4ce6230011b68539/HP7MD66FB19_TECH.pdf"
+    },
+    {
+     "label": "Size in use (W × D × H)",
+     "value": "34.6 × 36 × 28 cm",
+     "href": "https://ik.imagekit.io/pimberly/595e406f0f15f30010780448/063ed4cc/6720f56d4ce6230011b68539/HP7MD66FB19_TECH.pdf",
+     "more": [
+      {
+       "p": "HP 'maximum dimensions'."
+      },
+      {
+       "p": "The height 280 mm is with the top cover (toner door, hinged at the back) raised, which is only needed to change toner."
+      },
+      {
+       "p": "The user guide's 'printer fully open' table gives D 329.6 mm, H 280.1 mm."
+      }
+     ]
+    },
+    {
+     "label": "Cable space behind",
+     "value": "6.8 cm",
+     "href": "https://hp.widen.net/content/t6mxrp7g8y/png/t6mxrp7g8y.png?w=2048&h=1800 (HP back view) and https://hp.widen.net/content/1wthxa71es/png/1wthxa71es.png?w=2048&h=1800 (rear 3/4)",
+     "more": [
+      {
+       "p": "The power inlet sits flush on a flat back, so the C13 plug (about 3.4 cm) plus its strain relief and the bent cable add about 6.8 cm behind the printer (3D model build: cables reach 6.8 cm); the USB plug is mostly hidden in its 2.5 cm corner pocket and needs only about 2.6 cm."
+      },
+      {
+       "p": "The power plug sets the gap."
+      }
+     ]
+    },
+    {
+     "label": "Weight",
+     "value": "3.8 kg",
+     "href": "https://ik.imagekit.io/pimberly/595e406f0f15f30010780448/063ed4cc/6720f56d4ce6230011b68539/HP7MD66FB19_TECH.pdf",
+     "note": "printer with starter cartridge (user guide: 3.7 kg with cartridges; M110we sheet: ~3.79 kg)"
+    },
+    {
+     "label": "Print speed",
+     "value": "20 pages/min (A4), 21 (Letter)",
+     "href": "https://inquirecontent2.ingrammicro.com/Manufacturer-Brochure/1075752276.pdf"
+    },
+    {
+     "label": "Two-sided printing",
+     "value": "Manual (turn the pages yourself)"
+    },
+    {
+     "label": "Connections",
+     "value": "USB, Wi-Fi, Wi-Fi Direct, Bluetooth",
+     "href": "https://ik.imagekit.io/pimberly/595e406f0f15f30010780448/063ed4cc/6720f56d4ce6230011b68539/HP7MD66FB19_TECH.pdf"
+    },
+    {
+     "label": "Paper in",
+     "value": "150 sheets, fold-down front tray (the front door)",
+     "href": "https://www.hp.com/au-en/shop/business-printer/hp-laserjet-m110w-printer-7md66f.html"
+    },
+    {
+     "label": "Paper out",
+     "value": "100 sheets, top bin with pull-out extension"
+    },
+    {
+     "label": "Manual feed",
+     "value": "none (envelopes and labels go in the same front tray)"
+    },
+    {
+     "label": "Scanner",
+     "value": "None"
+    },
+    {
+     "label": "Display",
+     "value": "No screen: 3 LEDs (Attention, Ready, Wireless) and 3 buttons (Power, Cancel, Wireless)"
+    },
+    {
+     "label": "Toner",
+     "value": "starter 300 pages; HP 142A (W1420A) (950 pages)",
+     "href": "https://ik.imagekit.io/pimberly/595e406f0f15f30010780448/063ed4cc/6720f56d4ce6230011b68539/HP7MD66FB19_TECH.pdf"
+    },
+    {
+     "label": "In the box",
+     "value": "Printer, power cord (C13), starter toner cartridge (~300 pages), setup poster, reference guide, warranty guide, flyer. No USB cable. No CD (software is downloaded).",
+     "href": "https://ik.imagekit.io/pimberly/595e406f0f15f30010780448/063ed4cc/6720f56d4ce6230011b68539/HP7MD66FB19_TECH.pdf",
+     "more": [
+      {
+       "p": "As listed for Europe/Middle East datasheet (7MD66F, 220-240 V); Israeli shops confirm 'comes without a USB cable'."
+      },
+      {
+       "p": "Kravitz's Israeli listing claims a 700-page starter toner; HP's own datasheets say 300 pages."
+      },
+      {
+       "p": "Warranty in Israel: 1 year through the official importers (Techno Retzef / C-Data)."
+      }
+     ]
+    },
+    {
+     "label": "Price in Israel",
+     "value": "₪340",
+     "href": "https://www.kravitz.co.il/products/%D7%9E%D7%93%D7%A4%D7%A1%D7%AA-%D7%9C%D7%99%D7%99%D7%96%D7%A8-hp-laserjet-m110w?variant=47236518478120",
+     "more": [
+      {
+       "p": "Kravitz (official importer stock), cheapest of 37 shops on zap.co.il"
+      },
+      {
+       "p": "2026-11-17"
+      },
+      {
+       "p": "7MD66F (M110w). zap.co.il range 340-634 ILS: https://www.zap.co.il/model.aspx?modelid=1145765"
+      }
+     ]
+    },
+    {
+     "label": "Price international",
+     "value": "$130",
+     "href": "https://Microcenter.Com/quickView/642964/hp-laserjet-m110w-wireless-black-white-printer",
+     "more": [
+      {
+       "p": "Micro Center (7MD66F#BGJ, $20 off $149.99, store pickup)"
+      },
+      {
+       "p": "2026-11-17"
+      },
+      {
+       "p": "Online elsewhere: Staples $168.90, Office Depot $169.00, Best Buy $169.99 (M110w 7MD66F#BGJ)"
+      }
+     ]
+    },
+    {
+     "label": "HP+",
+     "value": "M110we (7MD66E) is the HP+ version: needs an HP account and a permanent internet connection, and works only with original HP toner for the life of the printer; in return it adds an extra year of HP warranty and an Instant Ink trial (6 months in the US). The plain M110w (7MD66F, sold in Israel) has none of these requirements (1-year warranty) but is still 'dynamic security enabled': cartridges need an HP chip (new or reused). Same body and size.",
+     "href": "https://www.hp.com/us-en/shop/pdp/hp-laserjet-m110we-printer"
+    }
+   ],
+   "page_ils": 0.2147,
+   "page_compatible_ils": 0.0842,
+   "windows_rating": "mixed",
+   "forums_rating": "good",
+   "notes": "The smallest printer in this comparison: 34.6 x 18.9 x 15.9 cm closed, so it fits the 24.5 cm shelf with room for the cables. To print, the front door folds down into the paper tray and sticks out about 14 cm in front (HP: about 33-36 cm total depth in use), and the output extension slides out over it. Paper is loaded only in that front tray; nothing opens at the back. Wi-Fi is 2.4 GHz only.",
+   "sources": [
+    "https://Microcenter.Com/quickView/642964/hp-laserjet-m110w-wireless-black-white-printer",
+    "https://h30434.www3.hp.com/t5/HP-Instant-Ink/HP-LaserJet-M110w-red-light-blinking-instant-ink-cancelled/m-p/9645455",
+    "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Driver-Unavailable/m-p/9229361",
+    "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/HP-Laser-Jet-M110w-setup/td-p/9255878",
+    "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Laserjet-M110w-problem-verify-account/td-p/8386448",
+    "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/M110w-USB-Connection-HP-Smart-not-needed/m-p/8462925",
+    "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/Unable-to-re-set-up-M110W/m-p/9230238",
+    "https://h30434.www3.hp.com/t5/Printer-Setup-Software-Drivers/impossible-to-install-the-printer-HP-laserjet-M110w/m-p/9170992",
+    "https://h30434.www3.hp.com/t5/Printer-Wireless-Networking-Internet/How-to-install-my-hp-laserjet-M110w/m-p/9184962",
+    "https://h30434.www3.hp.com/t5/Printing-Errors-or-Lights-Stuck-Print-Jobs/Attention-Light-Blinking/m-p/9438018",
+    "https://h30434.www3.hp.com/t5/Printing-Errors-or-Lights-Stuck-Print-Jobs/Printer-Stopped-Working-and-Orange-Light-Blinking-on-M110w/m-p/9085573",
+    "https://hp.widen.net/content/t6mxrp7g8y/png/t6mxrp7g8y.png?w=2048&h=1800 (HP back view) and https://hp.widen.net/content/1wthxa71es/png/1wthxa71es.png?w=2048&h=1800 (rear 3/4)",
+    "https://ik.imagekit.io/pimberly/595e406f0f15f30010780448/063ed4cc/6720f56d4ce6230011b68539/HP7MD66FB19_TECH.pdf",
+    "https://inquirecontent2.ingrammicro.com/Manufacturer-Brochure/1075752276.pdf",
+    "https://www.arp.nl/shop/hp-laserjet-m110w-printer--4613478--p",
+    "https://www.bestbuy.com/product/hp-laserjet-m110w-wireless-ai-enabled-black-and-white-laser-printer-white/JJ8FCTWLXK/sku/6501168",
+    "https://www.cartridgesave.co.uk/toner-cartridges/HP/LaserJet-M110w.html",
+    "https://www.hp.com/au-en/shop/business-printer/hp-laserjet-m110w-printer-7md66f.html",
+    "https://www.hp.com/us-en/shop/pdp/hp-laserjet-m110we-printer",
+    "https://www.kravitz.co.il/products/%D7%9E%D7%93%D7%A4%D7%A1%D7%AA-%D7%9C%D7%99%D7%99%D7%96%D7%A8-hp-laserjet-m110w?variant=47236518478120",
+    "https://www.lambda-tek.com/HP-W1420A-shUS/B46231292?viewSpec=y",
+    "https://www.zap.co.il/fs?pid=1298364072&sog=h-ink&s=0&indicator=10",
+    "https://www.zap.co.il/fs?pid=1427479199&sog=h-ink&s=0&indicator=10",
+    "https://www.zap.co.il/ratemodel.aspx?modelid=1145765"
+   ],
+   "geom": {
+    "id": "hp-laserjet-m110w",
+    "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+    "nodes": {
+     "body": "hp-laserjet-m110w_body",
+     "input_tray": "hp-laserjet-m110w_input_tray",
+     "tray_ext": "hp-laserjet-m110w_tray_ext",
+     "paper": "hp-laserjet-m110w_paper",
+     "support": "hp-laserjet-m110w_support",
+     "cable_power": "hp-laserjet-m110w_cable_power",
+     "cable_usb": "hp-laserjet-m110w_cable_usb"
+    },
+    "parts": {
+     "body": {
+      "node": "hp-laserjet-m110w_body",
+      "kind": "body",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "input_tray": {
+      "node": "hp-laserjet-m110w_input_tray",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.009,
+       0.0892
+      ]
+     },
+     "tray_ext": {
+      "node": "hp-laserjet-m110w_tray_ext",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.009,
+       0.0892
+      ]
+     },
+     "paper": {
+      "node": "hp-laserjet-m110w_paper",
+      "kind": "moving",
+      "hidden": true,
+      "pivot_m": null
+     },
+     "support": {
+      "node": "hp-laserjet-m110w_support",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.1388,
+       0.087
+      ]
+     },
+     "cable_power": {
+      "node": "hp-laserjet-m110w_cable_power",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "cable_usb": {
+      "node": "hp-laserjet-m110w_cable_usb",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     }
+    },
+    "states": {
+     "printing": [
+      {
+       "part": "input_tray",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 90.0
+      },
+      {
+       "part": "tray_ext",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 90.0
+      },
+      {
+       "part": "tray_ext",
+       "move": [
+        0.0,
+        0.0,
+        0.0285
+       ]
+      },
+      {
+       "part": "paper",
+       "show": true
+      },
+      {
+       "part": "support",
+       "move": [
+        0.0,
+        0.0076,
+        0.0987
+       ]
+      }
+     ],
+     "refill": [
+      {
+       "part": "input_tray",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 90.0
+      },
+      {
+       "part": "tray_ext",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 90.0
+      },
+      {
+       "part": "tray_ext",
+       "move": [
+        0.0,
+        0.0,
+        0.0285
+       ]
+      },
+      {
+       "part": "paper",
+       "show": true
+      }
+     ]
+    },
+    "body_size_cm": [
+     34.6,
+     18.9,
+     15.9
+    ],
+    "envelopes_m": {
+     "closed": {
+      "min": [
+       -0.173,
+       0.0,
+       -0.0945
+      ],
+      "max": [
+       0.173,
+       0.159,
+       0.0945
+      ]
+     },
+     "printing": {
+      "min": [
+       -0.173,
+       0.0,
+       -0.0945
+      ],
+      "max": [
+       0.173,
+       0.159,
+       0.235
+      ]
+     },
+     "refill": {
+      "min": [
+       -0.173,
+       0.0,
+       -0.0945
+      ],
+      "max": [
+       0.173,
+       0.159,
+       0.235
+      ]
+     }
+    },
+    "cable_back_gap_cm": 6.81,
+    "sockets": [
+     {
+      "part": "cable_power",
+      "kind": "C13v",
+      "x": -13.94,
+      "z": 2.99,
+      "recess": 0.08000000000000007,
+      "angled": false,
+      "far_y_cm": 16.26
+     },
+     {
+      "part": "cable_usb",
+      "kind": "USB-B",
+      "x": -14.65,
+      "z": 10.2,
+      "recess": 2.58,
+      "angled": false,
+      "far_y_cm": 12.21
+     }
+    ],
+    "triangles": 18254,
+    "glb_mb": 0.57,
+    "notes": [
+     "Power inlet (C14, turned 90 deg) is flush on the flat back: the C13 plug and its strain relief stick straight out. USB-B sits in a 2.5 cm deep corner pocket; no Ethernet.",
+     "It cannot print closed: the front door folds down into the paper tray (11.2 cm in front), the tray extension adds 2.85 cm (33.0 cm deep in total, HP user guide: 32.96 cm) and the grey output extension slides out about 10 cm over it. HP's datasheet maximum is 36.0 cm.",
+     "The top cover (toner door) lifts to 28 cm for toner changes only; not modelled as a state."
+    ]
+   },
+   "measured": null
+  },
+  {
+   "id": "xerox-b230",
+   "name": "Xerox B230",
+   "brand": "Xerox",
+   "group": "Candidates",
+   "current": false,
+   "type": "Mono laser printer",
+   "has_model": true,
+   "dims_mm": {
+    "closed": {
+     "w": 355,
+     "d": 333,
+     "h": 232,
+     "source": "https://office.xerox.com/latest/B23BR-01E.PDF",
+     "includes": "Xerox datasheet H x W x D = 232 x 355 x 333 mm. The 232 mm height includes the raised control-panel (LCD) wedge; the main top surface is at 216 mm (Xerox dimension graphic 216 x 356 x 333 mm, same as the Lexmark B2236dw's 215 mm). Depth is the closed body with the tray at Letter length and the paper stop folded; with A4 paper the tray pokes out of the back by about 1-2 cm behind a dust flap (ITPro).",
+     "alt_sources": [
+      "https://www.office.xerox.com/assets/images/brand_engine/products/hardware/B230/xerox-B230-Dimensions_800x450.jpg",
+      "https://office.xerox.com/latest/B23BR-01U.PDF",
+      "https://www.lexmark.com/en_gb/printer/14204/Lexmark-B2236dw"
+     ]
+    }
+   },
+   "weight_kg": 6.8,
+   "price_ils": 534,
+   "price_usd": 159.99,
+   "scanner": false,
+   "rows": [
+    {
+     "label": "Notes",
+     "value": "Model done (see measurements/MEASUREMENTS.md, Model status).",
+     "more": [
+      {
+       "p": "Height 232 mm is the overall height with the LCD pod; the top cover is at 216 mm (Xerox dimension graphic)."
+      }
+     ]
+    },
+    {
+     "label": "Cost per page in Israel",
+     "value": "₪0.10 per page",
+     "more": [
+      {
+       "p": "Original 006R04403 (006R04400 in the US and UK) (3,000 pages, ₪236 at PENPALL) plus drum 013R00691 (12,000 pages, ₪315 at Dio Ink)."
+      },
+      {
+       "p": "With a compatible cartridge: ₪0.078 per page, 006R04403 (3,000 pages, ₪154 at Beit HaFax)."
+      }
+     ],
+     "href": "https://www.zap.co.il/model.aspx?modelid=1146837"
+    },
+    {
+     "label": "Cost per page international",
+     "value": "$0.050 per page",
+     "more": [
+      {
+       "p": "Original 006R04403 (006R04400 in the US and UK) (3,000 pages, $125 at Xerox Shop) plus drum 013R00691 (12,000 pages, $97 at Xerox Shop)."
+      }
+     ],
+     "href": "https://www.shop.xerox.com/006r04400"
+    },
+    {
+     "label": "Cartridge prices",
+     "value": [
+      "006R04399, 1,200 pages: $64 at Xerox Shop",
+      "006R04403 (006R04400 in the US and UK), 3,000 pages: ₪236 at PENPALL; $125 at Xerox Shop",
+      "006R04403 (compatible), 3,000 pages: ₪154 at Beit HaFax",
+      "013R00691, 12,000 pages: ₪315 at Dio Ink; $97 at Xerox Shop",
+      "013R00691 (compatible), 12,000 pages: ₪100 at PENPALL"
+     ]
+    },
+    {
+     "label": "Compatible cartridges",
+     "value": "Allowed, with warnings",
+     "more": [
+      {
+       "p": "No report found that firmware blocks third-party toner on the B230 itself. A Xerox B235 service manual (sibling model on the same platform) describes a 'non-Xerox supply detected' warning that can be bypassed by a key sequence; this is a search excerpt, not a page the research could open. One Xerox.ca owner blames a chip for blocking cheaper cartridges (single anecdote)."
+      }
+     ],
+     "href": "https://manualshive.com/en/manual/xerox/b235/3682283?page=261"
+    },
+    {
+     "label": "Software on Windows",
+     "value": "Mixed",
+     "more": [
+      {
+       "p": "Xerox publishes Windows 10 and 11 drivers and the built-in IPP driver works, but owners and one reviewer report Wi-Fi setup trouble on the small screen and a setup failure with Xerox's recommended print system; the Xerox Support Community (the place where Windows setup threads would be) is behind a login, so no thread was read."
+      },
+      {
+       "label": "Driver",
+       "p": "Xerox full driver packages from support.xerox.com: PCL6 V4 7.249.0.0 (Jan 2022, lists Windows 10 x64 and Windows 11) and generic PPD 5.810.0.0 (Jul 2021, lists Windows 10 and 11, no Windows on ARM). Windows 11 also offers the inbox Microsoft IPP class driver. Xerox says newer devices are no longer added to its Global Print Driver."
+      },
+      {
+       "label": "App required",
+       "p": "optional"
+      },
+      {
+       "label": "Known problems",
+       "items": [
+        "ITPro reviewer: Xerox software failed with the recommended Type 4 Print System; Type 3 worked (fixed by using Type 3 in the one test; no Xerox fix found)",
+        "Wi-Fi password is hard to enter on the small LCD, at least during first setup (no fix found; Walmart listing says Xerox Smart Start gives 'easy Wi-Fi setup', which owners dispute)",
+        "Reports of Wi-Fi disconnects and having to re-enter passwords (one comparison article; no fix found)",
+        "Unofficial help sites describe 'offline' status after Wi-Fi setup (not confirmed for B230; no fix found)"
+       ]
+      }
+     ],
+     "href": "https://support.xerox.com/en-ae/product/xerox-b230-printer/content/154256"
+    },
+    {
+     "label": "What owners say",
+     "value": "Mixed",
+     "more": [
+      {
+       "p": "Shop ratings are mostly positive (Walmart 4.3 out of 5 from 44 ratings), and owners praise reliability, wireless and two-sided printing, but recurring complaints about Wi-Fi setup and expensive toner and drum, plus one very costly support case, keep it at mixed."
+      },
+      {
+       "label": "Ratings",
+       "items": [
+        "4.3 of 5 from 44 reviews at Walmart"
+       ]
+      },
+      {
+       "label": "Praise",
+       "items": [
+        "Reliable, few problems (switchers from HP say so)",
+        "Wireless and phone printing work well",
+        "Two-sided printing",
+        "No subscription; Linux and Chromebook support",
+        "Toner lasts a long time",
+        "Good print quality once toner darkness is raised"
+       ]
+      },
+      {
+       "label": "Complaints",
+       "items": [
+        "Wi-Fi password setup hard on the small screen",
+        "Wi-Fi connection problems, some owners want Ethernet",
+        "Expensive replacement toner and drum",
+        "One reviewer cites 260 USD of tech support to get it working (same review twice; top review on xerox.com)",
+        "Paper feed pulls several sheets at once and jams at the back (one review)",
+        "Prints a scanner report several times a day with no way to stop it (one review)",
+        "Starter toner rated only about 750 pages in one report"
+       ]
+      },
+      {
+       "p": "7 sources read."
+      }
+     ],
+     "href": "https://www.walmart.com/ip/Xerox-B230-DNI-Monochrome-Laser-Printer-Up-to-36PPM-Wireless/190110253"
+    },
+    {
+     "label": "Type",
+     "value": "Mono laser printer"
+    },
+    {
+     "label": "Functions",
+     "value": "Print"
+    },
+    {
+     "label": "Size closed (W × D × H)",
+     "value": "35.5 × 33.3 × 23.2 cm",
+     "href": "https://office.xerox.com/latest/B23BR-01E.PDF"
+    },
+    {
+     "label": "Cable space behind",
+     "value": "3.3 cm",
+     "more": [
+      {
+       "p": "Both notches are cut into the rounded rear-left corner and open to the back and the side (real photo 12_back_ports_real)."
+      },
+      {
+       "p": "The plug bodies fit inside, so this is close to your 'recessed' case, but the kettle plug's strain relief still sticks out about 2.2 cm and the cable needs a bend: 3.3 cm in the 3D model (power), 1.9 cm for Ethernet."
+      },
+      {
+       "p": "An angled (right-angle) C13 cord would bring it to about 1.5-2 cm."
+      }
+     ]
+    },
+    {
+     "label": "Weight",
+     "value": "6.8 kg",
+     "href": "https://office.xerox.com/latest/B23BR-01E.PDF",
+     "note": "printer as specified by Xerox (15 lb)"
+    },
+    {
+     "label": "Print speed",
+     "value": "34 pages/min (A4), 36 (Letter)",
+     "href": "https://office.xerox.com/latest/B23BR-01U.PDF"
+    },
+    {
+     "label": "Two-sided printing",
+     "value": "Automatic"
+    },
+    {
+     "label": "Connections",
+     "value": "USB, Wi-Fi, Ethernet, Wi-Fi Direct",
+     "href": "https://office.xerox.com/latest/B23BR-01E.PDF"
+    },
+    {
+     "label": "Paper in",
+     "value": "250 sheets, front cassette (A4 length makes it poke out of the back under a dust flap)",
+     "href": "https://office.xerox.com/latest/B23BR-01E.PDF"
+    },
+    {
+     "label": "Paper out",
+     "value": "150 sheets, top tray, face down, with fold-up paper stop"
+    },
+    {
+     "label": "Manual feed",
+     "value": "single-sheet slot behind a flap in the front door"
+    },
+    {
+     "label": "Scanner",
+     "value": "None"
+    },
+    {
+     "label": "Display",
+     "value": "2-line monochrome LCD with a 4-way pad, OK, Back, Home, Menu and Stop buttons"
+    },
+    {
+     "label": "Toner",
+     "value": "starter 1,200 pages; 006R04399 (1,200 pages); 006R04400 (3,000 pages)",
+     "href": "https://office.xerox.com/latest/B23BR-01E.PDF"
+    },
+    {
+     "label": "Drum",
+     "value": "013R00691 (12,000 pages)"
+    },
+    {
+     "label": "In the box",
+     "value": "printer; pre-installed starter toner (1,200 pages) and imaging unit; power cord; Software and Documentation CD (drivers, user guide, safety/regulatory/recycling, warranty); installation guide with product safety sheet; quick use guide. No USB or network cable.",
+     "href": "https://office.xerox.com/latest/B23BR-01E.PDF",
+     "more": [
+      {
+       "p": "As listed for Europe/international datasheet (B230V_DNI, the variant sold in Israel); no Israeli listing with a box list found."
+      },
+      {
+       "p": "US B230/DNI box is the same but with a ~700-page starter toner (Staples, Xerox US datasheet)"
+      }
+     ]
+    },
+    {
+     "label": "Price in Israel",
+     "value": "₪534",
+     "href": "https://www.zap.co.il/model.aspx?modelid=1202734",
+     "note": "Rikotek via Zap (incl. 35 ILS shipping; cheapest of 22 shops, range 534-1,044) · 2026-11-17"
+    },
+    {
+     "label": "Price international",
+     "value": "$160",
+     "href": "https://www.adorama.com/vdpxeb230dni.html",
+     "note": "Adorama (also sold by Adorama on Best Buy marketplace); Xerox store/Staples $189.99 · 2026-11-17"
+    }
+   ],
+   "page_ils": 0.1049,
+   "page_compatible_ils": 0.0776,
+   "page_usd": 0.0497,
+   "windows_rating": "mixed",
+   "forums_rating": "mixed",
+   "notes": "Model done (see measurements/MEASUREMENTS.md, Model status). Height 232 mm is the overall height with the LCD pod; the top cover is at 216 mm (Xerox dimension graphic).",
+   "sources": [
+    "https://manualshive.com/en/manual/xerox/b235/3682283?page=261",
+    "https://office.xerox.com/latest/B23BR-01E.PDF",
+    "https://office.xerox.com/latest/B23BR-01U.PDF",
+    "https://support.xerox.com/en-ae/product/xerox-b230-printer/content/154256",
+    "https://support.xerox.com/en-us/product/xerox-b230-printer/content/152267",
+    "https://www.adorama.com/vdpxeb230dni.html",
+    "https://www.bestbuy.com/product/xerox-b230-dni-monochrome-laser-printer-monochrome/J7QRFVVPZY/sku/12639751/reviews",
+    "https://www.itpro.com/hardware/peripherals/367506/xerox-b230-review-a-value-conscious-workhorse",
+    "https://www.print-technology.com/best-laser-printers-with-cheap-toner/",
+    "https://www.shop.xerox.com/006r04399",
+    "https://www.shop.xerox.com/006r04400",
+    "https://www.shop.xerox.com/013r00691",
+    "https://www.walmart.com/ip/Xerox-B230-DNI-Monochrome-Laser-Printer-Up-to-36PPM-Wireless/190110253",
+    "https://www.xerox.ca/en-ca/office/printers/xerox-b230-printer/reviews?page=2",
+    "https://www.xerox.co.uk/en-gb/office/printers/xerox-b230-printer/supplies",
+    "https://www.xerox.com/en-us/office/printers/xerox-b230-printer/reviews",
+    "https://www.zap.co.il/fs?pid=1215180067&sog=h-ink&s=0&indicator=10",
+    "https://www.zap.co.il/fs?pid=1447041979&sog=h-ink&s=0&indicator=10",
+    "https://www.zap.co.il/model.aspx?modelid=1146837",
+    "https://www.zap.co.il/model.aspx?modelid=1202734",
+    "https://www.zap.co.il/ratemodel.aspx?modelid=1202734"
+   ],
+   "geom": {
+    "id": "xerox-b230",
+    "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+    "nodes": {
+     "body": "xerox-b230_body",
+     "cassette": "xerox-b230_cassette",
+     "flap": "xerox-b230_flap",
+     "cable_power": "xerox-b230_cable_power",
+     "cable_eth": "xerox-b230_cable_eth"
+    },
+    "parts": {
+     "body": {
+      "node": "xerox-b230_body",
+      "kind": "body",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "cassette": {
+      "node": "xerox-b230_cassette",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.0025,
+       0.1665
+      ]
+     },
+     "flap": {
+      "node": "xerox-b230_flap",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       -0.004,
+       0.2147,
+       0.1538
+      ]
+     },
+     "cable_power": {
+      "node": "xerox-b230_cable_power",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "cable_eth": {
+      "node": "xerox-b230_cable_eth",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     }
+    },
+    "states": {
+     "printing": [
+      {
+       "part": "flap",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 100.0
+      }
+     ],
+     "refill": [
+      {
+       "part": "cassette",
+       "move": [
+        0.0,
+        0.0,
+        0.26
+       ]
+      }
+     ]
+    },
+    "body_size_cm": [
+     35.5,
+     33.4,
+     23.14
+    ],
+    "envelopes_m": {
+     "closed": {
+      "min": [
+       -0.1775,
+       0.0,
+       -0.1665
+      ],
+      "max": [
+       0.1775,
+       0.2314,
+       0.1675
+      ]
+     },
+     "printing": {
+      "min": [
+       -0.1775,
+       0.0,
+       -0.1665
+      ],
+      "max": [
+       0.1775,
+       0.2791,
+       0.1675
+      ]
+     },
+     "refill": {
+      "min": [
+       -0.1775,
+       0.0,
+       -0.1665
+      ],
+      "max": [
+       0.1775,
+       0.2314,
+       0.4267
+      ]
+     }
+    },
+    "cable_back_gap_cm": 3.29,
+    "sockets": [
+     {
+      "part": "cable_power",
+      "kind": "C13v",
+      "x": -15.3,
+      "z": 4.35,
+      "recess": 3.6,
+      "angled": false,
+      "far_y_cm": 19.94
+     },
+     {
+      "part": "cable_eth",
+      "kind": "RJ45",
+      "x": -16.56,
+      "z": 16.5,
+      "recess": 3.0,
+      "angled": false,
+      "far_y_cm": 18.54
+     }
+    ],
+    "triangles": 15430,
+    "glb_mb": 0.64,
+    "notes": [
+     "Height 23.2 cm includes the raised LCD pod; the top cover itself is 21.6 cm (216 mm).",
+     "Power inlet and data ports sit in two notches cut into the rounded rear corner on the left side (seen from the front), open to the back and the side, about 3.6 cm (power) and 3.0 cm (Ethernet/USB) deep (real photo 12_back_ports_real). The C13 plug body fits inside; only its strain relief and the bent cable stick out behind the printer.",
+     "With A4 (or Legal) paper the tray extends out of the back at the bottom centre under a dust cover (ITPro; real photo 11_back34_real). About 2 cm for A4, more for Legal; not modelled."
+    ]
+   },
+   "measured": null
+  },
+  {
+   "id": "xerox-b110",
+   "name": "Xerox B110",
+   "brand": "Xerox",
+   "group": "Candidates",
+   "current": false,
+   "type": "Mono laser printer",
+   "has_model": true,
+   "dims_mm": {
+    "closed": {
+     "w": 331,
+     "d": 215,
+     "h": 188,
+     "source": "https://www.xerox.com/technical_product_documentation/B110_Printer/User_Guide/en-US/Xerox/Xerox/0001612344.html",
+     "includes": "Body with Tray 1 (the fold-down front paper tray) closed and the output support folded flat. The B110 user guide gives 'width x depth x height 331 x 215 x 188 mm'. The plugs on the back are not included."
+    }
+   },
+   "weight_kg": 4.1,
+   "price_ils": 410,
+   "price_usd": 103,
+   "scanner": false,
+   "rows": [
+    {
+     "label": "Notes",
+     "value": "WORK IN PROGRESS"
+    },
+    {
+     "label": "Cost per page in Israel",
+     "value": "₪0.16 per page",
+     "more": [
+      {
+       "p": "Original 006R04962 (1,500 pages, ₪246 at Toner Supply)."
+      }
+     ],
+     "href": "https://www.zap.co.il/fs?pid=1388759187&sog=h-ink&indicator=20"
+    },
+    {
+     "label": "Cartridge prices",
+     "value": [
+      "006R04962, 1,500 pages: ₪246 at Toner Supply"
+     ]
+    },
+    {
+     "label": "Compatible cartridges",
+     "value": "Not clear",
+     "more": [
+      {
+       "p": "No B110-specific statement found, and no B110 firmware or chip-block report was found. Xerox's support article for the B215 (a sibling model, not the B110) says other toner 'may affect print quality, product reliability and are not supported' and triggers a cartridge error."
+      }
+     ],
+     "href": "https://www.support.xerox.com/en-us/article/en/2109260"
+    },
+    {
+     "label": "Software on Windows",
+     "value": "Not enough evidence",
+     "more": [
+      {
+       "p": "Xerox publishes a Windows 10 and 11 driver package for the B110, but no owner report about the B110 on Windows was found in the support forum (login wall), shop pages or search results, so its real-world behaviour cannot be rated."
+      },
+      {
+       "label": "Driver",
+       "p": "Xerox full driver package: Xerox_B110_Windows_Software_Installer-Package.exe, 138 MB, from Xerox support. It contains the B110 print driver 3.12.38.03, Easy Print Manager 2.0.01.59 and Easy Wireless Setup 3.70.18.1. The Xerox page lists a Windows 11 option and a 'Windows 11 ARM64' option, but does not confirm which file applies to ARM64. Not checked: whether Windows' built-in or IPP class driver works without this package."
+      },
+      {
+       "label": "App required",
+       "p": "optional"
+      }
+     ],
+     "href": "https://www.xerox.co.uk/en-gb/office/printers/xerox-b110-printer/specifications"
+    },
+    {
+     "label": "What owners say",
+     "value": "Not enough evidence",
+     "more": [
+      {
+       "p": "Only one page with owner opinions on the B110 was found (a summary of 118 Amazon.de reviews, read in the first pass); the Xerox support forum is behind a login, Zap Israel has no product reviews for the B110, and no B110 printer turned up in Walmart or the first visible Best Buy results."
+      },
+      {
+       "label": "Praise",
+       "items": [
+        "Easy to use",
+        "Compact design",
+        "Good print quality for text documents",
+        "Supports WLAN and Apple AirPrint"
+       ]
+      },
+      {
+       "label": "Complaints",
+       "items": [
+        "No scan, copy or fax functions",
+        "No automatic duplex printing",
+        "No LAN connection",
+        "Relatively high power consumption while printing"
+       ]
+      },
+      {
+       "p": "1 sources read."
+      }
+     ],
+     "href": "https://www.testberichte.de/p/xerox-tests/b110-testbericht.html"
+    },
+    {
+     "label": "Type",
+     "value": "Mono laser printer"
+    },
+    {
+     "label": "Functions",
+     "value": "Print"
+    },
+    {
+     "label": "Size closed (W × D × H)",
+     "value": "33.1 × 21.5 × 18.8 cm",
+     "href": "https://www.xerox.com/technical_product_documentation/B110_Printer/User_Guide/en-US/Xerox/Xerox/0001612344.html"
+    },
+    {
+     "label": "Cable space behind",
+     "value": "4.8 cm",
+     "href": "https://www.youtube.com/watch?v=TBWYSYjeE0I (89-94 s) and https://www.xerox.com/technical_product_documentation/B110_Printer/User_Guide/en-US/Xerox/Xerox/0001612675.html",
+     "more": [
+      {
+       "p": "Both sockets sit on a nearly flat strip at the back corner, set in only about half a centimetre, so the plug bodies stick out behind the printer (flat back under your rule)."
+      },
+      {
+       "p": "With the cables squashed against the wall the C7 power plug reaches 4.8 cm and the USB-B plug 4.6 cm behind the back (model build)."
+      },
+      {
+       "p": "Short plugs, so this is at the low end of the 5-8 cm flat-back range."
+      }
+     ]
+    },
+    {
+     "label": "Weight",
+     "value": "4.1 kg",
+     "href": "https://www.xerox.co.uk/en-gb/office/printers/xerox-b110-printer/specifications",
+     "note": "Xerox datasheet and product page; the B110 user guide gives 3.37 kg net with consumables"
+    },
+    {
+     "label": "Print speed",
+     "value": "20 pages/min (A4), 21 (Letter)",
+     "href": "https://www.xerox.co.uk/office/latest/B10BR-01E.PDF"
+    },
+    {
+     "label": "Two-sided printing",
+     "value": "Manual (turn the pages yourself)"
+    },
+    {
+     "label": "Connections",
+     "value": "USB, Wi-Fi, Wi-Fi Direct",
+     "href": "https://www.xerox.co.uk/en-gb/office/printers/xerox-b110-printer/specifications"
+    },
+    {
+     "label": "Paper in",
+     "value": "150 sheets, front tray that folds down; it stays open with the paper sticking out while printing",
+     "href": "https://www.xerox.com/technical_product_documentation/B110_Printer/User_Guide/en-US/Xerox/Xerox/loading_tray_1.html"
+    },
+    {
+     "label": "Paper out",
+     "value": "100 sheets, top tray, face down"
+    },
+    {
+     "label": "Manual feed",
+     "value": "No separate slot: 'Manual Feeder' mode feeds one sheet at a time from Tray 1"
+    },
+    {
+     "label": "Scanner",
+     "value": "None"
+    },
+    {
+     "label": "Display",
+     "value": "None: two buttons (WPS, power) and LEDs (status/wireless, toner)"
+    },
+    {
+     "label": "Toner",
+     "value": "starter 700 pages; 006R04961 (1,500 pages)",
+     "href": "https://www.xerox.co.uk/office/latest/B10BR-01E.PDF"
+    },
+    {
+     "label": "In the box",
+     "value": "Print cartridge (700-page starter), power cord, USB cable, Quick Installation Guide, Quick Use Guide, Safety Guide",
+     "href": "https://www.xerox.co.uk/office/latest/B10BR-01E.PDF",
+     "more": [
+      {
+       "p": "As listed for Xerox datasheet (all markets); the same items appear in Xerox's official unboxing video and on Komputronik (Poland)."
+      },
+      {
+       "p": "The Israeli shops on zap.co.il don't list the box contents."
+      },
+      {
+       "p": "A USB cable is included, unlike most printers."
+      }
+     ]
+    },
+    {
+     "label": "Price in Israel",
+     "value": "₪410",
+     "href": "https://www.zap.co.il/model.aspx?modelid=1270672",
+     "note": "Nir Tech (ניר טק) via zap.co.il, free delivery; 7 shops ₪410-644 · 2026-11-17"
+    },
+    {
+     "label": "Price international",
+     "value": "$103",
+     "href": "https://www.planeo.cz/xerox-b110v_bi",
+     "more": [
+      {
+       "p": "Planeo (Czech Republic), 2,290 Kč"
+      },
+      {
+       "p": "2026-11-17"
+      },
+      {
+       "p": "not sold in the US; converted at the ECB rate of 16 Nov 2026 (1 EUR = 24.428 CZK = 1.1014 USD)"
+      }
+     ]
+    }
+   ],
+   "page_ils": 0.164,
+   "windows_rating": "unknown",
+   "forums_rating": "unknown",
+   "notes": "WORK IN PROGRESS",
+   "sources": [
+    "https://www.4inkjets.com/compatible-xerox-black-006r04961-standard-yield-toner-cartridge",
+    "https://www.planeo.cz/xerox-006r04962-black",
+    "https://www.planeo.cz/xerox-b110v_bi",
+    "https://www.support.xerox.com/en-us/article/en/2109260",
+    "https://www.support.xerox.com/en-us/product/xerox-b110-printer/downloads",
+    "https://www.testberichte.de/p/xerox-tests/b110-testbericht.html",
+    "https://www.xerox.co.uk/en-gb/office/printers/xerox-b110-printer/specifications",
+    "https://www.xerox.co.uk/office/latest/B10BR-01E.PDF",
+    "https://www.xerox.com/technical_product_documentation/B110_Printer/User_Guide/en-US/Xerox/Xerox/0001612344.html",
+    "https://www.xerox.com/technical_product_documentation/B110_Printer/User_Guide/en-US/Xerox/Xerox/loading_tray_1.html",
+    "https://www.youtube.com/watch?v=TBWYSYjeE0I (89-94 s) and https://www.xerox.com/technical_product_documentation/B110_Printer/User_Guide/en-US/Xerox/Xerox/0001612675.html",
+    "https://www.zap.co.il/compmodels.aspx?modelid=1270672",
+    "https://www.zap.co.il/fs?pid=1388759187&sog=h-ink&indicator=20",
+    "https://www.zap.co.il/model.aspx?modelid=1270672",
+    "https://www.zap.co.il/ratemodel.aspx?modelid=1270672"
+   ],
+   "geom": {
+    "id": "xerox-b110",
+    "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+    "nodes": {
+     "body": "xerox-b110_body",
+     "input_tray": "xerox-b110_input_tray",
+     "support": "xerox-b110_support",
+     "support_ext": "xerox-b110_support_ext",
+     "tray_ext": "xerox-b110_tray_ext",
+     "paper": "xerox-b110_paper",
+     "cable_power": "xerox-b110_cable_power",
+     "cable_usb": "xerox-b110_cable_usb"
+    },
+    "parts": {
+     "body": {
+      "node": "xerox-b110_body",
+      "kind": "body",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "input_tray": {
+      "node": "xerox-b110_input_tray",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.022,
+       0.096
+      ]
+     },
+     "support": {
+      "node": "xerox-b110_support",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.1792,
+       0.0705
+      ]
+     },
+     "support_ext": {
+      "node": "xerox-b110_support_ext",
+      "kind": "moving",
+      "hidden": false,
+      "pivot_m": [
+       0.0,
+       0.1792,
+       0.0705
+      ]
+     },
+     "tray_ext": {
+      "node": "xerox-b110_tray_ext",
+      "kind": "moving",
+      "hidden": true,
+      "pivot_m": null
+     },
+     "paper": {
+      "node": "xerox-b110_paper",
+      "kind": "moving",
+      "hidden": true,
+      "pivot_m": null
+     },
+     "cable_power": {
+      "node": "xerox-b110_cable_power",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     },
+     "cable_usb": {
+      "node": "xerox-b110_cable_usb",
+      "kind": "cable",
+      "hidden": false,
+      "pivot_m": null
+     }
+    },
+    "states": {
+     "printing": [
+      {
+       "part": "input_tray",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 90.0
+      },
+      {
+       "part": "tray_ext",
+       "show": true
+      },
+      {
+       "part": "paper",
+       "show": true
+      },
+      {
+       "part": "support",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 162.61932229343077
+      },
+      {
+       "part": "support_ext",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 162.61932229343077
+      },
+      {
+       "part": "support_ext",
+       "move": [
+        0.0,
+        0.025,
+        0.0433
+       ]
+      }
+     ],
+     "refill": [
+      {
+       "part": "input_tray",
+       "rot": [
+        1.0,
+        0.0,
+        -0.0
+       ],
+       "deg": 90.0
+      },
+      {
+       "part": "tray_ext",
+       "show": true
+      },
+      {
+       "part": "paper",
+       "show": true
+      }
+     ]
+    },
+    "body_size_cm": [
+     33.1,
+     21.5,
+     18.87
+    ],
+    "envelopes_m": {
+     "closed": {
+      "min": [
+       -0.1655,
+       0.0,
+       -0.1075
+      ],
+      "max": [
+       0.1655,
+       0.1887,
+       0.1075
+      ]
+     },
+     "printing": {
+      "min": [
+       -0.1655,
+       0.0,
+       -0.1075
+      ],
+      "max": [
+       0.1655,
+       0.2315,
+       0.2425
+      ]
+     },
+     "refill": {
+      "min": [
+       -0.1655,
+       0.0,
+       -0.1075
+      ],
+      "max": [
+       0.1655,
+       0.1887,
+       0.2425
+      ]
+     }
+    },
+    "cable_back_gap_cm": 4.82,
+    "sockets": [
+     {
+      "part": "cable_power",
+      "kind": "C7v",
+      "x": 13.350000000000001,
+      "z": 2.8,
+      "recess": 0.5,
+      "angled": false,
+      "far_y_cm": 15.57
+     },
+     {
+      "part": "cable_usb",
+      "kind": "USB-B",
+      "x": 14.25,
+      "z": 10.2,
+      "recess": 0.5,
+      "angled": false,
+      "far_y_cm": 15.39
+     }
+    ],
+    "triangles": 7502,
+    "glb_mb": 0.31,
+    "notes": [
+     "Ports on a strip at the back corner on the control-panel side, set in ~0.5 cm: both plugs stick out behind the printer (flat back)."
+    ]
+   },
+   "measured": null
+  }
+ ],
+ "room": {
+  "frame": "glTF metres, Y up; the wall behind the shelf at z=0, the shelf's right end at x=0, the room toward -x and +z",
+  "shelf_cm": {
+   "top": 129.0,
+   "length": 68.5,
+   "depth": 24.5,
+   "thickness": 1.6,
+   "x_from": -68.5,
+   "x_to": 0.0,
+   "measured": {
+    "top": true,
+    "length": false,
+    "depth": true
+   }
+  },
+  "wardrobe_cm": {
+   "w": 41.0,
+   "d": 38.0,
+   "h": 180.0,
+   "x_to": -69.5,
+   "door_hinge_side": "right (niche side)",
+   "door_width": 40.4
+  }
+ }
+}

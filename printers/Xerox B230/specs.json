@@ -1,0 +1,125 @@
+{
+ "id": "xerox-b230",
+ "name": "Xerox B230",
+ "brand": "Xerox",
+ "type": "Mono laser printer",
+ "functions": [
+  "print"
+ ],
+ "variant": {
+  "israel_europe": "B230V_DNI (shops also write B230V/DNI, B230DNI)",
+  "uk": "B230V_DNIUK",
+  "us_canada": "B230/DNI",
+  "platform": "same chassis as the Lexmark B2236dw (identical 355 x 333 mm footprint, 6.8 kg, ports, panel layout)",
+  "source": "https://www.zap.co.il/model.aspx?modelid=1202734"
+ },
+ "dims_mm": {
+  "closed": {
+   "w": 355,
+   "d": 333,
+   "h": 232,
+   "source": "https://office.xerox.com/latest/B23BR-01E.PDF",
+   "includes": "Xerox datasheet H x W x D = 232 x 355 x 333 mm. The 232 mm height includes the raised control-panel (LCD) wedge; the main top surface is at 216 mm (Xerox dimension graphic 216 x 356 x 333 mm, same as the Lexmark B2236dw's 215 mm). Depth is the closed body with the tray at Letter length and the paper stop folded; with A4 paper the tray pokes out of the back by about 1-2 cm behind a dust flap (ITPro).",
+   "alt_sources": [
+    "https://www.office.xerox.com/assets/images/brand_engine/products/hardware/B230/xerox-B230-Dimensions_800x450.jpg",
+    "https://office.xerox.com/latest/B23BR-01U.PDF",
+    "https://www.lexmark.com/en_gb/printer/14204/Lexmark-B2236dw"
+   ]
+  }
+ },
+ "weight_kg": {
+  "value": 6.8,
+  "what": "printer as specified by Xerox (15 lb)",
+  "source": "https://office.xerox.com/latest/B23BR-01E.PDF"
+ },
+ "print_speed_ppm": {
+  "a4": 34,
+  "letter": 36,
+  "iso_a4": 30,
+  "iso_letter": 31,
+  "source": "https://office.xerox.com/latest/B23BR-01U.PDF"
+ },
+ "duplex": "automatic",
+ "connectivity": {
+  "usb": true,
+  "wifi": true,
+  "ethernet": true,
+  "wifi_direct": true,
+  "details": "Hi-Speed USB 2.0 Type B, Ethernet 10/100BaseTX, Wi-Fi 802.11 b/g/n; AirPrint, Mopria, Wi-Fi Direct; no front USB host port",
+  "source": "https://office.xerox.com/latest/B23BR-01E.PDF"
+ },
+ "paper": {
+  "input_sheets": 250,
+  "input_type": "front cassette (A4 length makes it poke out of the back under a dust flap)",
+  "output_sheets": 150,
+  "output_type": "top tray, face down, with fold-up paper stop",
+  "manual_feed": "single-sheet slot behind a flap in the front door",
+  "source": "https://office.xerox.com/latest/B23BR-01E.PDF"
+ },
+ "scanner": null,
+ "display": "2-line monochrome LCD with a 4-way pad, OK, Back, Home, Menu and Stop buttons",
+ "toner": {
+  "starter_pages": 1200,
+  "starter_note": "EU/international datasheet: 1,200-page starter; the US datasheet says about 700 pages",
+  "standard": {
+   "code": "006R04399",
+   "pages": 1200
+  },
+  "high": {
+   "code": "006R04400",
+   "pages": 3000
+  },
+  "extra_high": {
+   "code": "006R04401",
+   "pages": 6000
+  },
+  "drum": {
+   "code": "013R00691",
+   "pages": 12000,
+   "name": "imaging kit"
+  },
+  "source": "https://office.xerox.com/latest/B23BR-01E.PDF"
+ },
+ "in_the_box": {
+  "items": "printer; pre-installed starter toner (1,200 pages) and imaging unit; power cord; Software and Documentation CD (drivers, user guide, safety/regulatory/recycling, warranty); installation guide with product safety sheet; quick use guide. No USB or network cable.",
+  "region": "Europe/international datasheet (B230V_DNI, the variant sold in Israel); no Israeli listing with a box list found",
+  "notes": "US B230/DNI box is the same but with a ~700-page starter toner (Staples, Xerox US datasheet)",
+  "source": "https://office.xerox.com/latest/B23BR-01E.PDF"
+ },
+ "price": {
+  "ils": {
+   "value": 534,
+   "url": "https://www.zap.co.il/model.aspx?modelid=1202734",
+   "where": "Rikotek via Zap (incl. 35 ILS shipping; cheapest of 22 shops, range 534-1,044)",
+   "date": "2026-11-17"
+  },
+  "usd": {
+   "value": 159.99,
+   "url": "https://www.adorama.com/vdpxeb230dni.html",
+   "where": "Adorama (also sold by Adorama on Best Buy marketplace); Xerox store/Staples $189.99",
+   "date": "2026-11-17"
+  }
+ },
+ "cable_space": {
+  "power": {
+   "type": "C13 plug into a C14 inlet (mounted turned 90 deg, long side vertical)",
+   "position": "in its own notch at the bottom of the rear corner on the printer's left side (seen from the front): 2.4 cm from the right edge seen from behind (x = -15.3 cm in the model), 4.1 cm above the bottom",
+   "recessed": true,
+   "recess_cm": 3.6,
+   "plug_inside_outline": "mostly: the C13 housing (about 3.4 cm) sits inside the notch; only its strain relief (about 2.4 cm) and the bent cable stick out"
+  },
+  "data": {
+   "type": "Ethernet (RJ45); USB-B 4 cm below it in the same notch",
+   "position": "in a notch higher up the same rear corner: 1.2 cm from the right edge seen from behind (x = -16.6 cm), RJ45 16.3 cm above the bottom, USB-B 12.3 cm",
+   "recessed": true,
+   "recess_cm": 3.0,
+   "plug_inside_outline": "mostly: the RJ45 plug ends about 0.6 cm inside the back; only its boot sticks out (about 1.9 cm behind the body with the cable bent)"
+  },
+  "behind_body_cm": 3.3,
+  "why": "Both notches are cut into the rounded rear-left corner and open to the back and the side (real photo 12_back_ports_real). The plug bodies fit inside, so this is close to the user's 'recessed' case, but the kettle plug's strain relief still sticks out about 2.2 cm and the cable needs a bend: 3.3 cm in the 3D model (power), 1.9 cm for Ethernet. An angled (right-angle) C13 cord would bring it to about 1.5-2 cm.",
+  "a4_tray_note": "With A4 or Legal paper the 250-sheet tray extends out of the back at the bottom centre under a dust cover (about 2 cm for A4 by the paper lengths; ITPro review; real photo 11_back34_real). It is beside, not behind, the power notch and shorter than the power cable reach. Not modelled.",
+  "source": "photos 11_back34_real and 12_back_ports_real (OLX.pl used unit), 03_back (Xerox render), User Guide p.34",
+  "status": "done"
+ },
+ "notes": "Model done (see measurements/MEASUREMENTS.md, Model status). Height 232 mm is the overall height with the LCD pod; the top cover is at 216 mm (Xerox dimension graphic)."
+}

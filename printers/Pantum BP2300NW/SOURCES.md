@@ -1,0 +1,27 @@
+# Pantum BP2300NW: photo sources
+
+Every photo in `photos/`: what it shows, where it came from, and why it is this exact model.
+
+| Photo | View | Source | Why it's this model |
+|---|---|---|---|
+| 01_front.png | front | [manufacturer](https://eu.pantum.com/product-center/1752589603319685122.html) | Pantum EU BP2300NW product page gallery, folder 'BP2300NW update' (official render) |
+| 02_front_straight.png | front | [manufacturer](https://eu.pantum.com/product-center/1752589603319685122.html) | Pantum EU BP2300NW product page gallery, folder 'BP2300NW update' (official render, straight front, elevation ~0) |
+| 03_34fl.png | 34fl | [manufacturer](https://eu.pantum.com/product-center/1752589603319685122.html) | Pantum EU BP2300NW product page gallery, folder 'BP2300NW update' (official render, front-left 3/4) |
+| 04_34fr.png | 34fr | [manufacturer](https://eu.pantum.com/product-center/1752589603319685122.html) | Pantum EU BP2300NW product page gallery, folder 'BP2300NW update' (official render, front-right 3/4) |
+| 05_top.png | top | [manufacturer](https://eu.pantum.com/product-center/1752589603319685122.html) | Pantum EU BP2300NW product page gallery, folder 'BP2300NW update' (official render, top view; front at bottom of image) |
+| 06_front_lifestyle.png | front_low | [manufacturer](https://eu.pantum.com/product-center/1752589603319685122.html) | Pantum EU BP2300NW product page detail image BP2300NW_03 (real photo on a coffee table, closed) |
+| 07_input_tray_open.png | 34fr_high_tray_open | [manufacturer](https://eu.pantum.com/product-center/1752589603319685122.html) | Pantum EU BP2300NW product page detail image BP2300NW_06 (real photo, front input tray folded down with paper, blue length guide) |
+| 08_printing.png | 34fl_printing | [manufacturer](https://eu.pantum.com/product-center/1752589603319685122.html) | Pantum EU BP2300NW product page detail image BP2300NW_10 (real photo, printing: front tray down with paper, output on top) |
+| 09_printing_detail.png | front_printing_detail | [manufacturer](https://eu.pantum.com/product-center/1752589603319685122.html) | Crop (x3.5) of BP2300NW_10: exit slot at back of top, output stopper, front tray opening and blue guides |
+| 10_front_left_corner.png | detail_front_corner | [manufacturer](https://eu.pantum.com/product-center/1752589603319685122.html) | Pantum EU BP2300NW product page detail image BP2300NW_14 (real photo close-up: top edge, dark seam band, Wi-Fi sticker, logo) |
+| 11_sister_printing_34fr.png | 34fr_printing | [review](https://hitechcentury.com/?p=87008) | SISTER MODEL BP2300W (Wi-Fi only, same BP2300-series chassis per review); front tray folded down, top output plate raised with stopper (Not the exact model: use for shape only. Malaysia unit has grey guides; BP2300NW photos show blue guides.) |
+| 12_sister_back_ports.png | back_detail | [review](https://hitechcentury.com/?p=87008) | SISTER MODEL BP2300W back: recessed port pocket with network port (capped on the W) above USB-B; vent grille to the side (Not the exact model; the BP2300NW has the RJ45 open in the same pocket.) |
+| 13_sister_box_contents.png | top_box_contents | [review](https://hitechcentury.com/?p=87008) | SISTER MODEL BP2300W (label 'BP2300W' on top right): box contents, C13 mains cord, USB cable, bagged input tray (Not the exact model; shows top view of real unit and contents (Malaysia).) |
+| 14_manual_rear_view.png | 34br_drawing | [manual](https://global.pantum.com/support/download/manual/) | Official Pantum BP2300 Series User Guide (EN V1.4, covers BP2300NW) page 2 'Rear View': 1 Network, 2 USB, 3 Power interface (Rendered from the PDF with pdf.js at 3.6x) |
+| 15_manual_front_view.png | 34fl_printing_drawing | [manual](https://global.pantum.com/support/download/manual/) | Official BP2300 Series User Guide p.1 'Front View': 1 output bin, 2 control panel, 3 output tray, 4 feed guides, 5 paper stop, 6 feeder tray, 7 automatic feeder tray |
+| 16_manual_raise_output_tray.png | 34fl_printing_drawing | [manual](https://global.pantum.com/support/download/manual/) | Official BP2300 Series User Guide p.6 step 3 'Raise the output tray': flap flips forward out of the top recess |
+| 17_manual_upper_cover_open.png | 34fr_cover_open_drawing | [manual](https://global.pantum.com/support/download/manual/) | Official BP2300 Series User Guide p.18 'Open the upper cover': whole top hinges up at the back |
+| 18_manual_open_feeder_tray.png | 34fr_drawing | [manual](https://global.pantum.com/support/download/manual/) | Official BP2300 Series User Guide p.5 step 1 'Open the feeder tray': whole front panel folds down from its top edge (hinge at the bottom) |
+| 19_sister_right_side.png | right | [retailer](https://www.xcom-shop.ru/pantum_bp2300_1138656.html) | SISTER MODEL Pantum BP2300 (USB-only, same BP2300-series chassis); xcom-shop studio photo, straight right side (back on the right) (Not the exact model; body shell identical per Pantum (same series, same 337x220x179)) |
+| 20_sister_cover_open_tray_open.png | 34fl_open | [retailer](https://www.xcom-shop.ru/pantum_bp2300_1138656.html) | SISTER MODEL Pantum BP2300 studio photo: upper cover open (hinged at back), front feeder door folded down (Not the exact model) |
+| 21_sister_34fr_studio.png | 34fr | [retailer](https://www.xcom-shop.ru/pantum_bp2300_1138656.html) | SISTER MODEL Pantum BP2300 studio photo (real unit), front-right 3/4, closed (Not the exact model) |

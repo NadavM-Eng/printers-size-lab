@@ -1,0 +1,1838 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Compare printers on the real shelf in a 3D model of the room: how far each one sticks out, how much space its cables need, how high it sits for you, and full specs.">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Printers Size Lab</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&display=swap">
+<style>
+:root{
+  --page:#e8e6e1;--surface:#f4f3ef;--well:#dedcd6;--line:#d3d1ca;--line-strong:#bebcb4;
+  --ink:#1d1d1b;--ink-2:#3d3c38;--muted:#66655f;
+  --viewer:#f4f3ef;--measure:#1d1d1b;--on-ink:#f4f3ef;
+  --accent:#3f8f4f;--accent-fill:#367d45;--on-accent:#ffffff;
+  --sig-a:#d4542b;--sig-b:#2f6f9f;--mannequin:#cdc8be;
+  --bar-shadow:0 1px 2px rgba(40,38,30,.05),0 6px 18px rgba(40,38,30,.05);
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));--gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --page:#1b1b1a;--surface:#262624;--well:#1f1f1e;--line:#3a3936;--line-strong:#4a4945;
+    --ink:#ecebe6;--ink-2:#cfcdc6;--muted:#a6a49c;--viewer:#2c2c2a;--measure:#ecebe6;--on-ink:#1b1b1a;
+    --accent:#5fae6e;--accent-fill:#5fae6e;--on-accent:#1b1b1a;--sig-a:#e8714a;--sig-b:#5b9bd0;--mannequin:#7a7872;
+    --bar-shadow:0 1px 2px rgba(0,0,0,.25);color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --page:#1b1b1a;--surface:#262624;--well:#1f1f1e;--line:#3a3936;--line-strong:#4a4945;
+  --ink:#ecebe6;--ink-2:#cfcdc6;--muted:#a6a49c;--viewer:#2c2c2a;--measure:#ecebe6;--on-ink:#1b1b1a;
+  --accent:#5fae6e;--accent-fill:#5fae6e;--on-accent:#1b1b1a;--sig-a:#e8714a;--sig-b:#5b9bd0;--mannequin:#7a7872;
+  --bar-shadow:0 1px 2px rgba(0,0,0,.25);color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--page);color:var(--ink);font:400 15px/1.5 var(--font);font-variant-numeric:tabular-nums;-webkit-text-size-adjust:100%;overflow-x:hidden}
+button,select{font:inherit;color:inherit}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--line-strong)}
+a:hover{text-decoration-color:currentColor}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.muted{color:var(--muted)}
+.app{max-width:1232px;margin:0 auto;padding:0 var(--gutter-r) 64px var(--gutter-l)}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:32px 0 0}
+.top h1{margin:0;font:500 22px/1.2 var(--font);letter-spacing:-.01em;white-space:nowrap}
+.top .right{display:flex;align-items:center;gap:16px}
+.units{font-size:13px;color:var(--muted);white-space:nowrap}
+.cur{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);white-space:nowrap}
+.cur select{appearance:none;-webkit-appearance:none;height:40px;padding:0 30px 0 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23888' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center;font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;transition:border-color .15s}
+.cur select:hover{border-color:var(--line-strong)}
+.icon-btn{width:40px;height:40px;flex:none;border:1px solid var(--line);border-radius:999px;background:var(--surface);display:grid;place-items:center;cursor:pointer;transition:border-color .15s}
+.icon-btn:hover{border-color:var(--line-strong)}
+.icon-btn svg{width:18px;height:18px}
+
+/* printer pickers */
+.pick{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:12px;margin-top:40px;position:relative;z-index:20}
+.card{position:relative;display:flex;align-items:center;gap:16px;min-width:0;padding:18px 52px 18px 20px;background:var(--surface);border:1px solid var(--line);border-radius:14px;cursor:pointer;transition:border-color .15s}
+.card:hover{border-color:var(--line-strong)}
+.badge{width:36px;height:36px;border-radius:999px;background:var(--c);color:#fff;display:grid;place-items:center;font:700 15px/1 var(--font);flex:none}
+.card.none .badge{background:transparent;box-shadow:inset 0 0 0 1.5px var(--c);color:var(--c)}
+.card .txt{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.pick-btn{appearance:none;-webkit-appearance:none;border:0;background:transparent;width:100%;min-width:0;padding:0;margin:0;text-align:left;font:500 22px/1.25 var(--font);letter-spacing:-.01em;color:var(--ink);cursor:pointer;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+.pick-btn:focus-visible{outline:none}
+.card:has(.pick-btn:focus-visible){box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent)}
+.card .meta{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card::after{content:"";position:absolute;right:22px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none;transition:transform .15s}
+.card.open{border-color:var(--c)}
+.card.open::after{transform:translateY(-25%) rotate(-135deg)}
+.plist{position:absolute;left:-1px;right:-1px;top:calc(100% + 8px);z-index:30;margin:0;padding:6px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--bar-shadow),0 18px 40px -18px rgba(40,38,30,.35);max-height:min(460px,64vh);overflow:auto;overscroll-behavior:contain;cursor:default;outline:none}
+.plist .grp{font-size:12px;color:var(--muted);padding:10px 12px 4px;letter-spacing:.02em}
+.plist .grp:first-child{padding-top:6px}
+.popt{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;cursor:pointer;min-width:0}
+.popt .t{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.popt .nm{font-size:15px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.popt .sub{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.popt .slot{width:22px;height:22px;border-radius:999px;display:grid;place-items:center;font:700 11px/1 var(--font);color:#fff;flex:none}
+.popt .slot.a{background:var(--sig-a)} .popt .slot.b{background:var(--sig-b)}
+.popt .chk{width:16px;height:16px;flex:none;color:var(--accent);visibility:hidden}
+.popt[aria-selected="true"] .chk{visibility:visible}
+.popt:hover,.popt.active{background:var(--well)}
+.swap{width:44px;height:44px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;transition:border-color .15s}
+.swap:hover{border-color:var(--line-strong)}
+.swap svg{width:18px;height:18px}
+
+/* viewer */
+.viewer{position:relative;margin-top:16px;height:min(74vh,780px);min-height:380px;overflow:hidden;background:var(--viewer);border-radius:14px;box-shadow:inset 0 0 0 1px var(--line);touch-action:none}
+.viewer canvas{display:block;width:100%;height:100%;outline:none;border-radius:14px}
+.labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.dim{position:absolute;left:0;top:0;white-space:nowrap;font:500 12.5px/1 var(--font);font-variant-numeric:tabular-nums;padding:5px 9px;border-radius:999px;background:var(--viewer);color:var(--ink);border:1.5px solid var(--c);will-change:transform}
+.dim b{font-weight:500;color:var(--muted);margin-right:5px}
+.dim b:empty{display:none}
+.dim.strong{background:var(--c);border-color:var(--c);color:#fff}
+.dim.strong b{color:#fff;opacity:.8}
+.dim.mark{border-color:var(--muted);color:var(--ink-2)}
+.legend{position:absolute;left:16px;top:16px;display:flex;flex-wrap:wrap;gap:8px;pointer-events:none;max-width:calc(100% - 160px)}
+.chip{display:flex;align-items:center;gap:8px;font-size:13px;padding:6px 12px 6px 10px;border-radius:999px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.chip i{width:10px;height:10px;border-radius:999px;background:var(--c);flex:none}
+.chip.ghost i{background:transparent;box-shadow:inset 0 0 0 1.5px var(--c)}
+.chip small{color:var(--muted);font-size:12px}
+.viewname{position:absolute;right:16px;top:16px;pointer-events:none;font-size:13px;color:var(--muted)}
+.hint{position:absolute;right:16px;bottom:14px;pointer-events:none;font-size:12.5px;color:var(--muted)}
+.status{position:absolute;left:16px;bottom:16px;display:flex;flex-direction:column;gap:6px;align-items:flex-start;pointer-events:none;max-width:calc(100% - 32px)}
+.msg{font-size:13px;padding:7px 12px;background:var(--surface);border-radius:10px;box-shadow:inset 0 0 0 1px var(--line);max-width:100%}
+.msg.warn{box-shadow:inset 0 0 0 1.5px var(--sig-a)}
+.msg.warn::before{content:"!";display:inline-grid;place-items:center;width:16px;height:16px;border-radius:999px;background:var(--sig-a);color:#fff;margin-right:8px;font-size:11px;font-weight:700;vertical-align:-2px}
+.msg .bar{display:block;height:3px;margin-top:6px;border-radius:999px;background:var(--well);overflow:hidden}
+.msg .bar span{display:block;height:100%;width:var(--p,0%);background:var(--c,var(--ink));border-radius:999px}
+
+/* control bar */
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:16px;padding:10px;background:var(--surface);border:1px solid var(--line);border-radius:999px;box-shadow:var(--bar-shadow)}
+.group{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.seg{display:flex;padding:3px;border-radius:999px;background:var(--well)}
+.seg button{border:0;background:transparent;border-radius:999px;height:34px;padding:0 14px;cursor:pointer;font-size:14px;font-weight:500;color:var(--muted);white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(0,0,0,.06)}
+.seg button:disabled{opacity:.4;cursor:default}
+.pill{border:1px solid var(--line);background:transparent;border-radius:999px;height:40px;padding:0 14px;cursor:pointer;font-size:14px;font-weight:500;color:var(--ink);display:inline-flex;align-items:center;gap:8px;white-space:nowrap;transition:border-color .15s,background .15s}
+.pill:hover:not(:disabled){border-color:var(--line-strong)}
+.pill:disabled{cursor:default;color:var(--muted);opacity:.55}
+.led{width:8px;height:8px;border-radius:999px;background:var(--line-strong)}
+.pill[aria-pressed="true"] .led{background:var(--accent)}
+.views{margin-left:auto}
+.views .pill{padding:0 12px;min-width:54px;justify-content:center}
+.views .pill[aria-pressed="true"]{background:var(--accent-fill);border-color:var(--accent-fill);color:var(--on-accent)}
+.ghost-btn i{width:10px;height:10px;border-radius:999px;box-shadow:inset 0 0 0 1.5px var(--c)}
+
+/* the two kinds of view: on the shelf in the room, or the printers alone next to each other */
+.scene{display:flex;margin-top:16px}
+.scene .seg{background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);padding:4px}
+.scene .seg button{height:38px;padding:0 20px;font-size:15px}
+.scene .seg button[aria-pressed="true"]{background:var(--ink);color:var(--on-ink);box-shadow:none}
+
+/* shelf + you panel */
+.panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:20px 40px;margin-top:12px;padding:20px 24px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.sliders{display:flex;flex-direction:column;gap:14px;min-width:0}
+.sl{display:flex;flex-direction:column;gap:6px;min-width:0}
+.sl-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:14px}
+.sl-top span{color:var(--muted);font-weight:500}
+.sl-top output{font-weight:500;color:var(--ink)}
+.sl-top output small{font-size:13px;font-weight:400;color:var(--muted);margin-left:8px}
+.sl input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:24px;margin:0;background:transparent;cursor:pointer;--p:50%}
+.sl input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:999px;background:linear-gradient(to right,var(--accent-fill) var(--p),var(--line-strong) var(--p))}
+.sl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;margin-top:-8px;border-radius:999px;background:var(--surface);border:1.5px solid var(--ink-2);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.sl input[type=range]::-moz-range-track{height:4px;border-radius:999px;background:var(--line-strong)}
+.sl input[type=range]::-moz-range-progress{height:4px;border-radius:999px;background:var(--accent-fill)}
+.sl input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:999px;background:var(--surface);border:1.5px solid var(--ink-2)}
+.sl input[type=range]:focus-visible{outline:none}
+.sl input[type=range]:focus-visible::-webkit-slider-thumb{outline:2px solid var(--accent);outline-offset:2px}
+.sl-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:var(--muted)}
+.rowctl{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px}
+.rowctl > span{color:var(--muted);font-weight:500}
+.link{border:0;background:none;padding:0;cursor:pointer;font-size:13px;color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:3px}
+.link:hover{text-decoration-color:currentColor}
+.fit{display:flex;flex-direction:column;gap:14px;min-width:0}
+.fit-head{font-size:14px;font-weight:500;color:var(--muted)}
+.fit-card{display:grid;grid-template-columns:10px minmax(0,1fr);gap:4px 12px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.fit-card:last-child{border-bottom:0;padding-bottom:0}
+.fit-card > i{width:10px;height:10px;border-radius:999px;background:var(--c);margin-top:6px}
+.fit-card.ghost > i{background:transparent;box-shadow:inset 0 0 0 1.5px var(--c)}
+.fit-name{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.facts{grid-column:2;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;font-size:13.5px;margin:4px 0 0}
+.facts dt{color:var(--muted)}
+.facts dd{margin:0;color:var(--ink)}
+.facts dd.warn{color:var(--sig-a);font-weight:500}
+.fit-note{margin:0;font-size:13px;color:var(--muted)}
+
+/* sections */
+.section{margin-top:56px}
+.section h2{margin:0 0 20px;font:500 20px/1.2 var(--font);letter-spacing:-.01em}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 24px 24px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.tile .lab{font-size:14px;font-weight:500;color:var(--muted)}
+.vals{display:flex;flex-direction:column;gap:14px}
+.val{display:flex;flex-direction:column;gap:8px;min-width:0}
+.val .row1{display:flex;align-items:baseline;gap:10px;min-width:0}
+.val .dot{width:10px;height:10px;border-radius:999px;background:var(--c);flex:none;align-self:center}
+.val .big{font:500 30px/1.1 var(--font);letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.val .big small{font-size:15px;font-weight:400;color:var(--muted);margin-left:4px;letter-spacing:0}
+.val .big.na{color:var(--muted);font-size:18px;font-weight:400}
+.val .who{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:20px}
+.track{height:6px;border-radius:999px;background:var(--well);margin-left:20px;overflow:hidden}
+.track span{display:block;height:100%;width:var(--w,0%);background:var(--c);border-radius:999px;transition:width .4s ease}
+.line{margin:0;font-size:15px;color:var(--ink);padding-top:14px;border-top:1px solid var(--line);margin-top:auto}
+.line strong{font-weight:700}
+.line.same{color:var(--muted)}
+details.all{margin-top:32px}
+details.all > summary{list-style:none;display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:15px;font-weight:500;user-select:none}
+details.all > summary::-webkit-details-marker{display:none}
+details.all > summary:hover{border-color:var(--line-strong)}
+details.all > summary::after{content:"";width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+details.all[open] > summary::after{transform:translateY(2px) rotate(-135deg)}
+.spec{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px 24px 16px}
+.spec-head,.srow{display:grid;grid-template-columns:200px minmax(0,1fr) minmax(0,1fr);gap:24px}
+.spec-head{padding:16px 0 14px;border-bottom:1px solid var(--line)}
+.spec-head div{display:flex;gap:10px;align-items:flex-start;font-weight:500;min-width:0;line-height:1.35}
+.spec-head i{width:10px;height:10px;border-radius:999px;background:var(--c);flex:none;margin-top:5px}
+.srow{padding:14px 0;border-bottom:1px solid var(--line);row-gap:6px}
+.srow:last-child{border-bottom:0}
+.srow .lab{font-size:14px;color:var(--muted)}
+.srow .v{min-width:0;overflow-wrap:anywhere}
+.srow .v ul{margin:0;padding-left:18px}
+.srow .v .note{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+details.more{margin-top:6px}
+details.more > summary{list-style:none;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);cursor:pointer;user-select:none}
+details.more > summary::-webkit-details-marker{display:none}
+details.more > summary:hover{color:var(--ink)}
+details.more > summary::after{content:"";width:5px;height:5px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+details.more[open] > summary::after{transform:translateY(2px) rotate(-135deg)}
+.more-body{margin-top:8px;font-size:13px;line-height:1.55;color:var(--ink-2)}
+.more-body p{margin:0 0 8px;text-align:justify;text-wrap:pretty;hyphens:auto}
+.more-body .more-label{margin-bottom:2px;font-weight:500;color:var(--ink);text-align:left}
+.srow .more-body ul{margin:0 0 8px;padding-left:18px}
+.more-body li{text-align:justify}
+.more-body b{font-weight:500;color:var(--ink)}
+.srow .v.na{color:var(--muted)}
+.src{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.src a{font-size:13.5px;overflow-wrap:anywhere}
+.foot{margin:16px 0 0;font-size:13px;color:var(--muted)}
+.fatal{position:absolute;inset:0;display:grid;place-items:center;padding:20px;text-align:center;font-size:15px;color:var(--ink-2);background:var(--viewer);border-radius:14px}
+
+@media (max-width:980px){
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .controls{border-radius:20px}
+  .views{margin-left:0}
+}
+@media (max-width:640px){
+  .top{padding-top:20px}
+  .top h1{font-size:19px}
+  .units{display:none}
+  .top .right{gap:10px}
+  .cur span{display:none}
+  .pick{margin-top:24px;gap:10px;grid-template-columns:minmax(0,1fr)}
+  .card{padding:14px 40px 14px 14px;gap:12px;border-radius:12px}
+  .pick .swap{position:absolute;right:52px;top:50%;transform:translateY(-50%) rotate(90deg);z-index:1}
+  .card::after{right:13px;width:6px;height:6px}
+  .badge{width:28px;height:28px;font-size:13px}
+  .pick-btn{font-size:18px}
+  .card .meta{font-size:12px}
+  .swap{width:36px;height:36px}
+  .viewer{height:min(64svh,540px);min-height:340px;border-radius:12px}
+  .legend{left:10px;top:10px;gap:6px;max-width:calc(100% - 20px)}
+  .viewname,.hint{display:none}
+  .status{left:10px;bottom:10px}
+  .controls{padding:10px;gap:10px;border-radius:16px}
+  .group{width:100%}
+  .seg{flex:1}
+  .seg button{flex:1;padding:0 6px;font-size:13px}
+  .toggles .pill{flex:1;justify-content:center;padding:0 8px}
+  .scene{margin-top:12px}
+  .scene .seg{flex:1}
+  .views{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px}
+  .views .pill{min-width:0;padding:0 2px;font-size:12.5px;height:38px}
+  .panel{grid-template-columns:minmax(0,1fr);padding:16px;gap:18px;border-radius:12px}
+  .section{margin-top:40px}
+  .tiles{grid-template-columns:minmax(0,1fr);gap:12px}
+  .tile{padding:18px 18px 20px}
+  .val .big{font-size:28px}
+  .spec{padding:4px 16px 12px}
+  .spec-head,.srow{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px 16px}
+  .srow .lab{grid-column:1/-1}
+  .spec-head > :first-child{display:none}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <h1>Printers Size Lab</h1>
+    <div class="right">
+      <span class="units">cm · kg</span>
+      <label class="cur" title="Prices are shown in this currency, converted at today's rate. The shop's own price stays next to each one.">
+        <span>Prices in</span>
+        <select id="curSel" aria-label="Currency for prices"></select>
+      </label>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Light / dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="pick">
+    <div class="card" id="cardA">
+      <span class="badge" aria-hidden="true">A</span>
+      <span class="txt"><button type="button" class="pick-btn" id="selA" aria-haspopup="listbox" aria-expanded="false" aria-controls="listA"></button><span class="meta" id="metaA"></span></span>
+      <ul class="plist" id="listA" role="listbox" tabindex="-1" aria-label="Choose printer A" hidden></ul>
+    </div>
+    <button class="swap" id="swapBtn" type="button" aria-label="Swap printer A and printer B" title="Swap A and B">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h13M16 5l3 3-3 3M18 16H5M8 13l-3 3 3 3"/></svg>
+    </button>
+    <div class="card" id="cardB">
+      <span class="badge" aria-hidden="true">B</span>
+      <span class="txt"><button type="button" class="pick-btn" id="selB" aria-haspopup="listbox" aria-expanded="false" aria-controls="listB"></button><span class="meta" id="metaB"></span></span>
+      <ul class="plist" id="listB" role="listbox" tabindex="-1" aria-label="Choose printer B" hidden></ul>
+    </div>
+  </div>
+
+  <div class="scene">
+    <div class="seg" role="group" aria-label="Kind of view" id="sceneSeg">
+      <button type="button" data-scene="room" aria-pressed="true">Room view</button>
+      <button type="button" data-scene="side" aria-pressed="false">Side by side</button>
+    </div>
+  </div>
+
+  <div class="viewer" id="viewer">
+    <div class="labels" id="labels"></div>
+    <div class="legend" id="legend"></div>
+    <div class="viewname" id="viewName"></div>
+    <div class="hint">Drag to orbit · scroll to zoom</div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="controls" role="toolbar" aria-label="Viewer controls">
+    <div class="group">
+      <div class="seg" role="group" aria-label="Printer state" id="stateSeg">
+        <button type="button" data-state="closed" aria-pressed="true">Closed</button>
+        <button type="button" data-state="printing" aria-pressed="false">Printing</button>
+        <button type="button" data-state="refill" aria-pressed="false">Adding paper</button>
+        <button type="button" data-state="lid_open" aria-pressed="false">Lid open</button>
+      </div>
+    </div>
+    <div class="group toggles" role="group" aria-label="Display">
+      <button type="button" id="ghostBtn" class="pill" aria-pressed="false" data-only="side" hidden title="Put one printer inside the other; one of them turns see-through"><span class="led"></span>Ghost</button>
+      <button type="button" id="ghostWhoBtn" class="pill ghost-btn" data-only="side" hidden title="Choose which printer is see-through"><i></i><span>See-through: B</span></button>
+      <button type="button" id="boxBtn" class="pill" aria-pressed="true" title="Show measurements"><span class="led"></span>Sizes</button>
+      <button type="button" id="cableBtn" class="pill" aria-pressed="true" title="Show the cables behind the printer"><span class="led"></span>Cables</button>
+      <button type="button" id="personBtn" class="pill" aria-pressed="true" data-only="room" title="Show a person standing at the shelf"><span class="led"></span>Person</button>
+    </div>
+    <div class="group views" role="group" aria-label="Camera presets">
+      <button type="button" class="pill" data-view="front" title="Front (key 1)" aria-keyshortcuts="1">Front</button>
+      <button type="button" class="pill" data-view="side" title="Side (key 2)" aria-keyshortcuts="2">Side</button>
+      <button type="button" class="pill" data-view="top" title="Top (key 3)" aria-keyshortcuts="3">Top</button>
+      <button type="button" class="pill" data-view="door" data-only="room" title="From the door (key 4)" aria-keyshortcuts="4">Door</button>
+      <button type="button" class="pill" data-view="iso" title="3/4 view (key 5)" aria-keyshortcuts="5">3/4</button>
+      <button type="button" class="pill" data-view="room" data-only="room" title="Whole room (key 6)" aria-keyshortcuts="6">Room</button>
+    </div>
+  </div>
+
+  <div class="panel" role="group" aria-label="Shelf and you" data-only="room">
+    <div class="sliders">
+      <label class="sl"><span class="sl-top"><span>Shelf height</span><output id="shOut" for="shIn">129 cm</output></span>
+        <input type="range" id="shIn" min="107" max="170" step="1" value="129" aria-label="Shelf height in centimetres"></label>
+      <label class="sl"><span class="sl-top"><span>Your height</span><output id="phOut" for="phIn">169 cm</output></span>
+        <input type="range" id="phIn" min="150" max="200" step="1" value="169" aria-label="Your height in centimetres"></label>
+      <div class="rowctl"><span>Position on the shelf</span>
+        <div class="seg" role="group" aria-label="Position on the shelf" id="alignSeg">
+          <button type="button" data-align="left" aria-pressed="false">Left</button>
+          <button type="button" data-align="centre" aria-pressed="false">Centre</button>
+          <button type="button" data-align="right" aria-pressed="true">Right</button>
+        </div>
+      </div>
+      <div class="sl-foot"><span id="shelfNote"></span><button type="button" class="link" id="resetBtn">Reset</button></div>
+    </div>
+    <div class="fit">
+      <div class="fit-head">On your shelf</div>
+      <div id="fitList"></div>
+      <p class="fit-note">Each printer stands as close to the wall as its plugged-in cables allow. Overhang is measured from the shelf's front edge to the printer's front-most point in the selected state. Base is the part that rests on the shelf.</p>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="diffTitle">
+    <h2 id="diffTitle">What's different</h2>
+    <div class="tiles" id="tiles"></div>
+    <details class="all" id="allSpecs">
+      <summary>All specs</summary>
+      <div class="spec">
+        <div class="spec-head" id="specHead"></div>
+        <div id="specRows"></div>
+      </div>
+      <p class="foot">Specs, box contents and prices come from the linked manufacturer and shop pages and may have changed. Overhang, cable space and heights are measured on the 3D models on this page. <span id="fxNote"></span></p>
+    </details>
+  </section>
+</div>
+
+<script>
+  setTimeout(function(){
+    if(!window.__labStarted){
+      var v=document.getElementById('viewer');
+      if(v && !v.querySelector('.fatal')){
+        var d=document.createElement('div');d.className='fatal';
+        d.textContent='The 3D engine could not load. Check your connection and reload the page.';
+        v.appendChild(d);
+      }
+    }
+  },10000);
+</script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { LineSegments2 } from 'three/addons/lines/LineSegments2.js';
+import { LineSegmentsGeometry } from 'three/addons/lines/LineSegmentsGeometry.js';
+import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
+
+window.__labStarted = true;
+
+const $ = (s) => document.querySelector(s);
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const fmt = (n, d = 1) => (Math.round(n * 10 ** d) / 10 ** d).toFixed(d);
+const cm = (m) => fmt(m * 100, 1);
+const cm0 = (m) => String(Math.round(m * 100));
+const clamp = THREE.MathUtils.clamp;
+const slotColor = (k) => css(k === 'a' ? '--sig-a' : '--sig-b') || (k === 'a' ? '#d4542b' : '#2f6f9f');
+const V3 = (x, y, z) => new THREE.Vector3(x, y, z);
+const STATE_NAMES = { closed: 'Closed', printing: 'Printing', refill: 'Adding paper', lid_open: 'Lid open' };
+const DEFAULT_GAP = 0.08; // used until a model gives its own cable space
+
+/* ---------- theme ---------- */
+const THEME_KEY = 'psl-theme';
+function applyTheme(t) {
+  if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  else document.documentElement.removeAttribute('data-theme');
+}
+try { applyTheme(localStorage.getItem(THEME_KEY)); } catch (e) {}
+$('#themeBtn').addEventListener('click', () => {
+  const next = css('color-scheme') === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+  onThemeChange();
+});
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => onThemeChange());
+
+/* ---------- prices in the visitor's currency ----------
+   Each price is researched in the shop's own currency (ILS or USD). The page converts it to the visitor's
+   currency at today's rate and keeps the shop's price next to it. If the rates can't be loaded, the
+   shop's prices are shown as they are. */
+const CUR_KEY = 'psl-cur';
+const CURRENCIES = ['ILS', 'USD', 'EUR', 'GBP', 'CAD', 'AUD', 'NZD', 'CHF', 'JPY', 'CNY', 'INR', 'KRW', 'SGD', 'HKD', 'AED', 'SAR',
+  'PLN', 'SEK', 'NOK', 'DKK', 'CZK', 'HUF', 'RON', 'TRY', 'UAH', 'RUB', 'BRL', 'MXN', 'ZAR'];
+const TZ_CUR = {
+  'Asia/Jerusalem': 'ILS', 'Asia/Tel_Aviv': 'ILS', 'Europe/London': 'GBP', 'Europe/Zurich': 'CHF', 'Europe/Warsaw': 'PLN',
+  'Europe/Stockholm': 'SEK', 'Europe/Oslo': 'NOK', 'Europe/Copenhagen': 'DKK', 'Europe/Prague': 'CZK', 'Europe/Budapest': 'HUF',
+  'Europe/Bucharest': 'RON', 'Europe/Istanbul': 'TRY', 'Europe/Kyiv': 'UAH', 'Europe/Kiev': 'UAH', 'Europe/Moscow': 'RUB',
+  'Asia/Tokyo': 'JPY', 'Asia/Shanghai': 'CNY', 'Asia/Kolkata': 'INR', 'Asia/Calcutta': 'INR', 'Asia/Seoul': 'KRW',
+  'Asia/Singapore': 'SGD', 'Asia/Hong_Kong': 'HKD', 'Asia/Dubai': 'AED', 'Asia/Riyadh': 'SAR', 'Pacific/Auckland': 'NZD',
+  'Africa/Johannesburg': 'ZAR', 'America/Toronto': 'CAD', 'America/Vancouver': 'CAD', 'America/Edmonton': 'CAD',
+  'America/Winnipeg': 'CAD', 'America/Halifax': 'CAD', 'America/Mexico_City': 'MXN', 'America/Sao_Paulo': 'BRL',
+};
+const REGION_CUR = {
+  IL: 'ILS', US: 'USD', GB: 'GBP', CA: 'CAD', AU: 'AUD', NZ: 'NZD', CH: 'CHF', JP: 'JPY', CN: 'CNY', IN: 'INR', KR: 'KRW', SG: 'SGD',
+  HK: 'HKD', AE: 'AED', SA: 'SAR', PL: 'PLN', SE: 'SEK', NO: 'NOK', DK: 'DKK', CZ: 'CZK', HU: 'HUF', RO: 'RON', TR: 'TRY', UA: 'UAH',
+  RU: 'RUB', BR: 'BRL', MX: 'MXN', ZA: 'ZAR',
+};
+for (const r of 'AT BE BG CY DE EE ES FI FR GR HR IE IT LT LU LV MT NL PT SI SK'.split(' ')) REGION_CUR[r] = 'EUR';
+function guessCurrency() {
+  // where the visitor is: the device's time zone first (a browser set to English in Israel still says
+  // Asia/Jerusalem), then the region in the browser's language, then US dollars
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    if (TZ_CUR[tz]) return TZ_CUR[tz];
+    if (tz.startsWith('Europe/')) return 'EUR';
+    if (tz.startsWith('Australia/')) return 'AUD';
+    for (const l of navigator.languages || [navigator.language]) {
+      const reg = (String(l).split('-')[1] || '').toUpperCase();
+      if (REGION_CUR[reg]) return REGION_CUR[reg];
+    }
+  } catch (e) {}
+  return 'USD';
+}
+const FX = { cur: 'USD', rates: null, date: null };   // rates: units of each currency per 1 US dollar
+try { const c = localStorage.getItem(CUR_KEY); FX.cur = CURRENCIES.includes(c) ? c : guessCurrency(); } catch (e) { FX.cur = guessCurrency(); }
+const moneyFmt = {};
+function money(v, code, digits = 0) {
+  const f = moneyFmt[code + digits] ||= new Intl.NumberFormat('en', { style: 'currency', currency: code, currencyDisplay: 'narrowSymbol', minimumFractionDigits: digits, maximumFractionDigits: digits });
+  return f.format(v);
+}
+/* a cost per page: two decimals, three when it is under 0.10 */
+const perPage = (v, code) => money(v, code, Math.abs(v) >= 0.1 ? 2 : 3);
+/* a shop price in the visitor's currency: { v, cur, converted }. Unconverted when the currencies match or there are no rates. */
+function localPrice(v, from) {
+  if (v == null || !isFinite(v)) return null;
+  const r = FX.rates;
+  if (from === FX.cur || !r || !r[from] || !r[FX.cur]) return { v, cur: from, converted: false };
+  return { v: v / r[from] * r[FX.cur], cur: FX.cur, converted: true };
+}
+async function loadRates() {
+  const sources = [
+    ['https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.min.json',
+      (j) => ({ date: j.date, rates: Object.fromEntries(Object.entries(j.usd || {}).map(([k, v]) => [k.toUpperCase(), v])) })],
+    ['https://api.frankfurter.dev/v1/latest?base=USD', (j) => ({ date: j.date, rates: { ...j.rates, USD: 1 } })],
+  ];
+  for (const [url, parse] of sources) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      const { date, rates } = parse(await res.json());
+      if (rates && rates.ILS > 0 && rates.USD > 0) { FX.rates = rates; FX.date = date; break; }
+    } catch (e) { console.warn('exchange rates: source failed', e); }
+  }
+  renderPrices();
+}
+function renderPrices() {
+  const sel = $('#curSel');
+  if (!sel.options.length) {
+    for (const c of CURRENCIES) { const o = el('option', null, c); o.value = c; sel.appendChild(o); }
+  }
+  sel.value = FX.cur;
+  const ok = FX.rates && FX.rates[FX.cur];
+  let when = FX.date || '';
+  try { if (FX.date) when = new Date(FX.date + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); } catch (e) {}
+  $('#fxNote').textContent = ok
+    ? `Prices are converted to ${FX.cur} at the exchange rate of ${when}; each shop charges in its own currency, shown next to the converted price.`
+    : "Exchange rates couldn't be loaded, so each price is shown in the shop's own currency.";
+  if (state.printers.length) { renderTiles(); renderSpecs(); }
+}
+
+/* ---------- renderer / scene ---------- */
+const viewer = $('#viewer');
+const labelsLayer = $('#labels');
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.NeutralToneMapping;
+renderer.toneMappingExposure = 0.95;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.setClearColor(0x000000, 0);
+viewer.prepend(renderer.domElement);
+renderer.domElement.setAttribute('aria-label', '3D view of the room with the printers on the shelf');
+renderer.domElement.setAttribute('role', 'img');
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.6;
+
+const camera = new THREE.PerspectiveCamera(38, 1, 0.02, 40);
+camera.position.set(-0.6, 1.5, 1.8);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.enablePan = false;
+controls.minDistance = 0.35;
+controls.maxDistance = 8;
+controls.rotateSpeed = 0.9;
+controls.target.set(-0.3, 1.4, 0.2);
+
+const hemi = new THREE.HemisphereLight(0xfffaf2, 0xa89f8e, 0.5);
+scene.add(hemi);
+const key = new THREE.DirectionalLight(0xffffff, 1.6);
+key.position.set(-1.8, 3.2, 3.0);
+key.target.position.set(-0.4, 1.0, 0.3);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+Object.assign(key.shadow.camera, { left: -2.2, right: 2.2, top: 2.2, bottom: -2.2, near: 0.5, far: 9 });
+key.shadow.bias = -0.0004; key.shadow.normalBias = 0.015; key.shadow.radius = 4;
+scene.add(key, key.target);
+
+/* ---------- state ---------- */
+const state = {
+  printers: [], byId: {}, room: null,
+  st: 'closed', boxes: true, cables: true, person: true, view: 'front',
+  shelfH: 1.29, personH: 1.69, align: 'right',
+  scene: 'room',            // 'room' = on the shelf in the room; 'side' = the printers alone on a plain floor
+  ghostOn: false, ghost: 'b', // side by side only: one printer inside the other, and which one is see-through
+};
+// where the printers stand in the side-by-side view (metres): centre x, the line their backs share, the gap between them
+const STAGE = { x: -0.4, z0: 0.12, gap: 0.12 };
+const DEF = { shelfH: 1.29, personH: 1.69, align: 'right' };
+const PREF_KEY = 'psl-prefs';
+try {
+  const p = JSON.parse(localStorage.getItem(PREF_KEY) || 'null');
+  if (p && typeof p === 'object') {
+    if (Number.isFinite(p.personH)) state.personH = clamp(p.personH, 1.5, 2.0);
+    if (['left', 'centre', 'right'].includes(p.align)) state.align = p.align;
+  }
+} catch (e) {}
+function savePrefs() { try { localStorage.setItem(PREF_KEY, JSON.stringify({ personH: state.personH, align: state.align })); } catch (e) {} }
+
+const slots = {
+  a: { key: 'a', group: new THREE.Group(), p: null, model: null, parts: {}, seq: 0, status: null, fallback: false },
+  b: { key: 'b', group: new THREE.Group(), p: null, model: null, parts: {}, seq: 0, status: null, fallback: false },
+};
+scene.add(slots.a.group, slots.b.group);
+
+/* ---------- room geometry (filled from data.room) ---------- */
+const R = {
+  w: 3, d: 3, h: 2.55, shelfTop0: 1.29, shelfL: 0.64, shelfB: 0.30, shelfT: 0.018, shelfMeasured: { depth: false, length: false },
+  wardD: 0.52, wardW: 0.45, wardH: 1.8, wardX1: -0.645, doorW: 0.444, cabFront: 0.45, cabTop: 1.06,
+};
+function readRoom(room) {
+  if (!room) return;
+  const s = room.shelf_cm || {}, w = room.wardrobe_cm || {}, c = room.cabinets_cm || {}, r = room.room_cm || {};
+  if (r.w) R.w = r.w / 100; if (r.d) R.d = r.d / 100; if (r.h) R.h = r.h / 100;
+  if (s.top) R.shelfTop0 = s.top / 100;
+  if (s.length) R.shelfL = s.length / 100;
+  if (s.depth) R.shelfB = s.depth / 100;
+  if (s.thickness) R.shelfT = s.thickness / 100;
+  R.shelfMeasured = s.measured || R.shelfMeasured;
+  if (w.d) R.wardD = w.d / 100; if (w.w) R.wardW = w.w / 100; if (w.h) R.wardH = w.h / 100;
+  if (w.x_to != null) R.wardX1 = w.x_to / 100;
+  if (w.door_width) R.doorW = w.door_width / 100;
+  if (c.front_y != null) R.cabFront = -c.front_y / 100;
+  if (c.lower && c.upper) R.cabTop = (c.lower[2] + c.upper[2]) / 100;
+  state.shelfH = R.shelfTop0; DEF.shelfH = R.shelfTop0;
+}
+
+/* ---------- line materials + labels ---------- */
+const lineMats = new Set();
+function makeLineMat(color, dashed = true, width = 1) {
+  const m = new LineMaterial({ color, linewidth: width, dashed, dashSize: 0.01, gapSize: 0.008, transparent: true, opacity: 1, depthTest: false, toneMapped: false });
+  lineMats.add(m); sizeLineMat(m); return m;
+}
+function sizeLineMat(m) { m.resolution.set(viewer.clientWidth || 1, viewer.clientHeight || 1); }
+function makeLines(mat, order = 3) {
+  const l = new LineSegments2(new LineSegmentsGeometry(), mat);
+  l.renderOrder = order; l.visible = false; scene.add(l); return l;
+}
+function setLines(l, pos) {
+  l.geometry.dispose();
+  l.geometry = new LineSegmentsGeometry().setPositions(pos.length ? pos : [0, 0, 0, 0, 0, 0]);
+  l.computeLineDistances();
+}
+const labels = [];
+function addLabel(cls, accent, axis) {
+  const e = el('div', 'dim' + (cls ? ' ' + cls : ''));
+  if (accent) e.style.setProperty('--c', accent);
+  labelsLayer.appendChild(e);
+  const l = { el: e, pos: new THREE.Vector3(), show: false, axis };
+  labels.push(l); return l;
+}
+function setLabel(l, tag, text) { l.el.replaceChildren(el('b', null, tag), document.createTextNode(text)); }
+const tmpV = new THREE.Vector3(), viewDir = new THREE.Vector3();
+const AXES = { x: V3(1, 0, 0), y: V3(0, 1, 0), z: V3(0, 0, 1) };
+function updateLabels() {
+  const w = viewer.clientWidth, h = viewer.clientHeight;
+  viewDir.copy(camera.position).sub(controls.target).normalize();
+  for (const l of labels) {
+    const endOn = (l.axis && Math.abs(viewDir.dot(AXES[l.axis])) > 0.92) || (l.flat && Math.abs(viewDir.y) > 0.85);
+    if (!l.show || endOn) { l.el.style.display = 'none'; continue; }
+    tmpV.copy(l.pos).project(camera);
+    if (tmpV.z > 1 || tmpV.z < -1) { l.el.style.display = 'none'; continue; }
+    l.el.style.display = '';
+    const hw = l.el.offsetWidth / 2 + 3, hh = l.el.offsetHeight / 2 + 3;
+    const x = clamp((tmpV.x * 0.5 + 0.5) * w, hw, w - hw), y = clamp((-tmpV.y * 0.5 + 0.5) * h, hh, h - hh);
+    l.el.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) translate(-50%,-50%)`;
+  }
+}
+/* technical-drawing dimension: extension lines, an offset dimension line, 45° ticks */
+function dimension(out, p0, p1, off, gap = 0.006, over = 0.012, tick = 0.012) {
+  const u = off.clone().normalize();
+  const a = p0.clone().add(off), b = p1.clone().add(off);
+  const push = (q, r) => out.push(q.x, q.y, q.z, r.x, r.y, r.z);
+  if (off.lengthSq() > 1e-8) {
+    push(p0.clone().addScaledVector(u, gap), a.clone().addScaledVector(u, over));
+    push(p1.clone().addScaledVector(u, gap), b.clone().addScaledVector(u, over));
+  }
+  push(a, b);
+  const ld = b.clone().sub(a).normalize();
+  const perp = off.lengthSq() > 1e-8 ? u : new THREE.Vector3().crossVectors(ld, V3(0, 1, 0)).normalize();
+  const sl = perp.clone().add(ld).normalize().multiplyScalar(tick / 2);
+  push(a.clone().sub(sl), a.clone().add(sl));
+  push(b.clone().sub(sl), b.clone().add(sl));
+  return a.clone().add(b).multiplyScalar(0.5);
+}
+
+/* ---------- loading ---------- */
+const loader = new GLTFLoader();
+const cache = new Map();
+const progressListeners = new Map();
+function loadGLB(name) {
+  if (!cache.has(name)) {
+    const base = `models/${encodeURIComponent(name)}`;
+    const report = (p) => { const f = progressListeners.get(name); if (f) f(p); };
+    const readWithProgress = async (res) => {
+      const total = +res.headers.get('content-length') || 0;
+      if (!res.body || !total) return new Uint8Array(await res.arrayBuffer());
+      const reader = res.body.getReader(); const parts = []; let got = 0;
+      for (;;) { const { done, value } = await reader.read(); if (done) break; parts.push(value); got += value.length; report(Math.min(1, got / total)); }
+      const out = new Uint8Array(got); let o = 0; for (const p of parts) { out.set(p, o); o += p.length; } return out;
+    };
+    cache.set(name, (async () => {
+      let buf;
+      let res = await fetch(`${base}.glb`);
+      if (res.ok) buf = await readWithProgress(res);
+      else {
+        res = await fetch(`${base}.glb.txt`);
+        if (!res.ok) throw new Error(`model ${name}: HTTP ${res.status}`);
+        const txt = new TextDecoder().decode(await readWithProgress(res)).trim();
+        const bin = atob(txt); buf = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+      }
+      return (await loader.parseAsync(buf.buffer, '')).scene;
+    })());
+    cache.get(name).catch(() => cache.delete(name));
+  }
+  return cache.get(name);
+}
+
+/* ---------- the room ---------- */
+const roomGroup = new THREE.Group();
+scene.add(roomGroup);
+// side-by-side view: an invisible floor that only catches the printers' shadows
+const stage = new THREE.Mesh(new THREE.CircleGeometry(1.8, 64), new THREE.ShadowMaterial({ opacity: 0.2 }));
+stage.rotation.x = -Math.PI / 2; stage.position.set(STAGE.x, 0, 0.3); stage.receiveShadow = true; stage.visible = false;
+scene.add(stage);
+const roomNodes = {};
+let roomReady = false;
+const WALLS = ['room_wall_back', 'room_wall_right', 'room_wall_left', 'room_wall_front', 'room_ceiling'];
+async function loadRoom() {
+  try {
+    const src = await loadGLB('room');
+    roomGroup.add(src);
+    src.traverse((o) => {
+      if (o.name && o.name.startsWith('room_')) roomNodes[o.name] = o;
+      if (o.isMesh) {
+        o.castShadow = !/wall|ceiling|floor|skirting/.test(o.name + (o.parent && o.parent.name));
+        o.receiveShadow = true;
+        o.material = o.material.clone();
+        o.userData.baseOpacity = 1;
+      }
+    });
+    roomReady = true;
+    applyShelfHeight();
+  } catch (e) {
+    console.warn('room failed to load', e);
+    // a minimal stand-in so the page still works
+    const mat = new THREE.MeshStandardMaterial({ color: '#7a5134', roughness: 0.5 });
+    const shelf = new THREE.Mesh(new THREE.BoxGeometry(R.shelfL, R.shelfT, R.shelfB), mat);
+    shelf.position.set(-R.shelfL / 2, R.shelfTop0 - R.shelfT / 2, R.shelfB / 2);
+    shelf.name = 'room_shelf';
+    roomGroup.add(shelf); roomNodes.room_shelf = shelf;
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(R.w, R.d), new THREE.MeshStandardMaterial({ color: '#d9cfba', roughness: 0.8 }));
+    floor.rotation.x = -Math.PI / 2; floor.position.set(-R.w / 2, 0, R.d / 2); floor.receiveShadow = true;
+    roomGroup.add(floor);
+    roomReady = true;
+    applyShelfHeight();
+  }
+}
+function applyShelfHeight() {
+  const dy = state.shelfH - R.shelfTop0;
+  for (const n of ['room_shelf', 'room_shelf_brackets']) if (roomNodes[n]) roomNodes[n].position.y = (roomNodes[n].userData.y0 ??= roomNodes[n].position.y) + dy;
+}
+
+/* ---------- printers ---------- */
+function specDims(p) {
+  const c = (p.dims_mm && p.dims_mm.closed) || {};
+  return { w: (c.w || 400) / 1000, d: (c.d || 380) / 1000, h: (c.h || 250) / 1000 };
+}
+function fallbackModel(p) {
+  const { w, d, h } = specDims(p);
+  const geo = new RoundedBoxGeometry(w, h, d, 3, Math.min(0.012, h * 0.1));
+  const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: '#3a3b3d', roughness: 0.6 }));
+  mesh.position.y = h / 2; mesh.name = p.id + '_body';
+  const g = new THREE.Group(); g.add(mesh); return g;
+}
+function partOf(obj, slot) {
+  for (let o = obj; o; o = o.parent) if (o.userData.part) return o.userData.part;
+  return null;
+}
+async function setSlot(slot, p) {
+  const seq = ++slot.seq;
+  slot.p = p;
+  clearSlot(slot);
+  if (!p) { renderAll(); return; }
+  slot.status = { kind: 'loading', p: 0 };
+  renderStatus(); renderChrome();
+  progressListeners.set(p.id, (x) => { if (slot.seq === seq && slot.status && slot.status.kind === 'loading') { slot.status.p = x; renderStatus(); } });
+  let model, failed = false;
+  if (p.has_model) {
+    try { model = (await loadGLB(p.id)).clone(true); }
+    catch (e) { console.warn(`model ${p.id} failed`, e); failed = true; }
+  } else failed = true;
+  if (failed) model = fallbackModel(p);
+  if (slot.seq !== seq) return;
+  slot.model = model;
+  slot.fallback = failed;
+  slot.geom = failed ? null : p.geom;
+  slot.parts = {};
+  const geomParts = (slot.geom && slot.geom.parts) || { body: { node: p.id + '_body', kind: 'body' } };
+  for (const [part, info] of Object.entries(geomParts)) {
+    const o = model.getObjectByName(info.node);
+    if (!o) continue;
+    o.userData.part = part;
+    o.userData.kind = info.kind;
+    o.userData.base = { pos: o.position.clone(), quat: o.quaternion.clone(), vis: !info.hidden };
+    o.visible = !info.hidden;
+    slot.parts[part] = o;
+  }
+  model.traverse((o) => {
+    if (!o.isMesh) return;
+    o.castShadow = true; o.receiveShadow = true;
+    o.userData.origMat = o.material;
+  });
+  slot.ghostMat = new THREE.MeshStandardMaterial({ color: slotColor(slot.key), transparent: true, opacity: 0.2, roughness: 0.9, depthWrite: false });
+  // side by side with Ghost on: drawn over the solid printer, so the part hidden inside it still shows
+  slot.ghostOverMat = new THREE.MeshStandardMaterial({ color: slotColor(slot.key), transparent: true, opacity: 0.11, roughness: 0.9, depthWrite: false, depthTest: false });
+  slot.group.add(model);
+  slot.bodyBox = measure(slot, { closedOnly: true });
+  slot.baseFrontZ = baseFront(slot);
+  // cable space behind the printer: measured on the shelf > the model's own estimate > a default
+  const mgap = slot.p && slot.p.measured && slot.p.measured.cable_back_gap_cm;
+  const ggap = slot.geom && slot.geom.cable_back_gap_cm;
+  slot.gap = (mgap != null ? mgap : ggap != null ? ggap : DEFAULT_GAP * 100) / 100;
+  slot.gapEstimated = mgap == null && ggap == null;
+  slot.gapMeasured = mgap != null;
+  slot.status = failed ? { kind: 'fallback' } : null;
+  applyMaterials();
+  applyState(slot, false);
+  relayout(true);
+}
+function clearSlot(slot) {
+  if (slot.model) slot.group.remove(slot.model);
+  slot.model = null; slot.parts = {}; slot.geom = null; slot.bodyBox = null; slot.env = null; slot.status = null;
+}
+function statesOf(slot) {
+  const s = new Set(['closed']);
+  if (slot.geom && slot.geom.states) for (const k of Object.keys(slot.geom.states)) s.add(k);
+  return s;
+}
+function effState(slot) { return statesOf(slot).has(state.st) ? state.st : 'closed'; }
+
+/* state poses: animate parts from their current pose to the pose of the chosen state */
+function applyState(slot, animate = true) {
+  if (!slot.model) return;
+  const ops = (slot.geom && slot.geom.states && slot.geom.states[effState(slot)]) || [];
+  const target = {};
+  for (const [part, o] of Object.entries(slot.parts)) target[part] = { pos: o.userData.base.pos.clone(), quat: o.userData.base.quat.clone(), vis: o.userData.base.vis };
+  for (const op of ops) {
+    const t = target[op.part]; if (!t) continue;
+    if (op.rot) t.quat.premultiply(new THREE.Quaternion().setFromAxisAngle(V3(...op.rot).normalize(), THREE.MathUtils.degToRad(op.deg)));
+    if (op.move) t.pos.add(V3(...op.move));
+    if (op.show) t.vis = true;
+    if (op.hide) t.vis = false;
+  }
+  const from = {};
+  for (const [part, o] of Object.entries(slot.parts)) from[part] = { pos: o.position.clone(), quat: o.quaternion.clone() };
+  slot.anim = { t0: performance.now(), dur: animate && !reduceMotion.matches ? 520 : 0, from, target };
+  for (const [part, o] of Object.entries(slot.parts)) if (target[part].vis) o.visible = true;
+  if (!slot.anim.dur) stepAnim(slot, performance.now() + 1);
+}
+function stepAnim(slot, now) {
+  const a = slot.anim; if (!a) return false;
+  const k = a.dur ? Math.min(1, (now - a.t0) / a.dur) : 1;
+  const e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+  for (const [part, o] of Object.entries(slot.parts)) {
+    const f = a.from[part], t = a.target[part];
+    o.position.lerpVectors(f.pos, t.pos, e);
+    o.quaternion.slerpQuaternions(f.quat, t.quat, e);
+  }
+  if (k >= 1) {
+    for (const [part, o] of Object.entries(slot.parts)) o.visible = a.target[part].vis;
+    slot.anim = null;
+    refreshMeasurements();
+    return true;
+  }
+  return false;
+}
+function isCable(o) { for (let x = o; x; x = x.parent) if (x.userData.kind === 'cable') return true; return false; }
+const tmpBox = new THREE.Box3();
+/* bounding box of a printer (world space) without cables; closedOnly = base pose in model space */
+function measure(slot, { closedOnly = false } = {}) {
+  const box = new THREE.Box3();
+  if (!slot.model) return box;
+  slot.model.updateMatrixWorld(true);
+  const inv = closedOnly ? new THREE.Matrix4().copy(slot.group.matrixWorld).invert() : null;
+  slot.model.traverse((o) => {
+    if (!o.isMesh || isCable(o)) return;
+    let vis = true; for (let x = o; x && x !== slot.group; x = x.parent) if (!x.visible) vis = false;
+    if (!vis) return;
+    tmpBox.setFromObject(o, true);
+    if (inv) tmpBox.applyMatrix4(inv);
+    box.union(tmpBox);
+  });
+  return box;
+}
+
+/* front edge of the part that rests on the shelf: the closed body's lowest 1.5 cm, without cables (model space).
+   On some printers the panel or a tray lip reaches further forward than the base does. */
+function baseFront(slot) {
+  if (!slot.model || !slot.bodyBox || slot.bodyBox.isEmpty()) return null;
+  slot.model.updateMatrixWorld(true);
+  const inv = new THREE.Matrix4().copy(slot.group.matrixWorld).invert(), m = new THREE.Matrix4(), v = new THREE.Vector3();
+  const yMax = slot.bodyBox.min.y + 0.015;
+  let z = -Infinity;
+  slot.model.traverse((o) => {
+    if (!o.isMesh || isCable(o) || !o.geometry.attributes.position) return;
+    for (let x = o; x && x !== slot.group; x = x.parent) if (!x.visible) return;
+    const p = o.geometry.attributes.position;
+    m.multiplyMatrices(inv, o.matrixWorld);
+    for (let i = 0; i < p.count; i++) { v.fromBufferAttribute(p, i).applyMatrix4(m); if (v.y <= yMax && v.z > z) z = v.z; }
+  });
+  return Number.isFinite(z) ? z : null;
+}
+
+/* ---------- placement on the shelf ---------- */
+const hasBody = (s) => !!(s.model && s.bodyBox && !s.bodyBox.isEmpty());
+const ghostPair = () => state.scene === 'side' && state.ghostOn && hasBody(slots.a) && hasBody(slots.b);
+function placeSlot(slot) {
+  if (!hasBody(slot)) return;
+  const bb = slot.bodyBox;
+  const W = bb.max.x - bb.min.x;
+  let x;
+  if (state.align === 'right') x = -0.015 - bb.max.x;
+  else if (state.align === 'left') x = -R.shelfL + 0.01 - bb.min.x;
+  else x = -R.shelfL / 2 - (bb.min.x + bb.max.x) / 2;
+  // where it stands on the shelf; the numbers under the viewer always use this, whichever view is showing
+  slot.roomPos = V3(x, state.shelfH, slot.gap - bb.min.z);
+  slot.tooWide = W > R.shelfL + 0.001;
+  if (state.scene === 'room') slot.group.position.copy(slot.roomPos);
+  else {
+    // alone on a plain floor, backs on one line: next to each other (A on the left), or one inside the other
+    const A = slots.a.bodyBox, B = slots.b.bodyBox;
+    let sx;
+    if (!hasBody(slots.a) || !hasBody(slots.b) || state.ghostOn) sx = STAGE.x - (bb.min.x + bb.max.x) / 2;
+    else {
+      const total = (A.max.x - A.min.x) + STAGE.gap + (B.max.x - B.min.x);
+      sx = slot.key === 'a' ? STAGE.x - total / 2 - bb.min.x : STAGE.x + total / 2 - bb.max.x;
+    }
+    slot.group.position.set(sx, 0, STAGE.z0 - bb.min.z);
+  }
+  slot.group.updateMatrixWorld(true);
+}
+
+/* ---------- person ---------- */
+const LM = { eye: 0.936, c7: 0.85, shoulder: 0.818, chest: 0.72, elbow: 0.63, waist: 0.62, crest: 0.60, hips: 0.57, trochanter: 0.53, crotch: 0.47, wrist: 0.485, knee: 0.285, ankle: 0.039 };
+const crom = (p0, p1, p2, p3, t) => 0.5 * (2 * p1 + (-p0 + p2) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t * t + (-p0 + 3 * p1 - 3 * p2 + p3) * t * t * t);
+function loft(keys, seg = 48, steps = 6) {
+  const rings = [], n = keys.length;
+  for (let i = 0; i < n - 1; i++) {
+    const k0 = keys[Math.max(0, i - 1)], k1 = keys[i], k2 = keys[i + 1], k3 = keys[Math.min(n - 1, i + 2)];
+    for (let s = 0; s < steps; s++) rings.push(k1.map((_, j) => crom(k0[j], k1[j], k2[j], k3[j], s / steps)));
+  }
+  rings.push(keys[n - 1].slice());
+  const pos = [], idx = [];
+  for (const [y, cx, cz, rx, rz, p] of rings) {
+    const e = 2 / (p || 2);
+    for (let j = 0; j < seg; j++) {
+      const a = (j / seg) * Math.PI * 2, c = Math.cos(a), s = Math.sin(a);
+      pos.push(cx + Math.max(rx, 1e-4) * Math.sign(c) * Math.abs(c) ** e, y, cz + Math.max(rz, 1e-4) * Math.sign(s) * Math.abs(s) ** e);
+    }
+  }
+  const Rn = rings.length;
+  for (let i = 0; i < Rn - 1; i++) for (let j = 0; j < seg; j++) {
+    const a = i * seg + j, b = i * seg + (j + 1) % seg, c = a + seg, d = b + seg;
+    idx.push(a, b, c, b, d, c);
+  }
+  const t0 = rings[0], t1 = rings[Rn - 1];
+  const top = pos.length / 3; pos.push(t0[1], t0[0], t0[2]);
+  const bot = top + 1; pos.push(t1[1], t1[0], t1[2]);
+  for (let j = 0; j < seg; j++) { idx.push(top, (j + 1) % seg, j); idx.push(bot, (Rn - 1) * seg + j, (Rn - 1) * seg + (j + 1) % seg); }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  geo.setIndex(idx); geo.computeVertexNormals();
+  return geo;
+}
+function ellipsoid(rx, ry, rz, x, y, z) { return new THREE.SphereGeometry(1, 32, 20).scale(rx, ry, rz).translate(x, y, z); }
+const TORSO = [
+  [0.851, 0.034, 0.030, -0.030, 2.0, 0.6, 0.6], [0.843, 0.070, 0.044, -0.021, 2.2, 0.5, 0.6], [0.829, 0.100, 0.056, -0.012, 2.5, 0.4, 0.7],
+  [0.810, 0.112, 0.064, -0.005, 2.7, 0.4, 0.8], [0.785, 0.110, 0.071, -0.001, 2.5, 0.6, 0.9], [0.750, 0.105, 0.075, 0.000, 2.3, 0.7, 1.0],
+  [0.715, 0.099, 0.075, -0.002, 2.2, 0.8, 1.1], [0.675, 0.091, 0.069, -0.008, 2.1, 1.0, 1.3], [0.635, 0.087, 0.063, -0.016, 2.0, 1.1, 1.5],
+  [0.605, 0.088, 0.063, -0.019, 2.0, 1.1, 1.5], [0.575, 0.092, 0.066, -0.014, 2.0, 1.0, 1.25], [0.545, 0.097, 0.071, -0.006, 2.1, 0.9, 1.05],
+  [0.515, 0.099, 0.073, -0.002, 2.1, 0.9, 1.0], [0.490, 0.095, 0.068, -0.008, 2.0, 0.9, 1.0], [0.468, 0.078, 0.050, -0.022, 2.0, 0.9, 1.0],
+  [0.456, 0.030, 0.020, -0.045, 2.0, 0.9, 1.0],
+];
+function torsoRing(yf, g) {
+  let i = 0; while (i < TORSO.length - 2 && TORSO[i + 1][0] > yf) i++;
+  const a = TORSO[i], b = TORSO[i + 1];
+  const t = clamp((a[0] - yf) / (a[0] - b[0]), 0, 1);
+  const L = (k) => a[k] + (b[k] - a[k]) * t;
+  const hw = L(1) * g ** L(5), hd = L(2) * g ** L(6);
+  return { hw, hd, cz: L(3) - hd };
+}
+function buildMannequin(H, g = 1) {
+  const geos = [];
+  geos.push(loft(TORSO.map(([y, hw, hd, b, p, we, de]) => { const rz = hd * g ** de; return [y * H, 0, (b - rz) * H, hw * g ** we * H, rz * H, p]; }), 56, 6));
+  const gn = g ** 0.8, neckCz = -0.035 - 0.033 * gn;
+  geos.push(loft([[0.900, 0, neckCz, 0.028 * gn, 0.030 * gn, 2], [0.880, 0, neckCz, 0.030 * gn, 0.032 * gn, 2], [0.860, 0, neckCz, 0.032 * gn, 0.034 * gn, 2],
+    [0.840, 0, neckCz - 0.002, 0.038 * gn, 0.040 * gn, 2], [0.826, 0, neckCz - 0.004, 0.030 * gn, 0.032 * gn, 2]].map((k) => [k[0] * H, 0, k[2] * H, k[3] * H, k[4] * H, 2]), 40, 5));
+  const hc = -0.018 - 0.053;
+  geos.push(loft([[1.000, 0.000, 0.004, 0.004], [0.993, 0.000, 0.024, 0.030], [0.980, 0.000, 0.034, 0.044], [0.962, -0.002, 0.041, 0.053], [0.940, -0.003, 0.044, 0.056],
+    [0.918, -0.004, 0.043, 0.055], [0.898, -0.008, 0.039, 0.050], [0.882, -0.014, 0.031, 0.042], [0.872, -0.020, 0.020, 0.030], [0.866, -0.024, 0.006, 0.012]]
+    .map(([y, dz, rx, rz]) => [y * H, 0, (hc + dz) * H, rx * H, rz * H, 2]), 40, 5));
+  const sh = torsoRing(0.81, g), jointX = sh.hw - 0.004, zArm = torsoRing(0.785, g).cz;
+  let wristX = 0.099 * g ** 0.9 + 0.032;
+  const elbowNeed = torsoRing(0.635, g).hw + 0.022 * g + 0.012, kE = (0.805 - 0.635) / (0.805 - LM.wrist);
+  wristX = Math.max(wristX, jointX + (elbowNeed - jointX) / kE);
+  const ARM = [[0.838, 0.010], [0.828, 0.024], [0.808, 0.034], [0.782, 0.032], [0.742, 0.028], [0.692, 0.025], [0.648, 0.022], [0.622, 0.023], [0.588, 0.024], [0.545, 0.020], [0.505, 0.016], [0.486, 0.015], [0.474, 0.011]];
+  const armX = (yf) => yf >= 0.805 ? jointX - (yf - 0.805) * 0.35 : jointX + (wristX - jointX) * (0.805 - yf) / (0.805 - LM.wrist);
+  for (const side of [-1, 1]) {
+    geos.push(loft(ARM.map(([yf, r]) => [yf * H, side * armX(yf) * H, zArm * H, r * g * 0.94 * H, r * g * H, 2]), 32, 5));
+    geos.push(ellipsoid(0.015 * g ** 0.6 * H, 0.047 * H, 0.024 * g ** 0.4 * H, side * (armX(0.44) + 0.002) * H, 0.44 * H, (zArm - 0.004) * H));
+  }
+  const legZ = -0.002 - 0.073 * g ** 0.7 - 0.004;
+  const LEG = [[0.548, 0.030, 0], [0.528, 0.052, 0], [0.497, 0.057, 0], [0.440, 0.051, 0], [0.372, 0.044, 0], [0.307, 0.035, 0], [0.276, 0.034, 0.002], [0.226, 0.036, 0.006],
+    [0.170, 0.033, 0.004], [0.110, 0.024, 0.001], [0.062, 0.019, 0], [0.042, 0.017, 0], [0.030, 0.014, 0]];
+  const legX = (yf) => { const t = clamp((0.53 - yf) / 0.49, 0, 1); return 0.052 * g ** 0.7 * (1 - t) + 0.046 * g ** 0.3 * t; };
+  for (const side of [-1, 1]) {
+    geos.push(loft(LEG.map(([yf, r, dz]) => { const gl = yf > 0.3 ? g ** 1.1 : g ** 0.8; return [yf * H, side * legX(yf) * H, (legZ + dz) * H, r * gl * H, r * gl * 1.02 * H, 2]; }), 36, 5));
+    geos.push(ellipsoid(0.021 * g ** 0.3 * H, 0.021 * H, 0.070 * H, side * legX(0.03) * H, 0.021 * H, (legZ - 0.032) * H));
+  }
+  const box = new THREE.Box3();
+  for (const geo of geos) { geo.computeBoundingBox(); box.union(geo.boundingBox); }
+  return { geos, box };
+}
+const personMat = new THREE.MeshStandardMaterial({ color: '#cdc8be', roughness: 0.78, metalness: 0, transparent: true, opacity: 1 });
+const person = new THREE.Group();
+scene.add(person);
+let personBuild = null;
+function rebuildPerson() {
+  if (personBuild) for (const g of personBuild.geos) g.dispose();
+  personBuild = buildMannequin(state.personH);
+  person.clear();
+  for (const geo of personBuild.geos) { const m = new THREE.Mesh(geo, personMat); m.castShadow = true; m.receiveShadow = true; person.add(m); }
+}
+function placePerson() {
+  person.visible = state.person && state.scene === 'room';
+  if (!personBuild) return;
+  // standing beside the shelf, facing the wall (-z): right shoulder just left of the niche,
+  // toes 4 cm in front of whatever is behind them (the cabinets or the wardrobe)
+  const hw = Math.max(-personBuild.box.min.x, personBuild.box.max.x);
+  const x = -R.shelfL - 0.04 - hw;
+  const overWardrobe = x - hw < R.wardX1 && x + hw > R.wardX1 - R.wardW;
+  const front = Math.max(R.cabFront, overWardrobe ? R.wardD : 0) + 0.04;
+  person.position.set(x, 0, front - personBuild.box.min.z);
+}
+
+/* ---------- overlays ---------- */
+const OV = {};
+let farView = false;   // camera far from the shelf: hide the small labels
+function buildOverlays() {
+  const A = slotColor('a'), B = slotColor('b'), ink = css('--measure') || '#1d1d1b';
+  OV.boxA = makeLines(makeLineMat(A, true)); OV.dimA = makeLines(makeLineMat(A, false));
+  OV.boxB = makeLines(makeLineMat(B, true)); OV.dimB = makeLines(makeLineMat(B, false));
+  OV.over = makeLines(makeLineMat(A, false, 2), 4);
+  OV.overB = makeLines(makeLineMat(B, false, 2), 4);
+  OV.edge = makeLines(makeLineMat(ink, true), 4);
+  OV.eye = makeLines(makeLineMat(css('--muted') || '#66655f', true), 4);
+  OV.gap = makeLines(makeLineMat(ink, false), 4);
+  OV.cableZone = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: A, transparent: true, opacity: 0.14, depthWrite: false }));
+  OV.cableZone.renderOrder = 2; OV.cableZone.visible = false; scene.add(OV.cableZone);
+  OV.lbl = {
+    w: addLabel('', A, 'x'), d: addLabel('', A, 'z'), h: addLabel('', A, 'y'),
+    over: addLabel('strong', A), overB: addLabel('', B), gap: addLabel('', A), top: addLabel('', A),
+    edge: addLabel('mark'), eye: addLabel('mark'),
+    wB: addLabel('', B, 'x'), dB: addLabel('', B, 'z'), hB: addLabel('', B, 'y'),
+  };
+  OV.lbl.eye.flat = true;
+  setLabel(OV.lbl.edge, '', 'Shelf edge');
+}
+function overhangText(v) {
+  const n = Math.abs(v) * 100;
+  if (n < 0.5) return 'Flush with the edge';
+  return v > 0 ? `Sticks out ${fmt(n)} cm` : `${fmt(n)} cm inside the edge`;
+}
+function refreshMeasurements() {
+  for (const s of [slots.a, slots.b]) s.env = s.model ? measure(s) : null;
+  drawOverlays();
+  renderFit();
+  renderTiles();
+  placePerson();
+}
+/* side-by-side view: a dotted box and W / D / H for each printer, nothing about the shelf */
+function drawSideOverlays() {
+  const show = state.boxes, stacked = ghostPair();
+  for (const k of ['over', 'overB', 'edge', 'eye', 'gap', 'cableZone']) OV[k].visible = false;
+  for (const k of ['over', 'overB', 'gap', 'top', 'edge', 'eye']) OV.lbl[k].show = false;
+  const sets = [[slots.a, OV.boxA, OV.dimA, [OV.lbl.w, OV.lbl.d, OV.lbl.h]], [slots.b, OV.boxB, OV.dimB, [OV.lbl.wB, OV.lbl.dB, OV.lbl.hB]]];
+  for (const [s, box, dim, [lw, ld, lh]] of sets) {
+    const has = !!(s.env && !s.env.isEmpty());
+    box.visible = dim.visible = show && has;
+    lw.show = ld.show = lh.show = show && has;
+    if (!has) continue;
+    const e = s.env, mn = e.min, mx = e.max, isA = s.key === 'a', OFF = 0.04;
+    setLines(box, boxSegments(e));
+    // next to each other: each printer's sizes on its outer side. One inside the other: A's sizes low and
+    // on the right, B's high and on the left, so the two sets don't collide.
+    const side = stacked ? (isA ? 1 : -1) : (isA ? -1 : 1);
+    // depth goes on the top edge when the printers stand apart (clear of the height label), and when
+    // stacked A's stays low and B's goes high
+    const sx = side > 0 ? mx.x : mn.x, low = isA || !stacked, y = stacked && isA ? mn.y : mx.y;
+    const pos = [];
+    const mh = dimension(pos, V3(sx, mn.y, mx.z), V3(sx, mx.y, mx.z), V3(side * OFF, 0, 0));
+    const mw = low ? dimension(pos, V3(mn.x, mn.y, mx.z), V3(mx.x, mn.y, mx.z), V3(0, 0, OFF))
+      : dimension(pos, V3(mn.x, mx.y, mn.z), V3(mx.x, mx.y, mn.z), V3(0, 0, -OFF));
+    const md = dimension(pos, V3(sx, y, mn.z), V3(sx, y, mx.z), V3(side * OFF, 0, 0));
+    if (stacked && !isA) mh.y = mn.y + (mx.y - mn.y) * 0.72;
+    setLines(dim, pos);
+    lw.pos.copy(mw); ld.pos.copy(md); lh.pos.copy(mh);
+    const sz = e.getSize(new THREE.Vector3());
+    setLabel(lw, 'W', `${cm(sz.x)} cm`); setLabel(lh, 'H', `${cm(sz.y)} cm`); setLabel(ld, 'D', `${cm(sz.z)} cm`);
+  }
+}
+function drawOverlays() {
+  if (!OV.boxA) return;
+  if (state.scene !== 'room') { drawSideOverlays(); return; }
+  OV.dimB.visible = false;
+  for (const k of ['wB', 'dB', 'hB']) OV.lbl[k].show = false;
+  const show = state.boxes;
+  const sa = slots.a, sb = slots.b;
+  // printer A: dotted box, W/D/H, overhang, cable space, top height
+  const has = sa.env && !sa.env.isEmpty();
+  // from far away (whole room, door) only the boxes and the overhang stay; the rest is clutter
+  const minor = show && !farView;
+  for (const k of ['boxA', 'over']) OV[k].visible = show && has;
+  for (const k of ['dimA', 'gap']) OV[k].visible = minor && has;
+  OV.lbl.over.show = show && has;
+  for (const k of ['w', 'd', 'h', 'gap', 'top']) OV.lbl[k].show = minor && has;
+  OV.cableZone.visible = minor && has;
+  if (has) {
+    const e = sa.env, mn = e.min, mx = e.max;
+    setLines(OV.boxA, boxSegments(e));
+    const pos = [];
+    OV.lbl.w.pos.copy(dimension(pos, V3(mn.x, mx.y, mx.z), V3(mx.x, mx.y, mx.z), V3(0, 0.05, 0)));
+    OV.lbl.h.pos.copy(dimension(pos, V3(mx.x, mn.y, mx.z), V3(mx.x, mx.y, mx.z), V3(0.05, 0, 0)));
+    OV.lbl.d.pos.copy(dimension(pos, V3(mn.x, mx.y, mn.z), V3(mn.x, mx.y, mx.z), V3(0, 0.05, 0)));
+    setLines(OV.dimA, pos);
+    const s = e.getSize(new THREE.Vector3());
+    setLabel(OV.lbl.w, 'W', `${cm(s.x)} cm`); setLabel(OV.lbl.h, 'H', `${cm(s.y)} cm`); setLabel(OV.lbl.d, 'D', `${cm(s.z)} cm`);
+    // overhang: shelf front edge -> front of the printer, at shelf level on the left side
+    const ov = mx.z - R.shelfB, op = [];
+    const yS = state.shelfH;
+    const x0 = mn.x - 0.035;
+    if (Math.abs(ov) > 0.002) {
+      OV.lbl.over.pos.copy(dimension(op, V3(x0, yS, R.shelfB), V3(x0, yS, mx.z), V3(0, -0.035, 0)));
+    } else OV.lbl.over.pos.set(x0, yS - 0.035, R.shelfB);
+    setLines(OV.over, op);
+    setLabel(OV.lbl.over, '', overhangText(ov));
+    OV.lbl.over.el.classList.toggle('strong', ov > 0.005);
+    // cable space: wall -> back of the body
+    const back = sa.group.position.z + sa.bodyBox.min.z;
+    const gp = [];
+    OV.lbl.gap.pos.copy(dimension(gp, V3(mx.x, mx.y, 0), V3(mx.x, mx.y, back), V3(0, 0.03, 0)));
+    setLines(OV.gap, back > 0.003 ? gp : []);
+    setLabel(OV.lbl.gap, 'Cables', `${cm(back)} cm${sa.gapEstimated ? ' (est.)' : sa.gapMeasured ? ' (measured)' : ''}`);
+    OV.cableZone.scale.set(Math.max(0.01, mx.x - mn.x), Math.max(0.01, s.y), Math.max(0.002, back));
+    OV.cableZone.position.set((mn.x + mx.x) / 2, mn.y + s.y / 2, back / 2);
+    OV.cableZone.visible = minor && back > 0.003;
+    setLabel(OV.lbl.top, 'Top', `${cm0(mx.y)} cm from the floor`);
+    OV.lbl.top.pos.set((mn.x + mx.x) / 2, mx.y + 0.11, (mn.z + mx.z) / 2);
+  }
+  // printer B: dotted box + overhang label
+  const hasB = sb.env && !sb.env.isEmpty();
+  OV.boxB.visible = show && hasB; OV.overB.visible = false; OV.lbl.overB.show = show && hasB;
+  if (hasB) {
+    setLines(OV.boxB, boxSegments(sb.env));
+    const ovB = sb.env.max.z - R.shelfB;
+    setLabel(OV.lbl.overB, 'B', overhangText(ovB));
+    OV.lbl.overB.pos.set(sb.env.max.x + 0.02, state.shelfH - 0.06, Math.max(sb.env.max.z, R.shelfB));
+  }
+  // shelf edge line
+  OV.edge.visible = show; OV.lbl.edge.show = minor;
+  setLines(OV.edge, [-R.shelfL, state.shelfH + 0.001, R.shelfB, 0, state.shelfH + 0.001, R.shelfB]);
+  OV.lbl.edge.pos.set(-R.shelfL - 0.04, state.shelfH, R.shelfB);
+  // eye level line
+  const eyeOn = minor && state.person && personBuild;
+  OV.eye.visible = eyeOn; OV.lbl.eye.show = eyeOn;
+  if (eyeOn) {
+    const y = LM.eye * state.personH;
+    const zf = person.position.z + personBuild.box.min.z;
+    const z = Math.max(R.shelfB, slots.a.env && !slots.a.env.isEmpty() ? slots.a.env.max.z : 0) + 0.01;
+    // eye level: from the face toward the wall, then across the front of the shelf
+    setLines(OV.eye, [person.position.x, y, zf, person.position.x, y, z, person.position.x, y, z, 0, y, z]);
+    setLabel(OV.lbl.eye, '', `Your eyes ${cm0(y)} cm`);
+    OV.lbl.eye.pos.set(person.position.x, y + 0.09, zf);
+  }
+}
+const EDGE_IDX = [[0,1],[1,3],[3,2],[2,0],[4,5],[5,7],[7,6],[6,4],[0,4],[1,5],[2,6],[3,7]];
+function boxSegments(box, pad = 0.003) {
+  const mn = box.min.clone().subScalar(pad), mx = box.max.clone().addScalar(pad);
+  const c = [];
+  for (let i = 0; i < 8; i++) c.push([(i & 1) ? mx.x : mn.x, (i & 2) ? mx.y : mn.y, (i & 4) ? mx.z : mn.z]);
+  const pos = [];
+  for (const [a, b] of EDGE_IDX) pos.push(...c[a], ...c[b]);
+  return pos;
+}
+
+/* ---------- wardrobe door swing (2D, plan view) ---------- */
+function doorStop(env) {
+  // the door hangs on the wardrobe's front corner next to the niche and swings out into the room
+  if (!env || env.isEmpty()) return null;
+  if (env.max.z <= R.wardD + 0.003) return null;
+  const hx = R.wardX1, hz = R.wardD, L = R.doorW;
+  if (state.shelfH > R.wardH) return null;
+  for (let deg = 1; deg <= 180; deg++) {
+    const a = THREE.MathUtils.degToRad(deg), dx = -Math.cos(a), dz = Math.sin(a);
+    for (let t = 0.02; t <= L; t += 0.01) {
+      const x = hx + dx * t, z = hz + dz * t;
+      if (x >= env.min.x && x <= env.max.x && z >= env.min.z && z <= env.max.z) return deg;
+    }
+  }
+  return null;
+}
+
+/* ---------- layout, materials, camera ---------- */
+function applyMaterials() {
+  for (const s of [slots.a, slots.b]) {
+    if (!s.model) continue;
+    // room view: B is always the see-through one. Side by side: only with Ghost on, and the user picks which.
+    const over = ghostPair() && state.ghost === s.key;
+    const ghost = over || (state.scene === 'room' && s.key === 'b' && slots.a.model);
+    s.model.traverse((o) => {
+      if (!o.isMesh) return;
+      o.material = over ? s.ghostOverMat : ghost ? s.ghostMat : o.userData.origMat;
+      o.renderOrder = over ? 2 : 0;
+      o.castShadow = !ghost;
+      if (isCable(o)) o.visible = state.cables;
+    });
+  }
+}
+function relayout(refit) {
+  for (const s of [slots.a, slots.b]) placeSlot(s);
+  refreshMeasurements();
+  renderChrome(); renderStatus(); renderSpecs(); syncStateButtons();
+  if (refit) goTo(VIEWS[state.view], false, true);
+}
+function renderAll() { relayout(true); }
+
+const VIEWS = {
+  front: { phi: 1.45, theta: 0, name: 'Front' },
+  side: { phi: 1.52, theta: Math.PI / 2, name: 'Side, through the right wall', plain: 'Side' },
+  top: { phi: 0.0006, theta: 0, name: 'From above' },
+  door: { pos: () => V3(-0.45, 1.62, R.d - 0.12), name: 'From the door', roomOnly: true },
+  iso: { phi: 1.12, theta: 0.62, name: '3/4, through the right wall', plain: '3/4' },
+  room: { phi: 0.72, theta: -0.62, name: 'Whole room', room: true, roomOnly: true },
+};
+function focusBox() {
+  const box = new THREE.Box3();
+  for (const s of [slots.a, slots.b]) if (s.env && !s.env.isEmpty()) box.union(s.env);
+  if (state.scene !== 'room') {
+    if (box.isEmpty()) box.set(V3(STAGE.x - 0.3, 0, 0), V3(STAGE.x + 0.3, 0.3, 0.5));
+    if (state.boxes) box.expandByVector(V3(0.09, 0.03, 0.07));
+    return box;
+  }
+  box.union(new THREE.Box3(V3(-R.shelfL, state.shelfH - 0.02, 0), V3(0, state.shelfH, R.shelfB)));
+  if (box.isEmpty()) box.set(V3(-0.6, 1.2, 0), V3(0, 1.6, 0.5));
+  if (state.boxes) box.expandByVector(V3(0.06, 0.06, 0.06));
+  return box;
+}
+const tmpCam = new THREE.PerspectiveCamera();
+function fitDistance(phi, theta, box, center, pad = 1.18) {
+  const dir = new THREE.Vector3().setFromSphericalCoords(1, phi, theta);
+  tmpCam.position.copy(center).add(dir); tmpCam.up.set(0, 1, 0); tmpCam.lookAt(center); tmpCam.updateMatrixWorld(true);
+  const inv = tmpCam.matrixWorldInverse;
+  const tanV = Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2), tanH = tanV * camera.aspect;
+  let D = 0; const v = new THREE.Vector3();
+  for (let i = 0; i < 8; i++) {
+    v.set((i & 1) ? box.max.x : box.min.x, (i & 2) ? box.max.y : box.min.y, (i & 4) ? box.max.z : box.min.z).applyMatrix4(inv);
+    D = Math.max(D, (Math.abs(v.x) * pad) / tanH + v.z + 1, (Math.abs(v.y) * pad) / tanV + v.z + 1);
+  }
+  return clamp(D, controls.minDistance, controls.maxDistance);
+}
+let tween = null;
+function goTo(view, animate = true, keepName = false) {
+  let center, toPos;
+  if (view.room) {
+    const box = new THREE.Box3(V3(-R.w, 0, 0), V3(0, 1.3, R.d));
+    center = box.getCenter(new THREE.Vector3());
+    toPos = center.clone().add(new THREE.Vector3().setFromSphericalCoords(fitDistance(view.phi, view.theta, box, center, 1.02), view.phi, view.theta));
+  } else if (view.pos) {
+    const box = focusBox();
+    center = box.getCenter(new THREE.Vector3());
+    toPos = view.pos();
+  } else {
+    const box = focusBox();
+    if (state.scene === 'room' && state.person && personBuild && view !== VIEWS.top) {
+      // include the person from the shoulders up, so the printer stays large in the frame
+      const pb = new THREE.Box3().setFromObject(person);
+      pb.min.y = Math.max(pb.min.y, LM.chest * state.personH);
+      box.union(pb);
+    }
+    center = box.getCenter(new THREE.Vector3());
+    const pad = state.scene === 'room' ? 1.28 : 1.1;
+    toPos = center.clone().add(new THREE.Vector3().setFromSphericalCoords(fitDistance(view.phi, view.theta, box, center, pad), view.phi, view.theta));
+  }
+  if (!keepName) $('#viewName').textContent = (state.scene !== 'room' && view.plain) || view.name || '';
+  if (!animate || reduceMotion.matches) {
+    tween = null; controls.target.copy(center); camera.position.copy(toPos); controls.update(); return;
+  }
+  tween = { t0: performance.now(), dur: 750, fromPos: camera.position.clone(), fromT: controls.target.clone(), toPos, toT: center };
+}
+function stepTween(now) {
+  if (!tween) return;
+  const k = Math.min(1, (now - tween.t0) / tween.dur);
+  const e = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+  // move around the target on a sphere-ish path: interpolate the target and the offset
+  const t = tween.fromT.clone().lerp(tween.toT, e);
+  const o0 = tween.fromPos.clone().sub(tween.fromT), o1 = tween.toPos.clone().sub(tween.toT);
+  const s0 = new THREE.Spherical().setFromVector3(o0), s1 = new THREE.Spherical().setFromVector3(o1);
+  let dTh = s1.theta - s0.theta; dTh = Math.atan2(Math.sin(dTh), Math.cos(dTh));
+  const sp = new THREE.Spherical(s0.radius + (s1.radius - s0.radius) * e, s0.phi + (s1.phi - s0.phi) * e, s0.theta + dTh * e);
+  controls.target.copy(t);
+  camera.position.copy(t).add(new THREE.Vector3().setFromSpherical(sp));
+  if (k >= 1) tween = null;
+}
+controls.addEventListener('start', () => { tween = null; $('#viewName').textContent = ''; setViewPressed(null); });
+function setView(name, animate = true) {
+  if (state.scene !== 'room' && VIEWS[name].roomOnly) return;
+  state.view = name; setViewPressed(name); goTo(VIEWS[name], animate);
+}
+/* re-frame after the layout changed, looking from wherever the camera is now */
+function refitKeepDir(animate = true) {
+  const s = new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
+  goTo({ phi: s.phi, theta: s.theta }, animate, true);
+}
+/* switch between the room and the side-by-side view */
+function setScene(name, animate = true) {
+  state.scene = name === 'side' ? 'side' : 'room';
+  const room = state.scene === 'room';
+  roomGroup.visible = room; stage.visible = !room;
+  if (!room && VIEWS[state.view].roomOnly) state.view = 'iso';
+  applyMaterials();
+  relayout(false);
+  setView(state.view, animate);
+}
+function syncSceneUI() {
+  const room = state.scene === 'room', both = !!(slots.a.p && slots.b.p);
+  document.querySelectorAll('[data-scene]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.scene === state.scene)));
+  document.querySelectorAll('[data-only]').forEach((e) => { e.hidden = e.dataset.only !== state.scene; });
+  const gb = $('#ghostBtn'), gw = $('#ghostWhoBtn');
+  gb.setAttribute('aria-pressed', String(state.ghostOn && both)); gb.disabled = !both;
+  gb.title = both ? 'Put one printer inside the other; one of them turns see-through' : 'Choose a printer B to compare with first';
+  gw.disabled = !(both && state.ghostOn);
+  gw.style.setProperty('--c', slotColor(state.ghost));
+  gw.querySelector('span').textContent = `See-through: ${state.ghost.toUpperCase()}`;
+  if (both) gw.title = `See-through printer: ${slots[state.ghost].p.name}. Click to swap.`;
+  renderer.domElement.setAttribute('aria-label', room ? '3D view of the room with the printers on the shelf' : '3D view of the two printers next to each other');
+}
+function setViewPressed(name) { document.querySelectorAll('[data-view]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === name))); }
+
+/* walls between the camera and the room are cut away; furniture in the line of sight fades */
+const ray = new THREE.Raycaster();
+const fadeSet = new Set();
+function cutaway() {
+  if (!roomReady || state.scene !== 'room') return;
+  const c = camera.position;
+  const inside = c.x < 0 && c.x > -R.w && c.z > 0 && c.z < R.d && c.y < R.h - 0.05;
+  const hide = { room_wall_back: c.z < 0, room_wall_right: c.x > 0, room_wall_left: c.x < -R.w, room_wall_front: c.z > R.d, room_ceiling: !inside };
+  for (const [n, h] of Object.entries(hide)) if (roomNodes[n]) roomNodes[n].visible = !h;
+  const targets = [];
+  for (const s of [slots.a, slots.b]) if (s.env && !s.env.isEmpty()) {
+    const e = s.env; const cx = (e.min.x + e.max.x) / 2, cy = (e.min.y + e.max.y) / 2;
+    targets.push(V3(cx, cy, e.max.z), V3(e.min.x, e.max.y, e.max.z), V3(e.max.x, e.max.y, e.max.z), V3(cx, e.min.y + 0.01, e.max.z), V3(cx, e.max.y, (e.min.z + e.max.z) / 2));
+  }
+  if (!targets.length) targets.push(V3(-R.shelfL / 2, state.shelfH + 0.1, R.shelfB / 2));
+  const hits = new Set();
+  const cands = [];
+  for (const [n, o] of Object.entries(roomNodes)) if (!WALLS.includes(n) && n !== 'room_floor' && n !== 'room_skirting' && n !== 'room_shelf' && n !== 'room_shelf_brackets' && o.visible) cands.push(o);
+  if (state.person) cands.push(person);
+  for (const t of targets) {
+    const dir = t.clone().sub(c); const dist = dir.length(); dir.normalize();
+    ray.set(c, dir); ray.far = dist - 0.02;
+    for (const h of ray.intersectObjects(cands, true)) {
+      let o = h.object; while (o.parent && !(o.name && o.name.startsWith('room_')) && o !== person) o = o.parent;
+      hits.add(o);
+    }
+  }
+  for (const o of cands) {
+    const faded = hits.has(o);
+    if (faded === fadeSet.has(o)) continue;
+    if (faded) fadeSet.add(o); else fadeSet.delete(o);
+    o.traverse((m) => { if (m.isMesh) { m.material.transparent = faded || m.material === personMat; m.material.opacity = faded ? 0.18 : 1; m.material.depthWrite = !faded; m.castShadow = !faded; m.material.needsUpdate = true; } });
+  }
+}
+
+/* ---------- UI: chrome, status, fit, tiles, specs ---------- */
+function pSub(p) {
+  const c = p.dims_mm && p.dims_mm.closed;
+  const bits = [];
+  if (c && c.w) bits.push(`${fmt(c.w / 10, 1)} × ${fmt(c.d / 10, 1)} × ${fmt(c.h / 10, 1)} cm`);
+  if (p.weight_kg) bits.push(`${fmt(p.weight_kg, 1)} kg`);
+  if (!p.has_model) bits.push('box only for now');
+  return bits.join(' · ');
+}
+function renderChrome() {
+  for (const k of ['a', 'b']) {
+    const s = slots[k], card = $('#card' + k.toUpperCase());
+    card.style.setProperty('--c', slotColor(k));
+    card.classList.toggle('none', !s.p);
+    $('#sel' + k.toUpperCase()).textContent = s.p ? s.p.name : 'None';
+    $('#meta' + k.toUpperCase()).textContent = s.p ? (s.p.current ? 'Your printer · ' : '') + pSub(s.p) : 'Show only printer A';
+  }
+  const lg = $('#legend'); lg.replaceChildren();
+  for (const k of ['a', 'b']) {
+    const s = slots[k]; if (!s.p) continue;
+    const room = state.scene === 'room';
+    const ghost = room ? (k === 'b' && slots.a.p) : (state.ghostOn && slots.a.p && slots.b.p && state.ghost === k);
+    const c = el('span', 'chip' + (ghost ? ' ghost' : '')); c.style.setProperty('--c', slotColor(k));
+    c.append(el('i'), document.createTextNode(s.p.name));
+    if (ghost) c.append(el('small', null, room ? 'outline' : 'ghost'));
+    lg.appendChild(c);
+  }
+  syncSceneUI();
+}
+function renderStatus() {
+  const st = $('#status'); st.replaceChildren();
+  const fb = ['a', 'b'].filter((k) => slots[k].p && slots[k].status && slots[k].status.kind === 'fallback');
+  if (fb.length === 2) st.appendChild(el('div', 'msg warn', "These 3D models aren't ready yet, so both printers are shown as boxes at their official size."));
+  for (const k of ['a', 'b']) {
+    if (fb.length === 2 && slots[k].status && slots[k].status.kind === 'fallback') continue;
+    const s = slots[k]; if (!s.p || !s.status) continue;
+    if (s.status.kind === 'loading') {
+      const m = el('div', 'msg', `Loading ${s.p.name}…`); m.style.setProperty('--c', slotColor(k));
+      const bar = el('span', 'bar'); const fill = el('span'); fill.style.setProperty('--p', Math.round((s.status.p || 0) * 100) + '%'); bar.appendChild(fill); m.appendChild(bar);
+      st.appendChild(m);
+    } else if (s.status.kind === 'fallback') {
+      st.appendChild(el('div', 'msg warn', `${s.p.name}: the 3D model isn't ready yet, so it's shown as a box at the official size.`));
+    }
+  }
+  if (state.scene !== 'room') return;   // the rest is about the shelf
+  for (const k of ['a', 'b']) {
+    const s = slots[k], m = s.p && s.p.measured;
+    if (!m || m.base_overhang_cm == null || !(s.status && s.status.kind === 'fallback')) continue;
+    const d = s.p.dims_mm && s.p.dims_mm.closed;
+    st.appendChild(el('div', 'msg', `Your ${s.p.name} today: the base sticks out about ${fmt(m.base_overhang_cm)} cm and the cables take ${fmt(m.cable_back_gap_cm)} cm behind it (measured). The box uses the listed depth${d && d.d ? `, ${fmt(d.d / 10, 1)} cm` : ''}, so it shows more until the 3D model is ready.`));
+  }
+  if (!R.shelfMeasured.depth) st.appendChild(el('div', 'msg warn', `Shelf depth not measured yet: using ${cm0(R.shelfB)} cm.`));
+}
+function syncStateButtons() {
+  const avail = slots.a.model ? statesOf(slots.a) : new Set(['closed']);
+  document.querySelectorAll('[data-state]').forEach((b) => {
+    const st = b.dataset.state;
+    b.setAttribute('aria-pressed', String(state.st === st));
+    b.disabled = !avail.has(st) && st !== 'closed';
+    b.title = b.disabled ? (st === 'lid_open' ? 'This printer has no scanner lid' : 'Not modelled for this printer yet') : '';
+  });
+}
+function facts(slot) {
+  const out = [];
+  const e = slot.env; if (!e || e.isEmpty()) return out;
+  const ov = e.max.z - R.shelfB;
+  out.push(['Overhang', overhangText(ov), ov > 0.005]);
+  // the base can end short of the printer's front-most point (a panel, a tray lip, an open tray)
+  const measured = slot.p.measured && slot.p.measured.base_overhang_cm;
+  if (slot.baseFrontZ != null) {
+    const bo = slot.group.position.z + slot.baseFrontZ - R.shelfB;
+    if (Math.abs(bo - ov) > 0.005 || measured != null) {
+      out.push(['Base', overhangText(bo) + (measured != null ? ` (you measured about ${fmt(measured)} cm)` : ''), bo > 0.005]);
+    }
+  }
+  const back = slot.group.position.z + slot.bodyBox.min.z;
+  out.push(['Behind it', `${cm(back)} cm for the cables${slot.gapEstimated ? ' (estimated)' : slot.gapMeasured ? ' (measured on your shelf)' : ''}`]);
+  const mid = slot.group.position.z + (slot.bodyBox.min.z + slot.bodyBox.max.z) / 2;
+  const inside = R.shelfB - mid;
+  out.push(['Balance', inside >= 0 ? `Middle of the printer ${fmt(inside * 100)} cm inside the edge` : `Middle of the printer ${fmt(-inside * 100)} cm past the edge: it would tip`, inside < 0.02]);
+  const eye = LM.eye * state.personH, top = e.max.y;
+  const dEye = eye - top;
+  out.push(['Top', `${cm0(top)} cm from the floor, ${Math.abs(Math.round(dEye * 100))} cm ${dEye >= 0 ? 'below' : 'above'} your eyes`, dEye < 0]);
+  const stop = doorStop(e);
+  if (stop != null) out.push(['Wardrobe door', `Hits the printer when opened past about ${stop}°`, stop < 100]);
+  if (slot.tooWide) out.push(['Width', 'Wider than the shelf', true]);
+  return out;
+}
+function renderFit() {
+  const list = $('#fitList'); list.replaceChildren();
+  for (const k of ['a', 'b']) {
+    const s = slots[k]; if (!s.p) continue;
+    const ghost = k === 'b' && slots.a.p;
+    const card = el('div', 'fit-card' + (ghost ? ' ghost' : '')); card.style.setProperty('--c', slotColor(k));
+    card.append(el('i'), el('div', 'fit-name', `${s.p.name} · ${STATE_NAMES[effState(s)].toLowerCase()}`));
+    const dl = el('dl', 'facts');
+    const f = facts(s);
+    if (!f.length) dl.append(el('dt', null, ''), el('dd', null, 'Measuring…'));
+    for (const [k2, v, warn] of f) dl.append(el('dt', null, k2), el('dd', warn ? 'warn' : null, v));
+    card.appendChild(dl);
+    list.appendChild(card);
+  }
+  const ph = state.personH, eye = Math.round(LM.eye * ph * 100);
+  $('#phOut').replaceChildren(document.createTextNode(`${Math.round(ph * 100)} cm`), el('small', null, `eyes at ${eye} cm`));
+  $('#shOut').replaceChildren(document.createTextNode(`${Math.round(state.shelfH * 100)} cm`), el('small', null, Math.abs(state.shelfH - DEF.shelfH) < 0.005 ? 'yours' : `yours is ${Math.round(DEF.shelfH * 100)} cm`));
+  $('#shelfNote').textContent = `Shelf ${cm0(R.shelfL)} × ${cm0(R.shelfB)} cm${R.shelfMeasured.depth ? '' : ' (depth estimated)'}`;
+  for (const id of ['shIn', 'phIn']) { const i = $('#' + id); i.style.setProperty('--p', ((i.value - i.min) / (i.max - i.min) * 100) + '%'); }
+}
+function stateEnvelope(slot, st) {
+  // published-in-model envelope for a given state (metres, model space) -> depth beyond the shelf
+  if (!slot.geom || !slot.geom.envelopes_m || !slot.geom.envelopes_m[st]) return null;
+  const e = slot.geom.envelopes_m[st];
+  return { maxZ: roomZ(slot) + e.max[2], maxY: state.shelfH + e.max[1] };
+}
+// the printer's place on the shelf, whichever view is showing
+const roomZ = (slot) => (slot.roomPos ? slot.roomPos.z : slot.group.position.z);
+function tileVals() {
+  const rows = [];
+  const S = [slots.a, slots.b].filter((s) => s.p && s.model);
+  if (!S.length) return rows;
+  const val = (s, f) => { try { return f(s); } catch (e) { return null; } };
+  rows.push({ lab: 'Sticks out while printing', unit: 'cm', get: (s) => { const e = stateEnvelope(s, statesOf(s).has('printing') ? 'printing' : 'closed'); return e ? (e.maxZ - R.shelfB) * 100 : (roomZ(s) + s.bodyBox.max.z - R.shelfB) * 100; }, more: 'sticks out', less: 'sticks out', lowerBetter: true });
+  rows.push({ lab: 'Space behind for cables', unit: 'cm', get: (s) => s.gap * 100, more: 'needs', less: 'needs', lowerBetter: true });
+  rows.push({ lab: 'Top above the floor', unit: 'cm', get: (s) => { const e = stateEnvelope(s, 'closed'); return e ? e.maxY * 100 : (state.shelfH + s.bodyBox.max.y) * 100; }, more: 'is', less: 'is' });
+  rows.push({ lab: 'Weight', unit: 'kg', get: (s) => s.p.weight_kg, digits: 1, lowerBetter: true });
+  rows.push({ lab: 'Price in Israel', money: () => 'ILS', get: (s) => s.p.price_ils, digits: 0, lowerBetter: true });
+  rows.push({ lab: 'Price international', money: () => 'USD', get: (s) => s.p.price_usd, digits: 0, lowerBetter: true });
+  // running cost: original cartridges at Israeli prices where they were found, otherwise at international prices
+  if (S.some((s) => s.p.page_ils != null || s.p.page_usd != null)) {
+    rows.push({ lab: 'Cost per page', money: (s) => (s.p.page_ils != null ? 'ILS' : 'USD'), page: true,
+      get: (s) => (s.p.page_ils != null ? s.p.page_ils : s.p.page_usd), lowerBetter: true });
+  }
+  return rows.map((r) => ({ ...r, vals: S.map((s) => {
+    const v = val(s, r.get);
+    if (!r.money) return { s, v };
+    const from = r.money(s), show = r.page ? perPage : money;
+    const lp = localPrice(v, from);   // shown in the visitor's currency; `shop` keeps the shop's own price
+    return lp ? { s, v: lp.v, cur: lp.cur, shop: lp.converted ? show(v, from) : null } : { s, v: null };
+  }) }));
+}
+function renderTiles() {
+  const box = $('#tiles'); box.replaceChildren();
+  for (const r of tileVals()) {
+    const t = el('div', 'tile'); t.appendChild(el('div', 'lab', r.lab));
+    const vals = el('div', 'vals');
+    const nums = r.vals.map((x) => x.v).filter((v) => v != null && isFinite(v));
+    const maxAbs = Math.max(1e-6, ...nums.map((v) => Math.abs(v)));
+    for (const { s, v, cur, shop } of r.vals) {
+      const d = el('div', 'val'); d.style.setProperty('--c', slotColor(s.key));
+      const row = el('div', 'row1'); row.appendChild(el('span', 'dot'));
+      if (v == null || !isFinite(v)) row.appendChild(el('span', 'big na', 'Not listed'));
+      else {
+        const b = el('span', 'big');
+        const num = fmt(v, r.digits ?? 1);
+        if (r.money) b.append(document.createTextNode((shop ? '≈ ' : '') + (r.page ? perPage : money)(v, cur)));
+        else { b.append(document.createTextNode(num)); b.append(el('small', null, r.unit)); }
+        row.appendChild(b);
+      }
+      d.appendChild(row);
+      d.appendChild(el('div', 'who', s.p.name + (shop ? ` · ${shop} ${r.page ? 'before conversion' : 'at the shop'}` : '')));
+      const tr = el('div', 'track'); const sp = el('span'); sp.style.setProperty('--w', v != null ? Math.max(2, Math.abs(v) / maxAbs * 100) + '%' : '0%'); tr.appendChild(sp); d.appendChild(tr);
+      vals.appendChild(d);
+    }
+    t.appendChild(vals);
+    if (r.vals.length === 2 && r.vals.every((x) => x.v != null && isFinite(x.v))) {
+      const [a, b] = r.vals; const diff = a.v - b.v;
+      const p = el('p', 'line');
+      const unitTxt = r.money ? '' : ' ' + r.unit;
+      const n = Math.abs(diff);
+      if (r.money && a.cur !== b.cur) { p.classList.add('same'); p.textContent = 'Different currencies, not compared'; }
+      else if (r.page ? n < Math.max(a.v, b.v) * 0.05 : n < (r.digits === 0 ? 1 : 0.5)) { p.classList.add('same'); p.textContent = 'About the same'; }
+      else {
+        const big = diff > 0 ? a : b, small = diff > 0 ? b : a;
+        const amount = r.page ? `${perPage(n, a.cur)} per page (${fmt(big.v / small.v, 1)}×)` : r.money ? money(n, a.cur) : fmt(n, r.digits ?? 1) + unitTxt;
+        const word = r.lab.startsWith('Price') || r.page ? 'costs' : r.lab === 'Weight' ? 'weighs' : r.lab.startsWith('Top') ? 'stands' : r.lab.startsWith('Space') ? 'needs' : 'sticks out';
+        const tail = r.lab.startsWith('Top') ? 'higher' : 'more';
+        p.append(el('strong', null, big.s.p.name), document.createTextNode(` ${word} ${amount} ${tail}.`));
+      }
+      t.appendChild(p);
+    }
+    box.appendChild(t);
+  }
+}
+// spec rows that hold money: [field with the number, the currency it was researched in, true = a cost per page]
+const PRICE_ROWS = {
+  'Price in Israel': ['price_ils', 'ILS'], 'Price international': ['price_usd', 'USD'],
+  'Cost per page in Israel': ['page_ils', 'ILS', true], 'Cost per page international': ['page_usd', 'USD', true],
+};
+// "row label|slot" of each "More" drop-down the reader opened, so a re-render keeps it open
+const openMore = new Set();
+// the drop-down under a spec cell; `more` is the row's list of blocks: {p}, {label, p} or {label, items}
+function moreBox(more, key) {
+  const d = el('details', 'more');
+  d.open = openMore.has(key);
+  const sum = el('summary', null, d.open ? 'Less' : 'More');
+  d.addEventListener('toggle', () => {
+    if (d.open) openMore.add(key); else openMore.delete(key);
+    sum.textContent = d.open ? 'Less' : 'More';
+  });
+  d.appendChild(sum);
+  const body = el('div', 'more-body');
+  for (const b of more) {
+    if (b.label && Array.isArray(b.items)) {
+      body.appendChild(el('p', 'more-label', b.label));
+      const ul = el('ul'); for (const it of b.items) ul.appendChild(el('li', null, it)); body.appendChild(ul);
+    } else if (b.label) {
+      const p = el('p'); p.appendChild(el('b', null, b.label)); p.appendChild(document.createTextNode(' ' + (b.p || ''))); body.appendChild(p);
+    } else if (b.p) body.appendChild(el('p', null, b.p));
+  }
+  d.appendChild(body);
+  return d;
+}
+function renderSpecs() {
+  const S = [slots.a, slots.b];
+  const head = $('#specHead'); head.replaceChildren(el('div', null, ''));
+  for (const s of S) {
+    const d = el('div'); if (s.p) { d.style.setProperty('--c', slotColor(s.key)); d.append(el('i'), document.createTextNode(s.p.name)); }
+    head.appendChild(d);
+  }
+  const labelsOrder = [];
+  for (const s of S) if (s.p) for (const r of s.p.rows || []) if (!labelsOrder.includes(r.label)) labelsOrder.push(r.label);
+  const rowsBox = $('#specRows'); rowsBox.replaceChildren();
+  for (const lab of labelsOrder) {
+    const row = el('div', 'srow'); row.appendChild(el('div', 'lab', lab));
+    for (const s of S) {
+      const r = s.p && (s.p.rows || []).find((x) => x.label === lab);
+      const v = el('div', 'v' + (r ? '' : ' na'));
+      if (!s.p) v.textContent = '';
+      else if (!r) v.textContent = 'Not listed';
+      else {
+        // prices: the visitor's currency first, the shop's own price in the note
+        const pk = PRICE_ROWS[lab];
+        const lp = pk ? localPrice(s.p[pk[0]], pk[1]) : null;
+        const shown = lp && lp.converted ? (pk[2] ? `≈ ${perPage(lp.v, lp.cur)} per page` : `≈ ${money(lp.v, lp.cur)}`) : r.value;
+        const note = lp && lp.converted ? `${r.value} ${pk[2] ? 'before conversion' : 'at the shop'}${r.note ? ' · ' + r.note : ''}` : r.note;
+        if (Array.isArray(r.value)) { const ul = el('ul'); for (const it of r.value) ul.appendChild(el('li', null, it)); v.appendChild(ul); }
+        else if (r.href) { const a = el('a', null, shown); a.href = r.href; a.target = '_blank'; a.rel = 'noopener'; v.appendChild(a); }
+        else v.appendChild(document.createTextNode(shown));
+        if (note) v.appendChild(el('span', 'note', note));
+        if (Array.isArray(r.more) && r.more.length) v.appendChild(moreBox(r.more, lab + '|' + S.indexOf(s)));
+        if (r.href && Array.isArray(r.value)) { const a = el('a', 'note', 'Source'); a.href = r.href; a.target = '_blank'; a.rel = 'noopener'; v.appendChild(a); }
+      }
+      row.appendChild(v);
+    }
+    rowsBox.appendChild(row);
+  }
+  const row = el('div', 'srow'); row.appendChild(el('div', 'lab', 'Sources'));
+  for (const s of S) {
+    const ul = el('ul', 'src');
+    if (s.p) for (const u of (s.p.sources || []).slice(0, 12)) { const li = el('li'); const a = el('a', null, u.replace(/^https?:\/\/(www\.)?/, '').slice(0, 70)); a.href = u; a.target = '_blank'; a.rel = 'noopener'; li.appendChild(a); ul.appendChild(li); }
+    row.appendChild(ul);
+  }
+  rowsBox.appendChild(row);
+}
+function onThemeChange() {
+  if (OV.boxA) {
+    const A = slotColor('a'), B = slotColor('b');
+    OV.boxA.material.color.set(A); OV.dimA.material.color.set(A); OV.over.material.color.set(A);
+    OV.boxB.material.color.set(B); OV.dimB.material.color.set(B); OV.overB.material.color.set(B);
+    OV.edge.material.color.set(css('--measure')); OV.gap.material.color.set(css('--measure')); OV.eye.material.color.set(css('--muted'));
+    OV.cableZone.material.color.set(A);
+    for (const k of ['w', 'd', 'h', 'over', 'gap', 'top']) OV.lbl[k].el.style.setProperty('--c', A);
+    for (const k of ['overB', 'wB', 'dB', 'hB']) OV.lbl[k].el.style.setProperty('--c', B);
+  }
+  for (const s of [slots.a, slots.b]) if (s.ghostMat) { s.ghostMat.color.set(slotColor(s.key)); s.ghostOverMat.color.set(slotColor(s.key)); }
+  personMat.color.set(css('--mannequin') || '#cdc8be');
+  renderChrome(); renderFit(); renderTiles();
+}
+
+/* ---------- pickers ---------- */
+const CHECK_SVG = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg>';
+const pickers = { a: { btn: $('#selA'), list: $('#listA'), card: $('#cardA') }, b: { btn: $('#selB'), list: $('#listB'), card: $('#cardB') } };
+function fillLists() {
+  for (const k of ['a', 'b']) {
+    const L = pickers[k].list; L.replaceChildren();
+    const groups = [];
+    for (const p of state.printers) { let g = groups.find((x) => x.name === p.group); if (!g) groups.push(g = { name: p.group, items: [] }); g.items.push(p); }
+    if (k === 'b') groups.push({ name: 'Compare with', items: [null] });
+    for (const g of groups) {
+      L.appendChild(el('li', 'grp', g.name)).setAttribute('role', 'presentation');
+      for (const p of g.items) {
+        const li = el('li', 'popt'); li.setAttribute('role', 'option'); li.dataset.id = p ? p.id : '';
+        const other = slots[k === 'a' ? 'b' : 'a'].p;
+        const t = el('span', 't'); t.append(el('span', 'nm', p ? p.name : 'Nothing (show only A)'), el('span', 'sub', p ? pSub(p) : ''));
+        const chk = el('span', 'chk'); chk.innerHTML = CHECK_SVG;
+        li.append(chk, t);
+        if (p && other && other.id === p.id) { const sl = el('span', 'slot ' + (k === 'a' ? 'b' : 'a'), k === 'a' ? 'B' : 'A'); li.appendChild(sl); }
+        li.setAttribute('aria-selected', String((slots[k].p ? slots[k].p.id : '') === li.dataset.id));
+        li.addEventListener('click', (ev) => { ev.stopPropagation(); pick(k, li.dataset.id); });
+        L.appendChild(li);
+      }
+    }
+  }
+}
+const opts = (k) => [...pickers[k].list.querySelectorAll('.popt')];
+function setActive(k, i) {
+  const o = opts(k); o.forEach((x) => x.classList.remove('active'));
+  const x = o[clamp(i, 0, o.length - 1)]; if (x) { x.classList.add('active'); x.scrollIntoView({ block: 'nearest' }); pickers[k].active = clamp(i, 0, o.length - 1); }
+}
+function openPicker(k) {
+  for (const j of ['a', 'b']) if (j !== k) closePicker(j);
+  fillLists();
+  const P = pickers[k]; P.list.hidden = false; P.card.classList.add('open'); P.btn.setAttribute('aria-expanded', 'true');
+  const sel = opts(k).findIndex((x) => x.getAttribute('aria-selected') === 'true');
+  setActive(k, Math.max(0, sel)); P.list.focus();
+}
+function closePicker(k, refocus) {
+  const P = pickers[k]; if (P.list.hidden) return;
+  P.list.hidden = true; P.card.classList.remove('open'); P.btn.setAttribute('aria-expanded', 'false');
+  if (refocus) P.btn.focus();
+}
+function pick(k, id) {
+  closePicker(k, true);
+  const p = id ? state.byId[id] : null;
+  if (k === 'a' && !p) return;
+  const other = k === 'a' ? 'b' : 'a';
+  if (p && slots[other].p && slots[other].p.id === p.id) { swap(); return; }
+  if ((slots[k].p ? slots[k].p.id : '') === (p ? p.id : '')) return;
+  setSlot(slots[k], p).then(() => { applyMaterials(); relayout(false); });
+}
+function swap() {
+  const A = slots.a.p, B = slots.b.p;
+  if (!B) return;
+  Promise.all([setSlot(slots.a, B), setSlot(slots.b, A)]).then(() => { applyMaterials(); relayout(true); });
+}
+for (const k of ['a', 'b']) {
+  const P = pickers[k];
+  P.card.addEventListener('click', () => (P.list.hidden ? openPicker(k) : closePicker(k)));
+  P.btn.addEventListener('keydown', (e) => { if (['ArrowDown', 'Enter', ' '].includes(e.key)) { e.preventDefault(); openPicker(k); } });
+  P.list.addEventListener('keydown', (e) => {
+    const o = opts(k);
+    if (e.key === 'ArrowDown') { e.preventDefault(); setActive(k, (P.active ?? 0) + 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(k, (P.active ?? 0) - 1); }
+    else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); const x = o[P.active ?? 0]; if (x) pick(k, x.dataset.id); }
+    else if (e.key === 'Escape' || e.key === 'Tab') { closePicker(k, e.key === 'Escape'); }
+  });
+}
+document.addEventListener('click', (e) => { for (const k of ['a', 'b']) if (!pickers[k].card.contains(e.target)) closePicker(k); });
+$('#swapBtn').addEventListener('click', swap);
+
+/* ---------- controls ---------- */
+document.querySelectorAll('[data-state]').forEach((b) => b.addEventListener('click', () => {
+  if (b.disabled) return;
+  state.st = b.dataset.state;
+  for (const s of [slots.a, slots.b]) applyState(s, true);
+  syncStateButtons();
+}));
+function toggle(btn, key, after) {
+  $(btn).addEventListener('click', () => { state[key] = !state[key]; $(btn).setAttribute('aria-pressed', String(state[key])); after && after(); });
+}
+document.querySelectorAll('[data-scene]').forEach((b) => b.addEventListener('click', () => { if (state.scene !== b.dataset.scene) setScene(b.dataset.scene); }));
+$('#ghostBtn').addEventListener('click', () => {
+  if (!(slots.a.p && slots.b.p)) return;
+  state.ghostOn = !state.ghostOn;
+  applyMaterials(); relayout(false); refitKeepDir();
+});
+$('#ghostWhoBtn').addEventListener('click', () => { state.ghost = state.ghost === 'a' ? 'b' : 'a'; applyMaterials(); renderChrome(); });
+$('#curSel').addEventListener('change', (e) => {
+  if (!CURRENCIES.includes(e.target.value)) return;
+  FX.cur = e.target.value;
+  try { localStorage.setItem(CUR_KEY, FX.cur); } catch (err) {}
+  renderPrices();
+});
+toggle('#boxBtn', 'boxes', () => { drawOverlays(); });
+toggle('#cableBtn', 'cables', () => { applyMaterials(); });
+toggle('#personBtn', 'person', () => { placePerson(); drawOverlays(); renderFit(); });
+document.querySelectorAll('[data-view]').forEach((b) => b.addEventListener('click', () => setView(b.dataset.view)));
+document.querySelectorAll('[data-align]').forEach((b) => b.addEventListener('click', () => {
+  state.align = b.dataset.align; savePrefs();
+  document.querySelectorAll('[data-align]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.align === state.align)));
+  relayout(false);
+}));
+$('#shIn').addEventListener('input', (e) => { state.shelfH = +e.target.value / 100; applyShelfHeight(); relayout(false); });
+$('#phIn').addEventListener('input', (e) => { state.personH = +e.target.value / 100; savePrefs(); rebuildPerson(); placePerson(); drawOverlays(); renderFit(); });
+$('#resetBtn').addEventListener('click', () => {
+  state.shelfH = DEF.shelfH; state.personH = DEF.personH; state.align = DEF.align; savePrefs();
+  $('#shIn').value = Math.round(state.shelfH * 100); $('#phIn').value = Math.round(state.personH * 100);
+  document.querySelectorAll('[data-align]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.align === state.align)));
+  applyShelfHeight(); rebuildPerson(); relayout(false);
+});
+const KEYS = ['front', 'side', 'top', 'door', 'iso', 'room'];
+addEventListener('keydown', (e) => {
+  if (e.altKey || e.ctrlKey || e.metaKey) return;
+  const t = e.target; if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.closest?.('.plist'))) return;
+  const i = '123456'.indexOf(e.key);
+  if (i >= 0) { setView(KEYS[i]); e.preventDefault(); }
+});
+
+/* test hook: lets automated screenshots place the camera like a reference photo */
+window.__psl = {
+  setCam(px, py, pz, tx, ty, tz, fov, ux = 0, uy = 1, uz = 0) {
+    tween = null;
+    if (fov) { camera.fov = fov; camera.updateProjectionMatrix(); }
+    camera.up.set(ux, uy, uz);
+    camera.position.set(px, py, pz); controls.target.set(tx, ty, tz); controls.update();
+  },
+  setPerson(on) { state.person = on; placePerson(); drawOverlays(); },
+  setScene(name, ghostOn, ghost) { if (ghostOn != null) state.ghostOn = !!ghostOn; if (ghost) state.ghost = ghost; setScene(name, false); },
+  ids() { return state.printers.map((p) => p.id); },
+  fx() { return { cur: FX.cur, date: FX.date, ils: FX.rates && FX.rates.ILS, guess: guessCurrency() }; },
+  async pick(k, id) { await setSlot(slots[k], id ? state.byId[id] : null); applyMaterials(); relayout(false); },
+  facts() { return { a: slots.a.p ? facts(slots.a) : null, b: slots.b.p ? facts(slots.b) : null }; },
+  info() { return { scene: state.scene, ghostOn: state.ghostOn, ghost: state.ghost, a: slots.a.p && slots.a.p.id, b: slots.b.p && slots.b.p.id, posA: slots.a.group.position.toArray(), posB: slots.b.group.position.toArray() }; },
+  setBoxes(on) { state.boxes = on; drawOverlays(); },
+};
+
+/* ---------- resize + loop ---------- */
+function resize() {
+  const w = viewer.clientWidth, h = viewer.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / Math.max(1, h);
+  camera.updateProjectionMatrix();
+  for (const m of lineMats) sizeLineMat(m);
+}
+new ResizeObserver(() => resize()).observe(viewer);
+resize();
+const focusPt = new THREE.Vector3();
+function frame(now) {
+  stepTween(now);
+  const far = state.scene === 'room' && camera.position.distanceTo(focusPt.set(-R.shelfL / 2, state.shelfH, R.shelfB / 2)) > 3.4;
+  if (far !== farView) { farView = far; drawOverlays(); }
+  for (const s of [slots.a, slots.b]) if (s.anim) stepAnim(s, now);
+  controls.update();
+  cutaway();
+  renderer.render(scene, camera);
+  updateLabels();
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+/* ---------- boot ---------- */
+(async function boot() {
+  let data;
+  try {
+    const res = await fetch('printers.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error(res.status);
+    data = await res.json();
+  } catch (e) {
+    viewer.appendChild(el('div', 'fatal', "Couldn't load the printer list (printers.json). Reload to try again."));
+    console.error(e); return;
+  }
+  state.printers = (data.printers || []).filter((p) => p && p.id);
+  for (const p of state.printers) state.byId[p.id] = p;
+  renderPrices();
+  loadRates();   // not awaited: the page works without it, and prices update when the rates arrive
+  readRoom(data.room);
+  $('#shIn').value = Math.round(state.shelfH * 100);
+  $('#phIn').value = Math.round(state.personH * 100);
+  document.querySelectorAll('[data-align]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.align === state.align)));
+  buildOverlays();
+  rebuildPerson();
+  await loadRoom();
+  const cur = state.printers.find((p) => p.current);
+  const first = state.printers.find((p) => !p.current) || state.printers[0];
+  await Promise.all([setSlot(slots.a, first), setSlot(slots.b, cur && cur !== first ? cur : null)]);
+  applyMaterials();
+  onThemeChange();
+  relayout(false);
+  setView('iso', false);
+})();
+</script>
+</body>
+</html>

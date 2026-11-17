@@ -1,0 +1,171 @@
+{
+ "id": "brother-hl-l2400dw",
+ "researched": "2026-11-17",
+ "consumables": [
+  {
+   "kind": "toner",
+   "role": "starter",
+   "code": "TN-2510",
+   "original": true,
+   "pages": 700,
+   "pages_source": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-CB1DC20C-A941-4954-941A-D0BD3CCACFB8_1.html",
+   "price_ils": null,
+   "price_usd": null,
+   "price_other": null,
+   "note": "Starter toner packed in the box (about 700 pages, Brother Europe consumables page). Not sold separately, so no price. The L2445DW starter is 1,200 pages."
+  },
+  {
+   "kind": "toner",
+   "role": "standard",
+   "code": "TN-2510",
+   "original": true,
+   "pages": 1200,
+   "pages_source": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-CB1DC20C-A941-4954-941A-D0BD3CCACFB8_1.html",
+   "price_ils": {
+    "value": 254,
+    "where": "Beit HaFax (lowest original offer, zap.co.il comparison)",
+    "url": "https://www.zap.co.il/model.aspx?modelid=1224285",
+    "note": "Shipping of 10 ILS included. Seen 2026-11-17. VAT status not stated on the page. Ivory lists 263 ILS but calls the item 'original alternative' (unclear). Bug lists 300 ILS and marks it temporarily out of stock."
+   },
+   "price_usd": null,
+   "price_other": null,
+   "note": "Yield is ISO/IEC 19752 at 5% coverage (Brother Europe page; Bug page). Cost per page about 0.21 ILS at 254 ILS."
+  },
+  {
+   "kind": "toner",
+   "role": "high_yield",
+   "code": "TN-2510XL",
+   "original": true,
+   "pages": 3000,
+   "pages_source": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-CB1DC20C-A941-4954-941A-D0BD3CCACFB8_1.html",
+   "price_ils": {
+    "value": 398,
+    "where": "HD Toner (lowest original offer, zap.co.il comparison)",
+    "url": "https://www.zap.co.il/model.aspx?modelid=1227206",
+    "note": "Free shipping. Seen 2026-11-17. Ivory lists 499 ILS (its description says 'original alternative'). Bug lists 550 ILS and marks it temporarily out of stock; Bug's Eilat price is 466.1."
+   },
+   "price_usd": null,
+   "price_other": null,
+   "note": "Cost per page about 0.13 ILS at 398 ILS. Yield per Brother Europe page, ISO/IEC 19752."
+  },
+  {
+   "kind": "drum",
+   "role": "drum",
+   "code": "DR-2510",
+   "original": true,
+   "pages": 15000,
+   "pages_source": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-CB1DC20C-A941-4954-941A-D0BD3CCACFB8_1.html",
+   "price_ils": {
+    "value": 456,
+    "where": "Beit HaFax (lowest original offer, zap.co.il comparison)",
+    "url": "https://www.zap.co.il/compmodels.aspx?modelid=1239395",
+    "note": "Includes 10 ILS shipping. Seen 2026-11-17. Comp Master lists 467 ILS with free shipping (listed for DR-2510V1). Bug lists 620 ILS and marks it temporarily out of stock; Bug Eilat price 525.42."
+   },
+   "price_usd": null,
+   "price_other": null,
+   "note": "The 15,000-page life is Brother's figure at one page per job, not ISO. It is a separate unit from the toner. Cost per page about 0.03 ILS. Compatible drums are not in scope for this entry."
+  },
+  {
+   "kind": "toner",
+   "role": "standard",
+   "code": "TN-2510",
+   "original": false,
+   "pages": 1200,
+   "pages_source": "https://www.zap.co.il/model.aspx?modelid=1224285",
+   "price_ils": {
+    "value": 48,
+    "where": "PENPALL (zap.co.il comparison)",
+    "url": "https://www.zap.co.il/model.aspx?modelid=1224285",
+    "note": "Free shipping, up to 5 business days. Listing titled 'compatible black toner TN2510', claimed yield 1200 pages. Seen 2026-11-17. Yield and print quality not verified."
+   },
+   "price_usd": null,
+   "price_other": null,
+   "note": "Cheapest compatible standard toner found in Israel. Price is far below the originals. No compatible XL price was verified.",
+   "code_note": "TN-2510 (compatible, Penpall)"
+  }
+ ],
+ "third_party_cartridges": {
+  "allowed": "unknown",
+  "summary": "No source found that says whether this printer rejects or nags about non-Brother TN-2510 cartridges, and no lock-out reports turned up. Compatible TN-2510 cartridges are sold in Israel for this model. The Brother authentication whitepaper I saw covers inkjet cartridges only.",
+  "source": "https://www.zap.co.il/model.aspx?modelid=1224285"
+ },
+ "windows": {
+  "rating": "mixed",
+  "why": "Owner reviews say it works with Windows 11, but Brother's own support page describes Wi-Fi drops for this model and the bundled setup software draws complaints.",
+  "driver": "Brother's Full Driver and Software Package for Windows (Brother's support FAQ says to install from the supplied disc or the Full Driver Package). Brother's Australian site lists no downloads for this model. Third-party sites list a package of about 205 MB, which I did not verify. Whether Windows Update supplies a built-in driver was not verified.",
+  "app_required": "optional",
+  "windows_11": "yes",
+  "problems": [
+   "Wi-Fi drops; Brother's fix is the 'Recover WLAN' option on the printer",
+   "Bundled setup software described as difficult or buggy (owner reviews)",
+   "Brother warns that a Windows 11 update can stop USB detection; this is stated for sibling models, not confirmed for this one",
+   "Offline or Paused status reported by Brother FAQs for sibling models",
+   "Brother's last resort on Windows is to uninstall and reinstall the driver"
+  ],
+  "scanning": null,
+  "sources": [
+   {
+    "url": "https://support.brother.com/g/s/id/htmldoc/printer/cv_hll2460dw/uke/html/GUID-9BE6EB6D-E57E-4E81-A2E4-2E4205064410_1.html",
+    "what": "Brother support: lists HL-L2400DW under 'cannot print over the network'. Cause is that the machine disconnects from the wireless network. Fix is Recover WLAN. Last resort on Windows is to reinstall the driver."
+   },
+   {
+    "url": "https://www.ldlc.com/en/reviews/PB00577967.html",
+    "what": "16 owner reviews of the HL-L2400DWE (same body). Praise: works with Windows 11. Complaints: difficult or buggy bundled setup software; Wi-Fi must be set up on each device; duplex not supported on Ubuntu."
+   },
+   {
+    "url": "https://www.brother.com.au/en/support/hl-l2400dw/faqs/faq00100484_002",
+    "what": "Brother FAQ (video only, no text): install the Windows software from the supplied disc or the Full Driver Package."
+   },
+   {
+    "url": "https://www.brother.com.au/en/support/HL-L2400DW/downloads",
+    "what": "Brother Australia downloads page: 'There are no downloads & drivers available for this model.'"
+   }
+  ]
+ },
+ "forums": {
+  "rating": "unknown",
+  "why": "Only two pages about this model gave owner opinions: one has 16 written reviews, the other has 4 ratings with no text. Reddit and HWzone gave nothing usable, so the evidence is below three sources.",
+  "praise": [
+   "Good print quality and speed (ldlc reviews)",
+   "Low cost per page and good value (ldlc reviews)",
+   "Automatic duplex printing (ldlc reviews)",
+   "Easy setup for many users (ldlc reviews)",
+   "Works with Windows 11 (ldlc reviews)",
+   "Average 3.5 of 5 from 4 opinions (zap.co.il, ratings only)"
+  ],
+  "complaints": [
+   "Bundled setup software difficult or buggy (ldlc reviews)",
+   "Wi-Fi must be configured again on each device (ldlc reviews)",
+   "Duplex not supported on Ubuntu (ldlc reviews)",
+   "Bulky (ldlc reviews)",
+   "Weak documentation (ldlc reviews)"
+  ],
+  "sources_read": 2,
+  "sources": [
+   {
+    "url": "https://www.ldlc.com/en/reviews/PB00577967.html",
+    "what": "16 reviews, about 9.4 of 10 by the individual scores. Praise and complaints as listed above."
+   },
+   {
+    "url": "https://www.zap.co.il/model.aspx?modelid=1213264",
+    "what": "4 opinions, average 3.5 (rating only, no review text)."
+   }
+  ]
+ },
+ "not_found": [
+  "Reddit: the search tool refuses reddit.com, and general searches for the model found no Reddit threads.",
+  "HWzone (Israeli forum): searched, no threads for this model found.",
+  "Amazon.co.uk product page: returned HTTP 503 when fetched. A search snippet showed 4.4 of 5 from 613 ratings, but I did not open the page and did not use it. Amazon.co.uk TN-2510 prices (about 50 GBP genuine) also came only from search snippets and fetches returned 503, so no GBP price was used.",
+  "Which? review: the verdict and pros and cons are behind a sign-in wall.",
+  "US dollar prices for the original TN-2510, TN-2510XL or DR-2510: searches of Amazon.com, B&H and Staples returned no US listing. This printer is not sold in the US, so price_usd is null throughout.",
+  "KSP (ksp.co.il): searched for the toner, no result found; not checked directly.",
+  "Brother UK store (store.brother.co.uk): HTTP 403 for both the toner and drum pages.",
+  "Windows 11 driver on Brother Israel: the HL-L2400DW datasheet on brother.co.il is listed in search results as showing Windows 11 in its driver table, but the PDF could not be read with the tools I have, so this is not confirmed from the page.",
+  "Windows on ARM: Brother's Windows 11 Arm support page lists the model in the Scandinavian versions (per search snippets) but the English page did not show a clear entry. Not confirmed.",
+  "Compatible TN-2510XL: a compatible XL price (about 48 to 85 ILS on zap.co.il) appears, but the listings do not state a verified yield, so no compatible XL entry was added.",
+  "Bug TN-2510 (300 ILS) and TN-2510XL (550 ILS) pages are marked temporarily out of stock; the Bug Eilat prices (254.24 and 466.1) are regional prices, not used for the cheapest figure.",
+  "Warnings for non-genuine toner on this model: no source found. The only Brother authentication document I saw covers inkjet cartridges.",
+  "Brother Israel toner and drum prices beyond zap.co.il, Ivory and Bug: not found in the shops I could open."
+ ],
+ "l2445dw_differences": "Starter toner is 1,200 pages on the HL-L2445DW versus 700 on the HL-L2400DW (Brother Europe consumables page). Both use the same TN-2510 / TN-2510XL toner and DR-2510 drum, and the same yields, so the cost-per-page figures carry over. The L2445DW adds Ethernet, which is not a consumable or software difference. Zap and Ivory list the HL-L2445DW among the compatible-toner models. Brother's Australian FAQ for the L2445DW mentions the Offline or Paused status (search snippet only, page not opened). No L2445DW-specific owner reviews were found. Software: the same Brother driver family is expected, but I only checked the 2400DW driver pages."
+}

@@ -1,0 +1,179 @@
+{
+ "id": "brother-dcp-l2620dw",
+ "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+ "nodes": {
+  "body": "brother-dcp-l2620dw_body",
+  "lid": "brother-dcp-l2620dw_lid",
+  "cassette": "brother-dcp-l2620dw_cassette",
+  "flap": "brother-dcp-l2620dw_flap",
+  "cable_power": "brother-dcp-l2620dw_cable_power",
+  "cable_usb": "brother-dcp-l2620dw_cable_usb"
+ },
+ "parts": {
+  "body": {
+   "node": "brother-dcp-l2620dw_body",
+   "kind": "body",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "lid": {
+   "node": "brother-dcp-l2620dw_lid",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.257,
+    -0.1935
+   ]
+  },
+  "cassette": {
+   "node": "brother-dcp-l2620dw_cassette",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.003,
+    0.1995
+   ]
+  },
+  "flap": {
+   "node": "brother-dcp-l2620dw_flap",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.1858,
+    0.1845
+   ]
+  },
+  "cable_power": {
+   "node": "brother-dcp-l2620dw_cable_power",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "cable_usb": {
+   "node": "brother-dcp-l2620dw_cable_usb",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  }
+ },
+ "states": {
+  "printing": [
+   {
+    "part": "flap",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 150.0
+   }
+  ],
+  "refill": [
+   {
+    "part": "cassette",
+    "move": [
+     0.0,
+     0.0,
+     0.3
+    ]
+   }
+  ],
+  "lid_open": [
+   {
+    "part": "lid",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": -80.0
+   }
+  ]
+ },
+ "body_size_cm": [
+  41.0,
+  39.9,
+  27.21
+ ],
+ "envelopes_m": {
+  "closed": {
+   "min": [
+    -0.205,
+    0.0,
+    -0.1995
+   ],
+   "max": [
+    0.205,
+    0.2721,
+    0.1995
+   ]
+  },
+  "printing": {
+   "min": [
+    -0.205,
+    0.0,
+    -0.1995
+   ],
+   "max": [
+    0.205,
+    0.2721,
+    0.2243
+   ]
+  },
+  "refill": {
+   "min": [
+    -0.205,
+    0.0,
+    -0.1995
+   ],
+   "max": [
+    0.205,
+    0.2721,
+    0.4995
+   ]
+  },
+  "lid_open": {
+   "min": [
+    -0.205,
+    0.0,
+    -0.2078
+   ],
+   "max": [
+    0.205,
+    0.5865,
+    0.1995
+   ]
+  }
+ },
+ "cable_back_gap_cm": 1.39,
+ "sockets": [
+  {
+   "part": "cable_power",
+   "kind": "C13v",
+   "x": 16.05,
+   "z": 11.6,
+   "recess": 1.0,
+   "angled": false,
+   "far_y_cm": 21.34
+  },
+  {
+   "part": "cable_usb",
+   "kind": "USB-B",
+   "x": -16.1,
+   "z": 7.5,
+   "recess": 0.6,
+   "angled": false,
+   "far_y_cm": 20.19
+  }
+ ],
+ "triangles": 13196,
+ "glb_mb": 0.59,
+ "notes": [
+  "Official 41.0 x 39.9 x 27.2 cm; depth runs from the front cover / tray face to the rear of the scanner unit. The lower back with both sockets is 4.5 cm in front of that line (rear overhang).",
+  "Lower body narrower than the scanner (35.7 cm at the feet, 37.5 cm at 14 cm up, 39 cm under the scanner; sides lean in toward the bottom).",
+  "No Ethernet: USB-B only. Power inlet C14 (C13 cord), turned 90 deg, flush on the lower back."
+ ]
+}

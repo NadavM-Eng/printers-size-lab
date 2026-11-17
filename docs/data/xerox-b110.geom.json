@@ -1,0 +1,211 @@
+{
+ "id": "xerox-b110",
+ "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+ "nodes": {
+  "body": "xerox-b110_body",
+  "input_tray": "xerox-b110_input_tray",
+  "support": "xerox-b110_support",
+  "support_ext": "xerox-b110_support_ext",
+  "tray_ext": "xerox-b110_tray_ext",
+  "paper": "xerox-b110_paper",
+  "cable_power": "xerox-b110_cable_power",
+  "cable_usb": "xerox-b110_cable_usb"
+ },
+ "parts": {
+  "body": {
+   "node": "xerox-b110_body",
+   "kind": "body",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "input_tray": {
+   "node": "xerox-b110_input_tray",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.022,
+    0.096
+   ]
+  },
+  "support": {
+   "node": "xerox-b110_support",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.1792,
+    0.0705
+   ]
+  },
+  "support_ext": {
+   "node": "xerox-b110_support_ext",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    0.0,
+    0.1792,
+    0.0705
+   ]
+  },
+  "tray_ext": {
+   "node": "xerox-b110_tray_ext",
+   "kind": "moving",
+   "hidden": true,
+   "pivot_m": null
+  },
+  "paper": {
+   "node": "xerox-b110_paper",
+   "kind": "moving",
+   "hidden": true,
+   "pivot_m": null
+  },
+  "cable_power": {
+   "node": "xerox-b110_cable_power",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "cable_usb": {
+   "node": "xerox-b110_cable_usb",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  }
+ },
+ "states": {
+  "printing": [
+   {
+    "part": "input_tray",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 90.0
+   },
+   {
+    "part": "tray_ext",
+    "show": true
+   },
+   {
+    "part": "paper",
+    "show": true
+   },
+   {
+    "part": "support",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 162.61932229343077
+   },
+   {
+    "part": "support_ext",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 162.61932229343077
+   },
+   {
+    "part": "support_ext",
+    "move": [
+     0.0,
+     0.025,
+     0.0433
+    ]
+   }
+  ],
+  "refill": [
+   {
+    "part": "input_tray",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 90.0
+   },
+   {
+    "part": "tray_ext",
+    "show": true
+   },
+   {
+    "part": "paper",
+    "show": true
+   }
+  ]
+ },
+ "body_size_cm": [
+  33.1,
+  21.5,
+  18.87
+ ],
+ "envelopes_m": {
+  "closed": {
+   "min": [
+    -0.1655,
+    0.0,
+    -0.1075
+   ],
+   "max": [
+    0.1655,
+    0.1887,
+    0.1075
+   ]
+  },
+  "printing": {
+   "min": [
+    -0.1655,
+    0.0,
+    -0.1075
+   ],
+   "max": [
+    0.1655,
+    0.2315,
+    0.2425
+   ]
+  },
+  "refill": {
+   "min": [
+    -0.1655,
+    0.0,
+    -0.1075
+   ],
+   "max": [
+    0.1655,
+    0.1887,
+    0.2425
+   ]
+  }
+ },
+ "cable_back_gap_cm": 4.82,
+ "sockets": [
+  {
+   "part": "cable_power",
+   "kind": "C7v",
+   "x": 13.350000000000001,
+   "z": 2.8,
+   "recess": 0.5,
+   "angled": false,
+   "far_y_cm": 15.57
+  },
+  {
+   "part": "cable_usb",
+   "kind": "USB-B",
+   "x": 14.25,
+   "z": 10.2,
+   "recess": 0.5,
+   "angled": false,
+   "far_y_cm": 15.39
+  }
+ ],
+ "triangles": 7502,
+ "glb_mb": 0.31,
+ "notes": [
+  "Ports on a strip at the back corner on the control-panel side, set in ~0.5 cm: both plugs stick out behind the printer (flat back)."
+ ]
+}

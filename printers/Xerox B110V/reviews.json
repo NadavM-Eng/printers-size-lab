@@ -1,0 +1,52 @@
+{
+  "id": "xerox-b110",
+  "researched": "2026-11-17",
+  "windows": {
+    "rating": "unknown",
+    "why": "Xerox publishes a Windows 10 and 11 driver package for the B110, but no owner report about the B110 on Windows was found in the support forum (login wall), shop pages or search results, so its real-world behaviour cannot be rated.",
+    "driver": "Xerox full driver package: Xerox_B110_Windows_Software_Installer-Package.exe, 138 MB, from Xerox support. It contains the B110 print driver 3.12.38.03, Easy Print Manager 2.0.01.59 and Easy Wireless Setup 3.70.18.1. The Xerox page lists a Windows 11 option and a 'Windows 11 ARM64' option, but does not confirm which file applies to ARM64. Not checked: whether Windows' built-in or IPP class driver works without this package.",
+    "app_required": "optional",
+    "windows_11": "yes",
+    "problems": [],
+    "scanning": null,
+    "sources": [
+      {
+        "url": "https://www.xerox.co.uk/en-gb/office/printers/xerox-b110-printer/specifications",
+        "what": "Operating system row: Microsoft Windows 10 (32/64-bit) and Windows 11 (32/64-bit) are listed as supported. Also says availability varies by country."
+      },
+      {
+        "url": "https://www.support.xerox.com/en-us/product/xerox-b110-printer/downloads",
+        "what": "B110 downloads page (read in the first pass): Windows installer package (driver 3.12.38.03 plus two utilities, released 2026-04-01, 138.32 MB), firmware V3.50.01.06, and a Platform menu with Windows 10, Windows 10 x64, Windows 11 and Windows 11 ARM64. No account requirement stated."
+      },
+      {
+        "url": "https://www.zap.co.il/ratemodel.aspx?modelid=1270672",
+        "what": "Zap Israel product review page for the Xerox B110: states there are no product reviews of the B110 yet. Nothing about Windows."
+      }
+    ]
+  },
+  "forums": {
+    "rating": "unknown",
+    "why": "Only one page with owner opinions on the B110 was found (a summary of 118 Amazon.de reviews, read in the first pass); the Xerox support forum is behind a login, Zap Israel has no product reviews for the B110, and no B110 printer turned up in Walmart or the first visible Best Buy results.",
+    "stars": [],
+    "praise": ["Easy to use", "Compact design", "Good print quality for text documents", "Supports WLAN and Apple AirPrint"],
+    "complaints": ["No scan, copy or fax functions", "No automatic duplex printing", "No LAN connection", "Relatively high power consumption while printing"],
+    "sources_read": 1,
+    "sources": [
+      {
+        "url": "https://www.testberichte.de/p/xerox-tests/b110-testbericht.html",
+        "what": "Summary of 118 Amazon.de reviews, average 3.8 stars; praise and complaints listed as above. Test score 2.2 (page also shows 2.60 in its conclusion). No Windows-specific remarks."
+      },
+      {
+        "url": "https://www.zap.co.il/model.aspx?modelid=1270672",
+        "what": "Zap Israel model page: 'Xerox B110' with seven shop listings from 410 to 644 ILS. The ratings shown (4.75 to 5, with 159 to 2,145 reviews) belong to the sellers, not to the printer, so they are not counted as a product rating. The page shows a 'Xerox B110' listing rated 3.97 from 1,310 reviews, which is also a seller rating."
+      }
+    ]
+  },
+  "blocked_sites": [
+    "forum.support.xerox.com: redirected to a login page ('You are not logged in, or your session has expired'); not used, no login attempted",
+    "newegg.com: Cloudflare robot check (HTTP 403); not used",
+    "e-katalog.pl: Cloudflare robot check (HTTP 403); not used",
+    "www.xerox.com B110 reviews page: HTTP 404 (URL tried: /en-us/office/printers/xerox-b110-printer/reviews)",
+    "www.bestbuy.com: search for 'xerox b110' showed only toner items in the visible results (page was truncated); no B110 printer seen"
+  ]
+}

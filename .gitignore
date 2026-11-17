@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+work/
+# reference photos belong to their owners
+printers/*/photos/
+# local-only files
+.claude/
+HANDOFF.md
+references/room/room_vs_photos.jpg
+references/room/tools/

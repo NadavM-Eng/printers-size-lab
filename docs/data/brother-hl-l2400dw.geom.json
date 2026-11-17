@@ -1,0 +1,144 @@
+{
+ "id": "brother-hl-l2400dw",
+ "frame": "glTF: metres, Y up, front +Z, origin at the bottom centre of the closed body",
+ "nodes": {
+  "body": "brother-hl-l2400dw_body",
+  "cassette": "brother-hl-l2400dw_cassette",
+  "flap": "brother-hl-l2400dw_flap",
+  "cable_power": "brother-hl-l2400dw_cable_power",
+  "cable_usb": "brother-hl-l2400dw_cable_usb"
+ },
+ "parts": {
+  "body": {
+   "node": "brother-hl-l2400dw_body",
+   "kind": "body",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "cassette": {
+   "node": "brother-hl-l2400dw_cassette",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    -0.0015,
+    0.003,
+    0.18
+   ]
+  },
+  "flap": {
+   "node": "brother-hl-l2400dw_flap",
+   "kind": "moving",
+   "hidden": false,
+   "pivot_m": [
+    -0.0015,
+    0.181,
+    0.1635
+   ]
+  },
+  "cable_power": {
+   "node": "brother-hl-l2400dw_cable_power",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  },
+  "cable_usb": {
+   "node": "brother-hl-l2400dw_cable_usb",
+   "kind": "cable",
+   "hidden": false,
+   "pivot_m": null
+  }
+ },
+ "states": {
+  "printing": [
+   {
+    "part": "flap",
+    "rot": [
+     1.0,
+     0.0,
+     -0.0
+    ],
+    "deg": 70.0
+   }
+  ],
+  "refill": [
+   {
+    "part": "cassette",
+    "move": [
+     0.0,
+     0.0,
+     0.27
+    ]
+   }
+  ]
+ },
+ "body_size_cm": [
+  35.63,
+  36.05,
+  18.31
+ ],
+ "envelopes_m": {
+  "closed": {
+   "min": [
+    -0.1782,
+    0.0,
+    -0.18
+   ],
+   "max": [
+    0.178,
+    0.1831,
+    0.1805
+   ]
+  },
+  "printing": {
+   "min": [
+    -0.1782,
+    0.0,
+    -0.18
+   ],
+   "max": [
+    0.178,
+    0.2078,
+    0.1805
+   ]
+  },
+  "refill": {
+   "min": [
+    -0.1782,
+    0.0,
+    -0.18
+   ],
+   "max": [
+    0.178,
+    0.1831,
+    0.45
+   ]
+  }
+ },
+ "cable_back_gap_cm": 6.49,
+ "sockets": [
+  {
+   "part": "cable_power",
+   "kind": "C13v",
+   "x": 16.2,
+   "z": 10.8,
+   "recess": 0.0,
+   "angled": false,
+   "far_y_cm": 24.49
+  },
+  {
+   "part": "cable_usb",
+   "kind": "USB-B",
+   "x": -16.31,
+   "z": 10.4,
+   "recess": 1.1,
+   "angled": false,
+   "far_y_cm": 21.34
+  }
+ ],
+ "triangles": 14148,
+ "glb_mb": 0.65,
+ "notes": [
+  "Shared body of the HL-L2400DW and HL-L2445DW (the 2445DW adds an RJ45 above the USB-B).",
+  "Official width = 35.3 cm body + 0.3 cm louvred vent on the right side; official depth = front panel to the back-cover handle tab."
+ ]
+}

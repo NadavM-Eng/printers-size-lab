@@ -1,0 +1,112 @@
+{
+  "id": "xerox-b230",
+  "researched": "2026-11-17",
+  "windows": {
+    "rating": "mixed",
+    "why": "Xerox publishes Windows 10 and 11 drivers and the built-in IPP driver works, but owners and one reviewer report Wi-Fi setup trouble on the small screen and a setup failure with Xerox's recommended print system; the Xerox Support Community (the place where Windows setup threads would be) is behind a login, so no thread was read.",
+    "driver": "Xerox full driver packages from support.xerox.com: PCL6 V4 7.249.0.0 (Jan 2022, lists Windows 10 x64 and Windows 11) and generic PPD 5.810.0.0 (Jul 2021, lists Windows 10 and 11, no Windows on ARM). Windows 11 also offers the inbox Microsoft IPP class driver. Xerox says newer devices are no longer added to its Global Print Driver.",
+    "app_required": "optional",
+    "windows_11": "yes",
+    "problems": [
+      "ITPro reviewer: Xerox software failed with the recommended Type 4 Print System; Type 3 worked (fixed by using Type 3 in the one test; no Xerox fix found)",
+      "Wi-Fi password is hard to enter on the small LCD, at least during first setup (no fix found; Walmart listing says Xerox Smart Start gives 'easy Wi-Fi setup', which owners dispute)",
+      "Reports of Wi-Fi disconnects and having to re-enter passwords (one comparison article; no fix found)",
+      "Unofficial help sites describe 'offline' status after Wi-Fi setup (not confirmed for B230; no fix found)"
+    ],
+    "scanning": null,
+    "sources": [
+      {
+        "url": "https://support.xerox.com/en-ae/product/xerox-b230-printer/content/154256",
+        "what": "PCL6 driver 7.249.0.0 (Jan 2022): Windows 10 x64 and Windows 11 listed; no ARM (first pass)"
+      },
+      {
+        "url": "https://support.xerox.com/en-us/product/xerox-b230-printer/content/152267",
+        "what": "Generic PPD driver 5.810.0.0 (Jul 2021): Windows 10 and Windows 11 listed; Windows on ARM not listed (first pass)"
+      },
+      {
+        "url": "https://www.itpro.com/hardware/peripherals/367506/xerox-b230-review-a-value-conscious-workhorse",
+        "what": "Review: Type 4 Print System failed in test, Type 3 worked; no other Windows issues mentioned (first pass)"
+      },
+      {
+        "url": "https://www.xerox.ca/en-ca/office/printers/xerox-b230-printer/reviews?page=2",
+        "what": "Owner reviews: Wi-Fi password entry on small screen, setup confusion at first (first pass)"
+      },
+      {
+        "url": "https://www.print-technology.com/best-laser-printers-with-cheap-toner/",
+        "what": "Comparison article: Wi-Fi disconnect and password re-entry complaints; article has part-number errors, so used only for the Wi-Fi remark (first pass)"
+      },
+      {
+        "url": "https://www.walmart.com/ip/Xerox-B230-DNI-Monochrome-Laser-Printer-Up-to-36PPM-Wireless/190110253",
+        "what": "Walmart listing (this pass): product description says 'automated, IT-free installation and easy Wi-Fi setup' via Xerox Smart Start Software; this is the seller's claim, not an owner report"
+      }
+    ]
+  },
+  "forums": {
+    "rating": "mixed",
+    "why": "Shop ratings are mostly positive (Walmart 4.3 out of 5 from 44 ratings), and owners praise reliability, wireless and two-sided printing, but recurring complaints about Wi-Fi setup and expensive toner and drum, plus one very costly support case, keep it at mixed.",
+    "stars": [
+      {
+        "where": "Walmart",
+        "score": 4.3,
+        "out_of": 5,
+        "reviews": 44,
+        "url": "https://www.walmart.com/ip/Xerox-B230-DNI-Monochrome-Laser-Printer-Up-to-36PPM-Wireless/190110253"
+      }
+    ],
+    "praise": [
+      "Reliable, few problems (switchers from HP say so)",
+      "Wireless and phone printing work well",
+      "Two-sided printing",
+      "No subscription; Linux and Chromebook support",
+      "Toner lasts a long time",
+      "Good print quality once toner darkness is raised"
+    ],
+    "complaints": [
+      "Wi-Fi password setup hard on the small screen",
+      "Wi-Fi connection problems, some owners want Ethernet",
+      "Expensive replacement toner and drum",
+      "One reviewer cites 260 USD of tech support to get it working (same review twice; top review on xerox.com)",
+      "Paper feed pulls several sheets at once and jams at the back (one review)",
+      "Prints a scanner report several times a day with no way to stop it (one review)",
+      "Starter toner rated only about 750 pages in one report"
+    ],
+    "sources_read": 7,
+    "sources": [
+      {
+        "url": "https://www.walmart.com/ip/Xerox-B230-DNI-Monochrome-Laser-Printer-Up-to-36PPM-Wireless/190110253",
+        "what": "Walmart listing (this pass): 4.3 out of 5 stars from 44 ratings for the B230/DNI; seller 24/7 Toner shows 4.6 from 430 seller reviews, which is a seller rating and not counted."
+      },
+      {
+        "url": "https://www.bestbuy.com/product/xerox-b230-dni-monochrome-laser-printer-monochrome/J7QRFVVPZY/sku/12639751/reviews",
+        "what": "Best Buy B230/DNI reviews page (this pass): shows 0 of 0 reviews, so no Best Buy star figure is used. A search snippet had shown 4.58 from 19 reviews on the product page; that figure was not confirmed on the reviews page."
+      },
+      {
+        "url": "https://www.zap.co.il/ratemodel.aspx?modelid=1202734",
+        "what": "Zap Israel product review page for the Xerox B230 (this pass): 'no product reviews of the B230 yet'. Shop ratings on the page (4.8 from 471 and 4.97 from 1,630) belong to sellers, so they are not counted."
+      },
+      {
+        "url": "https://www.xerox.com/en-us/office/printers/xerox-b230-printer/reviews",
+        "what": "Xerox US review page (this pass re-read): 27 ratings in total per the first pass; the page shows no visible average on this read, and the top review is about a 260 USD support bill. Earlier read: 10 visible reviews, all 5 stars, with mixed text, praising reliability and wireless and complaining about support cost and paper feed."
+      },
+      {
+        "url": "https://www.xerox.ca/en-ca/office/printers/xerox-b230-printer/reviews?page=2",
+        "what": "10 owner reviews (first pass): praise for Wi-Fi, reliability, two-sided; complaints about toner cost, gibberish prints, support, scanner report."
+      },
+      {
+        "url": "https://www.itpro.com/hardware/peripherals/367506/xerox-b230-review-a-value-conscious-workhorse",
+        "what": "Editorial review (first pass): 'excellent value' for black text; running cost about 2p per page for toner; Type 4 setup issue."
+      },
+      {
+        "url": "https://www.print-technology.com/best-laser-printers-with-cheap-toner/",
+        "what": "Comparison article (first pass): expensive toner, Wi-Fi disconnects, high OEM cost per page; part numbers in it are wrong, so only general remarks used."
+      }
+    ]
+  },
+  "blocked_sites": [
+    "forum.support.xerox.com: redirected to a login page ('You are not logged in, or your session has expired'); the Xerox Support Community threads on Wi-Fi setup, firmware and third-party toner could not be read; no login attempted",
+    "bestbuy.com: the B230 product page has 'Reviews' but its reviews page shows 0 of 0 reviews (not a block; no Best Buy star figure used)",
+    "zap.co.il: the B230 printer product review page has no reviews (not a block); a toner page at zap was read by mistake and is not used for any rating",
+    "newegg.com: not checked for this printer",
+    "ksp.co.il (first pass): HTTP 403; not used"
+  ]
+}
