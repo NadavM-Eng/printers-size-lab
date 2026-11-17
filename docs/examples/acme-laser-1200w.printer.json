@@ -1,0 +1,82 @@
+{
+  "format": "printers-size-lab/printer@1",
+  "id": "acme-laser-1200w",
+  "name": "Acme Laser 1200w",
+  "brand": "Acme",
+  "type": "Mono laser printer",
+  "functions": ["print"],
+  "buyer_country": "Israel",
+  "dims_mm": {
+    "closed": {"w": 340, "d": 230, "h": 185, "includes": "front paper cover closed; output stop folded", "source": "https://www.example.com/laser-1200w/specs"},
+    "max": {"w": 340, "d": 340, "h": 260, "what": "front paper cover open with paper; output stop up", "source": "https://www.example.com/laser-1200w/manual"}
+  },
+  "weight_kg": {"value": 4.7, "what": "with the starter toner", "source": "https://www.example.com/laser-1200w/specs"},
+  "specs": [
+    {"label": "Print speed", "value": "20 pages/min (A4)", "source": "https://www.example.com/laser-1200w/specs"},
+    {"label": "Two-sided printing", "value": "Manual (turn the pages yourself)"},
+    {"label": "Connections", "value": "USB, Wi-Fi", "source": "https://www.example.com/laser-1200w/specs"},
+    {"label": "Paper in", "value": "150 sheets, fold-down front cover"},
+    {"label": "Paper out", "value": "100 sheets, top tray, face down"},
+    {"label": "Display", "value": "Two LEDs, no screen"},
+    {"label": "Toner", "value": "AT-12 (1,500 pages); starter 700 pages"},
+    {"label": "In the box", "value": ["Printer with starter toner", "Power cord", "Quick setup guide"], "source": "https://www.example.com/laser-1200w/box", "note": "No USB cable."}
+  ],
+  "price": {"value": 529, "currency": "ILS", "where": "Example Shop", "url": "https://shop.example.co.il/laser-1200w", "date": "2026-11-17"},
+  "running_cost": {
+    "cartridges": [
+      {"code": "AT-12", "kind": "toner", "pages": 1500, "price": 249, "currency": "ILS", "original": true, "where": "Example Shop", "url": "https://shop.example.co.il/at-12"},
+      {"code": "AT-12 compatible", "kind": "toner", "pages": 1500, "price": 69, "currency": "ILS", "original": false, "where": "Toner Example", "url": "https://toner.example.co.il/at-12"}
+    ],
+    "compatible": {"allowed": "nags", "note": "The printer shows a warning with third-party toner but keeps printing.", "source": "https://www.example.com/laser-1200w/faq"}
+  },
+  "software": {
+    "windows": {"rating": "good", "why": "Windows 11 installs the driver by itself.", "source": "https://www.example.com/laser-1200w/drivers"},
+    "owners": {"rating": "mixed", "why": "Quiet and small, but the Wi-Fi setup app is clumsy.", "source": "https://www.example.com/laser-1200w/reviews"}
+  },
+  "cable_space": {
+    "sockets": [
+      {"kind": "C13", "x_cm": 12, "height_cm": 4, "recess_cm": 2.5},
+      {"kind": "USB-B", "x_cm": 14, "height_cm": 9, "recess_cm": 2.5}
+    ],
+    "why": "Both sockets sit in a pocket at the lower back, so only the bent cables stick out."
+  },
+  "notes": "A made-up printer used as the full example. The front cover folds down 10 cm to load paper and stays open while printing. The output stop flips up from the top. The plugs hide in a pocket at the back.",
+  "model": {
+    "units": "cm",
+    "parts": [
+      {"name": "body", "shapes": [
+        {"type": "profile", "x": [-17, 17], "zy": [[-11.5, 0.6], [10.5, 0.6], [10.5, 14], [9, 16.5], [3, 18.5], [-9, 18.5], [-11.5, 17]], "color": "#e9e8e4", "roughness": 0.5},
+        {"type": "inset", "face": "top", "x": [-11, 11], "y": 18.5, "z": [-7.5, 2.5], "color": "#2b2c2e"},
+        {"type": "inset", "face": "back", "x": [10, 16], "y": [2, 11], "z": -11.5, "color": "#1a1a1a"},
+        {"type": "cylinder", "axis": "z", "x": 13.5, "y": 12.6, "z": [10.4, 10.8], "radius": 0.6, "color": "#cfcfcb"},
+        {"type": "inset", "face": "front", "x": [9.5, 11], "y": [12.4, 12.8], "z": 10.5, "color": "#0d2a12", "glow": "#3fd06a"},
+        {"type": "box", "x": [-16, -13], "y": [0, 0.6], "z": [-10.5, -7.5], "color": "#2a2a2a"},
+        {"type": "box", "x": [13, 16], "y": [0, 0.6], "z": [-10.5, -7.5], "color": "#2a2a2a"},
+        {"type": "box", "x": [-16, -13], "y": [0, 0.6], "z": [6.5, 9.5], "color": "#2a2a2a"},
+        {"type": "box", "x": [13, 16], "y": [0, 0.6], "z": [6.5, 9.5], "color": "#2a2a2a"}
+      ]},
+      {"name": "input_tray", "pivot": {"x": 0, "y": 1.5, "z": 11}, "shapes": [
+        {"type": "box", "x": [-14, 14], "y": [1.5, 12], "z": [10.5, 11.5], "radius": 0.4, "color": "#d9d8d3"}
+      ]},
+      {"name": "paper", "pivot": {"x": 0, "y": 1.5, "z": 11}, "hidden": true, "shapes": [
+        {"type": "box", "x": [-10.5, 10.5], "y": [2, 11.5], "z": [9.6, 10.5], "color": "#fbfbf8", "roughness": 0.9}
+      ]},
+      {"name": "output_stop", "pivot": {"x": 0, "y": 18.3, "z": 2}, "shapes": [
+        {"type": "box", "x": [-5, 5], "y": [18.05, 18.45], "z": [-6, 2], "color": "#bdbcb7"}
+      ]}
+    ],
+    "states": {
+      "printing": [
+        {"part": "input_tray", "rotate": {"axis": "x", "deg": 90}},
+        {"part": "paper", "rotate": {"axis": "x", "deg": 90}},
+        {"part": "paper", "show": true},
+        {"part": "output_stop", "rotate": {"axis": "x", "deg": 100}}
+      ],
+      "refill": [
+        {"part": "input_tray", "rotate": {"axis": "x", "deg": 90}},
+        {"part": "paper", "rotate": {"axis": "x", "deg": 90}},
+        {"part": "paper", "show": true}
+      ]
+    }
+  }
+}

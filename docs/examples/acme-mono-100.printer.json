@@ -1,0 +1,15 @@
+{
+  "format": "printers-size-lab/printer@1",
+  "id": "acme-mono-100",
+  "name": "Acme Mono 100",
+  "brand": "Acme",
+  "type": "Mono laser printer",
+  "functions": ["print"],
+  "buyer_country": "Germany",
+  "dims_mm": {
+    "closed": {"w": 331, "d": 215, "h": 178, "source": "https://www.example.com/mono-100/specs"}
+  },
+  "weight_kg": {"value": 4.2, "source": "https://www.example.com/mono-100/specs"},
+  "price": {"value": 89, "currency": "EUR", "where": "Example Markt", "url": "https://www.example.de/mono-100", "date": "2026-11-17"},
+  "notes": "A made-up printer that shows the smallest useful file: specs only, no 3D shape. The page shows it as a plain box at its official size."
+}
