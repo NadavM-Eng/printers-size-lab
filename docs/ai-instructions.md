@@ -402,7 +402,7 @@ Positive degrees about x tip the part's top toward the front; negative tip it to
 
 ## 11. Reference: the mesh (Route A)
 
-`model` is then `{"glb_base64": "...", "geom": {...}}`. The toolkit's packer writes both (5A step 8).
+`model` is then `{"glb_base64": "...", "geom": {...}}`. The toolkit's packer writes both (5A step 9).
 If you build the GLB another way, it must follow these rules, or the page rejects it or shows it wrong:
 
 - **One self-contained binary glTF (.glb):** everything inside the file, nothing referenced by a `uri`
