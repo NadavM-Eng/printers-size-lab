@@ -481,8 +481,8 @@ def main():
             "geom": geom,
             "measured": ON_SHELF.get(pid),
         })
-    room = load_json(os.path.join(DOCS, "data", "room.json"))
-    out = {"generated": date.today().isoformat(), "printers": printers, "room": room}
+    scene = load_json(os.path.join(DOCS, "data", "scene.json"))   # the shelf and the wardrobe
+    out = {"generated": date.today().isoformat(), "printers": printers, "scene": scene}
     with open(os.path.join(DOCS, "printers.json"), "w", encoding="utf-8") as f:
         json.dump(out, f, indent=1, ensure_ascii=False)
     print("wrote docs/printers.json:", ", ".join("%s%s" % (p["id"], "" if p["has_model"] else " (no model yet)") for p in printers))

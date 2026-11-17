@@ -3674,15 +3674,13 @@
    "measured": null
   }
  ],
- "room": {
-  "frame": "glTF metres, Y up; the wall behind the shelf at z=0, the shelf's right end at x=0, the room toward -x and +z",
+ "scene": {
+  "frame": "glTF metres, Y up; the wall behind the shelf at z=0, the shelf's right end at x=0, the wardrobe toward -x, the front toward +z",
   "shelf_cm": {
    "top": 129.0,
    "length": 68.5,
    "depth": 24.5,
    "thickness": 1.6,
-   "x_from": -68.5,
-   "x_to": 0.0,
    "measured": {
     "top": true,
     "length": false,
@@ -3693,8 +3691,8 @@
    "w": 41.0,
    "d": 38.0,
    "h": 180.0,
-   "x_to": -69.5,
-   "door_hinge_side": "right (niche side)",
+   "gap_to_shelf": 1.0,
+   "door_hinge_side": "right (shelf side)",
    "door_width": 40.4
   }
  }

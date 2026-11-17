@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Compare printers on the real shelf in a 3D model of the room: how far each one sticks out, how much space its cables need, how high it sits for you, and full specs.">
+<meta name="description" content="Compare printers in 3D on a shelf or cabinet you can resize: how far each one sticks out, how much space its cables need, how high it sits for you, and full specs.">
 <style>
 :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0;font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
@@ -114,6 +114,21 @@ a:hover{text-decoration-color:currentColor}
 .msg.warn::before{content:"!";display:inline-grid;place-items:center;width:16px;height:16px;border-radius:999px;background:var(--sig-a);color:#fff;margin-right:8px;font-size:11px;font-weight:700;vertical-align:-2px}
 .msg .bar{display:block;height:3px;margin-top:6px;border-radius:999px;background:var(--well);overflow:hidden}
 .msg .bar span{display:block;height:100%;width:var(--p,0%);background:var(--c,var(--ink));border-radius:999px}
+/* handles for moving the shelf or cabinet: placed over the 3D view every frame */
+.grips{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.grip{position:absolute;left:0;top:0;pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;will-change:transform}
+.grip::before{content:"";position:absolute;inset:-8px;border-radius:999px}
+.grip .gb{position:relative;display:flex;align-items:center;height:30px;border-radius:999px;background:var(--surface);color:var(--accent);box-shadow:0 0 0 1.5px var(--accent),0 2px 8px rgba(0,0,0,.16);transform:scale(.72);opacity:.85;transition:transform .16s ease,opacity .16s,background .12s,color .12s}
+.grip.rev .gb{flex-direction:row-reverse}
+.grip svg{width:30px;height:30px;flex:none;transform:rotate(var(--a,0deg))}
+.grip .gv{display:none;font:500 12.5px/1 var(--font);font-variant-numeric:tabular-nums;white-space:nowrap;padding:0 11px 0 1px}
+.grip.rev .gv{padding:0 1px 0 11px}
+.grip .gv small{font-size:12px;font-weight:400;opacity:.8;margin-right:5px}
+.grips.awake .grip .gb{transform:none;opacity:1}
+.grip.on .gb,.grip.hover .gb{transform:none;opacity:1;background:var(--accent-fill);color:var(--on-accent);box-shadow:0 0 0 1.5px var(--accent-fill),0 4px 14px rgba(0,0,0,.22)}
+.grip.on .gv,.grip.hover .gv{display:block}
+.grips.dragging .grip:not(.on){pointer-events:none}
+.drag-cursor,.drag-cursor *{cursor:var(--drag-cursor)!important}
 
 /* control bar */
 .controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:16px;padding:10px;background:var(--surface);border:1px solid var(--line);border-radius:999px;box-shadow:var(--bar-shadow)}
@@ -132,7 +147,7 @@ a:hover{text-decoration-color:currentColor}
 .views .pill[aria-pressed="true"]{background:var(--accent-fill);border-color:var(--accent-fill);color:var(--on-accent)}
 .ghost-btn i{width:10px;height:10px;border-radius:999px;box-shadow:inset 0 0 0 1.5px var(--c)}
 
-/* the two kinds of view: on the shelf in the room, or the printers alone next to each other */
+/* the two kinds of view: on the shelf, or the printers alone next to each other */
 .scene{display:flex;margin-top:16px}
 .scene .seg{background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);padding:4px}
 .scene .seg button{height:38px;padding:0 20px;font-size:15px}
@@ -157,6 +172,9 @@ a:hover{text-decoration-color:currentColor}
 .sl-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:var(--muted)}
 .rowctl{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px}
 .rowctl > span{color:var(--muted);font-weight:500}
+.sl-head{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;font-weight:500;color:var(--ink)}
+.sl-head + .sl{margin-top:-2px}
+.sl-sep{height:1px;background:var(--line);margin:4px 0}
 .link{border:0;background:none;padding:0;cursor:pointer;font-size:13px;color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:3px}
 .link:hover{text-decoration-color:currentColor}
 .fit{display:flex;flex-direction:column;gap:14px;min-width:0}
@@ -253,6 +271,7 @@ details.more[open] > summary::after{transform:translateY(2px) rotate(-135deg)}
   .group{width:100%}
   .seg{flex:1}
   .seg button{flex:1;padding:0 6px;font-size:13px}
+  .toggles{display:grid;grid-template-columns:1fr 1fr}
   .toggles .pill{flex:1;justify-content:center;padding:0 8px}
   .scene{margin-top:12px}
   .scene .seg{flex:1}
@@ -305,16 +324,17 @@ details.more[open] > summary::after{transform:translateY(2px) rotate(-135deg)}
 
   <div class="scene">
     <div class="seg" role="group" aria-label="Kind of view" id="sceneSeg">
-      <button type="button" data-scene="room" aria-pressed="true">Room view</button>
+      <button type="button" data-scene="room" aria-pressed="true">On the shelf</button>
       <button type="button" data-scene="side" aria-pressed="false">Side by side</button>
     </div>
   </div>
 
   <div class="viewer" id="viewer">
     <div class="labels" id="labels"></div>
+    <div class="grips" id="grips" aria-hidden="true"></div>
     <div class="legend" id="legend"></div>
     <div class="viewname" id="viewName"></div>
-    <div class="hint">Drag to orbit · scroll to zoom</div>
+    <div class="hint" id="hint">Drag to orbit · scroll to zoom</div>
     <div class="status" id="status"></div>
   </div>
 
@@ -333,21 +353,32 @@ details.more[open] > summary::after{transform:translateY(2px) rotate(-135deg)}
       <button type="button" id="boxBtn" class="pill" aria-pressed="true" title="Show measurements"><span class="led"></span>Sizes</button>
       <button type="button" id="cableBtn" class="pill" aria-pressed="true" title="Show the cables behind the printer"><span class="led"></span>Cables</button>
       <button type="button" id="personBtn" class="pill" aria-pressed="true" data-only="room" title="Show a person standing at the shelf"><span class="led"></span>Person</button>
+      <button type="button" id="wardBtn" class="pill" aria-pressed="true" data-only="room" title="Show a wardrobe beside the shelf, and check whether its door hits the printer"><span class="led"></span>Wardrobe</button>
     </div>
     <div class="group views" role="group" aria-label="Camera presets">
       <button type="button" class="pill" data-view="front" title="Front (key 1)" aria-keyshortcuts="1">Front</button>
       <button type="button" class="pill" data-view="side" title="Side (key 2)" aria-keyshortcuts="2">Side</button>
       <button type="button" class="pill" data-view="top" title="Top (key 3)" aria-keyshortcuts="3">Top</button>
-      <button type="button" class="pill" data-view="door" data-only="room" title="From the door (key 4)" aria-keyshortcuts="4">Door</button>
-      <button type="button" class="pill" data-view="iso" title="3/4 view (key 5)" aria-keyshortcuts="5">3/4</button>
-      <button type="button" class="pill" data-view="room" data-only="room" title="Whole room (key 6)" aria-keyshortcuts="6">Room</button>
+      <button type="button" class="pill" data-view="iso" title="3/4 view (key 4)" aria-keyshortcuts="4">3/4</button>
+      <button type="button" class="pill" data-view="far" data-only="room" title="Step back: the person, the wardrobe and the shelf in one view (key 5)" aria-keyshortcuts="5">Far</button>
     </div>
   </div>
 
-  <div class="panel" role="group" aria-label="Shelf and you" data-only="room">
+  <div class="panel" role="group" aria-label="The shelf and you" data-only="room">
     <div class="sliders">
-      <label class="sl"><span class="sl-top"><span>Shelf height</span><output id="shOut" for="shIn">129 cm</output></span>
-        <input type="range" id="shIn" min="107" max="170" step="1" value="129" aria-label="Shelf height in centimetres"></label>
+      <div class="sl-head"><span id="surfHead">The shelf</span>
+        <div class="seg" role="group" aria-label="What the printer stands on" id="modeSeg">
+          <button type="button" data-mode="shelf" aria-pressed="true" title="A board on brackets on the wall">Shelf</button>
+          <button type="button" data-mode="cabinet" aria-pressed="false" title="A cabinet standing on the floor">Cabinet</button>
+        </div>
+      </div>
+      <label class="sl"><span class="sl-top"><span>Height of the top</span><output id="shOut" for="shIn">129 cm</output></span>
+        <input type="range" id="shIn" min="10" max="200" step="1" value="129" aria-label="Height of the top above the floor, in centimetres"></label>
+      <label class="sl"><span class="sl-top"><span>Depth</span><output id="sdOut" for="sdIn">24.5 cm</output></span>
+        <input type="range" id="sdIn" min="15" max="80" step="0.5" value="24.5" aria-label="Depth from the wall to the front edge, in centimetres"></label>
+      <label class="sl"><span class="sl-top"><span>Length</span><output id="slOut" for="slIn">68.5 cm</output></span>
+        <input type="range" id="slIn" min="30" max="150" step="0.5" value="68.5" aria-label="Length from left to right, in centimetres"></label>
+      <div class="sl-sep" role="presentation"></div>
       <label class="sl"><span class="sl-top"><span>Your height</span><output id="phOut" for="phIn">169 cm</output></span>
         <input type="range" id="phIn" min="150" max="200" step="1" value="169" aria-label="Your height in centimetres"></label>
       <div class="rowctl"><span>Position on the shelf</span>
@@ -360,9 +391,9 @@ details.more[open] > summary::after{transform:translateY(2px) rotate(-135deg)}
       <div class="sl-foot"><span id="shelfNote"></span><button type="button" class="link" id="resetBtn">Reset</button></div>
     </div>
     <div class="fit">
-      <div class="fit-head">On your shelf</div>
+      <div class="fit-head" id="fitHead">On your shelf</div>
       <div id="fitList"></div>
-      <p class="fit-note">Each printer stands as close to the wall as its plugged-in cables allow. Overhang is measured from the shelf's front edge to the printer's front-most point in the selected state. Base is the part that rests on the shelf.</p>
+      <p class="fit-note">Each printer stands as close to the wall as its plugged-in cables allow. Overhang is measured from the front edge to the printer's front-most point in the selected state. Base is the part that rests on the top. Drag the shelf in the view, or its handles, to change it.</p>
     </div>
   </div>
 
@@ -536,7 +567,7 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.setClearColor(0x000000, 0);
 viewer.prepend(renderer.domElement);
-renderer.domElement.setAttribute('aria-label', '3D view of the room with the printers on the shelf');
+renderer.domElement.setAttribute('aria-label', '3D view of the printers on the shelf');
 renderer.domElement.setAttribute('role', 'img');
 
 const scene = new THREE.Scene();
@@ -558,11 +589,11 @@ controls.target.set(-0.3, 1.4, 0.2);
 const hemi = new THREE.HemisphereLight(0xfffaf2, 0xa89f8e, 0.5);
 scene.add(hemi);
 const key = new THREE.DirectionalLight(0xffffff, 1.6);
-key.position.set(-1.8, 3.2, 3.0);
-key.target.position.set(-0.4, 1.0, 0.3);
+key.position.set(-2.0, 3.3, 3.0);
+key.target.position.set(-0.6, 1.0, 0.3);
 key.castShadow = true;
 key.shadow.mapSize.set(2048, 2048);
-Object.assign(key.shadow.camera, { left: -2.2, right: 2.2, top: 2.2, bottom: -2.2, near: 0.5, far: 9 });
+Object.assign(key.shadow.camera, { left: -2.6, right: 2.6, top: 2.6, bottom: -2.6, near: 0.5, far: 10 });
 key.shadow.bias = -0.0004; key.shadow.normalBias = 0.015; key.shadow.radius = 4;
 scene.add(key, key.target);
 
@@ -571,21 +602,30 @@ const state = {
   printers: [], byId: {}, room: null,
   st: 'closed', boxes: true, cables: true, person: true, view: 'front',
   shelfH: 1.29, personH: 1.69, align: 'right',
-  scene: 'room',            // 'room' = on the shelf in the room; 'side' = the printers alone on a plain floor
+  surf: 'shelf', wardrobe: true, // what the printer stands on: 'shelf' (a board on brackets) or 'cabinet'; the wardrobe beside it
+  scene: 'room',            // 'room' = on the shelf; 'side' = the printers alone on a plain floor
   ghostOn: false, ghost: 'b', // side by side only: one printer inside the other, and which one is see-through
 };
 // where the printers stand in the side-by-side view (metres): centre x, the line their backs share, the gap between them
 const STAGE = { x: -0.4, z0: 0.12, gap: 0.12 };
-const DEF = { shelfH: 1.29, personH: 1.69, align: 'right' };
+const DEF = { shelfH: 1.29, shelfB: 0.245, shelfL: 0.685, surf: 'shelf', personH: 1.69, align: 'right' };
 const PREF_KEY = 'psl-prefs';
+let savedSurf = null;   // the visitor's own shelf or cabinet from last time, applied once the defaults are read
 try {
   const p = JSON.parse(localStorage.getItem(PREF_KEY) || 'null');
   if (p && typeof p === 'object') {
     if (Number.isFinite(p.personH)) state.personH = clamp(p.personH, 1.5, 2.0);
     if (['left', 'centre', 'right'].includes(p.align)) state.align = p.align;
+    if (p.surface && typeof p.surface === 'object') savedSurf = p.surface;
+    if (typeof p.wardrobe === 'boolean') state.wardrobe = p.wardrobe;
   }
 } catch (e) {}
-function savePrefs() { try { localStorage.setItem(PREF_KEY, JSON.stringify({ personH: state.personH, align: state.align })); } catch (e) {} }
+function savePrefs() {
+  try {
+    localStorage.setItem(PREF_KEY, JSON.stringify({ personH: state.personH, align: state.align, wardrobe: state.wardrobe,
+      surface: { h: state.shelfH, d: R.shelfB, l: R.shelfL, mode: state.surf } }));
+  } catch (e) {}
+}
 
 const slots = {
   a: { key: 'a', group: new THREE.Group(), p: null, model: null, parts: {}, seq: 0, status: null, fallback: false },
@@ -593,27 +633,49 @@ const slots = {
 };
 scene.add(slots.a.group, slots.b.group);
 
-/* ---------- room geometry (filled from data.room) ---------- */
+/* ---------- the scene: the surface the printer stands on, and the wardrobe beside it (filled from data.scene) ----------
+   The wall is at z = 0, the surface's right end at x = 0; it reaches left to x = -shelfL and forward to z = shelfB, and its
+   top is at state.shelfH. The live values are kept here (and in state.shelfH) so everything that measures against the
+   shelf follows it. The wardrobe stands just left of the surface and moves with its left end. */
 const R = {
-  w: 3, d: 3, h: 2.55, shelfTop0: 1.29, shelfL: 0.64, shelfB: 0.30, shelfT: 0.018, shelfMeasured: { depth: false, length: false },
-  wardD: 0.52, wardW: 0.45, wardH: 1.8, wardX1: -0.645, doorW: 0.444, cabFront: 0.45, cabTop: 1.06,
+  shelfL: 0.685, shelfB: 0.245, shelfT: 0.016, shelfMeasured: { depth: false, length: false },
+  wardD: 0.38, wardW: 0.41, wardH: 1.8, wardGap: 0.01, doorW: 0.404,
 };
-function readRoom(room) {
-  if (!room) return;
-  const s = room.shelf_cm || {}, w = room.wardrobe_cm || {}, c = room.cabinets_cm || {}, r = room.room_cm || {};
-  if (r.w) R.w = r.w / 100; if (r.d) R.d = r.d / 100; if (r.h) R.h = r.h / 100;
-  if (s.top) R.shelfTop0 = s.top / 100;
-  if (s.length) R.shelfL = s.length / 100;
-  if (s.depth) R.shelfB = s.depth / 100;
-  if (s.thickness) R.shelfT = s.thickness / 100;
-  R.shelfMeasured = s.measured || R.shelfMeasured;
-  if (w.d) R.wardD = w.d / 100; if (w.w) R.wardW = w.w / 100; if (w.h) R.wardH = w.h / 100;
-  if (w.x_to != null) R.wardX1 = w.x_to / 100;
-  if (w.door_width) R.doorW = w.door_width / 100;
-  if (c.front_y != null) R.cabFront = -c.front_y / 100;
-  if (c.lower && c.upper) R.cabTop = (c.lower[2] + c.upper[2]) / 100;
-  state.shelfH = R.shelfTop0; DEF.shelfH = R.shelfTop0;
+const wardX1 = () => -R.shelfL - R.wardGap;   // the wardrobe's right side, where its door hangs
+// how far the surface can go (metres), the step it snaps to, and how close to your own value it clicks onto it
+const LIM = { h: [0.10, 2.00], d: [0.15, 0.80], l: [0.30, 1.50] };
+const STEP = { h: 0.01, d: 0.005, l: 0.005 };
+const DETENT = { h: 0.015, d: 0.008, l: 0.012 };
+function readScene(sc) {
+  if (sc) {
+    const s = sc.shelf_cm || {}, w = sc.wardrobe_cm || {};
+    if (s.top) DEF.shelfH = s.top / 100;
+    if (s.length) DEF.shelfL = s.length / 100;
+    if (s.depth) DEF.shelfB = s.depth / 100;
+    if (s.thickness) R.shelfT = s.thickness / 100;
+    R.shelfMeasured = s.measured || R.shelfMeasured;
+    if (w.d) R.wardD = w.d / 100; if (w.w) R.wardW = w.w / 100; if (w.h) R.wardH = w.h / 100;
+    if (w.gap_to_shelf != null) R.wardGap = w.gap_to_shelf / 100;
+    if (w.door_width) R.doorW = w.door_width / 100;
+  }
+  state.shelfH = DEF.shelfH; R.shelfB = DEF.shelfB; R.shelfL = DEF.shelfL; state.surf = DEF.surf;
+  const v = savedSurf;
+  if (v) {
+    if (Number.isFinite(v.h)) state.shelfH = snapVal('h', v.h, false);
+    if (Number.isFinite(v.d)) R.shelfB = snapVal('d', v.d, false);
+    if (Number.isFinite(v.l)) R.shelfL = snapVal('l', v.l, false);
+    if (v.mode === 'shelf' || v.mode === 'cabinet') state.surf = v.mode;
+  }
 }
+const surfVal = (k) => (k === 'h' ? state.shelfH : k === 'd' ? R.shelfB : R.shelfL);
+const surfDef = (k) => (k === 'h' ? DEF.shelfH : k === 'd' ? DEF.shelfB : DEF.shelfL);
+/* round to the step, click onto your own value when close to it, keep inside the limits */
+function snapVal(k, v, detent = true) {
+  let x = Math.round(v / STEP[k]) * STEP[k];
+  if (detent && Math.abs(v - surfDef(k)) < DETENT[k]) x = surfDef(k);
+  return Math.round(clamp(x, LIM[k][0], LIM[k][1]) * 10000) / 10000;
+}
+const surfWord = () => (state.surf === 'cabinet' ? 'cabinet' : 'shelf');
 
 /* ---------- line materials + labels ---------- */
 const lineMats = new Set();
@@ -707,49 +769,134 @@ function loadGLB(name) {
   return cache.get(name);
 }
 
-/* ---------- the room ---------- */
-const roomGroup = new THREE.Group();
-scene.add(roomGroup);
+/* ---------- the scene: a plain wall and floor, the surface, the wardrobe ----------
+   Everything is made here in code. The wall and the floor fade out toward their edges, so they read as a backdrop
+   rather than a particular room; both are one-sided, so the camera can look through them from behind or below. */
+const world = new THREE.Group();
+scene.add(world);
 // side-by-side view: an invisible floor that only catches the printers' shadows
 const stage = new THREE.Mesh(new THREE.CircleGeometry(1.8, 64), new THREE.ShadowMaterial({ opacity: 0.2 }));
 stage.rotation.x = -Math.PI / 2; stage.position.set(STAGE.x, 0, 0.3); stage.receiveShadow = true; stage.visible = false;
 scene.add(stage);
-const roomNodes = {};
-let roomReady = false;
-const WALLS = ['room_wall_back', 'room_wall_right', 'room_wall_left', 'room_wall_front', 'room_ceiling'];
-async function loadRoom() {
-  try {
-    const src = await loadGLB('room');
-    roomGroup.add(src);
-    src.traverse((o) => {
-      if (o.name && o.name.startsWith('room_')) roomNodes[o.name] = o;
-      if (o.isMesh) {
-        o.castShadow = !/wall|ceiling|floor|skirting/.test(o.name + (o.parent && o.parent.name));
-        o.receiveShadow = true;
-        o.material = o.material.clone();
-        o.userData.baseOpacity = 1;
-      }
-    });
-    roomReady = true;
-    applyShelfHeight();
-  } catch (e) {
-    console.warn('room failed to load', e);
-    // a minimal stand-in so the page still works
-    const mat = new THREE.MeshStandardMaterial({ color: '#7a5134', roughness: 0.5 });
-    const shelf = new THREE.Mesh(new THREE.BoxGeometry(R.shelfL, R.shelfT, R.shelfB), mat);
-    shelf.position.set(-R.shelfL / 2, R.shelfTop0 - R.shelfT / 2, R.shelfB / 2);
-    shelf.name = 'room_shelf';
-    roomGroup.add(shelf); roomNodes.room_shelf = shelf;
-    const floor = new THREE.Mesh(new THREE.PlaneGeometry(R.w, R.d), new THREE.MeshStandardMaterial({ color: '#d9cfba', roughness: 0.8 }));
-    floor.rotation.x = -Math.PI / 2; floor.position.set(-R.w / 2, 0, R.d / 2); floor.receiveShadow = true;
-    roomGroup.add(floor);
-    roomReady = true;
-    applyShelfHeight();
-  }
+const BOX = new THREE.BoxGeometry(1, 1, 1);
+/* an axis-aligned box from (x0, y0, z0) to (x1, y1, z1), sharing one unit geometry so rebuilding is cheap */
+function box(parent, mat, x0, x1, y0, y1, z0, z1, shadow = true) {
+  const m = new THREE.Mesh(BOX, mat);
+  m.scale.set(Math.max(1e-4, x1 - x0), Math.max(1e-4, y1 - y0), Math.max(1e-4, z1 - z0));
+  m.position.set((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2);
+  m.castShadow = shadow; m.receiveShadow = true;
+  parent.add(m); return m;
 }
-function applyShelfHeight() {
-  const dy = state.shelfH - R.shelfTop0;
-  for (const n of ['room_shelf', 'room_shelf_brackets']) if (roomNodes[n]) roomNodes[n].position.y = (roomNodes[n].userData.y0 ??= roomNodes[n].position.y) + dy;
+/* alpha map: opaque in the middle, fading out over the given fraction of each edge (left, right, top, bottom) */
+function fadeTexture(l, r, t, b) {
+  const n = 128, c = document.createElement('canvas'); c.width = c.height = n;
+  const g = c.getContext('2d'), img = g.createImageData(n, n);
+  const ss = (x) => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
+  for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+    const u = (x + 0.5) / n, v = (y + 0.5) / n;
+    const a = (l ? ss(u / l) : 1) * (r ? ss((1 - u) / r) : 1) * (t ? ss(v / t) : 1) * (b ? ss((1 - v) / b) : 1);
+    const i = (y * n + x) * 4; img.data[i] = img.data[i + 1] = img.data[i + 2] = Math.round(a * 255); img.data[i + 3] = 255;
+  }
+  g.putImageData(img, 0, 0);
+  return new THREE.CanvasTexture(c);
+}
+const MAT = {
+  wall: new THREE.MeshStandardMaterial({ roughness: 0.95, transparent: true, depthWrite: false, alphaMap: fadeTexture(0.22, 0.22, 0.32, 0) }),
+  floor: new THREE.MeshStandardMaterial({ roughness: 0.95, transparent: true, depthWrite: false, alphaMap: fadeTexture(0.22, 0.22, 0, 0.5) }),
+  wood: new THREE.MeshStandardMaterial({ roughness: 0.55 }),
+  body: new THREE.MeshStandardMaterial({ roughness: 0.75 }),
+  front: new THREE.MeshStandardMaterial({ roughness: 0.6 }),
+  metal: new THREE.MeshStandardMaterial({ roughness: 0.35, metalness: 0.6 }),
+  ward: new THREE.MeshStandardMaterial({ roughness: 0.75 }),
+  wardDoor: new THREE.MeshStandardMaterial({ roughness: 0.6 }),
+  wardMetal: new THREE.MeshStandardMaterial({ roughness: 0.35, metalness: 0.6 }),
+};
+const PALETTE = {
+  light: { wall: '#efece6', floor: '#d8d3c8', wood: '#a97f57', body: '#dcd7cd', front: '#e9e5dd', metal: '#55565a', ward: '#dedad1', wardDoor: '#e8e5de', wardMetal: '#55565a' },
+  dark: { wall: '#5d5b55', floor: '#4a4843', wood: '#8e6a48', body: '#615d57', front: '#6c6862', metal: '#a2a2a5', ward: '#5f5b55', wardDoor: '#69655f', wardMetal: '#a2a2a5' },
+};
+function applyWorldColors() {
+  const p = PALETTE[css('color-scheme') === 'dark' ? 'dark' : 'light'];
+  for (const k of Object.keys(p)) MAT[k].color.set(p[k]);
+}
+const WALL = { w: 5.6, h: 3.0, x: -0.9 }, FLOOR = { d: 3.2 };
+const wall = new THREE.Mesh(new THREE.PlaneGeometry(WALL.w, WALL.h), MAT.wall);
+wall.position.set(WALL.x, WALL.h / 2, 0); wall.receiveShadow = true; wall.renderOrder = -1;
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(WALL.w, FLOOR.d), MAT.floor);
+floor.rotation.x = -Math.PI / 2; floor.position.set(WALL.x, 0, FLOOR.d / 2); floor.receiveShadow = true; floor.renderOrder = -1;
+world.add(wall, floor);
+
+/* the surface: a board on two brackets, or a cabinet from the floor up to the top, with a drawer and doors */
+const surface = new THREE.Group();
+world.add(surface);
+function buildSurface() {
+  surface.clear();
+  const L = R.shelfL, D = R.shelfB, T = R.shelfT, top = state.shelfH, x0 = -L, under = top - T;
+  box(surface, MAT.wood, x0, 0, under, top, 0, D);
+  if (state.surf === 'cabinet') {
+    const FT = 0.018, gap = 0.003;
+    const plinth = under > 0.4 ? 0.07 : 0;
+    if (plinth) box(surface, MAT.body, x0 + 0.012, -0.012, 0, plinth, 0, D - 0.05);   // set-back plinth
+    if (under - plinth > 0.003) box(surface, MAT.body, x0, 0, plinth, under, 0, D - FT);
+    const fy0 = plinth + gap, fy1 = under - gap, fh = fy1 - fy0;
+    if (fh > 0.02) {
+      // a low cabinet is one drawer; a taller one has a drawer over one door (two when it's long)
+      const fronts = [];
+      if (fh < 0.3) fronts.push({ x0, x1: 0, y0: fy0, y1: fy1, grip: 'h' });
+      else {
+        const dh = Math.min(0.17, fh * 0.32), n = L >= 0.6 ? 2 : 1;
+        fronts.push({ x0, x1: 0, y0: fy1 - dh, y1: fy1, grip: 'h' });
+        for (let i = 0; i < n; i++) fronts.push({ x0: x0 + (L * i) / n, x1: x0 + (L * (i + 1)) / n, y0: fy0, y1: fy1 - dh - gap, grip: n === 2 && i === 0 ? 'r' : 'l' });
+      }
+      for (const f of fronts) {
+        box(surface, MAT.front, f.x0 + gap / 2, f.x1 - gap / 2, f.y0, f.y1, D - FT, D);
+        const h = f.y1 - f.y0, cy = f.grip === 'h' ? (f.y0 + f.y1) / 2 : f.y1 - Math.min(0.05, h * 0.2);
+        if (f.grip === 'h') {
+          const hl = Math.min(0.14, (f.x1 - f.x0) * 0.4), cx = (f.x0 + f.x1) / 2, hh = Math.min(0.01, h * 0.3);
+          box(surface, MAT.metal, cx - hl / 2, cx + hl / 2, cy - hh / 2, cy + hh / 2, D, D + 0.012);
+        } else {
+          const hl = Math.min(0.12, h * 0.35), cx = f.grip === 'r' ? f.x1 - 0.035 : f.x0 + 0.035;
+          box(surface, MAT.metal, cx - 0.005, cx + 0.005, cy - hl, cy, D, D + 0.012);
+        }
+      }
+    }
+  } else {
+    // two wall brackets: an arm under the board, a leg on the wall, a brace between them
+    const arm = clamp(D * 0.8, Math.min(0.1, D - 0.01), D - 0.01), leg = Math.min(arm * 0.8, under - 0.004);
+    const inset = Math.min(0.09, L * 0.16), w = 0.022, t = 0.004;
+    if (leg > 0.01) for (const bx of [x0 + inset, -inset]) {
+      box(surface, MAT.metal, bx - w / 2, bx + w / 2, under - t, under, 0, arm);
+      box(surface, MAT.metal, bx - w / 2, bx + w / 2, under - leg, under, 0, t);
+      if (leg > 0.04) {
+        const a = V3(bx, under - leg * 0.85, t), b = V3(bx, under - t, arm * 0.7);
+        const m = new THREE.Mesh(BOX, MAT.metal);
+        m.scale.set(w * 0.8, t, a.distanceTo(b));
+        m.position.copy(a).add(b).multiplyScalar(0.5);
+        m.rotation.x = -Math.atan2(b.y - a.y, b.z - a.z);
+        m.castShadow = m.receiveShadow = true;
+        surface.add(m);
+      }
+    }
+  }
+  drawSurfaceOutline();
+}
+
+/* the wardrobe: a tall box with one door, hinged on the side next to the surface */
+const wardrobe = new THREE.Group();
+world.add(wardrobe);
+function buildWardrobe() {
+  wardrobe.clear();
+  const W = R.wardW, D = R.wardD, H = R.wardH, FT = 0.02;
+  box(wardrobe, MAT.ward, -W, 0, 0, H, 0, D - FT);
+  box(wardrobe, MAT.wardDoor, -Math.min(W, R.doorW) + 0.0015, -0.0015, 0.012, H - 0.006, D - FT, D);
+  const hx = -Math.min(W, R.doorW) + 0.04, hy = Math.min(1.05, H * 0.55);
+  box(wardrobe, MAT.wardMetal, hx - 0.005, hx + 0.005, hy - 0.1, hy + 0.1, D, D + 0.014);
+}
+/* everything that follows the surface's size: the surface itself, the wardrobe beside it */
+function layoutWorld() {
+  buildSurface();
+  wardrobe.position.x = wardX1();
+  wardrobe.visible = state.wardrobe;
 }
 
 /* ---------- printers ---------- */
@@ -1026,12 +1173,12 @@ function rebuildPerson() {
 function placePerson() {
   person.visible = state.person && state.scene === 'room';
   if (!personBuild) return;
-  // standing beside the shelf, facing the wall (-z): right shoulder just left of the niche,
-  // toes 4 cm in front of whatever is behind them (the cabinets or the wardrobe)
+  // standing beside the surface's left end, facing the wall (-z), never inside the shelf or cabinet;
+  // toes 4 cm in front of whatever is behind them (the wardrobe, or the wall)
   const hw = Math.max(-personBuild.box.min.x, personBuild.box.max.x);
   const x = -R.shelfL - 0.04 - hw;
-  const overWardrobe = x - hw < R.wardX1 && x + hw > R.wardX1 - R.wardW;
-  const front = Math.max(R.cabFront, overWardrobe ? R.wardD : 0) + 0.04;
+  const overWardrobe = state.wardrobe && x - hw < wardX1() && x + hw > wardX1() - R.wardW;
+  const front = (overWardrobe ? R.wardD : 0) + 0.04;
   person.position.set(x, 0, front - personBuild.box.min.z);
 }
 
@@ -1049,6 +1196,12 @@ function buildOverlays() {
   OV.gap = makeLines(makeLineMat(ink, false), 4);
   OV.cableZone = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: A, transparent: true, opacity: 0.14, depthWrite: false }));
   OV.cableZone.renderOrder = 2; OV.cableZone.visible = false; scene.add(OV.cableZone);
+  // the surface while you move it: the measurement being changed, and an outline of the top
+  const acc = css('--accent') || '#3f8f4f';
+  OV.surfDim = makeLines(makeLineMat(acc, false, 1.5), 5);
+  const om = new LineMaterial({ color: acc, linewidth: 2, transparent: true, opacity: 0.9, depthTest: true, toneMapped: false });
+  lineMats.add(om); sizeLineMat(om);
+  OV.outline = makeLines(om, 1);
   OV.lbl = {
     w: addLabel('', A, 'x'), d: addLabel('', A, 'z'), h: addLabel('', A, 'y'),
     over: addLabel('strong', A), overB: addLabel('', B), gap: addLabel('', A), top: addLabel('', A),
@@ -1056,7 +1209,7 @@ function buildOverlays() {
     wB: addLabel('', B, 'x'), dB: addLabel('', B, 'z'), hB: addLabel('', B, 'y'),
   };
   OV.lbl.eye.flat = true;
-  setLabel(OV.lbl.edge, '', 'Shelf edge');
+  setLabel(OV.lbl.edge, '', 'Front edge');
 }
 function overhangText(v) {
   const n = Math.abs(v) * 100;
@@ -1110,7 +1263,7 @@ function drawOverlays() {
   const sa = slots.a, sb = slots.b;
   // printer A: dotted box, W/D/H, overhang, cable space, top height
   const has = sa.env && !sa.env.isEmpty();
-  // from far away (whole room, door) only the boxes and the overhang stay; the rest is clutter
+  // from far away (the Far view) only the boxes and the overhang stay; the rest is clutter
   const minor = show && !farView;
   for (const k of ['boxA', 'over']) OV[k].visible = show && has;
   for (const k of ['dimA', 'gap']) OV[k].visible = minor && has;
@@ -1158,10 +1311,10 @@ function drawOverlays() {
     setLabel(OV.lbl.overB, 'B', overhangText(ovB));
     OV.lbl.overB.pos.set(sb.env.max.x + 0.02, state.shelfH - 0.06, Math.max(sb.env.max.z, R.shelfB));
   }
-  // shelf edge line
+  // the front edge of the shelf or cabinet
   OV.edge.visible = show; OV.lbl.edge.show = minor;
   setLines(OV.edge, [-R.shelfL, state.shelfH + 0.001, R.shelfB, 0, state.shelfH + 0.001, R.shelfB]);
-  OV.lbl.edge.pos.set(-R.shelfL - 0.04, state.shelfH, R.shelfB);
+  OV.lbl.edge.pos.set(-R.shelfL + 0.02, state.shelfH - R.shelfT - 0.035, R.shelfB);
   // eye level line
   const eyeOn = minor && state.person && personBuild;
   OV.eye.visible = eyeOn; OV.lbl.eye.show = eyeOn;
@@ -1186,12 +1339,12 @@ function boxSegments(box, pad = 0.003) {
 }
 
 /* ---------- wardrobe door swing (2D, plan view) ---------- */
-function doorStop(env) {
-  // the door hangs on the wardrobe's front corner next to the niche and swings out into the room
-  if (!env || env.isEmpty()) return null;
-  if (env.max.z <= R.wardD + 0.003) return null;
-  const hx = R.wardX1, hz = R.wardD, L = R.doorW;
-  if (state.shelfH > R.wardH) return null;
+/* the angle at which the wardrobe door first touches a box, or null if it opens fully past it */
+function doorStopAt(env) {
+  // the door hangs on the wardrobe's front corner next to the surface and swings out toward the surface
+  if (!env || env.isEmpty() || !state.wardrobe) return null;
+  if (env.max.z <= R.wardD + 0.003 || env.min.y > R.wardH) return null;
+  const hx = wardX1(), hz = R.wardD, L = R.doorW;
   for (let deg = 1; deg <= 180; deg++) {
     const a = THREE.MathUtils.degToRad(deg), dx = -Math.cos(a), dz = Math.sin(a);
     for (let t = 0.02; t <= L; t += 0.01) {
@@ -1201,12 +1354,20 @@ function doorStop(env) {
   }
   return null;
 }
+/* the door against the printer, and against the shelf or cabinet itself when that is deeper than the wardrobe */
+function doorStop(env) {
+  const p = doorStopAt(env);
+  const top = new THREE.Box3(V3(-R.shelfL, state.surf === 'cabinet' ? 0 : state.shelfH - R.shelfT, 0), V3(0, state.shelfH, R.shelfB));
+  const s = doorStopAt(top);
+  if (s != null && (p == null || s < p)) return { deg: s, by: 'surface' };
+  return p == null ? null : { deg: p, by: 'printer' };
+}
 
 /* ---------- layout, materials, camera ---------- */
 function applyMaterials() {
   for (const s of [slots.a, slots.b]) {
     if (!s.model) continue;
-    // room view: B is always the see-through one. Side by side: only with Ghost on, and the user picks which.
+    // on the shelf: B is always the see-through one. Side by side: only with Ghost on, and the user picks which.
     const over = ghostPair() && state.ghost === s.key;
     const ghost = over || (state.scene === 'room' && s.key === 'b' && slots.a.model);
     s.model.traverse((o) => {
@@ -1228,12 +1389,32 @@ function renderAll() { relayout(true); }
 
 const VIEWS = {
   front: { phi: 1.45, theta: 0, name: 'Front' },
-  side: { phi: 1.52, theta: Math.PI / 2, name: 'Side, through the right wall', plain: 'Side' },
+  side: { phi: 1.52, theta: Math.PI / 2, name: 'Side' },
   top: { phi: 0.0006, theta: 0, name: 'From above' },
-  door: { pos: () => V3(-0.45, 1.62, R.d - 0.12), name: 'From the door', roomOnly: true },
-  iso: { phi: 1.12, theta: 0.62, name: '3/4, through the right wall', plain: '3/4' },
-  room: { phi: 0.72, theta: -0.62, name: 'Whole room', room: true, roomOnly: true },
+  iso: { phi: 1.12, theta: 0.62, name: '3/4' },
+  far: { phi: 1.3, theta: 0.42, get name() { return `Person, ${state.wardrobe ? 'wardrobe and ' : ''}${surfWord()}`; }, far: true, roomOnly: true },
 };
+/* the far view: everything in the scene, floor to the top of whatever is tallest */
+function farBox() {
+  const box = new THREE.Box3(V3(-R.shelfL, 0, 0), V3(0, state.shelfH, R.shelfB));
+  for (const s of [slots.a, slots.b]) if (s.env && !s.env.isEmpty()) box.union(s.env);
+  if (state.wardrobe) box.union(new THREE.Box3(V3(wardX1() - R.wardW, 0, 0), V3(wardX1(), R.wardH, R.wardD)));
+  if (state.person && personBuild) box.union(new THREE.Box3().setFromObject(person));
+  return box;
+}
+/* what a camera preset keeps in the frame, and how much room it leaves around it */
+function framingBox(view) {
+  if (view.far && state.scene === 'room') return { box: farBox(), pad: 1.12 };
+  const box = focusBox();
+  if (state.scene === 'room' && state.person && personBuild && view !== VIEWS.top) {
+    // include the person from the shoulders up, so the printer stays large in the frame
+    const pb = new THREE.Box3().setFromObject(person);
+    pb.min.y = Math.max(pb.min.y, LM.chest * state.personH);
+    box.union(pb);
+  }
+  return { box, pad: state.scene === 'room' ? 1.28 : 1.1 };
+}
+let framedAt = null;   // the surface's size when the camera last framed it
 function focusBox() {
   const box = new THREE.Box3();
   for (const s of [slots.a, slots.b]) if (s.env && !s.env.isEmpty()) box.union(s.env);
@@ -1262,28 +1443,11 @@ function fitDistance(phi, theta, box, center, pad = 1.18) {
 }
 let tween = null;
 function goTo(view, animate = true, keepName = false) {
-  let center, toPos;
-  if (view.room) {
-    const box = new THREE.Box3(V3(-R.w, 0, 0), V3(0, 1.3, R.d));
-    center = box.getCenter(new THREE.Vector3());
-    toPos = center.clone().add(new THREE.Vector3().setFromSphericalCoords(fitDistance(view.phi, view.theta, box, center, 1.02), view.phi, view.theta));
-  } else if (view.pos) {
-    const box = focusBox();
-    center = box.getCenter(new THREE.Vector3());
-    toPos = view.pos();
-  } else {
-    const box = focusBox();
-    if (state.scene === 'room' && state.person && personBuild && view !== VIEWS.top) {
-      // include the person from the shoulders up, so the printer stays large in the frame
-      const pb = new THREE.Box3().setFromObject(person);
-      pb.min.y = Math.max(pb.min.y, LM.chest * state.personH);
-      box.union(pb);
-    }
-    center = box.getCenter(new THREE.Vector3());
-    const pad = state.scene === 'room' ? 1.28 : 1.1;
-    toPos = center.clone().add(new THREE.Vector3().setFromSphericalCoords(fitDistance(view.phi, view.theta, box, center, pad), view.phi, view.theta));
-  }
-  if (!keepName) $('#viewName').textContent = (state.scene !== 'room' && view.plain) || view.name || '';
+  const { box, pad } = framingBox(view);
+  const center = box.getCenter(new THREE.Vector3());
+  const toPos = center.clone().add(new THREE.Vector3().setFromSphericalCoords(fitDistance(view.phi, view.theta, box, center, pad), view.phi, view.theta));
+  framedAt = { h: state.shelfH, d: R.shelfB, l: R.shelfL };
+  if (!keepName) $('#viewName').textContent = (view.far && state.scene !== 'room' ? '' : view.name) || '';
   if (!animate || reduceMotion.matches) {
     tween = null; controls.target.copy(center); camera.position.copy(toPos); controls.update(); return;
   }
@@ -1311,13 +1475,14 @@ function setView(name, animate = true) {
 /* re-frame after the layout changed, looking from wherever the camera is now */
 function refitKeepDir(animate = true) {
   const s = new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
-  goTo({ phi: s.phi, theta: s.theta }, animate, true);
+  goTo({ phi: s.phi, theta: s.theta, far: state.view === 'far' }, animate, true);
 }
-/* switch between the room and the side-by-side view */
+/* switch between the shelf and the side-by-side view */
 function setScene(name, animate = true) {
   state.scene = name === 'side' ? 'side' : 'room';
   const room = state.scene === 'room';
-  roomGroup.visible = room; stage.visible = !room;
+  world.visible = room; stage.visible = !room;
+  if (!room) { endSurfaceDrag(false); setSurfSelected(false); }
   if (!room && VIEWS[state.view].roomOnly) state.view = 'iso';
   applyMaterials();
   relayout(false);
@@ -1334,19 +1499,17 @@ function syncSceneUI() {
   gw.style.setProperty('--c', slotColor(state.ghost));
   gw.querySelector('span').textContent = `See-through: ${state.ghost.toUpperCase()}`;
   if (both) gw.title = `See-through printer: ${slots[state.ghost].p.name}. Click to swap.`;
-  renderer.domElement.setAttribute('aria-label', room ? '3D view of the room with the printers on the shelf' : '3D view of the two printers next to each other');
+  renderer.domElement.setAttribute('aria-label', room ? `3D view of the printers on the ${surfWord()}` : '3D view of the two printers next to each other');
+  $('#hint').textContent = room ? `Drag the ${surfWord()} or its handles to change it · drag elsewhere to orbit` : 'Drag to orbit · scroll to zoom';
 }
 function setViewPressed(name) { document.querySelectorAll('[data-view]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === name))); }
 
-/* walls between the camera and the room are cut away; furniture in the line of sight fades */
+/* the person or the wardrobe fades when it stands between the camera and the printer */
 const ray = new THREE.Raycaster();
 const fadeSet = new Set();
 function cutaway() {
-  if (!roomReady || state.scene !== 'room') return;
+  if (state.scene !== 'room') return;
   const c = camera.position;
-  const inside = c.x < 0 && c.x > -R.w && c.z > 0 && c.z < R.d && c.y < R.h - 0.05;
-  const hide = { room_wall_back: c.z < 0, room_wall_right: c.x > 0, room_wall_left: c.x < -R.w, room_wall_front: c.z > R.d, room_ceiling: !inside };
-  for (const [n, h] of Object.entries(hide)) if (roomNodes[n]) roomNodes[n].visible = !h;
   const targets = [];
   for (const s of [slots.a, slots.b]) if (s.env && !s.env.isEmpty()) {
     const e = s.env; const cx = (e.min.x + e.max.x) / 2, cy = (e.min.y + e.max.y) / 2;
@@ -1355,13 +1518,13 @@ function cutaway() {
   if (!targets.length) targets.push(V3(-R.shelfL / 2, state.shelfH + 0.1, R.shelfB / 2));
   const hits = new Set();
   const cands = [];
-  for (const [n, o] of Object.entries(roomNodes)) if (!WALLS.includes(n) && n !== 'room_floor' && n !== 'room_skirting' && n !== 'room_shelf' && n !== 'room_shelf_brackets' && o.visible) cands.push(o);
+  if (state.wardrobe) cands.push(wardrobe);
   if (state.person) cands.push(person);
   for (const t of targets) {
     const dir = t.clone().sub(c); const dist = dir.length(); dir.normalize();
     ray.set(c, dir); ray.far = dist - 0.02;
     for (const h of ray.intersectObjects(cands, true)) {
-      let o = h.object; while (o.parent && !(o.name && o.name.startsWith('room_')) && o !== person) o = o.parent;
+      let o = h.object; while (o.parent && o !== person && o !== wardrobe) o = o.parent;
       hits.add(o);
     }
   }
@@ -1370,6 +1533,296 @@ function cutaway() {
     if (faded === fadeSet.has(o)) continue;
     if (faded) fadeSet.add(o); else fadeSet.delete(o);
     o.traverse((m) => { if (m.isMesh) { m.material.transparent = faded || m.material === personMat; m.material.opacity = faded ? 0.18 : 1; m.material.depthWrite = !faded; m.castShadow = !faded; m.material.needsUpdate = true; } });
+  }
+}
+
+/* ---------- moving the surface ----------
+   Three sizes, each with a handle in the view and a slider under it, kept in sync:
+     h  height of the top: drag the shelf or cabinet itself up or down, or the handle on its right end
+     d  depth: the handle on the front edge, toward you or toward the wall
+     l  length: the handle on the left end (the right end stays put; the wardrobe follows the left end)
+   A drag follows the pointer along that size's axis: the value changes by how far the closest point between the
+   pointer's ray and the axis line has moved since the drag began, so the grabbed point stays under the pointer and
+   nothing jumps when a drag starts. Values snap to whole centimetres (depth and length to 0.5 cm) and click onto
+   your own value when they pass close to it. A handle whose axis points at the camera is hidden, because a drag
+   along it can't be read from the screen. The camera holds still during a drag and re-frames gently afterwards
+   when the surface has left the frame or changed a lot. On a touch screen, tap the shelf first to drag it directly
+   (so one-finger orbiting still works over it); the handles always work. */
+const GRIP_AXIS = { h: V3(0, 1, 0), d: V3(0, 0, 1), l: V3(-1, 0, 0) };   // the direction in which each value grows
+const GRIP_NAME = { h: 'Height', d: 'Depth', l: 'Length' };
+const ARROWS = '<svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 15h13M12 11.5 8.5 15l3.5 3.5M18 11.5l3.5 3.5-3.5 3.5"/></svg>';
+const gripsLayer = $('#grips');
+const grips = {};
+let drag = null, gripHover = null, surfHover = false, surfSelected = false, sliderFocus = false, sceneReady = false;
+let tilesDirty = false, lastTiles = 0, settleTimer = 0, hoverAt = null, hoverDirty = false, orbiting = false;
+const activePointers = new Set();
+for (const k of ['h', 'd', 'l']) {
+  const e = el('div', 'grip'); e.dataset.k = k;
+  const b = el('div', 'gb'); b.innerHTML = ARROWS;
+  const v = el('span', 'gv'); b.appendChild(v); e.appendChild(b);
+  gripsLayer.appendChild(e);
+  grips[k] = { el: e, val: v, text: '', anchor: new THREE.Vector3(), nudge: new THREE.Vector3(), cursor: 'move', x: 0, y: 0 };
+  e.addEventListener('pointerdown', (ev) => startGripDrag(k, ev));
+  // scrolling over a handle still zooms the view
+  e.addEventListener('wheel', (ev) => { ev.preventDefault(); renderer.domElement.dispatchEvent(new WheelEvent('wheel', ev)); }, { passive: false });
+  e.addEventListener('pointerenter', (ev) => { if (ev.pointerType === 'mouse') { gripHover = k; updateSurfUI(); } });
+  e.addEventListener('pointerleave', () => { if (gripHover === k) { gripHover = null; updateSurfUI(); } });
+}
+const cmText = (v) => { const c = Math.round(v * 1000) / 10; return `${Number.isInteger(c) ? c : c.toFixed(1)} cm`; };
+
+/* change the surface: any of { h, d, l } in metres, and/or { mode }. Everything that stands on it or measures
+   against it follows. During a drag (live) the heavier parts of the page wait until the drag ends. */
+function setSurface(p, opt = {}) {
+  let changed = false;
+  for (const k of ['h', 'd', 'l']) {
+    if (p[k] == null || !Number.isFinite(p[k])) continue;
+    const v = snapVal(k, p[k], opt.detent !== false);
+    if (Math.abs(v - surfVal(k)) < 1e-6) continue;
+    if (k === 'h') state.shelfH = v; else if (k === 'd') R.shelfB = v; else R.shelfL = v;
+    changed = true;
+  }
+  if ((p.mode === 'shelf' || p.mode === 'cabinet') && p.mode !== state.surf) { state.surf = p.mode; changed = true; syncSceneUI(); }
+  if (!changed) return false;
+  layoutWorld();
+  for (const s of [slots.a, slots.b]) {
+    if (!hasBody(s)) continue;
+    const before = s.group.position.clone();
+    placeSlot(s);
+    // the printer moved as a whole, so its measured outline moves with it (no need to measure the model again)
+    if (s.env && !s.env.isEmpty()) s.env.translate(s.group.position.clone().sub(before));
+  }
+  placePerson();
+  drawOverlays();
+  renderFit();
+  tilesDirty = true;
+  if (!opt.live) surfaceSettled();
+  return true;
+}
+/* after a change is finished: the tiles, remembering it, and the camera */
+function surfaceSettled() {
+  clearTimeout(settleTimer);
+  tilesDirty = false; renderTiles();
+  savePrefs();
+  maybeReframe();
+}
+/* re-frame only when the surface has changed a lot since the camera last framed it, or no longer fits */
+function maybeReframe() {
+  if (state.scene !== 'room' || drag || !framedAt) return;
+  const moved = Math.max(Math.abs(state.shelfH - framedAt.h), Math.abs(R.shelfB - framedAt.d), Math.abs(R.shelfL - framedAt.l));
+  if (moved < 0.03) return;
+  const { box } = framingBox(VIEWS[state.view] || VIEWS.iso);
+  camera.updateMatrixWorld();
+  let out = false, x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+  for (let i = 0; i < 8; i++) {
+    tmpV.set((i & 1) ? box.max.x : box.min.x, (i & 2) ? box.max.y : box.min.y, (i & 4) ? box.max.z : box.min.z).project(camera);
+    if (tmpV.z > 1) out = true;
+    x0 = Math.min(x0, tmpV.x); x1 = Math.max(x1, tmpV.x); y0 = Math.min(y0, tmpV.y); y1 = Math.max(y1, tmpV.y);
+  }
+  if (x0 < -0.97 || x1 > 0.97 || y0 < -0.97 || y1 > 0.97) out = true;
+  const small = Math.max(x1 - x0, y1 - y0) < 0.85;
+  if (out || (small && moved > 0.08)) refitKeepDir(true);
+}
+
+/* pointer -> ray, and where along an axis line the ray passes closest (null when the line points at the camera) */
+const pray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+function pointerRay(cx, cy) {
+  const r = renderer.domElement.getBoundingClientRect();
+  ndc.set(((cx - r.left) / r.width) * 2 - 1, -((cy - r.top) / r.height) * 2 + 1);
+  pray.setFromCamera(ndc, camera);
+  return pray.ray;
+}
+function axisParam(r, p0, axis) {
+  const w0 = p0.clone().sub(r.origin);
+  const b = axis.dot(r.direction), den = 1 - b * b;
+  if (den < 0.02) return null;
+  return (b * r.direction.dot(w0) - axis.dot(w0)) / den;
+}
+/* the point on the shelf or cabinet under the pointer, if nothing (the printer, the person, the wardrobe) is in front of it */
+function hitSurface(cx, cy) {
+  const r = pointerRay(cx, cy);
+  if (Math.abs(r.direction.y) > 0.97) return null;   // looking straight down: up and down can't be dragged
+  const objs = [surface];
+  if (slots.a.model) objs.push(slots.a.model);
+  if (state.person && person.visible && !fadeSet.has(person)) objs.push(person);
+  if (state.wardrobe && !fadeSet.has(wardrobe)) objs.push(wardrobe);
+  pray.far = Infinity;
+  const hits = pray.intersectObjects(objs, true);
+  if (!hits.length) return null;
+  for (let o = hits[0].object; o; o = o.parent) if (o === surface) return hits[0].point.clone();
+  return null;
+}
+function cursorFor(angle) {
+  const a = ((angle * 180) / Math.PI + 180) % 180;
+  return a < 22.5 || a >= 157.5 ? 'ew-resize' : a < 67.5 ? 'nwse-resize' : a < 112.5 ? 'ns-resize' : 'nesw-resize';
+}
+/* screen angle of an axis at a point (radians, y down) */
+const gp = new THREE.Vector3(), gq = new THREE.Vector3();
+function screenAngle(p, axis) {
+  gp.copy(p).project(camera); gq.copy(p).addScaledVector(axis, 0.05).project(camera);
+  return Math.atan2(-(gq.y - gp.y) * viewer.clientHeight, (gq.x - gp.x) * viewer.clientWidth);
+}
+
+function startDrag(k, ev, point, body) {
+  if (drag || state.scene !== 'room' || !sceneReady) return false;
+  const p0 = point.clone();
+  const t0 = axisParam(pointerRay(ev.clientX, ev.clientY), p0, GRIP_AXIS[k]);
+  if (t0 == null) return false;
+  tween = null;
+  if (controls._sphericalDelta) controls._sphericalDelta.set(0, 0, 0);   // stop any orbit still gliding, so the view holds still
+  const cursor = cursorFor(screenAngle(p0, GRIP_AXIS[k]));
+  drag = { k, id: ev.pointerId, p0, t0, v0: surfVal(k), body, moved: false, x0: ev.clientX, y0: ev.clientY, pending: null };
+  document.documentElement.style.setProperty('--drag-cursor', cursor);
+  document.documentElement.classList.add('drag-cursor');
+  updateSurfUI();
+  return true;
+}
+function dragTo(cx, cy) {
+  if (!drag) return;
+  if (!drag.moved && Math.hypot(cx - drag.x0, cy - drag.y0) > 3) drag.moved = true;
+  const t = axisParam(pointerRay(cx, cy), drag.p0, GRIP_AXIS[drag.k]);
+  if (t == null) return;
+  if (setSurface({ [drag.k]: drag.v0 + (t - drag.t0) }, { live: true })) drawSurfaceOutline();
+}
+function endSurfaceDrag(commit = true) {
+  if (!drag) return;
+  const d = drag;
+  if (d.pending) dragTo(...d.pending);
+  if (!commit) setSurface({ [d.k]: d.v0 }, { live: true });
+  drag = null;
+  gripHover = null;   // the pointer is no longer over a handle that moved away; the next move tells
+  document.documentElement.classList.remove('drag-cursor');
+  if (d.body && !d.moved) surfSelected = true;   // a click on the shelf selects it
+  updateSurfUI();
+  surfaceSettled();
+}
+function startGripDrag(k, ev) {
+  if (ev.pointerType === 'mouse' && ev.button !== 0) return;
+  ev.preventDefault(); ev.stopPropagation();
+  if (startDrag(k, ev, grips[k].anchor, false)) {
+    try { grips[k].el.setPointerCapture(ev.pointerId); } catch (e) {}
+  }
+}
+function setSurfSelected(v) { if (surfSelected !== v) { surfSelected = v; updateSurfUI(); } }
+
+// the capture phase on the viewer runs before OrbitControls sees the pointer on the canvas, so a drag that starts
+// on the shelf never turns into an orbit
+viewer.addEventListener('pointerdown', (e) => {
+  const others = activePointers.size;
+  activePointers.add(e.pointerId);
+  if (drag) { e.stopPropagation(); e.preventDefault(); return; }   // one drag at a time; other fingers wait
+  if (e.target !== renderer.domElement || state.scene !== 'room') return;
+  viewer._down = { id: e.pointerId, x: e.clientX, y: e.clientY, t: performance.now() };
+  if (others || orbiting || (e.pointerType === 'mouse' && e.button !== 0)) return;
+  if (e.pointerType !== 'mouse' && !surfSelected) return;   // touch: tap the shelf first, then drag it
+  const p = hitSurface(e.clientX, e.clientY);
+  if (!p || !startDrag('h', e, p, true)) return;
+  e.stopPropagation(); e.preventDefault();
+  try { viewer.setPointerCapture(e.pointerId); } catch (err) {}
+}, true);
+viewer.addEventListener('pointermove', (e) => {
+  if (drag && e.pointerId === drag.id) { drag.pending = [e.clientX, e.clientY]; return; }
+  if (e.pointerType === 'mouse' && e.target === renderer.domElement) { hoverAt = e.buttons ? null : [e.clientX, e.clientY]; hoverDirty = true; }
+});
+renderer.domElement.addEventListener('pointerleave', () => { hoverAt = null; hoverDirty = true; });
+function pointerEnd(e) {
+  activePointers.delete(e.pointerId);
+  if (drag && e.pointerId === drag.id) { endSurfaceDrag(e.type !== 'pointercancel'); return; }
+  const d = viewer._down; viewer._down = null;
+  if (!d || d.id !== e.pointerId || e.type !== 'pointerup' || state.scene !== 'room') return;
+  // a tap or click that didn't orbit: on the shelf selects it, anywhere else lets it go
+  if (Math.hypot(e.clientX - d.x, e.clientY - d.y) < 6 && performance.now() - d.t < 600) setSurfSelected(!!hitSurface(e.clientX, e.clientY));
+}
+viewer.addEventListener('pointerup', pointerEnd);
+viewer.addEventListener('pointercancel', pointerEnd);
+viewer.addEventListener('lostpointercapture', (e) => { if (drag && e.pointerId === drag.id) endSurfaceDrag(true); });
+addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  if (drag) endSurfaceDrag(false); else setSurfSelected(false);
+});
+controls.addEventListener('start', () => { orbiting = true; hoverAt = null; hoverDirty = true; });
+controls.addEventListener('end', () => { orbiting = false; });
+
+function updateHover() {
+  if (!hoverDirty) return;
+  hoverDirty = false;
+  const h = !!(hoverAt && !drag && !orbiting && sceneReady && state.scene === 'room' && hitSurface(hoverAt[0], hoverAt[1]));
+  if (h !== surfHover) { surfHover = h; updateSurfUI(); }
+}
+/* highlight, cursor and handles follow hover, selection and dragging */
+const HIGHLIT = [MAT.wood, MAT.body, MAT.front, MAT.metal];
+function updateSurfUI() {
+  const lit = !!(surfHover || surfSelected || drag || gripHover || sliderFocus);
+  gripsLayer.classList.toggle('awake', lit);
+  gripsLayer.classList.toggle('dragging', !!drag);
+  const acc = css('--accent') || '#3f8f4f';
+  for (const m of HIGHLIT) { m.emissive.set(acc); m.emissiveIntensity = lit ? 0.07 : 0; }
+  renderer.domElement.style.cursor = surfHover && !drag ? cursorFor(screenAngle(V3(-R.shelfL / 2, state.shelfH, R.shelfB), GRIP_AXIS.h)) : '';
+  drawSurfaceOutline();
+}
+/* the outline of the top while it's highlighted, and the size being changed while dragging or pointing at a handle */
+function drawSurfaceOutline() {
+  if (!OV.outline) return;
+  const lit = state.scene === 'room' && !!(surfHover || surfSelected || drag || gripHover || sliderFocus);
+  const L = R.shelfL, D = R.shelfB, y = state.shelfH + 0.0008, e = 0.0012;
+  OV.outline.visible = lit;
+  if (lit) setLines(OV.outline, [-L - e, y, -0, e, y, 0, e, y, 0, e, y, D + e, e, y, D + e, -L - e, y, D + e, -L - e, y, D + e, -L - e, y, 0]);
+  const k = drag ? drag.k : gripHover;
+  OV.surfDim.visible = state.scene === 'room' && !!k;
+  if (!k) return;
+  const pos = [], top = state.shelfH;
+  if (k === 'h') dimension(pos, V3(0, 0, D), V3(0, top, D), V3(0.05, 0, 0));
+  else if (k === 'd') dimension(pos, V3(0, top, 0), V3(0, top, D), V3(0.05, 0, 0));
+  else dimension(pos, V3(-L, top - R.shelfT, D), V3(0, top - R.shelfT, D), V3(0, -0.05, 0));
+  setLines(OV.surfDim, pos);
+}
+/* place the handles over the view: height on the right end, length on the left end, depth on the front edge
+   (in the middle of its longest stretch that no printer covers) */
+function updateGrips() {
+  const on = sceneReady && state.scene === 'room';
+  gripsLayer.hidden = !on;
+  if (!on) return;
+  const L = R.shelfL, D = R.shelfB, y = state.shelfH - R.shelfT / 2;
+  grips.h.anchor.set(0, y, D / 2); grips.h.nudge.set(1, 0, 0);
+  grips.l.anchor.set(-L, y, D / 2); grips.l.nudge.set(-1, 0, 0);
+  let x = -L / 2;
+  const e = slots.a.env && !slots.a.env.isEmpty() ? slots.a.env : null;
+  if (e) {
+    const a0 = clamp(e.min.x, -L, 0), a1 = clamp(e.max.x, -L, 0);
+    const [s0, s1] = a0 + L >= -a1 ? [-L, a0] : [a1, 0];
+    if (s1 - s0 > 0.1) x = (s0 + s1) / 2;
+  }
+  grips.d.anchor.set(x, y, D); grips.d.nudge.set(0, 0, 1);
+  // while the shelf itself is being dragged, the height handle rides along under the pointer
+  const bodyDrag = drag && drag.body;
+  if (bodyDrag) grips.h.anchor.copy(drag.p0).add(V3(0, state.shelfH - drag.v0, 0));
+  const w = viewer.clientWidth, h = viewer.clientHeight;
+  for (const k of ['h', 'd', 'l']) {
+    const g = grips[k], ge = g.el, mine = drag && drag.k === k;
+    viewDir.copy(camera.position).sub(g.anchor).normalize();
+    gp.copy(g.anchor).project(camera);
+    if (!mine && (Math.abs(viewDir.dot(GRIP_AXIS[k])) > 0.94 || gp.z > 1 || gp.z < -1)) { ge.style.display = 'none'; continue; }
+    ge.style.display = '';
+    const sx = (gp.x * 0.5 + 0.5) * w, sy = (-gp.y * 0.5 + 0.5) * h;
+    const ang = screenAngle(g.anchor, GRIP_AXIS[k]);
+    // push the handle off the object along its outward direction on the screen
+    gq.copy(g.anchor).addScaledVector(g.nudge, 0.05).project(camera);
+    const nx = (gq.x - gp.x) * w, ny = -(gq.y - gp.y) * h, nl = Math.hypot(nx, ny) || 1;
+    // (the height handle riding with a dragged shelf sits just right of the pointer, showing the value)
+    const push = bodyDrag && k === 'h' ? 0 : 22;
+    const cx = sx + (nx / nl) * push + (push ? 0 : 34), cy = sy + (ny / nl) * push;
+    if (!mine) g.cursor = cursorFor(ang);
+    ge.style.cursor = g.cursor;
+    ge.style.setProperty('--a', ((ang * 180) / Math.PI).toFixed(1) + 'deg');
+    const rev = !(bodyDrag && k === 'h') && nx < -0.35 * nl;   // the value grows away from the shelf: leftward on the left end
+    ge.classList.toggle('rev', rev);
+    ge.classList.toggle('on', !!mine);
+    ge.classList.toggle('hover', gripHover === k && !drag);
+    const text = `${GRIP_NAME[k]}|${cmText(surfVal(k))}`;
+    if (text !== g.text) { g.text = text; g.val.replaceChildren(el('small', null, GRIP_NAME[k]), document.createTextNode(cmText(surfVal(k)))); }
+    const gw = ge.offsetWidth || 30;
+    const left = rev ? cx - gw + 15 : cx - 15;
+    g.x = clamp(left, 4, w - gw - 4); g.y = clamp(cy - 15, 4, h - 34);
+    ge.style.transform = `translate(${g.x.toFixed(1)}px,${g.y.toFixed(1)}px)`;
   }
 }
 
@@ -1456,9 +1909,9 @@ function facts(slot) {
   const eye = LM.eye * state.personH, top = e.max.y;
   const dEye = eye - top;
   out.push(['Top', `${cm0(top)} cm from the floor, ${Math.abs(Math.round(dEye * 100))} cm ${dEye >= 0 ? 'below' : 'above'} your eyes`, dEye < 0]);
-  const stop = doorStop(e);
-  if (stop != null) out.push(['Wardrobe door', `Hits the printer when opened past about ${stop}°`, stop < 100]);
-  if (slot.tooWide) out.push(['Width', 'Wider than the shelf', true]);
+  const stop = state.wardrobe ? doorStop(e) : null;
+  if (stop) out.push(['Wardrobe door', stop.by === 'surface' ? `Stops against the ${surfWord()} at about ${stop.deg}°` : `Hits the printer when opened past about ${stop.deg}°`, stop.deg < 100]);
+  if (slot.tooWide) out.push(['Width', `Wider than the ${surfWord()}`, true]);
   return out;
 }
 function renderFit() {
@@ -1477,9 +1930,22 @@ function renderFit() {
   }
   const ph = state.personH, eye = Math.round(LM.eye * ph * 100);
   $('#phOut').replaceChildren(document.createTextNode(`${Math.round(ph * 100)} cm`), el('small', null, `eyes at ${eye} cm`));
-  $('#shOut').replaceChildren(document.createTextNode(`${Math.round(state.shelfH * 100)} cm`), el('small', null, Math.abs(state.shelfH - DEF.shelfH) < 0.005 ? 'yours' : `yours is ${Math.round(DEF.shelfH * 100)} cm`));
-  $('#shelfNote').textContent = `Shelf ${cm0(R.shelfL)} × ${cm0(R.shelfB)} cm${R.shelfMeasured.depth ? '' : ' (depth estimated)'}`;
-  for (const id of ['shIn', 'phIn']) { const i = $('#' + id); i.style.setProperty('--p', ((i.value - i.min) / (i.max - i.min) * 100) + '%'); }
+  syncSurfaceUI();
+}
+/* the sliders, the Shelf / Cabinet switch and the headings follow the surface, however it was changed */
+function syncSurfaceUI() {
+  const word = surfWord();
+  for (const [k, id] of [['h', 'sh'], ['d', 'sd'], ['l', 'sl']]) {
+    const v = surfVal(k), def = surfDef(k), inp = $(`#${id}In`);
+    if (Math.abs(+inp.value / 100 - v) > 1e-6) inp.value = String(Math.round(v * 1000) / 10);
+    $(`#${id}Out`).replaceChildren(document.createTextNode(cmText(v)), el('small', null, Math.abs(v - def) < 1e-6 ? 'yours' : `yours is ${cmText(def)}`));
+  }
+  document.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === state.surf)));
+  $('#surfHead').textContent = `The ${word}`;
+  $('#fitHead').textContent = `On your ${word}`;
+  const dflt = ['h', 'd', 'l'].every((k) => Math.abs(surfVal(k) - surfDef(k)) < 1e-6) && state.surf === DEF.surf;
+  $('#shelfNote').textContent = dflt ? `Your shelf: ${cmText(R.shelfL)} long, ${cmText(R.shelfB)} deep` : `${word[0].toUpperCase() + word.slice(1)} ${cmText(R.shelfL)} × ${cmText(R.shelfB)}, top at ${cmText(state.shelfH)}`;
+  for (const id of ['shIn', 'sdIn', 'slIn', 'phIn']) { const i = $('#' + id); i.style.setProperty('--p', ((i.value - i.min) / (i.max - i.min) * 100) + '%'); }
 }
 function stateEnvelope(slot, st) {
   // published-in-model envelope for a given state (metres, model space) -> depth beyond the shelf
@@ -1634,11 +2100,13 @@ function onThemeChange() {
     OV.boxB.material.color.set(B); OV.dimB.material.color.set(B); OV.overB.material.color.set(B);
     OV.edge.material.color.set(css('--measure')); OV.gap.material.color.set(css('--measure')); OV.eye.material.color.set(css('--muted'));
     OV.cableZone.material.color.set(A);
+    OV.surfDim.material.color.set(css('--accent')); OV.outline.material.color.set(css('--accent'));
     for (const k of ['w', 'd', 'h', 'over', 'gap', 'top']) OV.lbl[k].el.style.setProperty('--c', A);
     for (const k of ['overB', 'wB', 'dB', 'hB']) OV.lbl[k].el.style.setProperty('--c', B);
   }
   for (const s of [slots.a, slots.b]) if (s.ghostMat) { s.ghostMat.color.set(slotColor(s.key)); s.ghostOverMat.color.set(slotColor(s.key)); }
   personMat.color.set(css('--mannequin') || '#cdc8be');
+  applyWorldColors(); updateSurfUI();
   renderChrome(); renderFit(); renderTiles();
 }
 
@@ -1739,25 +2207,41 @@ $('#curSel').addEventListener('change', (e) => {
 toggle('#boxBtn', 'boxes', () => { drawOverlays(); });
 toggle('#cableBtn', 'cables', () => { applyMaterials(); });
 toggle('#personBtn', 'person', () => { placePerson(); drawOverlays(); renderFit(); });
+toggle('#wardBtn', 'wardrobe', () => {
+  savePrefs(); layoutWorld(); placePerson(); drawOverlays(); renderFit();
+  if (state.view === 'far') refitKeepDir();
+});
 document.querySelectorAll('[data-view]').forEach((b) => b.addEventListener('click', () => setView(b.dataset.view)));
 document.querySelectorAll('[data-align]').forEach((b) => b.addEventListener('click', () => {
   state.align = b.dataset.align; savePrefs();
   document.querySelectorAll('[data-align]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.align === state.align)));
   relayout(false);
 }));
-$('#shIn').addEventListener('input', (e) => { state.shelfH = +e.target.value / 100; applyShelfHeight(); relayout(false); });
+for (const [id, k] of [['shIn', 'h'], ['sdIn', 'd'], ['slIn', 'l']]) {
+  const inp = $('#' + id);
+  inp.addEventListener('input', () => {
+    setSurface({ [k]: +inp.value / 100 }, { live: true, detent: false });
+    // settle (tiles, saving, camera) once the slider rests for a moment
+    clearTimeout(settleTimer); settleTimer = setTimeout(surfaceSettled, 450);
+  });
+  inp.addEventListener('focus', () => { sliderFocus = true; updateSurfUI(); });
+  inp.addEventListener('blur', () => { sliderFocus = false; updateSurfUI(); });
+}
+document.querySelectorAll('[data-mode]').forEach((b) => b.addEventListener('click', () => setSurface({ mode: b.dataset.mode })));
 $('#phIn').addEventListener('input', (e) => { state.personH = +e.target.value / 100; savePrefs(); rebuildPerson(); placePerson(); drawOverlays(); renderFit(); });
 $('#resetBtn').addEventListener('click', () => {
-  state.shelfH = DEF.shelfH; state.personH = DEF.personH; state.align = DEF.align; savePrefs();
-  $('#shIn').value = Math.round(state.shelfH * 100); $('#phIn').value = Math.round(state.personH * 100);
+  state.personH = DEF.personH; state.align = DEF.align;
+  $('#phIn').value = Math.round(state.personH * 100);
   document.querySelectorAll('[data-align]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.align === state.align)));
-  applyShelfHeight(); rebuildPerson(); relayout(false);
+  rebuildPerson();
+  setSurface({ h: DEF.shelfH, d: DEF.shelfB, l: DEF.shelfL, mode: DEF.surf }, { live: true });
+  relayout(false); surfaceSettled();
 });
-const KEYS = ['front', 'side', 'top', 'door', 'iso', 'room'];
+const KEYS = ['front', 'side', 'top', 'iso', 'far'];
 addEventListener('keydown', (e) => {
   if (e.altKey || e.ctrlKey || e.metaKey) return;
   const t = e.target; if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.closest?.('.plist'))) return;
-  const i = '123456'.indexOf(e.key);
+  const i = '12345'.indexOf(e.key);
   if (i >= 0) { setView(KEYS[i]); e.preventDefault(); }
 });
 
@@ -1777,6 +2261,30 @@ window.__psl = {
   facts() { return { a: slots.a.p ? facts(slots.a) : null, b: slots.b.p ? facts(slots.b) : null }; },
   info() { return { scene: state.scene, ghostOn: state.ghostOn, ghost: state.ghost, a: slots.a.p && slots.a.p.id, b: slots.b.p && slots.b.p.id, posA: slots.a.group.position.toArray(), posB: slots.b.group.position.toArray() }; },
   setBoxes(on) { state.boxes = on; drawOverlays(); },
+  // the shelf or cabinet, in centimetres: { h, d, l, mode }; returns what it became
+  setSurface(s = {}) {
+    const m = (v) => (v == null ? null : v / 100);
+    setSurface({ h: m(s.h), d: m(s.d), l: m(s.l), mode: s.mode }, { detent: false });
+    return this.surface();
+  },
+  cam() { return { pos: camera.position.toArray().map((v) => +v.toFixed(3)), target: controls.target.toArray().map((v) => +v.toFixed(3)), view: state.view }; },
+  surface() { return { h: Math.round(state.shelfH * 1000) / 10, d: Math.round(R.shelfB * 1000) / 10, l: Math.round(R.shelfL * 1000) / 10, mode: state.surf, wardrobe: state.wardrobe }; },
+  setWardrobe(on) { if (state.wardrobe !== !!on) $('#wardBtn').click(); return state.wardrobe; },
+  // a point on the front of the surface, near its left end (client coordinates), for testing drags on the surface itself
+  surfacePoint(fx = 0.85, fy = 0.5) {
+    const r = viewer.getBoundingClientRect();
+    const v = V3(-R.shelfL * fx, state.surf === 'cabinet' ? state.shelfH * (1 - fy) : state.shelfH - R.shelfT * fy, R.shelfB).project(camera);
+    return { x: r.left + (v.x * 0.5 + 0.5) * r.width, y: r.top + (-v.y * 0.5 + 0.5) * r.height };
+  },
+  // where each handle is on the screen (client coordinates of its arrows), or null when hidden
+  grips() {
+    const r = viewer.getBoundingClientRect(), out = {};
+    for (const k of ['h', 'd', 'l']) {
+      const g = grips[k], vis = !gripsLayer.hidden && g.el.style.display !== 'none';
+      out[k] = vis ? { x: r.left + g.x + (g.el.classList.contains('rev') ? g.el.offsetWidth - 15 : 15), y: r.top + g.y + 15 } : null;
+    }
+    return out;
+  },
 };
 
 /* ---------- resize + loop ---------- */
@@ -1795,10 +2303,14 @@ function frame(now) {
   const far = state.scene === 'room' && camera.position.distanceTo(focusPt.set(-R.shelfL / 2, state.shelfH, R.shelfB / 2)) > 3.4;
   if (far !== farView) { farView = far; drawOverlays(); }
   for (const s of [slots.a, slots.b]) if (s.anim) stepAnim(s, now);
+  if (drag && drag.pending) { const [x, y] = drag.pending; drag.pending = null; dragTo(x, y); }
+  if (tilesDirty && now - lastTiles > 150) { tilesDirty = false; lastTiles = now; renderTiles(); }
   controls.update();
   cutaway();
+  updateHover();
   renderer.render(scene, camera);
   updateLabels();
+  updateGrips();
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
@@ -1818,13 +2330,13 @@ requestAnimationFrame(frame);
   for (const p of state.printers) state.byId[p.id] = p;
   renderPrices();
   loadRates();   // not awaited: the page works without it, and prices update when the rates arrive
-  readRoom(data.room);
-  $('#shIn').value = Math.round(state.shelfH * 100);
+  readScene(data.scene || data.room);
   $('#phIn').value = Math.round(state.personH * 100);
   document.querySelectorAll('[data-align]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.align === state.align)));
+  $('#wardBtn').setAttribute('aria-pressed', String(state.wardrobe));
   buildOverlays();
   rebuildPerson();
-  await loadRoom();
+  buildWardrobe(); layoutWorld(); applyWorldColors(); sceneReady = true;
   const cur = state.printers.find((p) => p.current);
   const first = state.printers.find((p) => !p.current) || state.printers[0];
   await Promise.all([setSlot(slots.a, first), setSlot(slots.b, cur && cur !== first ? cur : null)]);
