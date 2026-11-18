@@ -3650,6 +3650,7 @@ function resize() {
 new ResizeObserver(() => resize()).observe(viewer);
 resize();
 const focusPt = new THREE.Vector3();
+const frameHooks = [];   // run every frame, just before drawing (used by a local add-on, see boot)
 function frame(now) {
   stepTween(now);
   const far = state.scene === 'room' && camera.position.distanceTo(focusPt.set(-R.shelfL / 2, state.shelfH, R.shelfB / 2)) > 3.4;
@@ -3660,6 +3661,7 @@ function frame(now) {
   controls.update();
   cutaway();
   updateHover();
+  for (const f of frameHooks) f();
   renderer.render(scene, camera);
   updateLabels();
   updateGrips();
@@ -3690,6 +3692,14 @@ requestAnimationFrame(frame);
   buildOverlays();
   rebuildPerson();
   buildWardrobe(); layoutWorld(); applyWorldColors(); sceneReady = true;
+  // When the page runs from this computer, an optional add-on in docs/private/ (never published) can dress
+  // the scene. On the public site this is skipped entirely.
+  if (['localhost', '127.0.0.1'].includes(location.hostname)) {
+    try {
+      const addon = await import('./private/addon.js');
+      await addon.default({ THREE, loader, scene, world, camera, wall, floor, wardrobe, state, R, onFrame: (f) => frameHooks.push(f) });
+    } catch (e) { /* no add-on here */ }
+  }
   const cur = state.printers.find((p) => p.current);
   const first = state.printers.find((p) => !p.current) || state.printers[0];
   await Promise.all([setSlot(slots.a, first), setSlot(slots.b, cur && cur !== first ? cur : null)]);

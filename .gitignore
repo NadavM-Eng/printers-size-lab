@@ -10,3 +10,6 @@ printers/*/photos/
 HANDOFF.md
 references/room/room_vs_photos.jpg
 references/room/tools/
+# private, this computer only
+docs/private/
+run-with-my-room.bat
